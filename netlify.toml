@@ -22,10 +22,10 @@
 
 # Redirect rules for SPA routing
 
-# Explicitly serve the Tesla public key to prevent Next.js routing from interfering.
+# Map .well-known requests to well-known directory (without dot)
 [[redirects]]
-  from = "/.well-known/appspecific/com.tesla.3p.public-key.pem"
-  to = "/.well-known/appspecific/com.tesla.3p.public-key.pem"
+  from = "/.well-known/*"
+  to = "/well-known/:splat"
   status = 200
 
 [[redirects]]
