@@ -22,10 +22,10 @@
 
 # Redirect rules for SPA routing
 
-# Map .well-known requests to well-known directory (without dot)
+# Map .well-known requests to wellknown directory (Netlify removes well-known dirs)
 [[redirects]]
   from = "/.well-known/*"
-  to = "/well-known/:splat"
+  to = "/wellknown/:splat"
   status = 200
 
 [[redirects]]
