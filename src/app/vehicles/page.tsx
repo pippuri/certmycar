@@ -1,45 +1,45 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { ArrowLeft, Loader2, AlertTriangle, Zap } from "lucide-react"
-import { Logo } from "@/components/logo"
-import { VehicleCard } from "@/components/vehicle-card"
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { ArrowLeft, Loader2, AlertTriangle, Zap } from "lucide-react";
+import { Logo } from "@/components/logo";
+import { VehicleCard } from "@/components/vehicle-card";
 
 interface Vehicle {
-  id: string
-  name: string
-  model: string
-  year: number
-  color: string
-  vin: string
-  batteryLevel: number
-  range: number
-  isCharging: boolean
-  lastSeen: string
-  image: string
-  location?: string
-  temperature?: number
+  id: string;
+  name: string;
+  model: string;
+  year: number;
+  color: string;
+  vin: string;
+  batteryLevel: number;
+  range: number;
+  isCharging: boolean;
+  lastSeen: string;
+  image: string;
+  location?: string;
+  temperature?: number;
 }
 
 export default function VehicleSelectionPage() {
-  const [vehicles, setVehicles] = useState<Vehicle[]>([])
-  const [selectedVehicleId, setSelectedVehicleId] = useState<string>("")
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState("")
-  const [isCheckingBattery, setIsCheckingBattery] = useState(false)
+  const [vehicles, setVehicles] = useState<Vehicle[]>([]);
+  const [selectedVehicleId, setSelectedVehicleId] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [isCheckingBattery, setIsCheckingBattery] = useState(false);
 
   // Simulate fetching vehicles from Tesla API
   useEffect(() => {
     const fetchVehicles = async () => {
-      setIsLoading(true)
+      setIsLoading(true);
       try {
         // Simulate API call delay
-        await new Promise(resolve => setTimeout(resolve, 1500))
-        
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+
         // Mock vehicle data - this would come from Tesla API
         const mockVehicles: Vehicle[] = [
           {
@@ -55,7 +55,7 @@ export default function VehicleSelectionPage() {
             lastSeen: "2 hours ago",
             image: "/tesla/tesla-card.webp",
             location: "Home - San Francisco, CA",
-            temperature: 72
+            temperature: 72,
           },
           {
             id: "2",
@@ -70,7 +70,7 @@ export default function VehicleSelectionPage() {
             lastSeen: "30 minutes ago",
             image: "/tesla/tesla-card.webp",
             location: "Office - Palo Alto, CA",
-            temperature: 68
+            temperature: 68,
           },
           {
             id: "3",
@@ -84,44 +84,43 @@ export default function VehicleSelectionPage() {
             isCharging: false,
             lastSeen: "1 day ago",
             image: "/tesla/tesla-card.webp",
-            location: "Garage - Los Angeles, CA"
-          }
-        ]
-        
-        setVehicles(mockVehicles)
-      } catch (err) {
-        setError("Failed to load your vehicles. Please try again.")
-      } finally {
-        setIsLoading(false)
-      }
-    }
+            location: "Garage - Los Angeles, CA",
+          },
+        ];
 
-    fetchVehicles()
-  }, [])
+        setVehicles(mockVehicles);
+      } catch (err) {
+        setError("Failed to load your vehicles. Please try again.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchVehicles();
+  }, []);
 
   const handleVehicleSelect = (vehicleId: string) => {
-    setSelectedVehicleId(vehicleId)
-  }
+    setSelectedVehicleId(vehicleId);
+  };
 
   const handleCheckBattery = async () => {
-    if (!selectedVehicleId) return
+    if (!selectedVehicleId) return;
 
-    setIsCheckingBattery(true)
-    setError("")
+    setIsCheckingBattery(true);
+    setError("");
 
     try {
       // Simulate battery check API call
-      await new Promise(resolve => setTimeout(resolve, 2000))
-      
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
       // Redirect to results page with vehicle ID
-      window.location.href = `/check?vehicle=${selectedVehicleId}`
-      
+      window.location.href = `/check?vehicle=${selectedVehicleId}`;
     } catch (err) {
-      setError("Failed to check battery health. Please try again.")
+      setError("Failed to check battery health. Please try again.");
     } finally {
-      setIsCheckingBattery(false)
+      setIsCheckingBattery(false);
     }
-  }
+  };
 
   if (isLoading) {
     return (
@@ -152,7 +151,7 @@ export default function VehicleSelectionPage() {
           </Card>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -175,7 +174,8 @@ export default function VehicleSelectionPage() {
             Select Your Tesla
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Choose the vehicle you'd like to check. We'll analyze its battery health in just 30 seconds.
+            Choose the vehicle you&apos;d like to check. We&apos;ll analyze its
+            battery health in just 30 seconds.
           </p>
         </div>
 
@@ -221,7 +221,7 @@ export default function VehicleSelectionPage() {
                   </>
                 )}
               </Button>
-              
+
               {!selectedVehicleId && (
                 <p className="text-sm text-gray-500 mt-2">
                   Please select a vehicle to continue
@@ -240,8 +240,9 @@ export default function VehicleSelectionPage() {
                 No Vehicles Found
               </h2>
               <p className="text-gray-600 mb-6">
-                We couldn't find any Tesla vehicles associated with your account.
-                Please make sure you have vehicles registered to your Tesla account.
+                We couldn&apos;t find any Tesla vehicles associated with your
+                account. Please make sure you have vehicles registered to your
+                Tesla account.
               </p>
               <Button variant="outline" asChild>
                 <Link href="/check">Try Again</Link>
@@ -257,7 +258,9 @@ export default function VehicleSelectionPage() {
               <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
                 <Zap className="h-6 w-6 text-green-600" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Instant Analysis</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">
+                Instant Analysis
+              </h3>
               <p className="text-sm text-gray-600">
                 Get your battery health results in 30 seconds or less
               </p>
@@ -269,9 +272,12 @@ export default function VehicleSelectionPage() {
               <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
                 <AlertTriangle className="h-6 w-6 text-blue-600" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Detailed Report</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">
+                Detailed Report
+              </h3>
               <p className="text-sm text-gray-600">
-                Comprehensive analysis with degradation percentage and capacity data
+                Comprehensive analysis with degradation percentage and capacity
+                data
               </p>
             </CardContent>
           </Card>
@@ -281,14 +287,17 @@ export default function VehicleSelectionPage() {
               <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
                 <AlertTriangle className="h-6 w-6 text-purple-600" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Verified Certificate</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">
+                Verified Certificate
+              </h3>
               <p className="text-sm text-gray-600">
-                Optional $9.99 verified certificate for buying/selling protection
+                Optional $9.99 verified certificate for buying/selling
+                protection
               </p>
             </CardContent>
           </Card>
         </div>
       </div>
     </div>
-  )
+  );
 }
