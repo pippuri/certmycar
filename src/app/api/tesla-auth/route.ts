@@ -915,9 +915,11 @@ class MockTeslaApiClient {
 // Real Tesla API Client using Fleet API
 class TeslaApiClient {
   private accessToken: string;
+  private apiBase: string;
 
-  constructor(accessToken: string) {
+  constructor(accessToken: string, apiBase: string = TESLA_API_BASE) {
     this.accessToken = accessToken;
+    this.apiBase = apiBase;
   }
 
   // Authenticate using Fleet API with client credentials (mock for development)
@@ -966,7 +968,7 @@ class TeslaApiClient {
 
   // Get user's vehicles
   async getVehicles(): Promise<TeslaVehicle[]> {
-    const response = await fetch(`${TESLA_API_BASE}/api/1/vehicles`, {
+    const response = await fetch(`${this.apiBase}/api/1/vehicles`, {
       headers: {
         Authorization: `Bearer ${this.accessToken}`,
         "User-Agent": "CertMyBattery/1.0",
@@ -992,7 +994,7 @@ class TeslaApiClient {
   async wakeVehicle(vehicleId: number): Promise<void> {
     // First check if vehicle is already awake
     const vehicleResponse = await fetch(
-      `${TESLA_API_BASE}/vehicles/${vehicleId}`,
+      `${this.apiBase}/vehicles/${vehicleId}`,
       {
         headers: {
           Authorization: `Bearer ${this.accessToken}`,
@@ -1030,7 +1032,7 @@ class TeslaApiClient {
       await new Promise((resolve) => setTimeout(resolve, 5000)); // Wait 5 seconds
 
       const checkResponse = await fetch(
-        `${TESLA_API_BASE}/vehicles/${vehicleId}`,
+        `${this.apiBase}/vehicles/${vehicleId}`,
         {
           headers: {
             Authorization: `Bearer ${this.accessToken}`,
@@ -1053,7 +1055,7 @@ class TeslaApiClient {
   // Get battery and charging data
   async getBatteryData(vehicleId: number): Promise<TeslaBatteryData> {
     const response = await fetch(
-      `${TESLA_API_BASE}/api/1/vehicles/${vehicleId}/data_request/charge_state`,
+      `${this.apiBase}/api/1/vehicles/${vehicleId}/data_request/charge_state`,
       {
         headers: {
           Authorization: `Bearer ${this.accessToken}`,
@@ -1148,7 +1150,14 @@ export async function POST(request: NextRequest) {
         );
       }
 
-      const state = crypto.randomUUID();
+      // Create state with locale and other info
+      const stateData = {
+        locale: requestBody.locale || 'en-US',
+        path: '/check',
+        timestamp: Date.now(),
+        nonce: crypto.randomUUID()
+      }
+      const state = Buffer.from(JSON.stringify(stateData)).toString('base64');
       const scopes =
         "openid offline_access vehicle_device_data vehicle_cmds vehicle_charging_cmds";
 
@@ -1175,8 +1184,14 @@ export async function POST(request: NextRequest) {
       console.log("Processing Tesla access token...");
 
       try {
-        // Create API client with access token
-        const client = new TeslaApiClient(requestBody.access_token);
+        // Determine API URL from request
+        let apiUrl = "https://fleet-api.prd.na.vn.cloud.tesla.com"; // Default to NA
+        if (requestBody.region || requestBody.apiUrl) {
+          apiUrl = requestBody.apiUrl || "https://fleet-api.prd.na.vn.cloud.tesla.com";
+        }
+        
+        // Create API client with access token and API URL
+        const client = new TeslaApiClient(requestBody.access_token, apiUrl);
 
         // Get vehicles and process battery data
         const vehicles = await client.getVehicles();
@@ -1242,6 +1257,17 @@ export async function POST(request: NextRequest) {
       console.log("Processing OAuth callback...");
 
       try {
+        // Determine API URL from locale
+        let apiUrl = "https://fleet-api.prd.na.vn.cloud.tesla.com"; // Default to NA
+        if (requestBody.locale) {
+          // Import the function here to avoid circular imports
+          const { localeToRegion, getTeslaApiUrl } = await import("@/lib/tesla-regions");
+          const region = localeToRegion(requestBody.locale);
+          apiUrl = getTeslaApiUrl(region);
+        }
+
+        console.log(`Using Tesla API URL: ${apiUrl} for locale: ${requestBody.locale}`);
+
         // Exchange authorization code for tokens
         const tokenResponse = await fetch(
           "https://auth.tesla.com/oauth2/v3/token",
@@ -1255,7 +1281,7 @@ export async function POST(request: NextRequest) {
               client_id: TESLA_CLIENT_ID!,
               client_secret: TESLA_CLIENT_SECRET!,
               code: requestBody.code,
-              audience: "https://fleet-api.prd.na.vn.cloud.tesla.com",
+              audience: apiUrl,
               redirect_uri: TESLA_REDIRECT_URI!,
             }),
           }
@@ -1270,8 +1296,8 @@ export async function POST(request: NextRequest) {
 
         const tokens = await tokenResponse.json();
 
-        // Create API client with access token
-        const client = new TeslaApiClient(tokens.access_token);
+        // Create API client with access token and correct API URL
+        const client = new TeslaApiClient(tokens.access_token, apiUrl);
 
         // Get vehicles and process battery data
         const vehicles = await client.getVehicles();

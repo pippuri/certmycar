@@ -5,7 +5,19 @@ export async function GET(request: NextRequest) {
   const code = searchParams.get("code");
   const state = searchParams.get("state");
   const error = searchParams.get("error");
-  const next = searchParams.get("next") ?? "/check";
+  let next = searchParams.get("next") ?? "/en-US/check";
+  
+  // Extract locale from state if available
+  if (state) {
+    try {
+      const stateData = JSON.parse(Buffer.from(state, 'base64').toString());
+      if (stateData.locale) {
+        next = `/${stateData.locale}/check`;
+      }
+    } catch (e) {
+      console.warn('Failed to parse state for locale:', e);
+    }
+  }
 
   console.log("Tesla OAuth callback received:", { code: !!code, state, error });
 
@@ -15,12 +27,12 @@ export async function GET(request: NextRequest) {
     const errorMsg = encodeURIComponent(
       `Tesla authentication failed: ${error}`
     );
-    return NextResponse.redirect(`${origin}/check?error=${errorMsg}`);
+    return NextResponse.redirect(`${origin}${next}?error=${errorMsg}`);
   }
 
   if (!code) {
     console.error("No authorization code received from Tesla");
-    return NextResponse.redirect(`${origin}/check?error=no_authorization_code`);
+    return NextResponse.redirect(`${origin}${next}?error=no_authorization_code`);
   }
 
   try {
@@ -59,6 +71,25 @@ export async function GET(request: NextRequest) {
     // For now, we'll pass it via URL parameter (in production, use secure session storage)
     const accessToken = tokens.access_token;
 
+    // Determine the correct API region
+    let apiRegion = 'na';
+    let locale = 'en-US';
+    
+    if (state) {
+      try {
+        const stateData = JSON.parse(Buffer.from(state, 'base64').toString());
+        locale = stateData.locale || 'en-US';
+        
+        // Import region detection
+        const { localeToRegion } = await import('@/lib/tesla-regions');
+        apiRegion = localeToRegion(locale);
+      } catch (e) {
+        console.warn('Failed to parse state for API region:', e);
+      }
+    }
+
+    console.log(`Using Tesla API for region: ${apiRegion}, locale: ${locale}`);
+
     // Process the Tesla data immediately with the access token
     const processResponse = await fetch(`${origin}/api/tesla-auth`, {
       method: "POST",
@@ -68,6 +99,8 @@ export async function GET(request: NextRequest) {
       body: JSON.stringify({
         action: "process_token",
         access_token: accessToken,
+        region: apiRegion,
+        locale: locale,
       }),
     });
 
@@ -95,7 +128,7 @@ export async function GET(request: NextRequest) {
         : "Unknown error during Tesla authentication";
 
     const encodedError = encodeURIComponent(errorMessage);
-    return NextResponse.redirect(`${origin}/check?error=${encodedError}`);
+    return NextResponse.redirect(`${origin}${next}?error=${encodedError}`);
   }
 }
 

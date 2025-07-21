@@ -1,0 +1,47 @@
+import type React from "react";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "../globals.css";
+
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "batterycert.com- Tesla Battery Health Check in 30 Seconds",
+  description:
+    "Get instant, verified Tesla battery health assessments. Perfect for buying, selling, or knowing your Tesla's true condition.",
+  keywords: [
+    "Tesla",
+    "battery health",
+    "electric vehicle",
+    "EV",
+    "battery test",
+    "batterycert.comification",
+    "Instant Battery Health Check",
+  ],
+  openGraph: {
+    title: "batterycert.com - Tesla Battery Health Check",
+    description:
+      "Get instant, verified Tesla battery health assessments in just 30 seconds.",
+    type: "website",
+    url: "https://batterycert.com",
+  },
+};
+
+export default async function LocaleLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  
+  // Extract language from locale (e.g., en-US -> en)
+  const lang = locale.split('-')[0];
+  
+  return (
+    <>
+      {children}
+    </>
+  );
+}

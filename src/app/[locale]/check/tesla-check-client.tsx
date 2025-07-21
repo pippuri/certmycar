@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import {
   Shield,
@@ -17,8 +16,7 @@ import {
   Info,
 } from "lucide-react";
 import { Logo } from "@/components/logo";
-import { localeToRegion, getTeslaApiUrl, formatRegionName } from "@/lib/tesla-regions";
-import { useRouter } from "next/router";
+import { getTeslaApiUrl } from "@/lib/tesla-regions";
 
 interface BatteryHealthResult {
   success: boolean;
@@ -49,15 +47,20 @@ interface BatteryHealthResult {
   timestamp: string;
 }
 
-export default function TeslaCheckPage() {
-  const router = useRouter();
+interface TeslaCheckPageClientProps {
+  region: any;
+  regionName: string;
+  links: any;
+}
+
+export default function TeslaCheckPageClient({ 
+  region, 
+  regionName, 
+  links 
+}: TeslaCheckPageClientProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState<BatteryHealthResult | null>(null);
-  
-  // Get region from Next.js locale
-  const region = localeToRegion(router.locale || 'en-US');
-  const regionName = formatRegionName(region);
 
   const handleTeslaOAuth = async () => {
     console.log("Tesla OAuth button clicked");
@@ -161,7 +164,7 @@ export default function TeslaCheckPage() {
           <div className="flex items-center justify-between mb-8">
             <Logo size="md" />
             <Button variant="outline" asChild>
-              <Link href="/">
+              <Link href={links.home}>
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Home
               </Link>
@@ -277,7 +280,7 @@ export default function TeslaCheckPage() {
                       </div>
                     </div>
                   </div>
-
+                  
                   <div>
                     <h4 className="font-medium text-gray-900 mb-2">
                       Range Impact
@@ -353,7 +356,7 @@ export default function TeslaCheckPage() {
                 className="text-lg px-8 py-6"
                 asChild
               >
-                <Link href="/check">Check Another Tesla</Link>
+                <Link href={links.check}>Check Another Tesla</Link>
               </Button>
             </div>
           </div>
@@ -370,7 +373,7 @@ export default function TeslaCheckPage() {
         <div className="flex items-center justify-between mb-8">
           <Logo size="md" />
           <Button variant="outline" asChild>
-            <Link href="/">
+            <Link href={links.home}>
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Home
             </Link>
@@ -402,7 +405,7 @@ export default function TeslaCheckPage() {
                     className="text-xs text-gray-500 underline"
                     asChild
                   >
-                    <Link href="/region">
+                    <Link href={links.region}>
                       Wrong region? Change it here
                     </Link>
                   </Button>
