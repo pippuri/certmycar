@@ -26,15 +26,9 @@ export default function HomePage() {
             <Logo size="md" />
           </div>
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="#about" className="text-gray-600 hover:text-gray-900">
+            <Link href="/about" className="text-gray-600 hover:text-gray-900">
               About
             </Link>
-            <Link href="#pricing" className="text-gray-600 hover:text-gray-900">
-              Pricing
-            </Link>
-            <Button variant="outline" asChild>
-              <Link href="/signin">Sign In</Link>
-            </Button>
           </nav>
         </div>
       </header>
@@ -43,14 +37,9 @@ export default function HomePage() {
       <section className="py-20 px-4">
         <div className="container mx-auto text-center max-w-6xl">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            Check Your Tesla Battery Health in{" "}
+            Check Your EV Battery Health <br /> in{" "}
             <span className="text-blue-600">30 Seconds</span>
           </h1>
-          <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
-            Get instant, verified battery assessments with minimal friction.
-            Perfect for buying, selling, or just knowing your Tesla&apos;s true
-            condition.
-          </p>
 
           {/* Interactive Hero Visual */}
           <div className="mb-12">
@@ -211,63 +200,6 @@ export default function HomePage() {
                 </p>
               </CardContent>
             </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Tesla Charging Section */}
-      <section className="py-16 px-4 bg-white/50">
-        <div className="container mx-auto">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Real Tesla Data, Real Peace of Mind
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                We connect directly to your Tesla&apos;s systems to provide
-                accurate, real-time battery health data.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WallConnector_91.png-FCZ86ClxjjatYYAtz3U81WNBBf2LPA.jpeg"
-                  alt="Tesla charging with Wall Connector showing active status"
-                  width={600}
-                  height={400}
-                  className="rounded-xl shadow-lg w-full"
-                />
-                <div className="text-center">
-                  <h3 className="font-semibold text-lg mb-2">
-                    Live Charging Data
-                  </h3>
-                  <p className="text-gray-600 text-sm">
-                    Monitor battery performance during charging cycles for
-                    comprehensive health analysis.
-                  </p>
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WallConnector_87.jpg-NfrM9J42Pu7efIp96lUZbGjKvGrmlH.jpeg"
-                  alt="White Tesla Model Y connected to Wall Connector for charging"
-                  width={600}
-                  height={400}
-                  className="rounded-xl shadow-lg w-full"
-                />
-                <div className="text-center">
-                  <h3 className="font-semibold text-lg mb-2">
-                    Complete System Check
-                  </h3>
-                  <p className="text-gray-600 text-sm">
-                    Analyze all battery components including thermal management
-                    and cell balance.
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
