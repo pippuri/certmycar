@@ -12,6 +12,11 @@
   node_bundler = "esbuild"
 
 [[headers]]
+  for = "/.well-known/appspecific/com.tesla.3p.public-key.pem"
+  [headers.values]
+    Content-Type = "application/x-pem-file"
+
+[[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "DENY"
@@ -22,7 +27,14 @@
 
 # Redirect rules for SPA routing
 
-# Map .well-known requests to wellknown directory (Netlify removes well-known dirs)
+# Map specific Tesla public key (renamed to avoid .pem removal)
+[[redirects]]
+  from = "/.well-known/appspecific/com.tesla.3p.public-key.pem"
+  to = "/wellknown/appspecific/com.tesla.3p.public-key.txt"
+  status = 200
+  force = true
+
+# Map other .well-known requests to wellknown directory
 [[redirects]]
   from = "/.well-known/*"
   to = "/wellknown/:splat"
