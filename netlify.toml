@@ -21,6 +21,13 @@
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://js.stripe.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co https://api.stripe.com; frame-src https://js.stripe.com;"
 
 # Redirect rules for SPA routing
+
+# Explicitly serve the Tesla public key to prevent Next.js routing from interfering.
+[[redirects]]
+  from = "/.well-known/appspecific/com.tesla.3p.public-key.pem"
+  to = "/.well-known/appspecific/com.tesla.3p.public-key.pem"
+  status = 200
+
 [[redirects]]
   from = "/verify/*"
   to = "/verify/[id]"
