@@ -1,0 +1,16 @@
+---
+description: NextJS Typescript and TSX files that are not tests
+alwaysApply: false
+---
+
+# Testing
+
+Create test cases for major functionality to ensure changes don't break anything existing.
+
+TDD - create tests and then create the logic
+
+Use standard NextJS and Typescript testing tools and linting to spot errors
+
+Fix errors without asking
+
+Strive for good SEO and performance, and verify it with playwright
