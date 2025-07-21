@@ -53,7 +53,7 @@ export function Logo({ className = "", size = "md" }: LogoProps) {
         </span>
         {size === "lg" && (
           <span className="text-xs text-gray-500 font-medium tracking-wide">
-            TESLA CERTIFIED
+            CERTIFIED RESULTS
           </span>
         )}
       </div>
