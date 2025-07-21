@@ -27,10 +27,10 @@ export default function AboutPage() {
       <main className="container mx-auto px-4 py-16">
         <div className="text-center max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            About Cert My Battery
+            About batterycert.com
           </h1>
           <p className="text-xl text-gray-600 mb-12">
-            Cert My Battery was founded by the team behind TidyCalls with a
+            batterycert.com was founded by the team behind TidyCalls with a
             simple mission: to bring transparency and trust to the used electric
             vehicle market. We believe that buying or selling an EV should be a
             clear, confident process for everyone involved.
@@ -69,12 +69,12 @@ export default function AboutPage() {
               <Building className="w-12 h-12 text-gray-400" />
             </div>
             <h4 className="text-xl font-bold text-center text-gray-800 mb-2">
-              A TidyCalls Inc. Company
+              A TidyCalls LTD Company
             </h4>
             <p className="text-center text-gray-600">
               Leveraging years of experience in building robust, user-friendly
               applications at TidyCalls, we bring the same dedication to quality
-              and security to Cert My Battery.
+              and security to batterycert.com.
             </p>
           </div>
         </div>
@@ -98,7 +98,7 @@ export default function AboutPage() {
 
       <footer className="border-t bg-white">
         <div className="container mx-auto px-4 py-6 text-center text-gray-600">
-          &copy; {new Date().getFullYear()} Cert My Battery, a TidyCalls LTD.
+          &copy; {new Date().getFullYear()} batterycert.com, a TidyCalls LTD.
           company. All rights reserved.
         </div>
       </footer>

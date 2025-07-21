@@ -6,7 +6,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Cert My Battery - Tesla Battery Health Check in 30 Seconds",
+  title: "batterycert.com- Tesla Battery Health Check in 30 Seconds",
   description:
     "Get instant, verified Tesla battery health assessments. Perfect for buying, selling, or knowing your Tesla's true condition.",
   keywords: [
@@ -15,15 +15,15 @@ export const metadata: Metadata = {
     "electric vehicle",
     "EV",
     "battery test",
-    "Battery Certification",
+    "batterycert.comification",
     "Instant Battery Health Check",
   ],
   openGraph: {
-    title: "CertMyBattery - Tesla Battery Health Check",
+    title: "batterycert.com - Tesla Battery Health Check",
     description:
       "Get instant, verified Tesla battery health assessments in just 30 seconds.",
     type: "website",
-    url: "https://certmybattery.com",
+    url: "https://batterycert.com",
   },
 };
 

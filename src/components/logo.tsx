@@ -49,7 +49,7 @@ export function Logo({ className = "", size = "md" }: LogoProps) {
         <span
           className={`font-bold ${textSizes[size]} text-gray-900 leading-tight`}
         >
-          CertMyBattery
+          batterycert.com
         </span>
         {size === "lg" && (
           <span className="text-xs text-gray-500 font-medium tracking-wide">

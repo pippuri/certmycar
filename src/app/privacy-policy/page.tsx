@@ -35,7 +35,7 @@ export default function PrivacyPolicyPage() {
           <div className="prose max-w-none">
             <p>
               TidyCalls LTD. (&quot;we&quot;, &quot;us&quot;, &quot;our&quot;)
-              operates the Cert My Battery website (the &quot;Service&quot;).
+              operates the batterycert.com website (the &quot;Service&quot;).
               This page informs you of our policies regarding the collection,
               use, and disclosure of personal data when you use our Service.
             </p>
@@ -112,7 +112,7 @@ export default function PrivacyPolicyPage() {
 
       <footer className="border-t bg-white">
         <div className="container mx-auto px-4 py-6 text-center text-gray-600">
-          &copy; {new Date().getFullYear()} Cert My Battery, a TidyCalls LTD.
+          &copy; {new Date().getFullYear()} batterycert.com, a TidyCalls LTD.
           company. All rights reserved.
         </div>
       </footer>

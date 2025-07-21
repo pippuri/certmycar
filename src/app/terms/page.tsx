@@ -34,9 +34,9 @@ export default function TermsPage() {
 
           <div className="prose max-w-none">
             <p>
-              Welcome to Cert My Battery, a service provided by TidyCalls LTD.
+              Welcome to batterycert.com, a service provided by TidyCalls LTD.
               These Terms of Service (&quot;Terms&quot;) govern your use of our
-              website, certmybattery.com (the &quot;Service&quot;). By using the
+              website, batterycert.com (the &quot;Service&quot;). By using the
               Service, you agree to these Terms.
             </p>
 
@@ -44,7 +44,7 @@ export default function TermsPage() {
               1. Service Description
             </h2>
             <p>
-              Cert My Battery provides an assessment of a Tesla vehicle&apos;s
+              batterycert.com provides an assessment of a Tesla vehicle&apos;s
               battery health based on data retrieved from the Tesla API. For a
               fee, users can receive a downloadable PDF certificate of this
               assessment.
@@ -84,7 +84,7 @@ export default function TermsPage() {
               The battery health assessment is provided for informational
               purposes only and is not a guarantee of future performance. The
               assessment is based on a snapshot of data at a specific point in
-              time and can be influenced by many factors. Cert My Battery and
+              time and can be influenced by many factors. batterycert.com and
               TidyCalls LTD. are not liable for any decisions made based on this
               information.
             </p>
@@ -118,7 +118,7 @@ export default function TermsPage() {
 
       <footer className="border-t bg-white">
         <div className="container mx-auto px-4 py-6 text-center text-gray-600">
-          &copy; {new Date().getFullYear()} Cert My Battery, a TidyCalls LTD.
+          &copy; {new Date().getFullYear()} batterycert.com, a TidyCalls LTD.
           company. All rights reserved.
         </div>
       </footer>

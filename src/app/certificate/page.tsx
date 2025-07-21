@@ -299,7 +299,7 @@ export default function CertificatePage() {
           <CardContent className="p-6 text-center">
             <div className="flex items-center justify-center mb-4">
               <CheckCircle className="h-6 w-6 text-green-600 mr-2" />
-              <span className="font-medium">Verified by CertMyBattery</span>
+              <span className="font-medium">Verified by batterycert.com</span>
             </div>
             <p className="text-sm text-gray-600 mb-4">
               This certificate can be verified using QR code or certificate ID:

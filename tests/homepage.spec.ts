@@ -23,7 +23,7 @@ test.describe("Homepage", () => {
 
     // Check that the logo is present in the header
     await expect(
-      page.locator("header").locator("text=CertMyBattery")
+      page.locator("header").locator("text=batterycert.com")
     ).toBeVisible();
   });
 

@@ -59,7 +59,7 @@ export default function HomePage() {
               className="text-lg px-8 py-6 bg-transparent"
               asChild
             >
-              <Link href="/sample">View Sample Report</Link>
+              <Link href="/certificate">View Sample Report</Link>
             </Button>
           </div>
 
@@ -364,7 +364,7 @@ export default function HomePage() {
       <footer className="py-8 px-4 bg-gray-900 text-gray-400">
         <div className="container mx-auto text-center">
           <p>
-            © 2025 Cert My Battery. Built for Tesla owners, by Tesla
+            © 2025 batterycert.com. Built for Tesla owners, by Tesla
             enthusiasts.
           </p>
         </div>

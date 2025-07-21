@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-CertMyCar is a NextJS-based EV battery certification platform that provides instant Tesla battery health assessments with verified PDF certificates. The project follows a "hook" strategy - get users to battery results with zero friction, then monetize through $9.99 PDF certificates.
+batterycert.com is a NextJS-based EV battery certification platform that provides instant Tesla battery health assessments with verified PDF certificates. The project follows a "hook" strategy - get users to battery results with zero friction, then monetize through $10 PDF certificates.
 
 **Core Value Proposition**: 30-second Tesla battery health check → Optional verified certificate for resale/purchase protection.
 

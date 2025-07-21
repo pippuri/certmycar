@@ -1,4 +1,4 @@
-# 🚗⚡ CertMyCar - EV Battery Certification Platform
+# 🚗⚡ batterycert.com - EV Battery Certification Platform
 
 > **Instant Tesla battery health assessments with verified PDF certificates**
 
@@ -7,7 +7,7 @@
 
 ## 🎯 Overview
 
-CertMyCar provides instant Tesla battery health assessments with minimal user friction, monetized through verified PDF certificates. Perfect for car sales, purchases, and peace of mind.
+batterycert provides instant Tesla battery health assessments with minimal user friction, monetized through verified PDF certificates. Perfect for car sales, purchases, and peace of mind.
 
 ### The Problem
 

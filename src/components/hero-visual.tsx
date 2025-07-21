@@ -150,13 +150,13 @@ export function HeroVisual() {
             <div className="bg-gray-50 p-4 rounded-lg text-center">
               <div className="flex justify-center mb-3">
                 <QRCode
-                  url="https://certmybattery.com"
+                  url="https://batterycert.com"
                   size={80}
                   className="border-0 shadow-none p-0"
                 />
               </div>
               <p className="font-medium text-gray-800">Scan to Verify</p>
-              <p className="text-sm text-gray-600">certmybattery.com</p>
+              <p className="text-sm text-gray-600">batterycert.com</p>
             </div>
           </div>
 
@@ -165,7 +165,7 @@ export function HeroVisual() {
             <div className="flex items-center justify-between text-sm text-gray-500">
               <div className="flex items-center space-x-2">
                 <CertificateIcon className="w-4 h-4 text-gray-400" />
-                <span>Verified by CertMyBattery</span>
+                <span>Verified by batterycert.com</span>
               </div>
               <div className="flex items-center space-x-4">
                 <span>Generated: Jan 21, 2025</span>
