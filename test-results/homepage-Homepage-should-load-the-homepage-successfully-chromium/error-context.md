@@ -1,0 +1,81 @@
+# Page snapshot
+
+```yaml
+- banner:
+  - img
+  - text: CertMyBattery
+  - navigation:
+    - link "About":
+      - /url: "#about"
+    - link "Pricing":
+      - /url: "#pricing"
+    - link "Sign In":
+      - /url: /signin
+- heading "Check Your Tesla Battery Health in 30 Seconds" [level=1]
+- paragraph: Get instant, verified battery assessment. For buying, selling, or just knowing your Tesla's true condition.
+- img "Tesla battery diagnostic screen showing health status and system components"
+- link "Check My Tesla":
+  - /url: /check
+- link "View Sample Report":
+  - /url: /sample
+- text: Free battery health check No account required Instant results
+- heading "Don't Get Scammed When Buying a Used Tesla" [level=2]
+- paragraph: Battery replacement can cost $15,000+. Protect yourself with verified battery health certificates that sellers can't fake.
+- img "Tesla key card and documentation for vehicle verification"
+- text: "!"
+- heading "Hidden Battery Degradation" [level=3]
+- paragraph: Sellers often hide battery issues that could cost you thousands in repairs.
+- heading "Verified Protection" [level=3]
+- paragraph: Our certificates are tamper-proof and directly connected to Tesla's systems.
+- heading "Increase Resale Value" [level=3]
+- paragraph: Proven battery health can increase your Tesla's value by thousands of dollars.
+- heading "Instant Results" [level=3]
+- paragraph: Get your battery health report in seconds, not days. No waiting, no complexity.
+- heading "Verified Certificates" [level=3]
+- paragraph: Official PDF certificates with QR verification for buyers and sellers.
+- heading "Privacy First" [level=3]
+- paragraph: We never store your Tesla credentials. Your data stays secure.
+- heading "Real Tesla Data, Real Peace of Mind" [level=2]
+- paragraph: We connect directly to your Tesla's systems to provide accurate, real-time battery health data.
+- link "Start Free Check":
+  - /url: /check
+- heading "Trusted by Tesla Owners Worldwide" [level=2]
+- paragraph: Join the growing community of Tesla owners who rely on CertMyBattery for accurate, instant battery health assessments.
+- text: 50k+ Batteries Checked 98.5% Accuracy Rate 24/7 Instant Results $2M+ Repair Costs Saved
+- heading "How It Works" [level=2]
+- text: "1"
+- heading "Connect Tesla" [level=3]
+- paragraph: Securely connect your Tesla account using official Tesla authentication.
+- text: "2"
+- heading "Get Assessment" [level=3]
+- paragraph: Our system analyzes your battery data and calculates health instantly.
+- text: "3"
+- heading "Download Certificate" [level=3]
+- paragraph: Get your official PDF certificate with QR verification ($9.99).
+- heading "Perfect for Every Tesla Owner" [level=2]
+- paragraph: Whether you're buying, selling, or just curious about your Tesla's condition.
+- heading "For Buyers" [level=3]
+- paragraph: Verify the seller's claims and avoid costly surprises. Don't get stuck with a degraded battery.
+- list:
+  - listitem: • Verify seller claims
+  - listitem: • Avoid $15K+ repair costs
+  - listitem: • Negotiate with confidence
+- heading "For Sellers" [level=3]
+- paragraph: Prove your battery's health and command top dollar. Build trust with potential buyers.
+- list:
+  - listitem: • Increase resale value
+  - listitem: • Build buyer confidence
+  - listitem: • Sell faster with proof
+- heading "For Owners" [level=3]
+- paragraph: Monitor your battery's health over time and plan for the future with confidence.
+- list:
+  - listitem: • Track degradation trends
+  - listitem: • Plan maintenance timing
+  - listitem: • Optimize charging habits
+- heading "Ready to Check Your Tesla Battery?" [level=2]
+- paragraph: Join thousands of Tesla owners who trust CertMyBattery for accurate, instant battery health reports.
+- link "Start Free Check":
+  - /url: /check
+- contentinfo:
+  - paragraph: © 2024 CertMyBattery. Built for Tesla owners, by Tesla enthusiasts.
+```

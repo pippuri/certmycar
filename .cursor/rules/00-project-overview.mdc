@@ -543,7 +543,7 @@ export async function createPaymentIntent(assessmentId: string) {
 **Netlify Services**:
 
 - **Static Hosting**: NextJS app with automatic builds
-- **Edge Functions**: Tesla API proxy (TypeScript)
+- **Next Functions**: Tesla API proxy (TypeScript)
 - **Functions**: PDF generation and Stripe webhooks
 - **CDN**: Global distribution built-in
 - **Domain Management**: Custom domain with SSL
@@ -553,7 +553,7 @@ export async function createPaymentIntent(assessmentId: string) {
 - **Database**: PostgreSQL with real-time subscriptions
 - **Auth**: User authentication with social providers
 - **Storage**: PDF certificate file storage
-- **Edge Functions**: Database triggers (if needed)
+- **Next Functions**: Database triggers (if needed)
 
 ### CI/CD Pipeline
 

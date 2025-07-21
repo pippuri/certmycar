@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh issue:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run lint)",
+      "Bash(curl:*)",
+      "Bash(mkdir:*)",
+      "WebFetch(domain:developer.tesla.com)"
+    ],
+    "deny": []
+  }
+}
