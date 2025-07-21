@@ -1,16 +1,6 @@
 
 #!/bin/bash
 TESLA_CLIENT_ID=6b4c9222-731a-4e4b-9da0-fb4441532772
-TESLA_CLIENT_SECRET=ta-secret.j^E^tD3e!org*0HX
-
-# Domain to register (must match your deployed app domain)
-DOMAIN=${1:-"certmycar.netlify.app"}
-
-if [ -z "$1" ]; then
-  echo "Usage: $0 <domain>"
-  echo "Example: $0 app.certmycar.com"
-  echo "Using default: $DOMAIN"
-fi
 
 CLIENT_ID=$TESLA_CLIENT_ID
 CLIENT_SECRET=$TESLA_CLIENT_SECRET
