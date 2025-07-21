@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { TeslaStatsVisual } from "@/components/tesla-stats-visual";
+import { HeroVisual } from "@/components/hero-visual";
 
 export default function HomePage() {
   return (
@@ -40,25 +41,20 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="py-20 px-4">
-        <div className="container mx-auto text-center max-w-4xl">
+        <div className="container mx-auto text-center max-w-6xl">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
             Check Your Tesla Battery Health in{" "}
             <span className="text-blue-600">30 Seconds</span>
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Get instant, verified battery assessment. For buying, selling, or
-            just knowing your Tesla&apos;s true condition.
+          <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+            Get instant, verified battery assessments with minimal friction.
+            Perfect for buying, selling, or just knowing your Tesla&apos;s true
+            condition.
           </p>
 
+          {/* Interactive Hero Visual */}
           <div className="mb-12">
-            <Image
-              src="/tesla/"
-              alt="Tesla battery diagnostic screen showing health status and system components"
-              width={800}
-              height={600}
-              className="mx-auto rounded-2xl shadow-2xl max-w-2xl w-full"
-              priority
-            />
+            <HeroVisual />
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -116,7 +112,7 @@ export default function HomePage() {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
                 <Image
-                  src="/tesla/tesla-card.webp"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/0x0-0x0-Service_21.jpg-g08oqiaG6IpkSlznB2Dh2Xp4KyfudF.jpeg"
                   alt="Tesla key card and documentation for vehicle verification"
                   width={600}
                   height={400}
@@ -231,18 +227,45 @@ export default function HomePage() {
                 We connect directly to your Tesla&apos;s systems to provide
                 accurate, real-time battery health data.
               </p>
-              <div className="flex justify-center mt-4">
-                <Button
-                  size="lg"
-                  variant="secondary"
-                  className="text-lg px-8 py-6"
-                  asChild
-                >
-                  <Link href="/check">
-                    Start Free Check
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                </Button>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="space-y-6">
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WallConnector_91.png-FCZ86ClxjjatYYAtz3U81WNBBf2LPA.jpeg"
+                  alt="Tesla charging with Wall Connector showing active status"
+                  width={600}
+                  height={400}
+                  className="rounded-xl shadow-lg w-full"
+                />
+                <div className="text-center">
+                  <h3 className="font-semibold text-lg mb-2">
+                    Live Charging Data
+                  </h3>
+                  <p className="text-gray-600 text-sm">
+                    Monitor battery performance during charging cycles for
+                    comprehensive health analysis.
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                <Image
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WallConnector_87.jpg-NfrM9J42Pu7efIp96lUZbGjKvGrmlH.jpeg"
+                  alt="White Tesla Model Y connected to Wall Connector for charging"
+                  width={600}
+                  height={400}
+                  className="rounded-xl shadow-lg w-full"
+                />
+                <div className="text-center">
+                  <h3 className="font-semibold text-lg mb-2">
+                    Complete System Check
+                  </h3>
+                  <p className="text-gray-600 text-sm">
+                    Analyze all battery components including thermal management
+                    and cell balance.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -409,7 +432,8 @@ export default function HomePage() {
       <footer className="py-8 px-4 bg-gray-900 text-gray-400">
         <div className="container mx-auto text-center">
           <p>
-            © 2024 CertMyBattery. Built for Tesla owners, by Tesla enthusiasts.
+            © 2025 Cert My Battery. Built for Tesla owners, by Tesla
+            enthusiasts.
           </p>
         </div>
       </footer>
