@@ -1,6 +1,6 @@
 
 #!/bin/bash
-
+TESLA_CLIENT_SECRET=ta-secret.j^E^tD3e!org*0HX
 TESLA_CLIENT_ID=6b4c9222-731a-4e4b-9da0-fb4441532772
 CLIENT_ID=$TESLA_CLIENT_ID
 CLIENT_SECRET=$TESLA_CLIENT_SECRET
@@ -33,4 +33,4 @@ curl --request POST \
   --header "Authorization: Bearer $ACCESS_TOKEN" \
   --header "Content-Type: application/json" \
   -d '{"domain": "batterycert.com"}' \
-  "https://fleet-api.prd.na.vn.cloud.tesla.com/api/1/partner_accounts"
+  "https://fleet-api.prd.eu.vn.cloud.tesla.com/api/1/partner_accounts"

@@ -48,14 +48,21 @@ interface BatteryHealthResult {
 }
 
 interface TeslaCheckPageClientProps {
-  region: any;
+  region: 'na' | 'eu';
   regionName: string;
-  links: any;
+  locale: string;
+  links: {
+    home: string;
+    check: string;
+    region: string;
+    [key: string]: string;
+  };
 }
 
 export default function TeslaCheckPageClient({ 
   region, 
   regionName, 
+  locale,
   links 
 }: TeslaCheckPageClientProps) {
   const [isLoading, setIsLoading] = useState(false);
@@ -78,6 +85,7 @@ export default function TeslaCheckPageClient({
         body: JSON.stringify({
           action: "start_oauth",
           region: region,
+          locale: locale,
           apiUrl: getTeslaApiUrl(region),
         }),
       });

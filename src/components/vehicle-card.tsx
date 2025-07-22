@@ -2,7 +2,7 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Battery, Zap, Thermometer, Clock } from "lucide-react"
+import { Zap } from "lucide-react"
 import Image from "next/image"
 
 interface VehicleCardProps {
@@ -69,45 +69,20 @@ export function VehicleCard({ vehicle, isSelected = false, onClick }: VehicleCar
             )}
           </div>
 
-          {/* Battery Status */}
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <Battery className={`w-4 h-4 ${vehicle.batteryLevel > 20 ? "text-green-500" : "text-red-500"}`} />
-                <span className="text-sm font-medium">{vehicle.batteryLevel}%</span>
-              </div>
-              <span className="text-sm text-gray-600">{vehicle.range} mi range</span>
+          {/* Vehicle Action */}
+          <div className="mt-4">
+            <div className={`text-center py-2 px-4 rounded-lg font-medium transition-colors ${
+              isSelected 
+                ? "bg-blue-100 text-blue-700 border border-blue-200" 
+                : "bg-gray-100 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+            }`}>
+              {isSelected ? "Selected" : "Select This Vehicle"}
             </div>
-
-            {/* Battery Level Bar */}
-            <div className="w-full bg-gray-200 rounded-full h-2">
-              <div
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  vehicle.batteryLevel > 50
-                    ? "bg-green-500"
-                    : vehicle.batteryLevel > 20
-                      ? "bg-yellow-500"
-                      : "bg-red-500"
-                }`}
-                style={{ width: `${vehicle.batteryLevel}%` }}
-              />
-            </div>
-
-            {/* Additional Info */}
-            <div className="flex items-center justify-between text-xs text-gray-500 pt-2">
-              <div className="flex items-center space-x-1">
-                <Clock className="w-3 h-3" />
-                <span>{vehicle.lastSeen}</span>
-              </div>
-              {vehicle.temperature && (
-                <div className="flex items-center space-x-1">
-                  <Thermometer className="w-3 h-3" />
-                  <span>{vehicle.temperature}°F</span>
-                </div>
-              )}
-            </div>
-
-            {vehicle.location && <p className="text-xs text-gray-500 pt-1">{vehicle.location}</p>}
+            
+            {/* Location if available */}
+            {vehicle.location && !vehicle.location.includes("Unknown") && (
+              <p className="text-xs text-gray-500 mt-2 text-center">{vehicle.location}</p>
+            )}
           </div>
         </div>
       </CardContent>

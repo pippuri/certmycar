@@ -1,9 +1,6 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "../globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "batterycert.com- Tesla Battery Health Check in 30 Seconds",
@@ -27,18 +24,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function LocaleLayout({
+export default function LocaleLayout({
   children,
-  params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
-  
-  // Extract language from locale (e.g., en-US -> en)
-  const lang = locale.split('-')[0];
-  
   return (
     <>
       {children}

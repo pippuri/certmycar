@@ -994,7 +994,7 @@ class TeslaApiClient {
   async wakeVehicle(vehicleId: number): Promise<void> {
     // First check if vehicle is already awake
     const vehicleResponse = await fetch(
-      `${this.apiBase}/vehicles/${vehicleId}`,
+      `${this.apiBase}/api/1/vehicles/${vehicleId}`,
       {
         headers: {
           Authorization: `Bearer ${this.accessToken}`,
@@ -1010,9 +1010,9 @@ class TeslaApiClient {
       }
     }
 
-    // Wake up the vehicle
+    // Wake up the vehicle using Fleet API endpoint
     const response = await fetch(
-      `${TESLA_API_BASE}/vehicles/${vehicleId}/wake_up`,
+      `${this.apiBase}/api/1/vehicles/${vehicleId}/wake_up`,
       {
         method: "POST",
         headers: {
@@ -1052,10 +1052,10 @@ class TeslaApiClient {
     throw new Error("Vehicle failed to wake up within 30 seconds");
   }
 
-  // Get battery and charging data
+  // Get battery and charging data using Fleet API
   async getBatteryData(vehicleId: number): Promise<TeslaBatteryData> {
     const response = await fetch(
-      `${this.apiBase}/api/1/vehicles/${vehicleId}/data_request/charge_state`,
+      `${this.apiBase}/api/1/vehicles/${vehicleId}/vehicle_data`,
       {
         headers: {
           Authorization: `Bearer ${this.accessToken}`,
@@ -1076,7 +1076,23 @@ class TeslaApiClient {
     }
 
     const data = await response.json();
-    return data.response;
+    const vehicleData = data.response;
+    
+    // Extract charge state from vehicle_data response
+    const chargeState = vehicleData.charge_state;
+    if (!chargeState) {
+      throw new Error("No charge state data found in vehicle data");
+    }
+    
+    // Map Fleet API response to our TeslaBatteryData interface
+    return {
+      battery_level: chargeState.battery_level,
+      usable_battery_level: chargeState.usable_battery_level,
+      charge_energy_added: chargeState.charge_energy_added || 0,
+      charge_limit_soc: chargeState.charge_limit_soc,
+      est_battery_range: chargeState.est_battery_range,
+      rated_battery_range: chargeState.rated_battery_range,
+    };
   }
 }
 
@@ -1179,15 +1195,179 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 2. Process access token from callback
+    // 2. Get vehicles from Tesla API
+    if (requestBody.action === "get_vehicles" && requestBody.access_token) {
+      console.log("Fetching Tesla vehicles...");
+
+      try {
+        // Determine API URL from region/locale
+        let apiUrl = "https://fleet-api.prd.na.vn.cloud.tesla.com"; // Default to NA
+        if (requestBody.region) {
+          if (requestBody.region === 'eu') {
+            apiUrl = "https://fleet-api.prd.eu.vn.cloud.tesla.com";
+          } else {
+            apiUrl = "https://fleet-api.prd.na.vn.cloud.tesla.com";
+          }
+        } else if (requestBody.locale) {
+          // Fallback: determine region from locale
+          const { localeToRegion } = await import('@/lib/tesla-regions');
+          const region = localeToRegion(requestBody.locale);
+          apiUrl = region === 'eu' 
+            ? "https://fleet-api.prd.eu.vn.cloud.tesla.com"
+            : "https://fleet-api.prd.na.vn.cloud.tesla.com";
+        }
+        
+        console.log(`Using Tesla API URL: ${apiUrl} for vehicles fetch`);
+        
+        // Create API client with access token and API URL
+        const client = new TeslaApiClient(requestBody.access_token, apiUrl);
+
+        // Get vehicles
+        const vehicles = await client.getVehicles();
+
+        return NextResponse.json(
+          {
+            success: true,
+            vehicles: vehicles,
+          },
+          { headers }
+        );
+      } catch (error) {
+        console.error("Failed to fetch vehicles:", error);
+
+        const errorMessage =
+          error instanceof Error
+            ? error.message
+            : "Failed to fetch vehicles from Tesla API";
+
+        return NextResponse.json(
+          {
+            success: false,
+            error: errorMessage,
+          },
+          { status: 400, headers }
+        );
+      }
+    }
+
+    // 3. Process selected vehicle for battery check
+    if (requestBody.action === "process_selected_vehicle" && requestBody.access_token && requestBody.vehicle_id) {
+      console.log(`Processing battery check for vehicle ${requestBody.vehicle_id}...`);
+
+      try {
+        // Determine API URL from region/locale
+        let apiUrl = "https://fleet-api.prd.na.vn.cloud.tesla.com"; // Default to NA
+        if (requestBody.region) {
+          if (requestBody.region === 'eu') {
+            apiUrl = "https://fleet-api.prd.eu.vn.cloud.tesla.com";
+          } else {
+            apiUrl = "https://fleet-api.prd.na.vn.cloud.tesla.com";
+          }
+        } else if (requestBody.locale) {
+          // Fallback: determine region from locale
+          const { localeToRegion } = await import('@/lib/tesla-regions');
+          const region = localeToRegion(requestBody.locale);
+          apiUrl = region === 'eu' 
+            ? "https://fleet-api.prd.eu.vn.cloud.tesla.com"
+            : "https://fleet-api.prd.na.vn.cloud.tesla.com";
+        }
+        
+        console.log(`Using Tesla API URL: ${apiUrl} for battery check`);
+        
+        // Create API client with access token and API URL
+        const client = new TeslaApiClient(requestBody.access_token, apiUrl);
+
+        // Get all vehicles to find the selected one
+        const vehicles = await client.getVehicles();
+        const selectedVehicle = vehicles.find(v => v.id.toString() === requestBody.vehicle_id);
+        
+        if (!selectedVehicle) {
+          return NextResponse.json(
+            {
+              success: false,
+              error: "Selected vehicle not found",
+            },
+            { status: 404, headers }
+          );
+        }
+
+        // Wake up and get battery data for the selected vehicle
+        await client.wakeVehicle(selectedVehicle.id);
+        const batteryData = await client.getBatteryData(selectedVehicle.id);
+        const batteryHealth = calculateBatteryHealth(batteryData, selectedVehicle);
+
+        // Store assessment in database
+        await supabase.from("assessments").insert({
+          tesla_vin: selectedVehicle.vin,
+          battery_health:
+            batteryHealth.degradation_percentage < 10
+              ? "Good"
+              : batteryHealth.degradation_percentage < 15
+              ? "Fair"
+              : "Poor",
+          degradation_percentage: batteryHealth.degradation_percentage,
+          confidence_level: batteryHealth.confidence_level,
+          created_at: new Date().toISOString(),
+        });
+
+        return NextResponse.json(
+          {
+            success: true,
+            vehicle: {
+              id: selectedVehicle.id,
+              vin: selectedVehicle.vin,
+              name: selectedVehicle.display_name,
+              model: selectedVehicle.vehicle_config?.car_type || "Unknown",
+              trim: selectedVehicle.vehicle_config?.trim_badging || "Standard",
+            },
+            battery_data: {
+              current_charge: batteryData.battery_level,
+              usable_level: batteryData.usable_battery_level,
+              charge_limit: batteryData.charge_limit_soc,
+            },
+            battery_health: batteryHealth,
+            timestamp: new Date().toISOString(),
+          },
+          { headers }
+        );
+      } catch (error) {
+        console.error("Failed to process selected vehicle:", error);
+
+        const errorMessage =
+          error instanceof Error
+            ? error.message
+            : "Failed to process battery check";
+
+        return NextResponse.json(
+          {
+            success: false,
+            error: errorMessage,
+          },
+          { status: 400, headers }
+        );
+      }
+    }
+
+    // 4. Process access token from callback
     if (requestBody.action === "process_token" && requestBody.access_token) {
       console.log("Processing Tesla access token...");
 
       try {
-        // Determine API URL from request
+        // Determine API URL from region/locale
         let apiUrl = "https://fleet-api.prd.na.vn.cloud.tesla.com"; // Default to NA
-        if (requestBody.region || requestBody.apiUrl) {
-          apiUrl = requestBody.apiUrl || "https://fleet-api.prd.na.vn.cloud.tesla.com";
+        if (requestBody.region) {
+          if (requestBody.region === 'eu') {
+            apiUrl = "https://fleet-api.prd.eu.vn.cloud.tesla.com";
+          } else {
+            apiUrl = "https://fleet-api.prd.na.vn.cloud.tesla.com";
+          }
+        } else if (requestBody.locale) {
+          // Fallback: determine region from locale
+          const { localeToRegion } = await import('@/lib/tesla-regions');
+          const region = localeToRegion(requestBody.locale);
+          apiUrl = region === 'eu' 
+            ? "https://fleet-api.prd.eu.vn.cloud.tesla.com"
+            : "https://fleet-api.prd.na.vn.cloud.tesla.com";
         }
         
         // Create API client with access token and API URL

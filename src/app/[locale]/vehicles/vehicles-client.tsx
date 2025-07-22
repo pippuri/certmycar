@@ -1,47 +1,123 @@
-"use client";
+"use client"
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { ArrowLeft, Loader2, AlertTriangle, Zap } from "lucide-react";
-import { Logo } from "@/components/logo";
-import { VehicleCard } from "@/components/vehicle-card";
+import React, { useState, useEffect } from "react"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Alert, AlertDescription } from "@/components/ui/alert"
+import { ArrowLeft, Loader2, AlertTriangle, Zap } from "lucide-react"
+import { Logo } from "@/components/logo"
+import { VehicleCard } from "@/components/vehicle-card"
 
 interface Vehicle {
-  id: string;
-  name: string;
-  model: string;
-  year: number;
-  color: string;
-  vin: string;
-  batteryLevel: number;
-  range: number;
-  isCharging: boolean;
-  lastSeen: string;
-  image: string;
-  location?: string;
-  temperature?: number;
+  id: string
+  name: string
+  model: string
+  year: number
+  color: string
+  vin: string
+  batteryLevel: number
+  range: number
+  isCharging: boolean
+  lastSeen: string
+  image: string
+  location?: string
+  temperature?: number
 }
 
-export default function VehicleSelectionPage() {
-  const [vehicles, setVehicles] = useState<Vehicle[]>([]);
-  const [selectedVehicleId, setSelectedVehicleId] = useState<string>("");
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [isCheckingBattery, setIsCheckingBattery] = useState(false);
+interface TeslaVehicle {
+  id: number;
+  id_s?: string;
+  vin: string;
+  display_name?: string;
+  vehicle_config?: {
+    car_type?: string;
+    exterior_color?: string;
+    trim_badging?: string;
+  };
+  vehicle_state?: {
+    timestamp?: string;
+    geocoded_location?: string;
+  };
+  charge_state?: {
+    battery_level?: number;
+    rated_battery_range?: number;
+    est_battery_range?: number;
+    charging_state?: string;
+    battery_heater_on?: boolean;
+  };
+}
 
-  // Simulate fetching vehicles from Tesla API
+interface SessionData {
+  vehicles: TeslaVehicle[];
+  access_token: string;
+  region: string;
+  locale: string;
+}
+
+export default function VehicleSelectionClient({ locale }: { locale: string }) {
+  const [vehicles, setVehicles] = useState<Vehicle[]>([])
+  const [selectedVehicleId, setSelectedVehicleId] = useState<string>("")
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState("")
+  const [isCheckingBattery, setIsCheckingBattery] = useState(false)
+  const [sessionData, setSessionData] = useState<SessionData | null>(null)
+
+  // Map Tesla API vehicle to UI Vehicle interface
+  const mapTeslaVehicle = (teslaVehicle: TeslaVehicle): Vehicle => {
+    // Extract model info from vehicle_config or fallback to basic info
+    const config = teslaVehicle.vehicle_config || {};
+    const state = teslaVehicle.vehicle_state || {};
+    const charge = teslaVehicle.charge_state || {};
+    
+    // Determine model from vehicle_config.car_type or fallback
+    let model = 'Tesla';
+    if (config.car_type) {
+      model = config.car_type.replace('models', 'Model S').replace('model3', 'Model 3')
+                             .replace('modely', 'Model Y').replace('modelx', 'Model X');
+    }
+    
+    // Generate vehicle name: use display_name or create one
+    const displayName = teslaVehicle.display_name || 
+                       `${model} ${teslaVehicle.vin?.slice(-6) || ''}`;
+    
+    return {
+      id: teslaVehicle.id?.toString() || teslaVehicle.id_s || '',
+      name: displayName,
+      model: model,
+      year: 2020, // TODO: Extract from VIN properly
+      color: config.exterior_color || 'Unknown',
+      vin: teslaVehicle.vin || '',
+      batteryLevel: charge.battery_level || 0,
+      range: Math.round(charge.rated_battery_range || charge.est_battery_range || 0),
+      isCharging: charge.charging_state === 'Charging',
+      lastSeen: state.timestamp ? 'Recently' : 'Unknown', // TODO: Format timestamp properly
+      image: '/tesla/tesla-card.webp', // Default image
+      location: state.geocoded_location || undefined,
+      temperature: charge.battery_heater_on ? 72 : undefined // Rough estimate
+    };
+  };
+
+  // Load vehicles from URL data (from Tesla auth callback) or fetch from API
   useEffect(() => {
     const fetchVehicles = async () => {
-      setIsLoading(true);
+      setIsLoading(true)
       try {
-        // Simulate API call delay
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-
-        // Mock vehicle data - this would come from Tesla API
-        const mockVehicles: Vehicle[] = [
+        // Check if we have session data from Tesla auth callback
+        const urlParams = new URLSearchParams(window.location.search);
+        const dataParam = urlParams.get('data');
+        
+        if (dataParam) {
+          // Parse session data from auth callback
+          const sessionInfo = JSON.parse(decodeURIComponent(dataParam));
+          setSessionData(sessionInfo);
+          
+          // Map Tesla vehicles to UI format
+          const mappedVehicles = sessionInfo.vehicles.map(mapTeslaVehicle);
+          setVehicles(mappedVehicles);
+        } else {
+          // Fallback to mock data for development
+          const mockVehicles: Vehicle[] = [
           {
             id: "1",
             name: "My Tesla",
@@ -89,34 +165,59 @@ export default function VehicleSelectionPage() {
         ];
 
         setVehicles(mockVehicles);
+        }
       } catch {
         setError("Failed to load your vehicles. Please try again.");
       } finally {
         setIsLoading(false);
       }
-    };
+    }
 
     fetchVehicles();
   }, []);
 
-  const handleVehicleSelect = (vehicleId: string) => {
+
+  const handleVehicleAndCheck = async (vehicleId: string) => {
     setSelectedVehicleId(vehicleId);
+    await handleCheckBattery(vehicleId);
   };
 
-  const handleCheckBattery = async () => {
-    if (!selectedVehicleId) return;
+  const handleCheckBattery = async (vehicleId?: string) => {
+    const targetVehicleId = vehicleId || selectedVehicleId;
+    if (!targetVehicleId || !sessionData) return;
 
     setIsCheckingBattery(true);
     setError("");
 
     try {
-      // Simulate battery check API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // Call Tesla API to get battery data for selected vehicle
+      const response = await fetch("/api/tesla-auth", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          action: "process_selected_vehicle",
+          access_token: sessionData.access_token,
+          vehicle_id: targetVehicleId,
+          region: sessionData.region,
+          locale: sessionData.locale,
+        }),
+      });
 
-      // Redirect to results page with vehicle ID
-      window.location.href = `/check?vehicle=${selectedVehicleId}`;
-    } catch {
-      setError("Failed to check battery health. Please try again.");
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to check battery health");
+      }
+
+      const batteryData = await response.json();
+
+      // Encode the battery data and redirect to results page
+      const dataParam = encodeURIComponent(JSON.stringify(batteryData));
+      window.location.href = `/${locale}/check?success=true&data=${dataParam}`;
+    } catch (error) {
+      console.error("Battery check error:", error);
+      setError(error instanceof Error ? error.message : "Failed to check battery health. Please try again.");
     } finally {
       setIsCheckingBattery(false);
     }
@@ -129,9 +230,9 @@ export default function VehicleSelectionPage() {
           <div className="flex items-center justify-between mb-8">
             <Logo size="md" />
             <Button variant="outline" asChild>
-              <Link href="/">
+              <Link href={`/${locale}/check`}>
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Home
+                Back to Login
               </Link>
             </Button>
           </div>
@@ -151,7 +252,7 @@ export default function VehicleSelectionPage() {
           </Card>
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -161,7 +262,7 @@ export default function VehicleSelectionPage() {
         <div className="flex items-center justify-between mb-8">
           <Logo size="md" />
           <Button variant="outline" asChild>
-            <Link href="/check">
+            <Link href={`/${locale}/check`}>
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Login
             </Link>
@@ -190,44 +291,30 @@ export default function VehicleSelectionPage() {
         {/* Vehicle Grid */}
         {vehicles.length > 0 ? (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <div className={`grid gap-6 mb-8 ${
+              vehicles.length === 1 
+                ? "grid-cols-1 max-w-md mx-auto" 
+                : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+            }`}>
               {vehicles.map((vehicle) => (
                 <VehicleCard
                   key={vehicle.id}
                   vehicle={vehicle}
                   isSelected={selectedVehicleId === vehicle.id}
-                  onClick={() => handleVehicleSelect(vehicle.id)}
+                  onClick={() => handleVehicleAndCheck(vehicle.id)}
                 />
               ))}
             </div>
 
-            {/* Action Button */}
-            <div className="text-center">
-              <Button
-                size="lg"
-                className="text-lg px-12 py-6 bg-blue-600 hover:bg-blue-700"
-                onClick={handleCheckBattery}
-                disabled={!selectedVehicleId || isCheckingBattery}
-              >
-                {isCheckingBattery ? (
-                  <>
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                    Checking Battery Health...
-                  </>
-                ) : (
-                  <>
-                    <Zap className="mr-2 h-5 w-5" />
-                    Check Battery Health
-                  </>
-                )}
-              </Button>
-
-              {!selectedVehicleId && (
-                <p className="text-sm text-gray-500 mt-2">
-                  Please select a vehicle to continue
-                </p>
-              )}
-            </div>
+            {/* Status Message */}
+            {isCheckingBattery && (
+              <div className="text-center">
+                <div className="flex items-center justify-center space-x-2 text-blue-600">
+                  <Loader2 className="h-5 w-5 animate-spin" />
+                  <span className="text-lg font-medium">Checking Battery Health...</span>
+                </div>
+              </div>
+            )}
           </>
         ) : (
           /* No Vehicles State */
@@ -245,7 +332,7 @@ export default function VehicleSelectionPage() {
                 Tesla account.
               </p>
               <Button variant="outline" asChild>
-                <Link href="/check">Try Again</Link>
+                <Link href={`/${locale}/check`}>Try Again</Link>
               </Button>
             </CardContent>
           </Card>
@@ -299,5 +386,5 @@ export default function VehicleSelectionPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

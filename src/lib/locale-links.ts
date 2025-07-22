@@ -1,4 +1,4 @@
-import { locales, defaultLocale } from '../middleware'
+import { defaultLocale } from '../middleware'
 
 /**
  * Create a locale-aware link path

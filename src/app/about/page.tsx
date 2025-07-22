@@ -1,4 +1,4 @@
-import { Building, Users, Target, Handshake } from "lucide-react";
+import { Building, Target, Handshake } from "lucide-react";
 import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";

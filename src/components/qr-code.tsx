@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 interface QRCodeProps {
   url: string
   size?: number
@@ -10,7 +12,7 @@ export function QRCode({ url, size = 80, className = "" }: QRCodeProps) {
 
   return (
     <div className={`bg-white p-2 rounded-lg shadow-sm border ${className}`}>
-      <img
+      <Image
         src={qrCodeUrl || "/placeholder.svg"}
         alt={`QR Code for ${url}`}
         width={size}

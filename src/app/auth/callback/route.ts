@@ -90,35 +90,41 @@ export async function GET(request: NextRequest) {
 
     console.log(`Using Tesla API for region: ${apiRegion}, locale: ${locale}`);
 
-    // Process the Tesla data immediately with the access token
-    const processResponse = await fetch(`${origin}/api/tesla-auth`, {
+    // Fetch vehicles first to redirect to vehicle selection
+    const vehiclesResponse = await fetch(`${origin}/api/tesla-auth`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        action: "process_token",
+        action: "get_vehicles",
         access_token: accessToken,
         region: apiRegion,
         locale: locale,
       }),
     });
 
-    if (!processResponse.ok) {
-      const errorData = await processResponse.json();
-      throw new Error(errorData.error || "Failed to process Tesla data");
+    if (!vehiclesResponse.ok) {
+      const errorData = await vehiclesResponse.json();
+      throw new Error(errorData.error || "Failed to fetch vehicles");
     }
 
-    const teslaData = await processResponse.json();
+    const vehiclesData = await vehiclesResponse.json();
 
-    // Encode the Tesla data and redirect to results page
-    const dataParam = encodeURIComponent(JSON.stringify(teslaData));
-    const redirectUrl = `${origin}${next}?success=true&data=${dataParam}`;
+    // Encode the vehicles data and access token for vehicle selection
+    const sessionData = {
+      vehicles: vehiclesData.vehicles,
+      access_token: accessToken,
+      region: apiRegion,
+      locale: locale,
+    };
+    const dataParam = encodeURIComponent(JSON.stringify(sessionData));
+    const vehiclesUrl = `${origin}${next.replace('/check', '/vehicles')}?data=${dataParam}`;
 
     console.log(
-      "Tesla OAuth flow completed successfully, redirecting to results"
+      "Tesla OAuth flow completed successfully, redirecting to vehicle selection"
     );
-    return NextResponse.redirect(redirectUrl);
+    return NextResponse.redirect(vehiclesUrl);
   } catch (error) {
     console.error("Tesla OAuth callback processing error:", error);
 

@@ -17,5 +17,5 @@ export default async function TeslaCheckPage({
   // Get locale-aware links
   const links = getLocaleLinks(locale);
   
-  return <TeslaCheckPageClient region={region} regionName={regionName} links={links} />;
+  return <TeslaCheckPageClient region={region} regionName={regionName} links={links} locale={locale} />;
 }
