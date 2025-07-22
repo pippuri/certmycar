@@ -9,16 +9,16 @@ export default function AboutPage() {
       <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <Link href="/">
+            <Link href="/en-US">
               <Logo size="md" />
             </Link>
           </div>
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-gray-600 hover:text-gray-900">
+            <Link href="/en-US" className="text-gray-600 hover:text-gray-900">
               Home
             </Link>
             <Button variant="outline" asChild>
-              <Link href="/check">Get Your Report</Link>
+              <Link href="/en-US/check">Get Your Report</Link>
             </Button>
           </nav>
         </div>
@@ -87,10 +87,10 @@ export default function AboutPage() {
           </p>
           <div className="flex justify-center gap-4">
             <Button asChild>
-              <Link href="/terms">Terms of Service</Link>
+              <Link href="/en-US/terms">Terms of Service</Link>
             </Button>
             <Button variant="outline" asChild>
-              <Link href="/privacy-policy">Privacy Policy</Link>
+              <Link href="/en-US/privacy-policy">Privacy Policy</Link>
             </Button>
           </div>
         </div>
