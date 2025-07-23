@@ -1,6 +1,43 @@
 import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { getLocaleLinks } from "@/lib/locale-links";
+import type { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  return {
+    title: "Privacy Policy - batterycert.com",
+    description:
+      "Read our privacy policy to understand how batterycert.com collects, uses, and protects your data when providing Tesla battery health assessments.",
+    keywords: [
+      "privacy policy",
+      "batterycert.com privacy",
+      "data protection",
+      "Tesla data privacy",
+      "battery assessment privacy",
+    ],
+    openGraph: {
+      title: "Privacy Policy - batterycert.com",
+      description:
+        "Read our privacy policy to understand how batterycert.com collects, uses, and protects your data when providing Tesla battery health assessments.",
+      type: "website",
+      url: "https://batterycert.com/privacy-policy",
+      siteName: "batterycert.com",
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    alternates: {
+      canonical: "https://batterycert.com/privacy-policy",
+    },
+  };
+}
 
 export default async function PrivacyPolicyPage({
   params,

@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://batterycert.com/sitemap.xml
+
+# Disallow admin and API routes
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /wellknown/
+
+# Allow important pages
+Allow: /
+Allow: /about
+Allow: /terms
+Allow: /privacy-policy
+Allow: /check
+Allow: /certificate/
+Allow: /verify/ 

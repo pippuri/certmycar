@@ -1,6 +1,43 @@
 import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { getLocaleLinks } from "@/lib/locale-links";
+import type { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  return {
+    title: "Terms of Service - batterycert.com",
+    description:
+      "Read the terms of service for batterycert.com. Learn about our Tesla battery health assessment service, user agreements, and service conditions.",
+    keywords: [
+      "terms of service",
+      "batterycert.com terms",
+      "Tesla battery service terms",
+      "user agreement",
+      "service conditions",
+    ],
+    openGraph: {
+      title: "Terms of Service - batterycert.com",
+      description:
+        "Read the terms of service for batterycert.com. Learn about our Tesla battery health assessment service, user agreements, and service conditions.",
+      type: "website",
+      url: "https://batterycert.com/terms",
+      siteName: "batterycert.com",
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    alternates: {
+      canonical: "https://batterycert.com/terms",
+    },
+  };
+}
 
 export default async function TermsPage({
   params,

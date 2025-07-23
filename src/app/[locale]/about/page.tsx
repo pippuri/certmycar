@@ -3,6 +3,46 @@ import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { getLocaleLinks } from "@/lib/locale-links";
+import type { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  return {
+    title:
+      "About batterycert.com - Tesla Battery Health Certification Platform",
+    description:
+      "Learn about batterycert.com, the trusted platform for Tesla battery health assessments. We bring transparency to the used EV market with instant, verified battery health certificates.",
+    keywords: [
+      "about batterycert.com",
+      "Tesla battery certification",
+      "EV battery transparency",
+      "TidyCalls company",
+      "battery health platform",
+      "electric vehicle certification",
+    ],
+    openGraph: {
+      title:
+        "About batterycert.com - Tesla Battery Health Certification Platform",
+      description:
+        "Learn about batterycert.com, the trusted platform for Tesla battery health assessments. We bring transparency to the used EV market.",
+      type: "website",
+      url: "https://batterycert.com/about",
+      siteName: "batterycert.com",
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    alternates: {
+      canonical: "https://batterycert.com/about",
+    },
+  };
+}
 
 export default async function AboutPage({
   params,

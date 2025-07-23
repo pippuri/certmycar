@@ -16,6 +16,72 @@ import {
 import { Logo } from "@/components/logo";
 import { getLocaleLinks } from "@/lib/locale-links";
 import { createServerSupabaseClient } from "@/lib/supabase";
+import type { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; id: string }>;
+}): Promise<Metadata> {
+  const { locale, id } = await params;
+
+  // Handle demo certificate
+  if (id === "CMB-DEMO-2024-SAMPLE") {
+    return {
+      title: "Sample Tesla Battery Certificate - batterycert.com",
+      description:
+        "View a sample Tesla battery health certificate. See how batterycert.com provides detailed battery degradation analysis and health assessments for Tesla vehicles.",
+      keywords: [
+        "sample Tesla certificate",
+        "battery health certificate",
+        "Tesla battery report",
+        "battery degradation sample",
+      ],
+      openGraph: {
+        title: "Sample Tesla Battery Certificate - batterycert.com",
+        description:
+          "View a sample Tesla battery health certificate. See how batterycert.com provides detailed battery degradation analysis and health assessments for Tesla vehicles.",
+        type: "website",
+        url: `https://batterycert.com/certificate/${id}`,
+        siteName: "batterycert.com",
+      },
+      robots: {
+        index: true,
+        follow: true,
+      },
+      alternates: {
+        canonical: `https://batterycert.com/certificate/${id}`,
+      },
+    };
+  }
+
+  return {
+    title: "Tesla Battery Certificate - batterycert.com",
+    description:
+      "View your Tesla battery health certificate with detailed degradation analysis, capacity data, and verification QR code.",
+    keywords: [
+      "Tesla battery certificate",
+      "battery health report",
+      "battery degradation certificate",
+      "Tesla battery verification",
+    ],
+    openGraph: {
+      title: "Tesla Battery Certificate - batterycert.com",
+      description:
+        "View your Tesla battery health certificate with detailed degradation analysis, capacity data, and verification QR code.",
+      type: "website",
+      url: `https://batterycert.com/certificate/${id}`,
+      siteName: "batterycert.com",
+    },
+    robots: {
+      index: false, // Don't index individual certificates
+      follow: true,
+    },
+    alternates: {
+      canonical: `https://batterycert.com/certificate/${id}`,
+    },
+  };
+}
 
 export default async function CertificatePage({
   params,
