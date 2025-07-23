@@ -40,21 +40,25 @@ export function HeroVisual() {
               </h2>
               <p className="text-gray-600">Certificate ID: CMB-2024-001234</p>
             </div>
-            
+
             {/* Large Certificate Approval Stamp */}
             <div className="absolute -top-4 -right-4 z-10">
               <div className="relative">
                 <div className="w-32 h-32 bg-green-600 rounded-full flex items-center justify-center shadow-2xl rotate-12">
                   <div className="text-center">
                     <Shield className="h-12 w-12 text-white mx-auto mb-1" />
-                    <div className="text-white font-bold text-xs">CERTIFIED</div>
-                    <div className="text-white text-xs opacity-90">VERIFIED</div>
+                    <div className="text-white font-bold text-xs">
+                      CERTIFIED
+                    </div>
+                    <div className="text-white text-xs opacity-90">
+                      VERIFIED
+                    </div>
                   </div>
                 </div>
                 <div className="absolute inset-0 w-32 h-32 border-4 border-green-600 rounded-full animate-ping opacity-20"></div>
               </div>
             </div>
-            
+
             <div className="text-right">
               <div
                 className={`text-5xl font-bold text-green-600 transition-all duration-500 ${
@@ -144,7 +148,7 @@ export function HeroVisual() {
 
                 {/* Year labels */}
                 <div className="absolute bottom-0 w-full flex justify-between px-4">
-                  {['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'].map((year) => (
+                  {["2022", "2023", "2024", "2025"].map((year) => (
                     <span key={year} className="text-xs text-gray-500">
                       {year}
                     </span>
@@ -152,11 +156,24 @@ export function HeroVisual() {
                 </div>
 
                 {/* Reference curve (average) */}
-                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 128">
+                <svg
+                  className="absolute inset-0 w-full h-full"
+                  viewBox="0 0 400 128"
+                >
                   <defs>
-                    <linearGradient id="referenceGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.3"/>
-                      <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.1"/>
+                    <linearGradient
+                      id="referenceGradient"
+                      x1="0%"
+                      y1="0%"
+                      x2="0%"
+                      y2="100%"
+                    >
+                      <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.3" />
+                      <stop
+                        offset="100%"
+                        stopColor="#f59e0b"
+                        stopOpacity="0.1"
+                      />
                     </linearGradient>
                   </defs>
                   {/* Reference curve area */}
@@ -177,11 +194,24 @@ export function HeroVisual() {
                 </svg>
 
                 {/* This vehicle's curve */}
-                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 128">
+                <svg
+                  className="absolute inset-0 w-full h-full"
+                  viewBox="0 0 400 128"
+                >
                   <defs>
-                    <linearGradient id="vehicleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                      <stop offset="0%" stopColor="#10b981" stopOpacity="0.3"/>
-                      <stop offset="100%" stopColor="#10b981" stopOpacity="0.1"/>
+                    <linearGradient
+                      id="vehicleGradient"
+                      x1="0%"
+                      y1="0%"
+                      x2="0%"
+                      y2="100%"
+                    >
+                      <stop offset="0%" stopColor="#10b981" stopOpacity="0.3" />
+                      <stop
+                        offset="100%"
+                        stopColor="#10b981"
+                        stopOpacity="0.1"
+                      />
                     </linearGradient>
                   </defs>
                   {/* Vehicle curve area */}
@@ -198,7 +228,13 @@ export function HeroVisual() {
                     fill="none"
                   />
                   {/* Current point indicator */}
-                  <circle cx="320" cy="28" r="4" fill="#10b981" className="animate-pulse"/>
+                  <circle
+                    cx="320"
+                    cy="28"
+                    r="4"
+                    fill="#10b981"
+                    className="animate-pulse"
+                  />
                 </svg>
 
                 {/* Legend */}
