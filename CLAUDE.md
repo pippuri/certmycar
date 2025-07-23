@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-batterycert.com is a NextJS-based EV battery certification platform that provides instant Tesla battery health assessments with verified PDF certificates. The project follows a "hook" strategy - get users to battery results with zero friction, then monetize through $10 PDF certificates.
+batterycert.com is a NextJS-based EV battery certification platform that provides instant Tesla battery health assessments with verified PDF certificates. The project follows a "hook" strategy - get users to battery results with zero friction, then monetize through $10 certified PDF certificates.
 
-**Core Value Proposition**: 30-second Tesla battery health check → Optional verified certificate for resale/purchase protection.
+**Core Value Proposition**: 30-second Tesla battery health check → Show results with peer comparison → $10 verified certificate for resale/purchase protection.
 
 ## Development Commands
 
@@ -113,14 +113,19 @@ Row Level Security (RLS) enabled for data protection.
 
 ## User Experience Strategy
 
-**"The Hook" Flow**:
+**"The Hook" Flow (Updated for Monetization)**:
 
-1. Landing Page: "Check Your Tesla Battery Health in 30 Seconds"
-2. One Click: "Check My Tesla" button
-3. Tesla Login: Standard authentication (no account creation yet)
-4. Instant Result: "Battery Health: Good (8% degradation)"
-5. Value Reveal: "Get Official Certificate - $9.99"
-6. Account Creation: Only when ready to purchase
+1. **Visual Landing Page**: Simplified, visual-first design with Tesla imagery
+2. **One Click**: "Check My Tesla" button → Tesla login → Vehicle selection
+3. **Free Analysis Result**: Shows overall score (e.g., "10% degradation, Good") with peer comparison blurb
+4. **Value Proposition**: Promote $10 certified result for buyer verification
+5. **Purchase Options**: 
+   - Digital PDF certificate (instant download)
+   - Email delivery option
+   - Physical paper certificate (mailed)
+   - QR code sticker (mailed)
+6. **Stripe Checkout**: Integrated payment processing
+7. **Certificate Page**: Download PDF, email delivery, print options after successful payment
 
 **Buyer Verification Flow**:
 
@@ -128,6 +133,57 @@ Row Level Security (RLS) enabled for data protection.
 2. View results on verification page
 3. Email PDF to yourself
 4. Trust & buy with confidence
+
+## Monetization Strategy
+
+### Certificate Design & Visual Elements
+
+**Certificate Requirements**:
+- Replace car color with **fake VIN** for privacy protection
+- Add **large stamp of approval/certificate icon** for authenticity
+- Include QR code for buyer verification
+- Professional PDF layout with company branding
+
+**Analysis Results Display**:
+- **Overall Score**: Clear badge showing "10% degradation, Good" 
+- **Peer Comparison**: Short blurb explaining degradation vs similar vehicles
+- **Call-to-Action**: Prominent $10 certification upgrade promotion
+
+### Purchase Flow Integration
+
+**Stripe Checkout Options**:
+- **Digital PDF** ($10): Instant download + email delivery
+- **Paper Certificate** ($15): Professional printed certificate mailed
+- **QR Code Sticker** ($12): Waterproof sticker for vehicle window
+- **Complete Package** ($20): All of the above
+
+**Post-Purchase Experience**:
+- Immediate access to certificate page
+- Download PDF functionality
+- Email delivery confirmation
+- Print-ready format
+- QR code for buyer verification
+
+### Data Collection & Privacy
+
+**Anonymous Data Storage**:
+- Store all battery analysis results for peer comparison dataset
+- Build VIN history database (anonymized)
+- No personal data required for analysis
+- Track degradation trends across Tesla models/years
+
+**Optional User Association**:
+- **Social/Google Login**: Optional for users wanting email delivery
+- **Benefits**: Access to historical results, email certificates, account management
+- **Privacy**: Users can remain anonymous or opt-in to account creation
+
+### Database Schema Updates
+
+**Enhanced Tables**:
+- **`assessments`**: Add peer comparison data, market analysis
+- **`certificates`**: Add delivery preferences, verification tokens
+- **`vin_history`**: Track multiple assessments per VIN over time
+- **`market_data`**: Store peer comparison statistics
 
 ## Development Guidelines
 
@@ -170,20 +226,36 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 
 ## Implementation Phases
 
-### Phase 1: Core MVP (Week 1-2)
+### Phase 1: Core MVP ✅ (Completed)
 
-- Tesla API integration and battery health calculation
-- Landing page with v0/shadcn components
-- Basic Supabase database setup
+- ✅ Tesla API integration and battery health calculation
+- ✅ Landing page with v0/shadcn components
+- ✅ Basic Supabase database setup
+- ✅ Vehicle selection flow
+- ✅ Locale routing and Tesla Fleet API integration
 
-### Phase 2: Monetization (Week 3-4)
+### Phase 2: Visual & UX Improvements (Current)
 
-- Stripe payment integration
-- PDF certificate generation with QR codes
-- User authentication (Supabase Auth)
-- Certificate verification system
+- **Simplify homepage**: More visual, less text-heavy
+- **Enhanced results page**: Overall score display with peer comparison
+- **Certificate design**: Add approval stamp, replace color with fake VIN
+- **Free analysis flow**: Hook users with results before monetization
 
-### Phase 3: Optimization (Week 5-6)
+### Phase 3: Monetization Integration (Next)
+
+- **Stripe Checkout**: Multiple purchase options (PDF, paper, sticker, package)
+- **Certificate generation**: Professional PDF with QR codes
+- **Post-purchase experience**: Download, email, print functionality
+- **Data collection**: Anonymous storage with optional user association
+
+### Phase 4: Advanced Features
+
+- **Social/Google login**: Optional user accounts for email delivery
+- **VIN history tracking**: Multiple assessments per vehicle
+- **Peer comparison engine**: Market analysis and trends
+- **Physical fulfillment**: Paper certificates and QR stickers
+
+### Phase 5: Optimization & Scale
 
 - Analytics and monitoring (Google Analytics 4, Sentry)
 - SEO optimization and multi-language support

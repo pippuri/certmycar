@@ -13,19 +13,21 @@ import {
   AlertTriangle,
   CheckCircle,
   Loader2,
-  Info,
+  ArrowRight,
 } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { getTeslaApiUrl } from "@/lib/tesla-regions";
 
 interface BatteryHealthResult {
   success: boolean;
+  certificate_id: string;
   vehicle: {
     id: number;
     vin: string;
     name: string;
     model: string;
     trim: string;
+    odometer?: number;
   };
   battery_data: {
     current_charge: number;
@@ -48,7 +50,7 @@ interface BatteryHealthResult {
 }
 
 interface TeslaCheckPageClientProps {
-  region: 'na' | 'eu';
+  region: "na" | "eu";
   regionName: string;
   locale: string;
   links: {
@@ -59,15 +61,22 @@ interface TeslaCheckPageClientProps {
   };
 }
 
-export default function TeslaCheckPageClient({ 
-  region, 
-  regionName, 
+export default function TeslaCheckPageClient({
+  region,
+  regionName,
   locale,
-  links 
+  links,
 }: TeslaCheckPageClientProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState<BatteryHealthResult | null>(null);
+  const [canRetry, setCanRetry] = useState(false);
+
+  // Helper function to determine if user should see miles (US, UK, AU) vs km (rest of world)
+  const usesMiles =
+    locale.startsWith("en-US") ||
+    locale.startsWith("en-GB") ||
+    locale.startsWith("en-AU");
 
   const handleTeslaOAuth = async () => {
     console.log("Tesla OAuth button clicked");
@@ -110,9 +119,18 @@ export default function TeslaCheckPageClient({
       }
     } catch (err) {
       console.error("OAuth error:", err);
-      setError(
-        err instanceof Error ? err.message : "OAuth initialization failed"
-      );
+      const errorMessage =
+        err instanceof Error ? err.message : "OAuth initialization failed";
+      setError(errorMessage);
+
+      // Check if this is a timeout error that could benefit from retry
+      if (
+        errorMessage.includes("timeout") ||
+        errorMessage.includes("sleeping")
+      ) {
+        setCanRetry(true);
+      }
+
       setIsLoading(false);
     }
   };
@@ -126,7 +144,18 @@ export default function TeslaCheckPageClient({
 
     if (error) {
       // Handle OAuth error
-      setError(decodeURIComponent(error));
+      const errorMessage = decodeURIComponent(error);
+      setError(errorMessage);
+
+      // Check if this is a timeout error that could benefit from retry
+      if (
+        errorMessage.includes("timeout") ||
+        errorMessage.includes("sleeping") ||
+        errorMessage.includes("taking longer")
+      ) {
+        setCanRetry(true);
+      }
+
       setIsLoading(false);
       // Clean up URL
       window.history.replaceState({}, document.title, window.location.pathname);
@@ -136,6 +165,7 @@ export default function TeslaCheckPageClient({
         const teslaData = JSON.parse(decodeURIComponent(data));
         setResult(teslaData);
         setIsLoading(false);
+        setCanRetry(false); // Clear retry state on success
         // Clean up URL
         window.history.replaceState(
           {},
@@ -150,17 +180,19 @@ export default function TeslaCheckPageClient({
     }
   }, []);
 
+  const handleRetry = async () => {
+    console.log("Retrying Tesla OAuth...");
+    setError("");
+    setCanRetry(false);
+
+    // Simply restart the OAuth flow - Tesla should remember the session
+    await handleTeslaOAuth();
+  };
+
   const getHealthColor = (percentage: number) => {
     if (percentage >= 95) return "text-green-600";
     if (percentage >= 90) return "text-yellow-600";
     return "text-red-600";
-  };
-
-  const getHealthStatus = (percentage: number) => {
-    if (percentage >= 95) return "Excellent";
-    if (percentage >= 90) return "Good";
-    if (percentage >= 80) return "Fair";
-    return "Poor";
   };
 
   // If we have results, show them
@@ -181,46 +213,50 @@ export default function TeslaCheckPageClient({
 
           {/* Results Section */}
           <div className="space-y-6">
-            {/* Main Result Card */}
+            {/* Simple Results Card */}
             <Card className="p-8 text-center shadow-xl">
               <CardContent className="pt-6">
-                <div className="mb-6">
+                <div className="mb-8">
+                  <div className="text-lg font-semibold text-gray-600 mb-2">
+                    Battery Degradation
+                  </div>
                   <div
-                    className={`text-6xl font-bold mb-2 ${getHealthColor(
-                      result.battery_health.health_percentage
+                    className={`text-8xl font-black mb-2 ${getHealthColor(
+                      100 - result.battery_health.degradation_percentage
                     )}`}
                   >
-                    {result.battery_health.health_percentage}%
+                    {result.battery_health.degradation_percentage}%
                   </div>
-                  <div className="text-2xl font-semibold text-gray-700 mb-2">
+                  <div className="text-xl font-semibold text-gray-700 mb-4">
                     Battery Health:{" "}
-                    {getHealthStatus(result.battery_health.health_percentage)}
-                  </div>
-                  <div className="text-gray-600">
-                    {result.battery_health.degradation_percentage}% degradation
-                    detected
+                    {result.battery_health.degradation_percentage < 10
+                      ? "Excellent"
+                      : result.battery_health.degradation_percentage < 15
+                      ? "Good"
+                      : "Fair"}
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-6 max-w-2xl mx-auto">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-blue-600">
+                {/* Basic Metrics Only */}
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="text-center bg-gray-50 rounded-lg p-4">
+                    <div className="text-2xl font-bold text-blue-600 mb-1">
                       {result.battery_health.current_capacity_kwh} kWh
                     </div>
                     <div className="text-sm text-gray-600">
                       Current Capacity
                     </div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-gray-700">
+                  <div className="text-center bg-gray-50 rounded-lg p-4">
+                    <div className="text-2xl font-bold text-gray-700 mb-1">
                       {result.battery_health.original_capacity_kwh} kWh
                     </div>
                     <div className="text-sm text-gray-600">
                       Original Capacity
                     </div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-green-600">
+                  <div className="text-center bg-gray-50 rounded-lg p-4">
+                    <div className="text-2xl font-bold text-green-600 mb-1">
                       {result.battery_data.current_charge}%
                     </div>
                     <div className="text-sm text-gray-600">Current Charge</div>
@@ -229,144 +265,87 @@ export default function TeslaCheckPageClient({
               </CardContent>
             </Card>
 
-            {/* Vehicle Info */}
-            <Card className="p-6">
+            {/* Monetization Section */}
+            <Card className="p-8 bg-gradient-to-r from-blue-600 to-green-600 text-white shadow-xl">
               <CardContent className="pt-6">
-                <h3 className="text-xl font-semibold mb-4">
-                  Vehicle Information
-                </h3>
-                <div className="grid md:grid-cols-2 gap-4 text-sm">
-                  <div>
-                    <span className="font-medium">Vehicle:</span>{" "}
-                    {result.vehicle.name}
-                  </div>
-                  <div>
-                    <span className="font-medium">Model:</span>{" "}
-                    {result.vehicle.model} {result.vehicle.trim}
-                  </div>
-                  <div>
-                    <span className="font-medium">VIN:</span>{" "}
-                    {result.vehicle.vin}
-                  </div>
-                  <div>
-                    <span className="font-medium">Assessment Date:</span>{" "}
-                    {new Date(result.timestamp).toLocaleDateString()}
-                  </div>
+                <div className="text-center mb-8">
+                  <h2 className="text-3xl font-bold mb-4">
+                    Get Your Official Certificate
+                  </h2>
+                  <p className="text-blue-100 text-lg">
+                    Turn your results into a verified document that increases
+                    your Tesla&apos;s value
+                  </p>
                 </div>
-              </CardContent>
-            </Card>
 
-            {/* Battery Technology Info */}
-            <Card className="p-6">
-              <CardContent className="pt-6">
-                <h3 className="text-xl font-semibold mb-4">
-                  Battery Technology
-                </h3>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <h4 className="font-medium text-gray-900 mb-2">
-                      Chemistry & Supplier
-                    </h4>
-                    <div className="space-y-2 text-sm">
-                      <div>
-                        <span className="font-medium">Battery Chemistry:</span>{" "}
-                        <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded text-xs">
-                          {result.battery_health.battery_chemistry}
-                        </span>
-                      </div>
-                      <div>
-                        <span className="font-medium">Battery Supplier:</span>{" "}
-                        <span className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs">
-                          {result.battery_health.battery_supplier}
-                        </span>
-                      </div>
-                      <div>
-                        <span className="font-medium">Assembly Plant:</span>{" "}
-                        <span className="text-gray-600">
-                          {result.battery_health.assembly_plant}
-                        </span>
-                      </div>
+                <div className="grid md:grid-cols-2 gap-8 mb-8">
+                  <div className="text-center">
+                    <h3 className="text-xl font-semibold mb-4">
+                      What You Got FREE
+                    </h3>
+                    <div className="space-y-2 text-blue-100">
+                      <div>✓ Battery degradation percentage</div>
+                      <div>✓ Current capacity data</div>
+                      <div>✓ Current charge level</div>
                     </div>
                   </div>
-                  
-                  <div>
-                    <h4 className="font-medium text-gray-900 mb-2">
-                      Range Impact
-                    </h4>
-                    <div className="space-y-2 text-sm">
-                      {result.battery_health.estimated_range_loss_miles && (
-                        <div>
-                          <span className="font-medium">
-                            Estimated Range Loss:
-                          </span>{" "}
-                          <span
-                            className={`font-semibold ${
-                              result.battery_health.estimated_range_loss_miles <
-                              20
-                                ? "text-green-600"
-                                : result.battery_health
-                                    .estimated_range_loss_miles < 50
-                                ? "text-yellow-600"
-                                : "text-red-600"
-                            }`}
-                          >
-                            ~{result.battery_health.estimated_range_loss_miles}{" "}
-                            miles
-                          </span>
-                        </div>
-                      )}
+
+                  <div className="text-center border-l border-blue-400 pl-8">
+                    <h3 className="text-xl font-semibold mb-4">
+                      Official Certificate ($10)
+                    </h3>
+                    <div className="space-y-2 text-white">
                       <div>
-                        <span className="font-medium">Confidence Level:</span>{" "}
-                        <span
-                          className={`capitalize px-2 py-1 rounded text-xs ${
-                            result.battery_health.confidence_level === "high"
-                              ? "bg-green-100 text-green-800"
-                              : result.battery_health.confidence_level ===
-                                "medium"
-                              ? "bg-yellow-100 text-yellow-800"
-                              : "bg-red-100 text-red-800"
-                          }`}
-                        >
-                          {result.battery_health.confidence_level}
-                        </span>
+                        ✓ <strong>Dated PDF Certificate with VIN</strong>
+                      </div>
+                      <div>
+                        ✓ <strong>Certificate Verification for buyers</strong>
+                      </div>
+                      <div>
+                        ✓ <strong>Option for a physical certificate</strong>
+                      </div>
+                      <div>
+                        ✓ <strong>Peer Comparison vs Similar Vehicles</strong>
+                      </div>
+                      <div>
+                        ✓ <strong>Performance Tier Ranking</strong>
+                      </div>
+                      <div>
+                        ✓ <strong>Legal Document Status</strong>
                       </div>
                     </div>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
 
-            {/* Methodology Info */}
-            <Card className="p-6">
-              <CardContent className="pt-6">
-                <div className="flex items-start space-x-3">
-                  <Info className="h-5 w-5 text-blue-600 mt-0.5" />
-                  <div>
-                    <h4 className="font-medium text-gray-900 mb-2">
-                      Assessment Methodology
-                    </h4>
-                    <p className="text-sm text-gray-600">
-                      {result.battery_health.methodology}
-                    </p>
-                  </div>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button
+                    size="lg"
+                    className="text-lg px-8 py-6 bg-white text-blue-600 hover:bg-gray-50 font-bold"
+                    asChild
+                  >
+                    <Link href={`/${locale}/certificate/${result.certificate_id}`}>
+                      View Certificate Preview
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="text-lg px-8 py-6 border-white text-white hover:bg-white/10"
+                    asChild
+                  >
+                    <Link href={links.check}>Check Another Tesla</Link>
+                  </Button>
+                </div>
+
+                <div className="text-center mt-6">
+                  <p className="text-blue-100 text-sm">
+                    💎 Instant download • 🔒 Secure payment • 📄 Valid for
+                    resale
+                  </p>
                 </div>
               </CardContent>
             </Card>
-
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="text-lg px-8 py-6">
-                Download Verified Certificate ($9.99)
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-lg px-8 py-6"
-                asChild
-              >
-                <Link href={links.check}>Check Another Tesla</Link>
-              </Button>
-            </div>
           </div>
         </div>
       </div>
@@ -396,7 +375,7 @@ export default function TeslaCheckPageClient({
                 <Zap className="h-8 w-8 text-blue-600" />
               </div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                Check Your Tesla Battery Health
+                Check Your Battery Health
               </h1>
               <p className="text-gray-600 mb-2">
                 Connect your Tesla account to get an instant battery health
@@ -442,16 +421,43 @@ export default function TeslaCheckPageClient({
                     </>
                   )}
                 </Button>
-                <p className="text-sm text-gray-600 mt-2">
-                  Secure OAuth authentication with Tesla
-                </p>
               </div>
 
               {error && (
-                <Alert>
-                  <AlertTriangle className="h-4 w-4" />
-                  <AlertDescription>{error}</AlertDescription>
-                </Alert>
+                <div className="space-y-4">
+                  <Alert>
+                    <AlertTriangle className="h-4 w-4" />
+                    <AlertDescription>{error}</AlertDescription>
+                  </Alert>
+
+                  {canRetry && (
+                    <div className="text-center">
+                      <Button
+                        type="button"
+                        size="lg"
+                        variant="outline"
+                        className="w-full text-lg py-6 border-blue-600 text-blue-600 hover:bg-blue-50"
+                        onClick={handleRetry}
+                        disabled={isLoading}
+                      >
+                        {isLoading ? (
+                          <>
+                            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                            Connecting to Tesla...
+                          </>
+                        ) : (
+                          <>
+                            <ArrowRight className="mr-2 h-5 w-5" />
+                            Try Again
+                          </>
+                        )}
+                      </Button>
+                      <p className="text-sm text-gray-600 mt-2">
+                        Tesla may remember your session and connect faster
+                      </p>
+                    </div>
+                  )}
+                </div>
               )}
             </div>
 

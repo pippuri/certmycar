@@ -18,14 +18,18 @@ interface VehicleCardProps {
     isCharging: boolean
     lastSeen: string
     image: string
-    location?: string
+    mileage?: number
     temperature?: number
+    state?: string // Tesla vehicle state: online, asleep, offline
   }
   isSelected?: boolean
   onClick: () => void
+  locale?: string // For determining miles vs km display
 }
 
-export function VehicleCard({ vehicle, isSelected = false, onClick }: VehicleCardProps) {
+export function VehicleCard({ vehicle, isSelected = false, onClick, locale }: VehicleCardProps) {
+  // Helper function to determine if user should see miles (US, UK, AU) vs km (rest of world)
+  const usesMiles = locale?.startsWith('en-US') || locale?.startsWith('en-GB') || locale?.startsWith('en-AU');
   return (
     <Card
       className={`cursor-pointer transition-all duration-300 hover:shadow-lg ${
@@ -42,14 +46,29 @@ export function VehicleCard({ vehicle, isSelected = false, onClick }: VehicleCar
             fill
             className="object-cover"
           />
-          {vehicle.isCharging && (
-            <div className="absolute top-3 right-3">
+          <div className="absolute top-3 right-3 flex flex-col gap-2">
+            {vehicle.isCharging && (
               <Badge className="bg-green-500 hover:bg-green-500 text-white">
                 <Zap className="w-3 h-3 mr-1" />
                 Charging
               </Badge>
-            </div>
-          )}
+            )}
+            {vehicle.state && (
+              <Badge 
+                className={`text-white ${
+                  vehicle.state === 'online' 
+                    ? 'bg-green-600 hover:bg-green-600' 
+                    : vehicle.state === 'asleep'
+                    ? 'bg-yellow-600 hover:bg-yellow-600'
+                    : 'bg-red-600 hover:bg-red-600'
+                }`}
+              >
+                {vehicle.state === 'online' ? '🟢 Online' : 
+                 vehicle.state === 'asleep' ? '😴 Asleep (Can Wake)' : 
+                 '🔴 Offline'}
+              </Badge>
+            )}
+          </div>
         </div>
 
         {/* Vehicle Info */}
@@ -79,9 +98,14 @@ export function VehicleCard({ vehicle, isSelected = false, onClick }: VehicleCar
               {isSelected ? "Selected" : "Select This Vehicle"}
             </div>
             
-            {/* Location if available */}
-            {vehicle.location && !vehicle.location.includes("Unknown") && (
-              <p className="text-xs text-gray-500 mt-2 text-center">{vehicle.location}</p>
+            {/* Mileage if available */}
+            {vehicle.mileage && (
+              <p className="text-xs text-gray-500 mt-2 text-center">
+                {usesMiles 
+                  ? `${vehicle.mileage.toLocaleString()} miles`
+                  : `${Math.round(vehicle.mileage * 1.609).toLocaleString()} km`
+                }
+              </p>
             )}
           </div>
         </div>

@@ -82,6 +82,56 @@ export type Database = {
           user_agent?: string | null;
         };
       };
+      certificates: {
+        Row: {
+          id: string;
+          certificate_id: string;
+          tesla_vin: string;
+          vehicle_name: string;
+          vehicle_model: string;
+          vehicle_trim: string;
+          vehicle_year: number;
+          odometer_miles: number | null;
+          software_version: string | null;
+          battery_health_data: Record<string, unknown>;
+          battery_data: Record<string, unknown>;
+          is_paid: boolean;
+          created_at: string;
+          user_id: string | null;
+        };
+        Insert: {
+          id?: string;
+          certificate_id: string;
+          tesla_vin: string;
+          vehicle_name: string;
+          vehicle_model?: string;
+          vehicle_trim?: string;
+          vehicle_year?: number;
+          odometer_miles?: number | null;
+          software_version?: string | null;
+          battery_health_data: Record<string, unknown>;
+          battery_data: Record<string, unknown>;
+          is_paid?: boolean;
+          created_at?: string;
+          user_id?: string | null;
+        };
+        Update: {
+          id?: string;
+          certificate_id?: string;
+          tesla_vin?: string;
+          vehicle_name?: string;
+          vehicle_model?: string;
+          vehicle_trim?: string;
+          vehicle_year?: number;
+          odometer_miles?: number | null;
+          software_version?: string | null;
+          battery_health_data?: Record<string, unknown>;
+          battery_data?: Record<string, unknown>;
+          is_paid?: boolean;
+          created_at?: string;
+          user_id?: string | null;
+        };
+      };
     };
   };
 };

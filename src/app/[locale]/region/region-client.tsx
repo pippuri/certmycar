@@ -9,7 +9,7 @@ import { Logo } from "@/components/logo"
 import { detectTeslaRegion, TESLA_REGIONS, type TeslaRegion } from "@/lib/tesla-regions"
 import { useRouter } from "next/navigation"
 
-export default function RegionSelectionClient({ locale }: { locale: string }) {
+export default function RegionSelectionClient({ locale: _locale }: { locale: string }) {
   const [detectedRegion, setDetectedRegion] = useState<TeslaRegion>('na')
   const [selectedRegion, setSelectedRegion] = useState<TeslaRegion>('na')
   const router = useRouter()

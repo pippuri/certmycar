@@ -29,7 +29,7 @@ export function HeroVisual() {
       <Card className="shadow-2xl border-0 bg-white/95 backdrop-blur-sm">
         <CardContent className="p-8">
           {/* Header */}
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center justify-between mb-8 relative">
             <div>
               <Badge className="bg-green-100 text-green-800 hover:bg-green-100 mb-3">
                 <CertificateIcon className="w-4 h-4 mr-2 text-green-600" />
@@ -40,6 +40,21 @@ export function HeroVisual() {
               </h2>
               <p className="text-gray-600">Certificate ID: CMB-2024-001234</p>
             </div>
+            
+            {/* Large Certificate Approval Stamp */}
+            <div className="absolute -top-4 -right-4 z-10">
+              <div className="relative">
+                <div className="w-32 h-32 bg-green-600 rounded-full flex items-center justify-center shadow-2xl rotate-12">
+                  <div className="text-center">
+                    <Shield className="h-12 w-12 text-white mx-auto mb-1" />
+                    <div className="text-white font-bold text-xs">CERTIFIED</div>
+                    <div className="text-white text-xs opacity-90">VERIFIED</div>
+                  </div>
+                </div>
+                <div className="absolute inset-0 w-32 h-32 border-4 border-green-600 rounded-full animate-ping opacity-20"></div>
+              </div>
+            </div>
+            
             <div className="text-right">
               <div
                 className={`text-5xl font-bold text-green-600 transition-all duration-500 ${
@@ -69,8 +84,8 @@ export function HeroVisual() {
                   <span className="font-medium">2022</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Color</span>
-                  <span className="font-medium">Pearl White Multi-Coat</span>
+                  <span className="text-gray-600">VIN</span>
+                  <span className="font-medium font-mono">5YJ3E***F123456</span>
                 </div>
               </div>
             </div>
@@ -101,31 +116,104 @@ export function HeroVisual() {
           <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-lg text-gray-800">
-                Battery Health Over Time
+                Degradation Comparison vs Average
               </h3>
-              <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100">
+              <Badge className="bg-green-100 text-green-800 hover:bg-green-100">
                 <TrendingUp className="w-4 h-4 mr-1" />
-                Excellent Trend
+                Better than 78% of similar vehicles
               </Badge>
             </div>
 
-            {/* Simplified Battery Health Chart */}
+            {/* Enhanced Degradation Curve Chart */}
             <div className="bg-gray-50 p-6 rounded-lg">
-              <div className="flex items-end space-x-2 h-24">
-                {[100, 98, 96, 94, 93, 92, 92].map((value, index) => (
-                  <div
-                    key={index}
-                    className="flex-1 flex flex-col items-center"
-                  >
+              <div className="relative h-32">
+                {/* Grid lines */}
+                <div className="absolute inset-0">
+                  {[80, 85, 90, 95, 100].map((value) => (
                     <div
-                      className="w-full bg-gradient-to-t from-green-500 to-green-400 rounded-t transition-all duration-1000 delay-100"
-                      style={{ height: `${(value / 100) * 100}%` }}
-                    />
-                    <span className="text-xs text-gray-500 mt-2">
-                      {2018 + index}
+                      key={value}
+                      className="absolute w-full border-t border-gray-200"
+                      style={{ bottom: `${((value - 75) / 25) * 100}%` }}
+                    >
+                      <span className="absolute -left-8 -top-2 text-xs text-gray-400">
+                        {value}%
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Year labels */}
+                <div className="absolute bottom-0 w-full flex justify-between px-4">
+                  {['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'].map((year) => (
+                    <span key={year} className="text-xs text-gray-500">
+                      {year}
                     </span>
+                  ))}
+                </div>
+
+                {/* Reference curve (average) */}
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 128">
+                  <defs>
+                    <linearGradient id="referenceGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.3"/>
+                      <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.1"/>
+                    </linearGradient>
+                  </defs>
+                  {/* Reference curve area */}
+                  <path
+                    d="M 20 16 Q 120 24 220 40 Q 320 56 380 76 L 380 128 L 20 128 Z"
+                    fill="url(#referenceGradient)"
+                    className="opacity-60"
+                  />
+                  {/* Reference curve line */}
+                  <path
+                    d="M 20 16 Q 120 24 220 40 Q 320 56 380 76"
+                    stroke="#f59e0b"
+                    strokeWidth="2"
+                    fill="none"
+                    strokeDasharray="4,4"
+                    className="opacity-80"
+                  />
+                </svg>
+
+                {/* This vehicle's curve */}
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 128">
+                  <defs>
+                    <linearGradient id="vehicleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stopColor="#10b981" stopOpacity="0.3"/>
+                      <stop offset="100%" stopColor="#10b981" stopOpacity="0.1"/>
+                    </linearGradient>
+                  </defs>
+                  {/* Vehicle curve area */}
+                  <path
+                    d="M 20 8 Q 120 12 220 20 Q 320 28 380 32 L 380 128 L 20 128 Z"
+                    fill="url(#vehicleGradient)"
+                    className="opacity-80"
+                  />
+                  {/* Vehicle curve line */}
+                  <path
+                    d="M 20 8 Q 120 12 220 20 Q 320 28 380 32"
+                    stroke="#10b981"
+                    strokeWidth="3"
+                    fill="none"
+                  />
+                  {/* Current point indicator */}
+                  <circle cx="320" cy="28" r="4" fill="#10b981" className="animate-pulse"/>
+                </svg>
+
+                {/* Legend */}
+                <div className="absolute top-2 right-2 bg-white/90 p-3 rounded-lg shadow-sm">
+                  <div className="flex flex-col space-y-2 text-xs">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-3 h-0.5 bg-green-500"></div>
+                      <span className="text-gray-700">This Vehicle (92%)</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-3 h-0.5 border-t-2 border-dashed border-amber-500"></div>
+                      <span className="text-gray-700">Average (85%)</span>
+                    </div>
                   </div>
-                ))}
+                </div>
               </div>
             </div>
           </div>

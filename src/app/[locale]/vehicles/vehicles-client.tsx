@@ -1,28 +1,29 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { ArrowLeft, Loader2, AlertTriangle, Zap } from "lucide-react"
-import { Logo } from "@/components/logo"
-import { VehicleCard } from "@/components/vehicle-card"
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { ArrowLeft, Loader2, AlertTriangle, Zap } from "lucide-react";
+import { Logo } from "@/components/logo";
+import { VehicleCard } from "@/components/vehicle-card";
 
 interface Vehicle {
-  id: string
-  name: string
-  model: string
-  year: number
-  color: string
-  vin: string
-  batteryLevel: number
-  range: number
-  isCharging: boolean
-  lastSeen: string
-  image: string
-  location?: string
-  temperature?: number
+  id: string;
+  name: string;
+  model: string;
+  year: number;
+  color: string;
+  vin: string;
+  batteryLevel: number;
+  range: number;
+  isCharging: boolean;
+  lastSeen: string;
+  image: string;
+  mileage?: number;
+  temperature?: number;
+  state?: string;
 }
 
 interface TeslaVehicle {
@@ -30,6 +31,7 @@ interface TeslaVehicle {
   id_s?: string;
   vin: string;
   display_name?: string;
+  state?: string; // Tesla vehicle connectivity state: online, asleep, offline
   vehicle_config?: {
     car_type?: string;
     exterior_color?: string;
@@ -56,126 +58,148 @@ interface SessionData {
 }
 
 export default function VehicleSelectionClient({ locale }: { locale: string }) {
-  const [vehicles, setVehicles] = useState<Vehicle[]>([])
-  const [selectedVehicleId, setSelectedVehicleId] = useState<string>("")
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState("")
-  const [isCheckingBattery, setIsCheckingBattery] = useState(false)
-  const [sessionData, setSessionData] = useState<SessionData | null>(null)
+  const [vehicles, setVehicles] = useState<Vehicle[]>([]);
+  const [selectedVehicleId, setSelectedVehicleId] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [isCheckingBattery, setIsCheckingBattery] = useState(false);
+  const [sessionData, setSessionData] = useState<SessionData | null>(null);
 
   // Map Tesla API vehicle to UI Vehicle interface
   const mapTeslaVehicle = (teslaVehicle: TeslaVehicle): Vehicle => {
+    // Debug: Log Tesla vehicle data
+    console.log("=== MAPPING TESLA VEHICLE ===");
+    console.log("Raw Tesla Vehicle:", JSON.stringify(teslaVehicle, null, 2));
+
     // Extract model info from vehicle_config or fallback to basic info
     const config = teslaVehicle.vehicle_config || {};
     const state = teslaVehicle.vehicle_state || {};
     const charge = teslaVehicle.charge_state || {};
-    
+
+    console.log("Vehicle state from API:", teslaVehicle.state);
+    console.log("Has charge_state:", !!charge.battery_level);
+    console.log("Has vehicle_state:", !!state.timestamp);
+
     // Determine model from vehicle_config.car_type or fallback
-    let model = 'Tesla';
+    let model = "Tesla";
     if (config.car_type) {
-      model = config.car_type.replace('models', 'Model S').replace('model3', 'Model 3')
-                             .replace('modely', 'Model Y').replace('modelx', 'Model X');
+      model = config.car_type
+        .replace("models", "Model S")
+        .replace("model3", "Model 3")
+        .replace("modely", "Model Y")
+        .replace("modelx", "Model X");
     }
-    
+
     // Generate vehicle name: use display_name or create one
-    const displayName = teslaVehicle.display_name || 
-                       `${model} ${teslaVehicle.vin?.slice(-6) || ''}`;
-    
-    return {
-      id: teslaVehicle.id?.toString() || teslaVehicle.id_s || '',
+    const displayName =
+      teslaVehicle.display_name ||
+      `${model} ${teslaVehicle.vin?.slice(-6) || ""}`;
+
+    const mappedVehicle = {
+      id: teslaVehicle.id?.toString() || teslaVehicle.id_s || "",
       name: displayName,
       model: model,
       year: 2020, // TODO: Extract from VIN properly
-      color: config.exterior_color || 'Unknown',
-      vin: teslaVehicle.vin || '',
+      color: config.exterior_color || "Unknown",
+      vin: teslaVehicle.vin || "",
       batteryLevel: charge.battery_level || 0,
-      range: Math.round(charge.rated_battery_range || charge.est_battery_range || 0),
-      isCharging: charge.charging_state === 'Charging',
-      lastSeen: state.timestamp ? 'Recently' : 'Unknown', // TODO: Format timestamp properly
-      image: '/tesla/tesla-card.webp', // Default image
-      location: state.geocoded_location || undefined,
-      temperature: charge.battery_heater_on ? 72 : undefined // Rough estimate
+      range: Math.round(
+        charge.rated_battery_range || charge.est_battery_range || 0
+      ),
+      isCharging: charge.charging_state === "Charging",
+      lastSeen: state.timestamp ? "Recently" : "Unknown", // TODO: Format timestamp properly
+      image: "/tesla/tesla-card.webp", // Default image
+      // mileage removed - only available from vehicle_data API call, not vehicles list
+      temperature: charge.battery_heater_on ? 72 : undefined, // Rough estimate
+      state: teslaVehicle.state || "unknown", // Tesla vehicle connectivity state
     };
+
+    console.log("Mapped Vehicle:", JSON.stringify(mappedVehicle, null, 2));
+    console.log("=== END MAPPING ===");
+
+    return mappedVehicle;
   };
 
   // Load vehicles from URL data (from Tesla auth callback) or fetch from API
   useEffect(() => {
     const fetchVehicles = async () => {
-      setIsLoading(true)
+      setIsLoading(true);
       try {
         // Check if we have session data from Tesla auth callback
         const urlParams = new URLSearchParams(window.location.search);
-        const dataParam = urlParams.get('data');
-        
+        const dataParam = urlParams.get("data");
+
         if (dataParam) {
           // Parse session data from auth callback
           const sessionInfo = JSON.parse(decodeURIComponent(dataParam));
           setSessionData(sessionInfo);
-          
+
           // Map Tesla vehicles to UI format
           const mappedVehicles = sessionInfo.vehicles.map(mapTeslaVehicle);
           setVehicles(mappedVehicles);
         } else {
           // Fallback to mock data for development
           const mockVehicles: Vehicle[] = [
-          {
-            id: "1",
-            name: "My Tesla",
-            model: "Model 3",
-            year: 2022,
-            color: "Pearl White",
-            vin: "5YJ3E1EA4NF123456",
-            batteryLevel: 85,
-            range: 298,
-            isCharging: false,
-            lastSeen: "2 hours ago",
-            image: "/tesla/tesla-card.webp",
-            location: "Home - San Francisco, CA",
-            temperature: 72,
-          },
-          {
-            id: "2",
-            name: "Work Tesla",
-            model: "Model Y",
-            year: 2023,
-            color: "Midnight Silver Metallic",
-            vin: "7SAYGDEF8PF654321",
-            batteryLevel: 42,
-            range: 168,
-            isCharging: true,
-            lastSeen: "30 minutes ago",
-            image: "/tesla/tesla-card.webp",
-            location: "Office - Palo Alto, CA",
-            temperature: 68,
-          },
-          {
-            id: "3",
-            name: "Weekend Ride",
-            model: "Model S",
-            year: 2021,
-            color: "Deep Blue Metallic",
-            vin: "5YJSA1E4XMF789012",
-            batteryLevel: 91,
-            range: 405,
-            isCharging: false,
-            lastSeen: "1 day ago",
-            image: "/tesla/tesla-card.webp",
-            location: "Garage - Los Angeles, CA",
-          },
-        ];
+            {
+              id: "1",
+              name: "My Tesla",
+              model: "Model 3",
+              year: 2022,
+              color: "Pearl White",
+              vin: "5YJ3E1EA4NF123456",
+              batteryLevel: 85,
+              range: 298,
+              isCharging: false,
+              lastSeen: "2 hours ago",
+              image: "/tesla/tesla-card.webp",
+              // mileage removed - not available in vehicle list
+              temperature: 72,
+              state: "online",
+            },
+            {
+              id: "2",
+              name: "Work Tesla",
+              model: "Model Y",
+              year: 2023,
+              color: "Midnight Silver Metallic",
+              vin: "7SAYGDEF8PF654321",
+              batteryLevel: 42,
+              range: 168,
+              isCharging: true,
+              lastSeen: "30 minutes ago",
+              image: "/tesla/tesla-card.webp",
+              // mileage removed - not available in vehicle list
+              temperature: 68,
+              state: "asleep",
+            },
+            {
+              id: "3",
+              name: "Weekend Ride",
+              model: "Model S",
+              year: 2021,
+              color: "Deep Blue Metallic",
+              vin: "5YJSA1E4XMF789012",
+              batteryLevel: 91,
+              range: 405,
+              isCharging: false,
+              lastSeen: "1 day ago",
+              image: "/tesla/tesla-card.webp",
+              // mileage removed - not available in vehicle list
+              state: "offline",
+            },
+          ];
 
-        setVehicles(mockVehicles);
+          setVehicles(mockVehicles);
         }
       } catch {
         setError("Failed to load your vehicles. Please try again.");
       } finally {
         setIsLoading(false);
       }
-    }
+    };
 
     fetchVehicles();
   }, []);
-
 
   const handleVehicleAndCheck = async (vehicleId: string) => {
     setSelectedVehicleId(vehicleId);
@@ -217,7 +241,11 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
       window.location.href = `/${locale}/check?success=true&data=${dataParam}`;
     } catch (error) {
       console.error("Battery check error:", error);
-      setError(error instanceof Error ? error.message : "Failed to check battery health. Please try again.");
+      setError(
+        error instanceof Error
+          ? error.message
+          : "Failed to check battery health. Please try again."
+      );
     } finally {
       setIsCheckingBattery(false);
     }
@@ -252,7 +280,7 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
           </Card>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -291,17 +319,20 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
         {/* Vehicle Grid */}
         {vehicles.length > 0 ? (
           <>
-            <div className={`grid gap-6 mb-8 ${
-              vehicles.length === 1 
-                ? "grid-cols-1 max-w-md mx-auto" 
-                : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-            }`}>
+            <div
+              className={`grid gap-6 mb-8 ${
+                vehicles.length === 1
+                  ? "grid-cols-1 max-w-md mx-auto"
+                  : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+              }`}
+            >
               {vehicles.map((vehicle) => (
                 <VehicleCard
                   key={vehicle.id}
                   vehicle={vehicle}
                   isSelected={selectedVehicleId === vehicle.id}
                   onClick={() => handleVehicleAndCheck(vehicle.id)}
+                  locale={locale}
                 />
               ))}
             </div>
@@ -311,7 +342,9 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
               <div className="text-center">
                 <div className="flex items-center justify-center space-x-2 text-blue-600">
                   <Loader2 className="h-5 w-5 animate-spin" />
-                  <span className="text-lg font-medium">Checking Battery Health...</span>
+                  <span className="text-lg font-medium">
+                    Checking Battery Health...
+                  </span>
                 </div>
               </div>
             )}
@@ -349,7 +382,7 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
                 Instant Analysis
               </h3>
               <p className="text-sm text-gray-600">
-                Get your battery health results in 30 seconds or less
+                Get your battery health results in 30 seconds
               </p>
             </CardContent>
           </Card>
@@ -363,8 +396,7 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
                 Detailed Report
               </h3>
               <p className="text-sm text-gray-600">
-                Comprehensive analysis with degradation percentage and capacity
-                data
+                Analysis with degradation percentage and capacity data
               </p>
             </CardContent>
           </Card>
@@ -378,13 +410,12 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
                 Verified Certificate
               </h3>
               <p className="text-sm text-gray-600">
-                Optional $9.99 verified certificate for buying/selling
-                protection
+                Optional $10 verified certificate for buying/selling protection
               </p>
             </CardContent>
           </Card>
         </div>
       </div>
     </div>
-  )
+  );
 }
