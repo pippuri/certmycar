@@ -18,17 +18,17 @@ import { getLocaleLinks } from "@/lib/locale-links";
 import { createServerSupabaseClient } from "@/lib/supabase";
 
 export default async function CertificatePage({
-  params
+  params,
 }: {
-  params: Promise<{ locale: string; id: string }>
+  params: Promise<{ locale: string; id: string }>;
 }) {
   const { locale, id } = await params;
   const links = getLocaleLinks(locale);
-  
+
   // Handle demo certificate with hardcoded data
   let certificate;
   let error = null;
-  
+
   if (id === "CMB-DEMO-2024-SAMPLE") {
     // Demo certificate with sample data
     certificate = {
@@ -51,7 +51,7 @@ export default async function CertificatePage({
         battery_chemistry: "NCA (Nickel Cobalt Aluminum)",
         battery_supplier: "Tesla/Panasonic",
         assembly_plant: "Fremont, CA (2022)",
-        estimated_range_loss_miles: 326
+        estimated_range_loss_miles: 326,
       },
       battery_data: {
         battery_level: 25,
@@ -59,11 +59,11 @@ export default async function CertificatePage({
         charge_limit_soc: 50,
         ideal_battery_range: 82,
         est_battery_range: 73.69,
-        battery_range: 82
+        battery_range: 82,
       },
       is_paid: true,
       created_at: "2024-01-21T14:54:00.000Z",
-      user_id: null
+      user_id: null,
     };
   } else {
     // Look up certificate data from database for real certificates
@@ -73,11 +73,11 @@ export default async function CertificatePage({
       .select("*")
       .eq("certificate_id", id)
       .single();
-    
+
     certificate = dbCertificate;
     error = dbError;
   }
-    
+
   if (error || !certificate) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-12">
@@ -90,7 +90,7 @@ export default async function CertificatePage({
               </Link>
             </div>
           </header>
-          
+
           <Card className="mt-12 p-8 text-center shadow-xl max-w-2xl mx-auto">
             <CardContent className="pt-6">
               <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -100,7 +100,8 @@ export default async function CertificatePage({
                 Certificate Not Found
               </h2>
               <p className="text-gray-600 mb-6">
-                The certificate ID &quot;{id}&quot; was not found or may have expired.
+                The certificate ID &quot;{id}&quot; was not found or may have
+                expired.
               </p>
               <Button asChild>
                 <Link href={links.check}>Check Your Tesla Battery</Link>
@@ -111,27 +112,30 @@ export default async function CertificatePage({
       </div>
     );
   }
-  
+
   // Parse the stored battery health data
   const batteryHealth = certificate.battery_health_data;
-  
+
   // Helper function to determine if user should see miles vs km
-  const usesMiles = locale?.startsWith('en-US') || locale?.startsWith('en-GB') || locale?.startsWith('en-AU');
-  
+  const usesMiles =
+    locale?.startsWith("en-US") ||
+    locale?.startsWith("en-GB") ||
+    locale?.startsWith("en-AU");
+
   // Format date
   const testDate = new Date(certificate.created_at).toLocaleDateString(locale, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
-  
+
   // Calculate valid until date (1 year from creation)
   const validUntil = new Date(certificate.created_at);
   validUntil.setFullYear(validUntil.getFullYear() + 1);
   const validUntilFormatted = validUntil.toLocaleDateString(locale, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 
   return (
@@ -170,7 +174,7 @@ export default async function CertificatePage({
                 </h3>
               </div>
               <p className="text-yellow-700 text-sm mb-4">
-                This certificate requires payment to unlock the full report. 
+                This certificate requires payment to unlock the full report.
                 Complete your purchase to access the verified document.
               </p>
               <Button className="bg-blue-600 hover:bg-blue-700 text-white">
@@ -193,8 +197,8 @@ export default async function CertificatePage({
               <p className="text-green-700 text-sm">
                 This certificate is tamper-proof and directly connected to
                 Tesla&apos;s official systems. The QR code below allows instant
-                verification of authenticity. Buyers can trust this assessment is
-                genuine and accurate.
+                verification of authenticity. Buyers can trust this assessment
+                is genuine and accurate.
               </p>
             </CardContent>
           </Card>
@@ -206,12 +210,16 @@ export default async function CertificatePage({
             <div className="flex items-center justify-between">
               <div>
                 <CardTitle className="text-2xl mb-2">
-                  Battery Health Report
+                  Battery Health Report from Tesla Data
                 </CardTitle>
-                <p className="text-blue-100">Certificate ID: {certificate.certificate_id}</p>
+                <p className="text-blue-100">
+                  Certificate ID: {certificate.certificate_id}
+                </p>
               </div>
               <div className="text-right">
-                <div className="text-4xl font-bold">{Math.round(100 - batteryHealth.degradation_percentage)}%</div>
+                <div className="text-4xl font-bold">
+                  {Math.round(100 - batteryHealth.degradation_percentage)}%
+                </div>
                 <p className="text-blue-100">Health Score</p>
               </div>
             </div>
@@ -234,11 +242,16 @@ export default async function CertificatePage({
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Year</span>
-                    <span className="font-medium">{certificate.vehicle_year || '2022'}</span>
+                    <span className="font-medium">
+                      {certificate.vehicle_year}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">VIN</span>
-                    <span className="font-medium font-mono">{certificate.tesla_vin.slice(0, 5)}***{certificate.tesla_vin.slice(-4)}</span>
+                    <span className="font-medium font-mono">
+                      {certificate.tesla_vin.slice(0, 5)}***
+                      {certificate.tesla_vin.slice(-4)}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -256,16 +269,22 @@ export default async function CertificatePage({
                   <div className="flex justify-between">
                     <span className="text-gray-600">Mileage</span>
                     <span className="font-medium">
-                      {certificate.odometer_miles ? (
-                        usesMiles 
-                          ? `${Math.round(certificate.odometer_miles).toLocaleString()} miles`
-                          : `${Math.round(certificate.odometer_miles * 1.609).toLocaleString()} km`
-                      ) : 'Not Available'}
+                      {certificate.odometer_miles
+                        ? usesMiles
+                          ? `${Math.round(
+                              certificate.odometer_miles
+                            ).toLocaleString()} miles`
+                          : `${Math.round(
+                              certificate.odometer_miles * 1.609
+                            ).toLocaleString()} km`
+                        : "Not Available"}
                     </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Software Version</span>
-                    <span className="font-medium">{certificate.software_version || 'Not Available'}</span>
+                    <span className="font-medium">
+                      {certificate.software_version || "Not Available"}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Valid Until</span>
@@ -283,14 +302,52 @@ export default async function CertificatePage({
               </h3>
 
               <div className="grid md:grid-cols-3 gap-6">
-                <Card className={`${batteryHealth.degradation_percentage < 10 ? 'bg-green-50 border-green-200' : batteryHealth.degradation_percentage < 15 ? 'bg-yellow-50 border-yellow-200' : 'bg-red-50 border-red-200'}`}>
+                <Card
+                  className={`${
+                    batteryHealth.degradation_percentage < 10
+                      ? "bg-green-50 border-green-200"
+                      : batteryHealth.degradation_percentage < 15
+                      ? "bg-yellow-50 border-yellow-200"
+                      : "bg-red-50 border-red-200"
+                  }`}
+                >
                   <CardContent className="p-6 text-center">
-                    <div className={`text-3xl font-bold mb-2 ${batteryHealth.degradation_percentage < 10 ? 'text-green-600' : batteryHealth.degradation_percentage < 15 ? 'text-yellow-600' : 'text-red-600'}`}>
+                    <div
+                      className={`text-3xl font-bold mb-2 ${
+                        batteryHealth.degradation_percentage < 10
+                          ? "text-green-600"
+                          : batteryHealth.degradation_percentage < 15
+                          ? "text-yellow-600"
+                          : "text-red-600"
+                      }`}
+                    >
                       {Math.round(100 - batteryHealth.degradation_percentage)}%
                     </div>
-                    <p className={`font-medium ${batteryHealth.degradation_percentage < 10 ? 'text-green-800' : batteryHealth.degradation_percentage < 15 ? 'text-yellow-800' : 'text-red-800'}`}>Health Score</p>
-                    <p className={`text-sm mt-1 ${batteryHealth.degradation_percentage < 10 ? 'text-green-700' : batteryHealth.degradation_percentage < 15 ? 'text-yellow-700' : 'text-red-700'}`}>
-                      {batteryHealth.degradation_percentage < 10 ? 'Excellent' : batteryHealth.degradation_percentage < 15 ? 'Good' : 'Fair'}
+                    <p
+                      className={`font-medium ${
+                        batteryHealth.degradation_percentage < 10
+                          ? "text-green-800"
+                          : batteryHealth.degradation_percentage < 15
+                          ? "text-yellow-800"
+                          : "text-red-800"
+                      }`}
+                    >
+                      Health Score
+                    </p>
+                    <p
+                      className={`text-sm mt-1 ${
+                        batteryHealth.degradation_percentage < 10
+                          ? "text-green-700"
+                          : batteryHealth.degradation_percentage < 15
+                          ? "text-yellow-700"
+                          : "text-red-700"
+                      }`}
+                    >
+                      {batteryHealth.degradation_percentage < 10
+                        ? "Excellent"
+                        : batteryHealth.degradation_percentage < 15
+                        ? "Good"
+                        : "Fair"}
                     </p>
                   </CardContent>
                 </Card>
@@ -310,15 +367,18 @@ export default async function CertificatePage({
                 <Card className="bg-purple-50 border-purple-200">
                   <CardContent className="p-6 text-center">
                     <div className="text-3xl font-bold text-purple-600 mb-2">
-                      {batteryHealth.estimated_range_loss_miles ? 
-                        usesMiles 
+                      {batteryHealth.estimated_range_loss_miles
+                        ? usesMiles
                           ? Math.round(batteryHealth.estimated_range_loss_miles)
-                          : Math.round(batteryHealth.estimated_range_loss_miles * 1.609)
-                        : 'N/A'
-                      }
+                          : Math.round(
+                              batteryHealth.estimated_range_loss_miles * 1.609
+                            )
+                        : "N/A"}
                     </div>
                     <p className="text-purple-800 font-medium">Est. Range</p>
-                    <p className="text-sm text-purple-700 mt-1">{usesMiles ? 'miles' : 'km'}</p>
+                    <p className="text-sm text-purple-700 mt-1">
+                      {usesMiles ? "miles" : "km"}
+                    </p>
                   </CardContent>
                 </Card>
               </div>
@@ -355,7 +415,7 @@ export default async function CertificatePage({
                   </h4>
                   <div className="flex items-center space-x-4">
                     <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center border">
-                      <a 
+                      <a
                         href={`/${locale}/certificate/${certificate.certificate_id}`}
                         className="block w-full h-full flex items-center justify-center"
                         title="Click to view certificate"
@@ -383,50 +443,118 @@ export default async function CertificatePage({
                 <div className="bg-gray-50 p-6 rounded-lg">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <h4 className="font-medium mb-3">Battery Specifications</h4>
+                      <h4 className="font-medium mb-3">
+                        Battery Specifications
+                      </h4>
                       <div className="space-y-2 text-sm">
                         <div className="flex justify-between">
-                          <span className="text-gray-600">Original Capacity</span>
+                          <span className="text-gray-600">
+                            Original Capacity
+                          </span>
                           <span>{batteryHealth.original_capacity_kwh} kWh</span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-600">Current Capacity</span>
-                          <span>{Math.round(batteryHealth.current_capacity_kwh * 10) / 10} kWh</span>
+                          <span className="text-gray-600">
+                            Current Capacity
+                          </span>
+                          <span>
+                            {Math.round(
+                              batteryHealth.current_capacity_kwh * 10
+                            ) / 10}{" "}
+                            kWh
+                          </span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-gray-600">Capacity Loss</span>
-                          <span className={batteryHealth.degradation_percentage < 10 ? 'text-green-600' : batteryHealth.degradation_percentage < 15 ? 'text-yellow-600' : 'text-red-600'}>
-                            {Math.round((batteryHealth.original_capacity_kwh - batteryHealth.current_capacity_kwh) * 10) / 10} kWh ({Math.round(batteryHealth.degradation_percentage * 10) / 10}%)
+                          <span
+                            className={
+                              batteryHealth.degradation_percentage < 10
+                                ? "text-green-600"
+                                : batteryHealth.degradation_percentage < 15
+                                ? "text-yellow-600"
+                                : "text-red-600"
+                            }
+                          >
+                            {Math.round(
+                              (batteryHealth.original_capacity_kwh -
+                                batteryHealth.current_capacity_kwh) *
+                                10
+                            ) / 10}{" "}
+                            kWh (
+                            {Math.round(
+                              batteryHealth.degradation_percentage * 10
+                            ) / 10}
+                            %)
                           </span>
                         </div>
                         <div className="flex justify-between">
                           <span className="text-gray-600">Methodology</span>
-                          <span className="text-sm">{batteryHealth.methodology}</span>
+                          <span className="text-sm">
+                            {batteryHealth.methodology}
+                          </span>
                         </div>
                       </div>
                     </div>
 
                     <div>
-                      <h4 className="font-medium mb-3">Performance Indicators</h4>
+                      <h4 className="font-medium mb-3">
+                        Performance Indicators
+                      </h4>
                       <div className="space-y-2 text-sm">
                         <div className="flex justify-between">
-                          <span className="text-gray-600">Battery Chemistry</span>
-                          <span>{batteryHealth.battery_chemistry || 'Lithium-ion'}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Battery Supplier</span>
-                          <span>{batteryHealth.battery_supplier || 'Tesla/Panasonic'}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-600">Confidence Level</span>
-                          <span className={batteryHealth.confidence_level === 'high' ? 'text-green-600' : batteryHealth.confidence_level === 'medium' ? 'text-yellow-600' : 'text-red-600'}>
-                            {batteryHealth.confidence_level?.charAt(0).toUpperCase() + batteryHealth.confidence_level?.slice(1)}
+                          <span className="text-gray-600">
+                            Battery Chemistry
+                          </span>
+                          <span>
+                            {batteryHealth.battery_chemistry || "Lithium-ion"}
                           </span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-600">Overall Condition</span>
-                          <span className={batteryHealth.degradation_percentage < 10 ? 'text-green-600' : batteryHealth.degradation_percentage < 15 ? 'text-yellow-600' : 'text-red-600'}>
-                            {batteryHealth.degradation_percentage < 10 ? 'Excellent' : batteryHealth.degradation_percentage < 15 ? 'Good' : 'Fair'}
+                          <span className="text-gray-600">
+                            Battery Supplier
+                          </span>
+                          <span>
+                            {batteryHealth.battery_supplier ||
+                              "Tesla/Panasonic"}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">
+                            Confidence Level
+                          </span>
+                          <span
+                            className={
+                              batteryHealth.confidence_level === "high"
+                                ? "text-green-600"
+                                : batteryHealth.confidence_level === "medium"
+                                ? "text-yellow-600"
+                                : "text-red-600"
+                            }
+                          >
+                            {batteryHealth.confidence_level
+                              ?.charAt(0)
+                              .toUpperCase() +
+                              batteryHealth.confidence_level?.slice(1)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-600">
+                            Overall Condition
+                          </span>
+                          <span
+                            className={
+                              batteryHealth.degradation_percentage < 10
+                                ? "text-green-600"
+                                : batteryHealth.degradation_percentage < 15
+                                ? "text-yellow-600"
+                                : "text-red-600"
+                            }
+                          >
+                            {batteryHealth.degradation_percentage < 10
+                              ? "Excellent"
+                              : batteryHealth.degradation_percentage < 15
+                              ? "Good"
+                              : "Fair"}
                           </span>
                         </div>
                       </div>
@@ -437,27 +565,57 @@ export default async function CertificatePage({
             )}
 
             {/* Summary */}
-            <div className={`p-6 rounded-lg border ${
-              batteryHealth.degradation_percentage < 10 ? 'bg-green-50 border-green-200' : 
-              batteryHealth.degradation_percentage < 15 ? 'bg-yellow-50 border-yellow-200' : 'bg-red-50 border-red-200'
-            }`}>
-              <h4 className={`font-semibold mb-3 ${
-                batteryHealth.degradation_percentage < 10 ? 'text-green-800' : 
-                batteryHealth.degradation_percentage < 15 ? 'text-yellow-800' : 'text-red-800'
-              }`}>
+            <div
+              className={`p-6 rounded-lg border ${
+                batteryHealth.degradation_percentage < 10
+                  ? "bg-green-50 border-green-200"
+                  : batteryHealth.degradation_percentage < 15
+                  ? "bg-yellow-50 border-yellow-200"
+                  : "bg-red-50 border-red-200"
+              }`}
+            >
+              <h4
+                className={`font-semibold mb-3 ${
+                  batteryHealth.degradation_percentage < 10
+                    ? "text-green-800"
+                    : batteryHealth.degradation_percentage < 15
+                    ? "text-yellow-800"
+                    : "text-red-800"
+                }`}
+              >
                 Assessment Summary
               </h4>
-              <p className={`text-sm leading-relaxed ${
-                batteryHealth.degradation_percentage < 10 ? 'text-green-700' : 
-                batteryHealth.degradation_percentage < 15 ? 'text-yellow-700' : 'text-red-700'
-              }`}>
-                This {certificate.vehicle_name} demonstrates {batteryHealth.degradation_percentage < 10 ? 'excellent' : batteryHealth.degradation_percentage < 15 ? 'good' : 'fair'} battery health with
-                {Math.round(batteryHealth.degradation_percentage * 10) / 10}% degradation. The battery is
-                performing {batteryHealth.degradation_percentage < 10 ? 'exceptionally well' : batteryHealth.degradation_percentage < 15 ? 'well' : 'adequately'} for its usage. Current
-                capacity of {Math.round(batteryHealth.current_capacity_kwh * 10) / 10} kWh from an original {batteryHealth.original_capacity_kwh} kWh.
-                {batteryHealth.degradation_percentage < 10 ? ' This vehicle represents an excellent purchase opportunity with minimal battery-related risks.' : 
-                 batteryHealth.degradation_percentage < 15 ? ' This vehicle represents a good purchase opportunity with normal wear patterns.' :
-                 ' This vehicle shows higher than average degradation and should be considered carefully.'}
+              <p
+                className={`text-sm leading-relaxed ${
+                  batteryHealth.degradation_percentage < 10
+                    ? "text-green-700"
+                    : batteryHealth.degradation_percentage < 15
+                    ? "text-yellow-700"
+                    : "text-red-700"
+                }`}
+              >
+                This {certificate.vehicle_name} demonstrates{" "}
+                {batteryHealth.degradation_percentage < 10
+                  ? "excellent"
+                  : batteryHealth.degradation_percentage < 15
+                  ? "good"
+                  : "fair"}{" "}
+                battery health with
+                {Math.round(batteryHealth.degradation_percentage * 10) / 10}%
+                degradation. The battery is performing{" "}
+                {batteryHealth.degradation_percentage < 10
+                  ? "exceptionally well"
+                  : batteryHealth.degradation_percentage < 15
+                  ? "well"
+                  : "adequately"}{" "}
+                for its usage. Current capacity of{" "}
+                {Math.round(batteryHealth.current_capacity_kwh * 10) / 10} kWh
+                from an original {batteryHealth.original_capacity_kwh} kWh.
+                {batteryHealth.degradation_percentage < 10
+                  ? " This vehicle represents an excellent purchase opportunity with minimal battery-related risks."
+                  : batteryHealth.degradation_percentage < 15
+                  ? " This vehicle represents a good purchase opportunity with normal wear patterns."
+                  : " This vehicle shows higher than average degradation and should be considered carefully."}
               </p>
             </div>
           </CardContent>
@@ -475,7 +633,14 @@ export default async function CertificatePage({
               {certificate.certificate_id}
             </p>
             <div className="flex items-center justify-center space-x-4 text-xs text-gray-500">
-              <span>Generated: {new Date(certificate.created_at).toLocaleDateString(locale)} {new Date(certificate.created_at).toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' })}</span>
+              <span>
+                Generated:{" "}
+                {new Date(certificate.created_at).toLocaleDateString(locale)}{" "}
+                {new Date(certificate.created_at).toLocaleTimeString(locale, {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </span>
               <span>•</span>
               <span>Valid for 1 year</span>
               <span>•</span>

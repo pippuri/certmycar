@@ -16,9 +16,9 @@ import { HeroVisual } from "@/components/hero-visual";
 import { getLocaleLinks } from "@/lib/locale-links";
 
 export default async function HomePage({
-  params
+  params,
 }: {
-  params: Promise<{ locale: string }>
+  params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
   const links = getLocaleLinks(locale);
@@ -31,7 +31,10 @@ export default async function HomePage({
             <Logo size="md" />
           </div>
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href={links.about} className="text-gray-600 hover:text-gray-900">
+            <Link
+              href={links.about}
+              className="text-gray-600 hover:text-gray-900"
+            >
               About
             </Link>
           </nav>
@@ -42,7 +45,8 @@ export default async function HomePage({
       <section className="py-20 px-4">
         <div className="container mx-auto text-center max-w-6xl">
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8">
-            Check Your Tesla Battery<br />
+            Check Your Tesla Battery
+            <br />
             <span className="text-blue-600">In 30 Seconds</span>
           </h1>
 
@@ -64,7 +68,9 @@ export default async function HomePage({
               className="text-lg px-8 py-6 bg-transparent"
               asChild
             >
-              <Link href={`/${locale}/certificate/CMB-DEMO-2024-SAMPLE`}>View Sample Report</Link>
+              <Link href={`/${locale}/certificate/CMB-DEMO-2024-SAMPLE`}>
+                View Sample Certificate
+              </Link>
             </Button>
           </div>
 
@@ -81,6 +87,10 @@ export default async function HomePage({
               <CheckCircle className="h-4 w-4 text-green-500" />
               <span>Instant results</span>
             </div>
+            <div className="flex items-center gap-2">
+              <CheckCircle className="h-4 w-4 text-green-500" />
+              <span>Optional Certificate ($10)</span>
+            </div>
           </div>
         </div>
       </section>
@@ -90,7 +100,8 @@ export default async function HomePage({
         <div className="container mx-auto max-w-5xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Battery Replacement = <span className="text-red-600">$15,000+</span>
+              Battery Replacement ={" "}
+              <span className="text-red-600">$15,000+</span>
             </h2>
             <p className="text-xl text-gray-600">
               Don&apos;t get stuck with hidden battery issues
@@ -105,7 +116,7 @@ export default async function HomePage({
               <h3 className="text-xl font-bold mb-2">Hidden Issues</h3>
               <p className="text-gray-600">Sellers hide degradation problems</p>
             </div>
-            
+
             <div className="bg-white p-8 rounded-xl shadow-lg">
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Shield className="h-8 w-8 text-blue-600" />
@@ -113,7 +124,7 @@ export default async function HomePage({
               <h3 className="text-xl font-bold mb-2">Verified Data</h3>
               <p className="text-gray-600">Direct from Tesla&apos;s systems</p>
             </div>
-            
+
             <div className="bg-white p-8 rounded-xl shadow-lg">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <TrendingUp className="h-8 w-8 text-green-600" />
@@ -129,11 +140,12 @@ export default async function HomePage({
       <section className="py-20 px-4">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-bold text-gray-900 mb-16">
-            Trusted by <span className="text-blue-600">50,000+</span> Tesla Owners
+            Trusted by <span className="text-blue-600">50,000+</span> Tesla
+            Owners
           </h2>
-          
+
           <TeslaStatsVisual />
-          
+
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mt-16">
             <div className="text-center">
               <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -141,14 +153,14 @@ export default async function HomePage({
               </div>
               <h3 className="text-xl font-bold mb-2">30 Second Results</h3>
             </div>
-            
+
             <div className="text-center">
               <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Shield className="h-10 w-10 text-blue-600" />
               </div>
               <h3 className="text-xl font-bold mb-2">$10 Certificates</h3>
             </div>
-            
+
             <div className="text-center">
               <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Lock className="h-10 w-10 text-purple-600" />
@@ -199,7 +211,9 @@ export default async function HomePage({
       <section className="py-20 px-4 bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-bold text-gray-900 mb-16">
-            Perfect for <span className="text-blue-600">Buyers</span>, <span className="text-green-600">Sellers</span> & <span className="text-purple-600">Owners</span>
+            Perfect for <span className="text-blue-600">Buyers</span>,{" "}
+            <span className="text-green-600">Sellers</span> &{" "}
+            <span className="text-purple-600">Owners</span>
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
@@ -223,7 +237,9 @@ export default async function HomePage({
               <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Zap className="h-10 w-10 text-purple-600" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-purple-600">Owners</h3>
+              <h3 className="text-2xl font-bold mb-4 text-purple-600">
+                Owners
+              </h3>
               <p className="text-lg font-semibold">Track battery health</p>
             </div>
           </div>
