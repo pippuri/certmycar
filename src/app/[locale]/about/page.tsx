@@ -2,23 +2,34 @@ import { Building, Target, Handshake } from "lucide-react";
 import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
+import { getLocaleLinks } from "@/lib/locale-links";
 
-export default function AboutPage() {
+export default async function AboutPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const links = getLocaleLinks(locale);
+
   return (
     <div className="bg-gradient-to-br from-slate-50 to-blue-50">
       <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <Link href="/en-US">
+            <Link href={links.home}>
               <Logo size="md" />
             </Link>
           </div>
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/en-US" className="text-gray-600 hover:text-gray-900">
+            <Link
+              href={links.home}
+              className="text-gray-600 hover:text-gray-900"
+            >
               Home
             </Link>
             <Button variant="outline" asChild>
-              <Link href="/en-US/check">Get Your Report</Link>
+              <Link href={links.check}>Get Your Report</Link>
             </Button>
           </nav>
         </div>
@@ -87,10 +98,10 @@ export default function AboutPage() {
           </p>
           <div className="flex justify-center gap-4">
             <Button asChild>
-              <Link href="/en-US/terms">Terms of Service</Link>
+              <Link href={links.terms}>Terms of Service</Link>
             </Button>
             <Button variant="outline" asChild>
-              <Link href="/en-US/privacy-policy">Privacy Policy</Link>
+              <Link href={links.privacy}>Privacy Policy</Link>
             </Button>
           </div>
         </div>

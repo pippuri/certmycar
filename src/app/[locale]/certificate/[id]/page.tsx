@@ -410,7 +410,7 @@ export default async function CertificatePage({
                   {/* Year labels - Dynamic based on vehicle year */}
                   <div className="absolute bottom-0 w-full flex justify-between px-4">
                     {Array.from(
-                      { length: 4 },
+                      { length: 5 },
                       (_, i) => certificate.vehicle_year + i
                     ).map((year) => (
                       <span key={year} className="text-xs text-gray-500">

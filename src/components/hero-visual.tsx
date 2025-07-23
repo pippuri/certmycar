@@ -148,7 +148,7 @@ export function HeroVisual() {
 
                 {/* Year labels */}
                 <div className="absolute bottom-0 w-full flex justify-between px-4">
-                  {["2022", "2023", "2024", "2025"].map((year) => (
+                  {["2022", "2023", "2024", "2025", "2026"].map((year) => (
                     <span key={year} className="text-xs text-gray-500">
                       {year}
                     </span>
