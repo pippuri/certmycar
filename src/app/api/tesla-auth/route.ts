@@ -245,10 +245,11 @@ const TESLA_VEHICLE_SPECS: TeslaVehicleSpec[] = [
     battery_supplier: "LG",
   },
 
-  // Model 3 - Shanghai (China/Export)
+  // Model 3 - Shanghai (China/Export) - More granular battery specifications
   {
     model: "3",
     year_start: 2020,
+    year_end: 2020,
     assembly_plant: ["P"],
     trim: "Standard Range+",
     battery_capacity_kwh: 55,
@@ -257,28 +258,71 @@ const TESLA_VEHICLE_SPECS: TeslaVehicleSpec[] = [
     battery_supplier: "CATL",
     market: ["CN", "EU", "AU"],
   },
+  // Early 2021 Model 3 LR with 73.5kWh LG NCM (Generation 1)
+  {
+    model: "3",
+    year_start: 2021,
+    year_end: 2021,
+    assembly_plant: ["P"],
+    trim: "Long Range",
+    battery_capacity_kwh: 78,
+    usable_capacity_kwh: 73.5, // Earlier LG generation had 73.5kWh usable
+    battery_chemistry: "NCM",
+    battery_supplier: "LG",
+    market: ["CN", "EU", "AU"],
+    vin_patterns: {
+      // Early 2021 production with older LG cells
+      position_7: ["A", "B", "C", "D"], // Drive unit patterns for early 2021
+    },
+  },
+  // Mid/Late 2021 Model 3 LR with 75kWh LG NCM (Generation 2)
   {
     model: "3",
     year_start: 2021,
     assembly_plant: ["P"],
     trim: "Long Range",
     battery_capacity_kwh: 78,
-    usable_capacity_kwh: 75,
+    usable_capacity_kwh: 75, // Later LG generation improved to 75kWh usable
     battery_chemistry: "NCM",
     battery_supplier: "LG",
     market: ["CN", "EU", "AU"],
+    vin_patterns: {
+      // Later 2021 production with newer LG cells  
+      position_7: ["E", "F", "G", "H", "J"], // Drive unit patterns for mid/late 2021
+    },
   },
+  // Early 2021 Model 3 Performance with 73.5kWh LG NCM
+  {
+    model: "3",
+    year_start: 2021,
+    year_end: 2021,
+    assembly_plant: ["P"],
+    trim: "Performance",
+    battery_capacity_kwh: 78,
+    usable_capacity_kwh: 73.5, // Earlier LG generation
+    battery_chemistry: "NCM",
+    battery_supplier: "LG",
+    market: ["CN", "EU", "AU"],
+    vin_patterns: {
+      position_7: ["A", "B", "C", "D"], // Early 2021 Performance
+    },
+  },
+  // Mid/Late 2021 Model 3 Performance with 75kWh LG NCM
   {
     model: "3",
     year_start: 2021,
     assembly_plant: ["P"],
     trim: "Performance",
     battery_capacity_kwh: 78,
-    usable_capacity_kwh: 75,
+    usable_capacity_kwh: 75, // Later LG generation
     battery_chemistry: "NCM",
     battery_supplier: "LG",
     market: ["CN", "EU", "AU"],
+    vin_patterns: {
+      position_7: ["E", "F", "G", "H", "J"], // Later 2021 Performance
+    },
   },
+  // 2022+ Model 3 RWD with LFP
   {
     model: "3",
     year_start: 2022,
@@ -288,6 +332,30 @@ const TESLA_VEHICLE_SPECS: TeslaVehicleSpec[] = [
     usable_capacity_kwh: 57,
     battery_chemistry: "LFP",
     battery_supplier: "CATL",
+    market: ["CN", "EU", "AU"],
+  },
+  // 2022+ Model 3 Long Range - Improved LG cells
+  {
+    model: "3", 
+    year_start: 2022,
+    assembly_plant: ["P"],
+    trim: "Long Range",
+    battery_capacity_kwh: 78,
+    usable_capacity_kwh: 75, // Standardized to 75kWh usable
+    battery_chemistry: "NCM",
+    battery_supplier: "LG",
+    market: ["CN", "EU", "AU"],
+  },
+  // 2022+ Model 3 Performance - Improved LG cells
+  {
+    model: "3",
+    year_start: 2022,
+    assembly_plant: ["P"],
+    trim: "Performance", 
+    battery_capacity_kwh: 78,
+    usable_capacity_kwh: 75, // Standardized to 75kWh usable
+    battery_chemistry: "NCM",
+    battery_supplier: "LG",
     market: ["CN", "EU", "AU"],
   },
 
@@ -694,9 +762,39 @@ function getVehicleSpecification(
     return null;
   }
 
-  // If multiple specs match, use trim badging to narrow down
+  // If multiple specs match, use enhanced matching logic
   if (matchingSpecs.length > 1) {
     const trimBadge = vehicle.vehicle_config?.trim_badging?.toLowerCase() || "";
+    
+    // First, try to match using VIN patterns for more precise identification
+    const vinPatternsMatches = matchingSpecs.filter((spec) => {
+      if (!spec.vin_patterns) return false;
+      
+      // Check position 7 (drive unit) patterns if available
+      if (spec.vin_patterns.position_7) {
+        const position7 = vinData.driveUnit; // This is position 7 in VIN
+        return spec.vin_patterns.position_7.includes(position7);
+      }
+      
+      // Check position 8 (trim) patterns if available  
+      if (spec.vin_patterns.position_8) {
+        const position8 = vinData.trimLevel; // This is position 8 in VIN
+        return spec.vin_patterns.position_8.includes(position8);
+      }
+      
+      return false;
+    });
+    
+    // If we found VIN pattern matches, prefer those
+    if (vinPatternsMatches.length === 1) {
+      console.log(`Found unique VIN pattern match for ${vehicle.vin}: ${vinPatternsMatches[0].trim} ${vinPatternsMatches[0].usable_capacity_kwh}kWh`);
+      return vinPatternsMatches[0];
+    }
+    
+    if (vinPatternsMatches.length > 1) {
+      console.log(`Multiple VIN pattern matches found for ${vehicle.vin}, using trim matching`);
+      matchingSpecs = vinPatternsMatches; // Use the narrowed down list
+    }
 
     // Try to match trim exactly
     for (const spec of matchingSpecs) {
@@ -708,19 +806,27 @@ function getVehicleSpecification(
       }
     }
 
-    // Try to match common patterns
+    // Try to match common patterns with preference for more recent/accurate specs
     if (trimBadge.includes("performance")) {
-      const perfSpec = matchingSpecs.find((s) =>
+      const perfSpecs = matchingSpecs.filter((s) =>
         s.trim.toLowerCase().includes("performance")
       );
-      if (perfSpec) return perfSpec;
+      if (perfSpecs.length > 0) {
+        // Prefer specs with higher usable capacity (newer LG generation)
+        perfSpecs.sort((a, b) => (b.usable_capacity_kwh || 0) - (a.usable_capacity_kwh || 0));
+        return perfSpecs[0];
+      }
     }
 
     if (trimBadge.includes("long range") || trimBadge.includes("dual motor")) {
-      const lrSpec = matchingSpecs.find((s) =>
+      const lrSpecs = matchingSpecs.filter((s) =>
         s.trim.toLowerCase().includes("long range")
       );
-      if (lrSpec) return lrSpec;
+      if (lrSpecs.length > 0) {
+        // Prefer specs with higher usable capacity (newer LG generation)
+        lrSpecs.sort((a, b) => (b.usable_capacity_kwh || 0) - (a.usable_capacity_kwh || 0));
+        return lrSpecs[0];
+      }
     }
 
     if (
@@ -736,47 +842,53 @@ function getVehicleSpecification(
       if (srSpec) return srSpec;
     }
 
-    console.warn(`Multiple specs found for ${vehicle.vin}, using first match`);
+    console.warn(`Multiple specs found for ${vehicle.vin}, using highest capacity match`);
+    // Default to highest usable capacity when uncertain (newer/better generation)
+    matchingSpecs.sort((a, b) => (b.usable_capacity_kwh || 0) - (a.usable_capacity_kwh || 0));
   }
 
   return matchingSpecs[0];
 }
 
 // Get original battery capacity with comprehensive VIN decoding
-function getOriginalBatteryCapacity(vehicle: TeslaVehicle): number {
+function getOriginalBatteryCapacity(vehicle: TeslaVehicle): { total_kwh: number; usable_kwh: number } {
   console.log(`=== GETTING ORIGINAL CAPACITY ===`);
   console.log(`VIN: ${vehicle.vin}`);
   
   // Special handling for known VINs that don't follow standard Tesla format
   if (vehicle.vin === "LRW3E7EBXMC418780") {
-    console.log(`Known VIN: 2021 Model 3 Long Range from Shanghai - using 78kWh`);
-    return 78; // User's 2021 Model 3 LR has 78kWh NCM battery
+    console.log(`Known VIN: 2021 Model 3 Long Range from Shanghai - using specific spec lookup`);
+    // Let it fall through to spec matching for more accurate generation detection
   }
   
   const spec = getVehicleSpecification(vehicle);
   console.log(`Spec lookup result:`, spec);
 
   if (spec) {
-    console.log(`Using spec capacity: ${spec.battery_capacity_kwh} kWh`);
-    return spec.battery_capacity_kwh;
+    const totalCapacity = spec.battery_capacity_kwh;
+    const usableCapacity = spec.usable_capacity_kwh || totalCapacity * 0.95; // Default to 95% if not specified
+    
+    console.log(`Using spec capacity: ${totalCapacity} kWh total, ${usableCapacity} kWh usable`);
+    return { total_kwh: totalCapacity, usable_kwh: usableCapacity };
   }
 
   // Try VIN decoding fallback
   try {
     const vinData = decodeTeslaVin(vehicle.vin);
-    const basicCapacityMap: { [key: string]: number } = {
-      S: 100,
-      "3": 78, // Updated to more common LR capacity
-      X: 100,
-      Y: 78, // Updated to more common LR capacity
+    const basicCapacityMap: { [key: string]: { total: number; usable: number } } = {
+      S: { total: 100, usable: 95 },
+      "3": { total: 78, usable: 75 }, // Modern LR capacity
+      X: { total: 100, usable: 95 },
+      Y: { total: 78, usable: 75 }, // Modern LR capacity
     };
 
-    console.warn(`Using VIN fallback capacity for ${vehicle.vin}, model: ${vinData.model}`);
-    return basicCapacityMap[vinData.model] || 78;
+    const fallback = basicCapacityMap[vinData.model] || { total: 78, usable: 75 };
+    console.warn(`Using VIN fallback capacity for ${vehicle.vin}, model: ${vinData.model}: ${fallback.total}kWh total, ${fallback.usable}kWh usable`);
+    return { total_kwh: fallback.total, usable_kwh: fallback.usable };
   } catch (error) {
     console.error(`VIN decode failed for ${vehicle.vin}:`, error);
-    console.warn(`Using default 78kWh capacity`);
-    return 78; // Safe default for modern Tesla
+    console.warn(`Using default 78kWh total, 75kWh usable capacity`);
+    return { total_kwh: 78, usable_kwh: 75 }; // Safe default for modern Tesla
   }
 }
 
@@ -810,11 +922,11 @@ function calculateBatteryHealth(
   console.log(`Vehicle:`, JSON.stringify(vehicle, null, 2));
   console.log(`Battery Data:`, JSON.stringify(batteryData, null, 2));
   
-  const originalCapacity = getOriginalBatteryCapacity(vehicle);
+  const originalCapacities = getOriginalBatteryCapacity(vehicle);
   const spec = getVehicleSpecification(vehicle);
   const vinData = decodeTeslaVin(vehicle.vin);
 
-  console.log(`Original Capacity: ${originalCapacity} kWh`);
+  console.log(`Original Capacities: ${originalCapacities.total_kwh} kWh total, ${originalCapacities.usable_kwh} kWh usable`);
   console.log(`Vehicle Spec:`, spec);
   console.log(`VIN Data:`, vinData);
 
@@ -853,13 +965,13 @@ function calculateBatteryHealth(
     
     const expectedNewRange = getEstimatedRange(
       modelForRange,
-      originalCapacity,
+      originalCapacities.usable_kwh, // Use usable capacity for more accurate range estimation
       batteryChemistry
     );
     
     // Calculate degradation: (current_ideal_range / expected_new_range) gives us capacity %
     const capacityRatio = idealRangeAtFullCharge / expectedNewRange;
-    estimatedCurrentCapacity = capacityRatio * originalCapacity;
+    estimatedCurrentCapacity = capacityRatio * originalCapacities.usable_kwh; // Base degradation on usable capacity
     
     console.log(`Ideal range at current charge: ${batteryData.ideal_battery_range} miles`);
     console.log(`Ideal range at full charge: ${idealRangeAtFullCharge} miles`);
@@ -882,14 +994,14 @@ function calculateBatteryHealth(
     
   } else {
     console.warn("No ideal_battery_range available, using fallback calculation");
-    estimatedCurrentCapacity = originalCapacity * 0.93; // Assume 7% degradation as fallback
+    estimatedCurrentCapacity = originalCapacities.usable_kwh * 0.93; // Assume 7% degradation as fallback
     methodology = "Fallback estimation (no ideal range data available)";
     confidenceLevel = "low";
   }
 
-  // Calculate health metrics
+  // Calculate health metrics based on usable capacity (more accurate for user understanding)
   const healthPercentage = Math.min(
-    (estimatedCurrentCapacity / originalCapacity) * 100,
+    (estimatedCurrentCapacity / originalCapacities.usable_kwh) * 100,
     100
   );
   const degradationPercentage = Math.max(100 - healthPercentage, 0);
@@ -898,22 +1010,28 @@ function calculateBatteryHealth(
   console.log(`Health Percentage: ${healthPercentage}%`);
   console.log(`Degradation Percentage: ${degradationPercentage}%`);
 
-  // Estimate range loss
+  // Estimate range loss based on usable capacity
   const baseRange = getEstimatedRange(
     spec?.model || vinData.model,
-    originalCapacity,
+    originalCapacities.usable_kwh,
     batteryChemistry
   );
   const estimatedRangeLoss = (degradationPercentage / 100) * baseRange;
 
-  // Add assembly plant context to methodology
+  // Add assembly plant and battery generation context to methodology
   const plantInfo = vinData.assemblyLocation;
-  const enhancedMethodology = `${methodology} - Vehicle from ${plantInfo}`;
+  let generationInfo = "";
+  if (spec?.usable_capacity_kwh === 73.5) {
+    generationInfo = " (LG Generation 1 - 73.5kWh usable)";
+  } else if (spec?.usable_capacity_kwh === 75 && spec?.battery_supplier === "LG") {
+    generationInfo = " (LG Generation 2 - 75kWh usable)";
+  }
+  const enhancedMethodology = `${methodology} - Vehicle from ${plantInfo}${generationInfo}`;
 
   const result = {
     health_percentage: Math.round(healthPercentage * 10) / 10,
     degradation_percentage: Math.round(degradationPercentage * 10) / 10,
-    original_capacity_kwh: originalCapacity,
+    original_capacity_kwh: originalCapacities.usable_kwh, // Report usable capacity as this is what users care about
     current_capacity_kwh: Math.round(estimatedCurrentCapacity * 10) / 10,
     confidence_level: confidenceLevel,
     methodology: enhancedMethodology,

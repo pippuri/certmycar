@@ -58,30 +58,42 @@ export function ShareButton({ certificateId }: ShareButtonProps) {
 
 interface DownloadButtonProps {
   certificateId: string;
+  vin: string;
 }
 
-export function DownloadButton({ certificateId }: DownloadButtonProps) {
+export function DownloadButton({ certificateId, vin }: DownloadButtonProps) {
   const [isDownloading, setIsDownloading] = useState(false);
 
   const handleDownload = async () => {
     setIsDownloading(true);
     
     try {
-      // For now, open a print dialog or download the current page as PDF
-      // In production, you'd call your PDF generation API
-      const response = await fetch(`/api/certificate/pdf/${certificateId}`);
-      const data = await response.json();
+      // Call PDF generation API with VIN for security
+      const response = await fetch(`/api/certificate/pdf/${certificateId}?vin=${encodeURIComponent(vin)}`);
       
-      if (data.success) {
-        // Open print dialog for now (browser will offer "Save as PDF")
-        window.print();
-      } else {
-        throw new Error(data.error);
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+        throw new Error(errorData.error || `HTTP ${response.status}`);
       }
+      
+      // Get PDF blob from response
+      const pdfBlob = await response.blob();
+      
+      // Create download link
+      const url = window.URL.createObjectURL(pdfBlob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Tesla_Battery_Certificate_${certificateId}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      
+      // Cleanup
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+      
     } catch (error) {
       console.error("Download error:", error);
-      // Fallback to print dialog
-      window.print();
+      alert(`Failed to download PDF: ${error instanceof Error ? error.message : 'Unknown error'}`);
     } finally {
       setIsDownloading(false);
     }

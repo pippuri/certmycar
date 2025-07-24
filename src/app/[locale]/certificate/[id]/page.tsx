@@ -20,7 +20,7 @@ export async function generateMetadata({
   searchParams,
 }: {
   params: Promise<{ locale: string; id: string }>;
-  searchParams: Promise<{ vin?: string }>;
+  searchParams: Promise<{ vin?: string; pdf?: string }>;
 }): Promise<Metadata> {
   const { locale, id } = await params;
   const { vin } = await searchParams;
@@ -88,10 +88,10 @@ export default async function CertificatePage({
   searchParams,
 }: {
   params: Promise<{ locale: string; id: string }>;
-  searchParams: Promise<{ vin?: string }>;
+  searchParams: Promise<{ vin?: string; pdf?: string }>;
 }) {
   const { locale, id } = await params;
-  const { vin } = await searchParams;
+  const { vin, pdf } = await searchParams;
   const links = getLocaleLinks(locale);
 
   // Handle demo certificate with hardcoded data
@@ -138,7 +138,7 @@ export default async function CertificatePage({
           battery_range: 82,
         },
         is_paid: true,
-        created_at: "2024-01-21T14:54:00.000Z",
+        created_at: "2025-01-24T14:54:00.000Z",
         user_id: null,
       };
     }
@@ -202,57 +202,67 @@ export default async function CertificatePage({
     );
   }
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
-      {/* Header */}
-      <header className="border-b bg-white/80 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href={links.check} className="flex items-center space-x-2">
-            <ArrowLeft className="h-5 w-5" />
-            <Logo size="sm" />
-          </Link>
-          <div className="flex items-center space-x-4">
-            <ShareButton certificateId={certificate.certificate_id} />
-            <DownloadButton certificateId={certificate.certificate_id} />
-          </div>
-        </div>
-      </header>
+  // Check if we're in PDF generation mode
+  const isPdfMode = pdf === 'true';
 
-      <div className="container mx-auto px-4 py-12 max-w-4xl">
-        {/* Payment Status Notice */}
-        {!certificate.is_paid ? (
-          <CertificatePayment 
-            certificateId={certificate.certificate_id}
-            locale={locale}
-            vehicleName={certificate.vehicle_name}
-          />
-        ) : (
-          // Anti-Fraud Notice for paid certificates
-          <Card className="mb-8 border-green-200 bg-green-50">
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                  <CheckCircle className="h-5 w-5 text-green-600" />
-                </div>
-                <h3 className="font-semibold text-green-800">
-                  Fraud Protection Verified
-                </h3>
-              </div>
-              <p className="text-green-700 text-sm">
-                This certificate is tamper-proof and directly connected to
-                Tesla&apos;s official systems. The QR code below allows instant
-                verification of authenticity. Buyers can trust this assessment
-                is genuine and accurate.
-              </p>
-            </CardContent>
-          </Card>
+  return (
+    <div className={`min-h-screen ${isPdfMode ? 'bg-white' : 'bg-gradient-to-br from-slate-50 to-blue-50'}`}>
+      {/* Header - Hidden in PDF mode */}
+      {!isPdfMode && (
+        <header className="border-b bg-white/80 backdrop-blur-sm">
+          <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+            <Link href={links.check} className="flex items-center space-x-2">
+              <ArrowLeft className="h-5 w-5" />
+              <Logo size="sm" />
+            </Link>
+            <div className="flex items-center space-x-4">
+              <ShareButton certificateId={certificate.certificate_id} />
+              <DownloadButton certificateId={certificate.certificate_id} vin={certificate.tesla_vin} />
+            </div>
+          </div>
+        </header>
+      )}
+
+      <div className={`container mx-auto px-4 ${isPdfMode ? 'py-4' : 'py-12'} max-w-4xl`}>
+        {/* Payment Status Notice - Hidden in PDF mode */}
+        {!isPdfMode && (
+          <>
+            {!certificate.is_paid ? (
+              <CertificatePayment 
+                certificateId={certificate.certificate_id}
+                locale={locale}
+                vehicleName={certificate.vehicle_name}
+              />
+            ) : (
+              // Anti-Fraud Notice for paid certificates
+              <Card className="mb-8 border-green-200 bg-green-50">
+                <CardContent className="p-6">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                      <CheckCircle className="h-5 w-5 text-green-600" />
+                    </div>
+                    <h3 className="font-semibold text-green-800">
+                      Fraud Protection Verified
+                    </h3>
+                  </div>
+                  <p className="text-green-700 text-sm">
+                    This certificate is tamper-proof and directly connected to
+                    Tesla&apos;s official systems. The QR code below allows instant
+                    verification of authenticity. Buyers can trust this assessment
+                    is genuine and accurate.
+                  </p>
+                </CardContent>
+              </Card>
+            )}
+          </>
         )}
 
-        {/* Certificate Display - Only show for paid certificates */}
-        {certificate.is_paid ? (
+        {/* Certificate Display - Only show for paid certificates or PDF mode */}
+        {certificate.is_paid || isPdfMode ? (
           <CertificateDisplay 
             certificate={certificate}
             locale={locale}
+            isPrintMode={isPdfMode}
           />
         ) : (
           <Card className="mb-8 bg-gray-100 border-gray-300">
@@ -277,43 +287,45 @@ export default async function CertificatePage({
           </Card>
         )}
 
-        {/* Email Capture - Only show for paid certificates */}
-        {certificate.is_paid && (
+        {/* Email Capture - Only show for paid certificates and not in PDF mode */}
+        {certificate.is_paid && !isPdfMode && (
           <EmailCapture 
             context="certificate_view" 
             certificateId={certificate.certificate_id}
           />
         )}
 
-        {/* Verification Footer */}
-        <Card className="bg-gray-50 border-gray-200">
-          <CardContent className="p-6 text-center">
-            <div className="flex items-center justify-center mb-4">
-              <CheckCircle className="h-6 w-6 text-green-600 mr-2" />
-              <span className="font-medium">Verified by batterycert.com</span>
-            </div>
-            <p className="text-sm text-gray-600 mb-4">
-              This certificate can be verified using QR code or certificate ID:
-              {certificate.certificate_id}
-            </p>
-            <div className="flex items-center justify-center space-x-4 text-xs text-gray-500">
-              <span>
-                Generated:{" "}
-                {new Date(certificate.created_at).toLocaleDateString(locale)}{" "}
-                {new Date(certificate.created_at).toLocaleTimeString(locale, {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}
-              </span>
-              <span>•</span>
-              <span>Valid for 1 year</span>
-              <span>•</span>
-              <Link href="/verify" className="text-blue-600 hover:underline">
-                Verify Certificate
-              </Link>
-            </div>
-          </CardContent>
-        </Card>
+        {/* Verification Footer - Hidden in PDF mode */}
+        {!isPdfMode && (
+          <Card className="bg-gray-50 border-gray-200">
+            <CardContent className="p-6 text-center">
+              <div className="flex items-center justify-center mb-4">
+                <CheckCircle className="h-6 w-6 text-green-600 mr-2" />
+                <span className="font-medium">Verified by batterycert.com</span>
+              </div>
+              <p className="text-sm text-gray-600 mb-4">
+                This certificate can be verified using QR code or certificate ID:
+                {certificate.certificate_id}
+              </p>
+              <div className="flex items-center justify-center space-x-4 text-xs text-gray-500">
+                <span>
+                  Generated:{" "}
+                  {new Date(certificate.created_at).toLocaleDateString(locale)}{" "}
+                  {new Date(certificate.created_at).toLocaleTimeString(locale, {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </span>
+                <span>•</span>
+                <span>Valid for 3 months</span>
+                <span>•</span>
+                <Link href="/verify" className="text-blue-600 hover:underline">
+                  Verify Certificate
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        )}
       </div>
     </div>
   );

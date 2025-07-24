@@ -1,59 +1,64 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Calendar,
-  Car,
-  Zap,
-  TrendingUp,
-} from "lucide-react";
+import { Calendar, Car, Zap, TrendingUp } from "lucide-react";
 import React, { useState } from "react";
+import { QRCode } from "./qr-code";
 
 // Tesla battery degradation benchmarks based on real-world data
 const TESLA_BENCHMARKS = {
-  // Average degradation by vehicle age (years): 5% first year, +1% each year after
+  // Average degradation by vehicle age (years): 6.5% first year, +1.5% each year after
   degradationByAge: {
-    0: 0,      // New vehicle
-    1: 5,      // 1 year: 5% average degradation
-    2: 6,      // 2 years: 6% average (5% + 1%)
-    3: 7,      // 3 years: 7% average (5% + 2%)
-    4: 8,      // 4 years: 8% average (5% + 3%)
-    5: 9,      // 5 years: 9% average (5% + 4%)
-    6: 10,     // 6 years: 10% average (5% + 5%)
-    7: 11,     // 7+ years: ~11% average (5% + 6%)
+    0: 0, // New vehicle
+    1: 6.5, // 1 year: 6.5% average degradation (5% + 1.5%)
+    2: 8.0, // 2 years: 8% average (6.5% + 1.5%)
+    3: 9.5, // 3 years: 9.5% average (8% + 1.5%)
+    4: 11.0, // 4 years: 11% average (9.5% + 1.5%)
+    5: 12.5, // 5 years: 12.5% average (11% + 1.5%)
+    6: 14.0, // 6 years: 14% average (12.5% + 1.5%)
+    7: 15.5, // 7+ years: ~15.5% average (14% + 1.5%)
   },
   // Percentile thresholds for condition assessment
   percentiles: {
-    excellent: 0.1,   // Top 10% (very low degradation)
-    good: 0.3,        // Top 30% (below average degradation)
-    average: 0.6,     // Average range (30-60%)
-    fair: 0.85,       // Fair range (60-85%)
-    poor: 1.0,        // Bottom 15% (high degradation)
-  }
+    excellent: 0.1, // Top 10% (very low degradation)
+    good: 0.3, // Top 30% (below average degradation)
+    average: 0.6, // Average range (30-60%)
+    fair: 0.85, // Fair range (60-85%)
+    poor: 1.0, // Bottom 15% (high degradation)
+  },
 };
 
 // Calculate benchmark statistics
-function calculateBenchmarkStats(vehicleAge: number, currentDegradation: number) {
+function calculateBenchmarkStats(
+  vehicleAge: number,
+  currentDegradation: number
+) {
   // Get expected degradation for this age
-  const maxAge = Math.max(...Object.keys(TESLA_BENCHMARKS.degradationByAge).map(Number));
+  const maxAge = Math.max(
+    ...Object.keys(TESLA_BENCHMARKS.degradationByAge).map(Number)
+  );
   const ageKey = Math.min(vehicleAge, maxAge);
-  const expectedDegradation = TESLA_BENCHMARKS.degradationByAge[ageKey as keyof typeof TESLA_BENCHMARKS.degradationByAge];
-  
+  const expectedDegradation =
+    TESLA_BENCHMARKS.degradationByAge[
+      ageKey as keyof typeof TESLA_BENCHMARKS.degradationByAge
+    ];
+
   // Calculate relative performance (lower is better for degradation)
-  const relativePerformance = currentDegradation / Math.max(expectedDegradation, 0.1);
-  
+  const relativePerformance =
+    currentDegradation / Math.max(expectedDegradation, 0.1);
+
   // Determine condition based on how much better/worse than expected
   let condition: string;
   let percentileBetter: number;
   let color: string;
-  
+
   if (currentDegradation <= expectedDegradation * 0.7) {
     // 30% better than expected or more = Excellent
     condition = "Excellent";
     percentileBetter = 85;
     color = "text-green-600";
   } else if (currentDegradation <= expectedDegradation * 0.9) {
-    // 10-30% better than expected = Good  
+    // 10-30% better than expected = Good
     condition = "Good";
     percentileBetter = 70;
     color = "text-blue-600";
@@ -73,55 +78,59 @@ function calculateBenchmarkStats(vehicleAge: number, currentDegradation: number)
     percentileBetter = 10;
     color = "text-red-600";
   }
-  
+
   return {
     expectedDegradation,
     relativePerformance,
     condition,
     percentileBetter,
     color,
-    vsAverage: currentDegradation - expectedDegradation
+    vsAverage: currentDegradation - expectedDegradation,
   };
 }
 
 // Beautiful custom chart component that actually works with React 19
-function BatteryDegradationChart({ 
-  vehicleYear, 
-  currentDegradation 
-}: { 
-  vehicleYear: number; 
-  currentDegradation: number; 
+function BatteryDegradationChart({
+  vehicleYear,
+  currentDegradation,
+}: {
+  vehicleYear: number;
+  currentDegradation: number;
 }) {
-  const [hoveredPoint, setHoveredPoint] = useState<{x: number, y: number, data: {
-    year: number;
-    thisVehicle: number;
-    average: number;
-    thisVehicleDegradation: number;
-    averageDegradation: number;
-    isCurrent: boolean;
-  }} | null>(null);
+  const [hoveredPoint, setHoveredPoint] = useState<{
+    x: number;
+    y: number;
+    data: {
+      year: number;
+      thisVehicle: number;
+      average: number;
+      thisVehicleDegradation: number;
+      averageDegradation: number;
+      isCurrent: boolean;
+    };
+  } | null>(null);
   const currentYear = new Date().getFullYear();
   const vehicleAge = currentYear - vehicleYear;
-  
+
   const generateDegradationData = () => {
-    const years = Array.from({ length: 6 }, (_, i) => vehicleYear + i);
+    // Generate years from vehicle year to current year (no future projections)
+    const yearsCount = Math.max(vehicleAge + 1, 2); // At least 2 years for chart
+    const years = Array.from({ length: yearsCount }, (_, i) => vehicleYear + i);
     return years.map((year, index) => {
       // Use actual benchmark data for average
-      const maxAge = Math.max(...Object.keys(TESLA_BENCHMARKS.degradationByAge).map(Number));
+      const maxAge = Math.max(
+        ...Object.keys(TESLA_BENCHMARKS.degradationByAge).map(Number)
+      );
       const ageKey = Math.min(index, maxAge);
-      const averageDegradation = TESLA_BENCHMARKS.degradationByAge[ageKey as keyof typeof TESLA_BENCHMARKS.degradationByAge];
-      
-      let thisVehicleDegradation;
-      if (index <= vehicleAge) {
-        // Actual data for past years
-        const actualRate = currentDegradation / Math.max(vehicleAge, 1);
-        thisVehicleDegradation = index * actualRate;
-      } else {
-        // Projected future degradation
-        const projectedRate = currentDegradation / Math.max(vehicleAge, 1);
-        thisVehicleDegradation = currentDegradation + (index - vehicleAge) * projectedRate;
-      }
-      
+      const averageDegradation =
+        TESLA_BENCHMARKS.degradationByAge[
+          ageKey as keyof typeof TESLA_BENCHMARKS.degradationByAge
+        ];
+
+      // Calculate degradation for this year based on linear progression to current state
+      const actualRate = currentDegradation / Math.max(vehicleAge, 1);
+      const thisVehicleDegradation = index * actualRate;
+
       return {
         year,
         thisVehicle: Math.max(0, 100 - thisVehicleDegradation),
@@ -141,72 +150,108 @@ function BatteryDegradationChart({
   const innerHeight = chartHeight - padding.top - padding.bottom;
 
   // Scale functions
-  const xScale = (year: number) => ((year - vehicleYear) / 5) * innerWidth;
-  const yScale = (health: number) => innerHeight - ((health - 75) / 25) * innerHeight;
+  const xScale = (year: number) =>
+    ((year - vehicleYear) / Math.max(vehicleAge, 1)) * innerWidth;
+  const yScale = (health: number) =>
+    innerHeight - ((health - 75) / 25) * innerHeight;
 
   // Generate path strings
-  const thisVehiclePath = chartData.map((d, i) => 
-    `${i === 0 ? 'M' : 'L'} ${xScale(d.year)},${yScale(d.thisVehicle)}`
-  ).join(' ');
+  const thisVehiclePath = chartData
+    .map(
+      (d, i) =>
+        `${i === 0 ? "M" : "L"} ${xScale(d.year)},${yScale(d.thisVehicle)}`
+    )
+    .join(" ");
 
-  const averagePath = chartData.map((d, i) => 
-    `${i === 0 ? 'M' : 'L'} ${xScale(d.year)},${yScale(d.average)}`
-  ).join(' ');
+  const averagePath = chartData
+    .map(
+      (d, i) => `${i === 0 ? "M" : "L"} ${xScale(d.year)},${yScale(d.average)}`
+    )
+    .join(" ");
 
   // Generate area paths
-  const thisVehicleArea = `M ${xScale(chartData[0].year)},${innerHeight} L ${thisVehiclePath.replace('M ', '').replace(/L /g, ' L ')} L ${xScale(chartData[chartData.length - 1].year)},${innerHeight} Z`;
-  const averageArea = `M ${xScale(chartData[0].year)},${innerHeight} L ${averagePath.replace('M ', '').replace(/L /g, ' L ')} L ${xScale(chartData[chartData.length - 1].year)},${innerHeight} Z`;
+  const thisVehicleArea = `M ${xScale(
+    chartData[0].year
+  )},${innerHeight} L ${thisVehiclePath
+    .replace("M ", "")
+    .replace(/L /g, " L ")} L ${xScale(
+    chartData[chartData.length - 1].year
+  )},${innerHeight} Z`;
+  const averageArea = `M ${xScale(
+    chartData[0].year
+  )},${innerHeight} L ${averagePath
+    .replace("M ", "")
+    .replace(/L /g, " L ")} L ${xScale(
+    chartData[chartData.length - 1].year
+  )},${innerHeight} Z`;
 
   return (
     <div className="w-full bg-white rounded-lg border p-6">
       <div className="mb-4">
-        <h4 className="font-semibold text-gray-900 mb-2">Battery Health Over Time</h4>
+        <h4 className="font-semibold text-gray-900 mb-2">
+          Battery Health Over Time
+        </h4>
         <div className="flex items-center gap-4 text-sm">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 bg-blue-500 rounded"></div>
             <span className="text-gray-600">This Vehicle</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-3 h-1 bg-gray-400 rounded" style={{borderTop: '2px dashed'}}></div>
+            <div
+              className="w-3 h-1 bg-gray-400 rounded"
+              style={{ borderTop: "2px dashed" }}
+            ></div>
             <span className="text-gray-600">Tesla Average</span>
           </div>
         </div>
       </div>
-      
+
       <div className="relative">
-        <svg 
-          width={chartWidth} 
-          height={chartHeight} 
+        <svg
+          width={chartWidth}
+          height={chartHeight}
           className="overflow-visible"
           onMouseLeave={() => setHoveredPoint(null)}
         >
           <defs>
-            <linearGradient id="thisVehicleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient
+              id="thisVehicleGradient"
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
               <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.3" />
               <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.05" />
             </linearGradient>
-            <linearGradient id="averageGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <linearGradient
+              id="averageGradient"
+              x1="0%"
+              y1="0%"
+              x2="0%"
+              y2="100%"
+            >
               <stop offset="0%" stopColor="#9ca3af" stopOpacity="0.2" />
               <stop offset="100%" stopColor="#9ca3af" stopOpacity="0.05" />
             </linearGradient>
           </defs>
-          
+
           <g transform={`translate(${padding.left},${padding.top})`}>
             {/* Grid lines */}
-            {[80, 85, 90, 95, 100].map(value => (
+            {[80, 85, 90, 95, 100].map((value) => (
               <g key={value}>
-                <line 
-                  x1="0" 
-                  y1={yScale(value)} 
-                  x2={innerWidth} 
-                  y2={yScale(value)} 
-                  stroke="#f3f4f6" 
+                <line
+                  x1="0"
+                  y1={yScale(value)}
+                  x2={innerWidth}
+                  y2={yScale(value)}
+                  stroke="#f3f4f6"
                   strokeWidth="1"
                 />
-                <text 
-                  x="-10" 
-                  y={yScale(value)} 
-                  textAnchor="end" 
+                <text
+                  x="-10"
+                  y={yScale(value)}
+                  textAnchor="end"
                   dy="0.35em"
                   className="text-xs fill-gray-500"
                 >
@@ -214,45 +259,39 @@ function BatteryDegradationChart({
                 </text>
               </g>
             ))}
-            
+
             {/* X-axis labels */}
             {chartData.map((d) => (
-              <text 
+              <text
                 key={d.year}
-                x={xScale(d.year)} 
-                y={innerHeight + 20} 
+                x={xScale(d.year)}
+                y={innerHeight + 20}
                 textAnchor="middle"
                 className="text-xs fill-gray-500"
               >
                 {d.year}
               </text>
             ))}
-            
+
             {/* Area fills */}
-            <path 
-              d={averageArea} 
-              fill="url(#averageGradient)"
-            />
-            <path 
-              d={thisVehicleArea} 
-              fill="url(#thisVehicleGradient)"
-            />
-            
+            <path d={averageArea} fill="url(#averageGradient)" />
+            <path d={thisVehicleArea} fill="url(#thisVehicleGradient)" />
+
             {/* Lines */}
-            <path 
-              d={averagePath} 
-              fill="none" 
-              stroke="#9ca3af" 
+            <path
+              d={averagePath}
+              fill="none"
+              stroke="#9ca3af"
               strokeWidth="2"
               strokeDasharray="5,5"
             />
-            <path 
-              d={thisVehiclePath} 
-              fill="none" 
-              stroke="#3b82f6" 
+            <path
+              d={thisVehiclePath}
+              fill="none"
+              stroke="#3b82f6"
               strokeWidth="3"
             />
-            
+
             {/* Data points */}
             {chartData.map((d) => (
               <g key={d.year}>
@@ -269,7 +308,7 @@ function BatteryDegradationChart({
                     setHoveredPoint({
                       x: rect.left,
                       y: rect.top,
-                      data: d
+                      data: d,
                     });
                   }}
                 />
@@ -286,10 +325,10 @@ function BatteryDegradationChart({
             ))}
           </g>
         </svg>
-        
+
         {/* Tooltip */}
         {hoveredPoint && (
-          <div 
+          <div
             className="absolute z-10 bg-white border border-gray-200 rounded-lg shadow-lg p-3 text-sm pointer-events-none"
             style={{
               left: hoveredPoint.x - 100,
@@ -306,13 +345,25 @@ function BatteryDegradationChart({
           </div>
         )}
       </div>
-      
+
       <div className="mt-4 text-center">
         <div className="text-sm text-gray-600">
-          Current: <span className="font-medium text-blue-600">{(100 - currentDegradation).toFixed(1)}% health</span>
-          {' vs '}
+          Current:{" "}
+          <span className="font-medium text-blue-600">
+            {(100 - currentDegradation).toFixed(1)}% health
+          </span>
+          {" vs "}
           <span className="font-medium text-gray-600">
-            {(100 - TESLA_BENCHMARKS.degradationByAge[Math.min(vehicleAge, 7) as keyof typeof TESLA_BENCHMARKS.degradationByAge]).toFixed(1)}% average
+            {(
+              100 -
+              TESLA_BENCHMARKS.degradationByAge[
+                Math.min(
+                  vehicleAge,
+                  7
+                ) as keyof typeof TESLA_BENCHMARKS.degradationByAge
+              ]
+            ).toFixed(1)}
+            % average
           </span>
         </div>
       </div>
@@ -338,7 +389,14 @@ interface CertificateData {
     methodology: string;
     battery_chemistry?: string;
     battery_supplier?: string;
-    estimated_range_loss_miles?: number;
+  };
+  battery_data: {
+    battery_level: number;
+    usable_battery_level: number;
+    charge_limit_soc: number;
+    ideal_battery_range: number;
+    est_battery_range: number;
+    battery_range: number;
   };
   is_paid: boolean;
   created_at: string;
@@ -350,17 +408,27 @@ interface CertificateDisplayProps {
   isPrintMode?: boolean;
 }
 
-export function CertificateDisplay({ 
-  certificate, 
-  locale, 
-  isPrintMode = false 
+export function CertificateDisplay({
+  certificate,
+  locale,
+  isPrintMode = false,
 }: CertificateDisplayProps) {
   const batteryHealth = certificate.battery_health_data;
 
   // Calculate vehicle age and benchmark stats
   const currentYear = new Date().getFullYear();
   const vehicleAge = currentYear - certificate.vehicle_year;
-  const benchmarkStats = calculateBenchmarkStats(vehicleAge, batteryHealth.degradation_percentage);
+  const benchmarkStats = calculateBenchmarkStats(
+    vehicleAge,
+    batteryHealth.degradation_percentage
+  );
+
+  // Calculate full charge range from Tesla's current charge data
+  const calculateFullChargeRange = () => {
+    const currentRange = certificate.battery_data?.ideal_battery_range || certificate.battery_data?.est_battery_range || 0;
+    const currentCharge = certificate.battery_data?.battery_level || 0;
+    return currentCharge > 0 ? Math.round((currentRange / currentCharge) * 100) : 0;
+  };
 
   // Helper function to determine if user should see miles vs km
   const usesMiles =
@@ -375,9 +443,9 @@ export function CertificateDisplay({
     day: "numeric",
   });
 
-  // Calculate valid until date (1 year from creation)
+  // Calculate valid until date (3 months from creation)
   const validUntil = new Date(certificate.created_at);
-  validUntil.setFullYear(validUntil.getFullYear() + 1);
+  validUntil.setMonth(validUntil.getMonth() + 3);
   const validUntilFormatted = validUntil.toLocaleDateString(locale, {
     year: "numeric",
     month: "long",
@@ -385,12 +453,12 @@ export function CertificateDisplay({
   });
 
   return (
-    <div className={isPrintMode ? "print:block" : ""}>
+    <div className={isPrintMode ? "print:block" : ""} data-certificate-content>
       {/* Main Certificate Card */}
       <Card className="shadow-xl border-0 mb-8">
-        <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-t-lg">
+        <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-t-lg p-8">
           <div className="flex items-center justify-between">
-            <div>
+            <div className="flex-1">
               <CardTitle className="text-2xl mb-2">
                 Battery Health Report from Tesla Data
               </CardTitle>
@@ -398,11 +466,30 @@ export function CertificateDisplay({
                 Certificate ID: {certificate.certificate_id}
               </p>
             </div>
-            <div className="text-right">
-              <div className="text-4xl font-bold">
-                {Math.round(100 - batteryHealth.degradation_percentage)}%
+
+            <div className="flex items-center gap-6">
+              <div className="text-right">
+                <div className="text-4xl font-bold">
+                  {Math.round(100 - batteryHealth.degradation_percentage)}%
+                </div>
+                <p className="text-blue-100">Health Score</p>
               </div>
-              <p className="text-blue-100">Health Score</p>
+
+              <div className="flex flex-col items-center">
+                <QRCode
+                  url={`${
+                    process.env.NEXT_PUBLIC_SITE_URL ||
+                    "https://batterycert.com"
+                  }/${locale}/certificate/${certificate.certificate_id}?vin=${
+                    certificate.tesla_vin
+                  }`}
+                  size={80}
+                  className="mb-2"
+                />
+                <p className="text-xs text-blue-100 text-center">
+                  Scan to Verify
+                </p>
+              </div>
             </div>
           </div>
         </CardHeader>
@@ -476,15 +563,15 @@ export function CertificateDisplay({
           </div>
 
           {/* Battery Metrics */}
-          <div className="mb-8">
-            <h3 className="text-lg font-semibold mb-4 flex items-center">
-              <Zap className="h-5 w-5 mr-2" />
+          <div className="mb-8 print:mb-6">
+            <h3 className="text-lg font-semibold mb-4 print:mb-3 flex items-center print:text-base">
+              <Zap className="h-5 w-5 mr-2 print:h-4 print:w-4" />
               Battery Performance Metrics
             </h3>
 
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-6 print:gap-2">
               <Card
-                className={`${
+                className={`print:shadow-none ${
                   benchmarkStats.condition === "Excellent"
                     ? "bg-green-50 border-green-200"
                     : benchmarkStats.condition === "Good"
@@ -496,41 +583,56 @@ export function CertificateDisplay({
                     : "bg-red-50 border-red-200"
                 }`}
               >
-                <CardContent className="p-6 text-center">
-                  <div className={`text-3xl font-bold mb-2 ${benchmarkStats.color}`}>
+                <CardContent className="p-3 sm:p-4 md:p-6 text-center print:p-2">
+                  <div
+                    className={`text-xl sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2 print:text-lg print:mb-0 ${benchmarkStats.color}`}
+                  >
                     {Math.round(100 - batteryHealth.degradation_percentage)}%
                   </div>
-                  <p className={`font-medium ${benchmarkStats.color.replace('text-', 'text-').replace('-600', '-800')}`}>
+                  <p
+                    className={`text-xs sm:text-sm md:text-base font-medium print:text-xs ${benchmarkStats.color
+                      .replace("text-", "text-")
+                      .replace("-600", "-800")}`}
+                  >
                     Health Score
                   </p>
-                  <p className={`text-sm mt-1 ${benchmarkStats.color.replace('-600', '-700')}`}>
+                  <p
+                    className={`text-xs sm:text-sm mt-0 sm:mt-1 print:text-xs print:mt-0 ${benchmarkStats.color.replace(
+                      "-600",
+                      "-700"
+                    )}`}
+                  >
                     {benchmarkStats.condition}
                   </p>
-                  <p className="text-xs text-gray-600 mt-2">
-                    Better than {benchmarkStats.percentileBetter}% of similar vehicles
+                  <p className="text-xs text-gray-600 mt-1 print:mt-0 print:text-xs">
+                    Better than {benchmarkStats.percentileBetter}%
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-blue-50 border-blue-200">
-                <CardContent className="p-6 text-center">
-                  <div className="text-3xl font-bold text-blue-600 mb-2">
+              <Card className="bg-blue-50 border-blue-200 print:shadow-none">
+                <CardContent className="p-3 sm:p-4 md:p-6 text-center print:p-2">
+                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-600 mb-1 sm:mb-2 print:text-lg print:mb-0">
                     {Math.round(batteryHealth.current_capacity_kwh)}
                   </div>
-                  <p className="text-blue-800 font-medium">
+                  <p className="text-xs sm:text-sm md:text-base text-blue-800 font-medium print:text-xs">
                     Current Capacity
                   </p>
-                  <p className="text-sm text-blue-700 mt-1">kWh</p>
+                  <p className="text-xs sm:text-sm text-blue-700 mt-0 sm:mt-1 print:text-xs print:mt-0">
+                    kWh
+                  </p>
                 </CardContent>
               </Card>
 
-              <Card className="bg-purple-50 border-purple-200">
-                <CardContent className="p-6 text-center">
-                  <div className="text-3xl font-bold text-purple-600 mb-2">
-                    {batteryHealth.estimated_range_loss_miles || 326}
+              <Card className="bg-gray-50 border-gray-200 print:shadow-none">
+                <CardContent className="p-3 sm:p-4 md:p-6 text-center print:p-2">
+                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-700 mb-1 sm:mb-2 print:text-lg print:mb-0">
+                    {calculateFullChargeRange()}
                   </div>
-                  <p className="text-purple-800 font-medium">Est. Range</p>
-                  <p className="text-sm text-purple-700 mt-1">
+                  <p className="text-xs sm:text-sm md:text-base text-gray-800 font-medium print:text-xs">
+                    Full Charge Range
+                  </p>
+                  <p className="text-xs sm:text-sm text-gray-600 mt-0 sm:mt-1 print:text-xs print:mt-0">
                     {usesMiles ? "miles" : "km"}
                   </p>
                 </CardContent>
@@ -545,13 +647,23 @@ export function CertificateDisplay({
                 <TrendingUp className="h-5 w-5 mr-2" />
                 Degradation Comparison vs Average
               </h3>
-              <div className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
-                Better than 78% of similar vehicles
+              <div
+                className={`px-3 py-1 rounded-full text-sm font-medium ${
+                  benchmarkStats.condition === "Excellent" ||
+                  benchmarkStats.condition === "Good"
+                    ? "bg-green-100 text-green-800"
+                    : benchmarkStats.condition === "Average"
+                    ? "bg-yellow-100 text-yellow-800"
+                    : "bg-orange-100 text-orange-800"
+                }`}
+              >
+                Better than {benchmarkStats.percentileBetter}% of similar
+                vehicles
               </div>
             </div>
 
             <div className="bg-white p-6 rounded-lg border">
-              <BatteryDegradationChart 
+              <BatteryDegradationChart
                 vehicleYear={certificate.vehicle_year}
                 currentDegradation={batteryHealth.degradation_percentage}
               />
@@ -569,24 +681,17 @@ export function CertificateDisplay({
               <div className="bg-gray-50 p-6 rounded-lg">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <h4 className="font-medium mb-3">
-                      Battery Specifications
-                    </h4>
+                    <h4 className="font-medium mb-3">Battery Specifications</h4>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
-                        <span className="text-gray-600">
-                          Original Capacity
-                        </span>
+                        <span className="text-gray-600">Original Capacity</span>
                         <span>{batteryHealth.original_capacity_kwh} kWh</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">
-                          Current Capacity
-                        </span>
+                        <span className="text-gray-600">Current Capacity</span>
                         <span>
-                          {Math.round(
-                            batteryHealth.current_capacity_kwh * 10
-                          ) / 10}{" "}
+                          {Math.round(batteryHealth.current_capacity_kwh * 10) /
+                            10}{" "}
                           kWh
                         </span>
                       </div>
@@ -623,31 +728,22 @@ export function CertificateDisplay({
                   </div>
 
                   <div>
-                    <h4 className="font-medium mb-3">
-                      Performance Indicators
-                    </h4>
+                    <h4 className="font-medium mb-3">Performance Indicators</h4>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
-                        <span className="text-gray-600">
-                          Battery Chemistry
-                        </span>
+                        <span className="text-gray-600">Battery Chemistry</span>
                         <span>
                           {batteryHealth.battery_chemistry || "Lithium-ion"}
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">
-                          Battery Supplier
-                        </span>
+                        <span className="text-gray-600">Battery Supplier</span>
                         <span>
-                          {batteryHealth.battery_supplier ||
-                            "Tesla/Panasonic"}
+                          {batteryHealth.battery_supplier || "Tesla/Panasonic"}
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">
-                          Confidence Level
-                        </span>
+                        <span className="text-gray-600">Confidence Level</span>
                         <span
                           className={
                             batteryHealth.confidence_level === "high"
@@ -664,9 +760,7 @@ export function CertificateDisplay({
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">
-                          Overall Condition
-                        </span>
+                        <span className="text-gray-600">Overall Condition</span>
                         <span
                           className={
                             batteryHealth.degradation_percentage < 10

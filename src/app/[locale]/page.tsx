@@ -167,7 +167,9 @@ export default async function HomePage({
                 className="text-lg px-8 py-6 bg-transparent"
                 asChild
               >
-                <Link href={`/${locale}/certificate/CMB-DEMO-2024-SAMPLE`}>
+                <Link
+                  href={`/${locale}/certificate/CMB-DEMO-2024-SAMPLE?vin=5YJ3E1EA4NF123456`}
+                >
                   View Sample Certificate
                 </Link>
               </Button>
@@ -207,6 +209,34 @@ export default async function HomePage({
               </p>
             </div>
 
+            {/* Video Section */}
+            <div className="mb-12">
+              <div className="max-w-4xl mx-auto">
+                <div className="bg-white p-6 rounded-xl shadow-lg">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">
+                    See Why Battery Health Matters
+                  </h3>
+                  <div
+                    className="relative w-full"
+                    style={{ paddingBottom: "56.25%" }}
+                  >
+                    <iframe
+                      className="absolute top-0 left-0 w-full h-full rounded-lg"
+                      src="https://www.youtube.com/embed/yC4EKzpCgfM?si=waE5tCzQjqHYUDSv"
+                      title="Tesla Battery Replacement Cost - Why Battery Health Matters"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                    />
+                  </div>
+                  <p className="text-sm text-gray-500 mt-3 text-center">
+                    Watch this video to understand the common scam.
+                    batterycert.com helps you avoid it.
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <div className="grid md:grid-cols-3 gap-8 text-center">
               <div className="bg-white p-8 rounded-xl shadow-lg">
                 <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -239,41 +269,6 @@ export default async function HomePage({
           </div>
         </section>
 
-        {/* Stats & Features Section */}
-        <section className="py-20 px-4">
-          <div className="container mx-auto text-center">
-            <h2 className="text-4xl font-bold text-gray-900 mb-16">
-              Trusted by <span className="text-blue-600">50,000+</span> Tesla
-              Owners
-            </h2>
-
-            <TeslaStatsVisual />
-
-            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mt-16">
-              <div className="text-center">
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Zap className="h-10 w-10 text-green-600" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">30 Second Results</h3>
-              </div>
-
-              <div className="text-center">
-                <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Shield className="h-10 w-10 text-blue-600" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">$10 Certificates</h3>
-              </div>
-
-              <div className="text-center">
-                <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Lock className="h-10 w-10 text-purple-600" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">Privacy Protected</h3>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* How It Works Section */}
         <section className="py-20 px-4 bg-white/50">
           <div className="container mx-auto text-center">
@@ -287,6 +282,10 @@ export default async function HomePage({
                   <span className="text-white font-bold text-2xl">1</span>
                 </div>
                 <h3 className="text-2xl font-bold mb-2">Connect</h3>
+                <p className="text-gray-600 text-sm mt-2 max-w-xs mx-auto">
+                  Securely connect via Tesla&apos;s official OAuth. We never see
+                  your credentials - you authenticate directly with Tesla.
+                </p>
               </div>
 
               <div className="hidden md:block w-16 h-0.5 bg-gray-300"></div>
@@ -296,6 +295,10 @@ export default async function HomePage({
                   <span className="text-white font-bold text-2xl">2</span>
                 </div>
                 <h3 className="text-2xl font-bold mb-2">Analyze</h3>
+                <p className="text-gray-600 text-sm mt-2 max-w-xs mx-auto">
+                  Our system instantly analyzes your battery data using
+                  Tesla&apos;s API and calculates degradation percentage.
+                </p>
               </div>
 
               <div className="hidden md:block w-16 h-0.5 bg-gray-300"></div>
@@ -304,7 +307,13 @@ export default async function HomePage({
                 <div className="w-24 h-24 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
                   <span className="text-white font-bold text-2xl">3</span>
                 </div>
-                <h3 className="text-2xl font-bold mb-2">Certify ($10)</h3>
+                <h3 className="text-2xl font-bold mb-2">
+                  Optional: Certificate ($10)
+                </h3>
+                <p className="text-gray-600 text-sm mt-2 max-w-xs mx-auto">
+                  Get a verified PDF certificate with QR code for buyers or
+                  insurance purposes. Valid for life.
+                </p>
               </div>
             </div>
           </div>
