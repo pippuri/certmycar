@@ -328,11 +328,15 @@ export default function TeslaCheckPageClient({
                     </Link>
                   </Button>
                   {/* subtle link to check the sample */}
-                  <div>
-                    <span className="text-blue-100 text-sm">
-                      See Sample Certificate
-                    </span>
-                  </div>
+                  <p className="text-blue-100 text-sm">
+                    See{" "}
+                    <Link
+                      href="/certificate/CMB-2025-DEF456JKL?vin=5YJYGDEE2BF000001"
+                      className="underline"
+                    >
+                      Sample Certificate
+                    </Link>
+                  </p>
                 </div>
 
                 <div className="text-center mt-6">
