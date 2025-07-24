@@ -425,9 +425,14 @@ export function CertificateDisplay({
 
   // Calculate full charge range from Tesla's current charge data
   const calculateFullChargeRange = () => {
-    const currentRange = certificate.battery_data?.ideal_battery_range || certificate.battery_data?.est_battery_range || 0;
+    const currentRange =
+      certificate.battery_data?.ideal_battery_range ||
+      certificate.battery_data?.est_battery_range ||
+      0;
     const currentCharge = certificate.battery_data?.battery_level || 0;
-    return currentCharge > 0 ? Math.round((currentRange / currentCharge) * 100) : 0;
+    return currentCharge > 0
+      ? Math.round((currentRange / currentCharge) * 100)
+      : 0;
   };
 
   // Helper function to determine if user should see miles vs km
@@ -436,43 +441,72 @@ export function CertificateDisplay({
     locale?.startsWith("en-GB") ||
     locale?.startsWith("en-AU");
 
+  // Format date consistently to avoid hydration errors
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.toLocaleDateString("en-US", { month: "long" });
+    const year = date.getFullYear();
+    return `${month} ${day}, ${year}`;
+  };
+
   // Format date
-  const testDate = new Date(certificate.created_at).toLocaleDateString(locale, {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const testDate = formatDate(certificate.created_at);
 
   // Calculate valid until date (3 months from creation)
   const validUntil = new Date(certificate.created_at);
   validUntil.setMonth(validUntil.getMonth() + 3);
-  const validUntilFormatted = validUntil.toLocaleDateString(locale, {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const validUntilFormatted = formatDate(validUntil.toISOString());
 
   return (
-    <div className={isPrintMode ? "print:block" : ""} data-certificate-content>
+    <div
+      className={`${isPrintMode ? "print:block" : ""} ${
+        isPrintMode ? "print:compact" : ""
+      }`}
+      data-certificate-content
+      style={
+        isPrintMode
+          ? {
+              pageBreakAfter: "avoid",
+              pageBreakInside: "avoid",
+              breakInside: "avoid",
+            }
+          : {}
+      }
+    >
       {/* Main Certificate Card */}
-      <Card className="shadow-xl border-0 mb-8">
-        <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-t-lg p-8">
+      <Card className={`shadow-xl border-0 ${isPrintMode ? "mb-4" : "mb-8"}`}>
+        <CardHeader
+          className={`bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-t-lg ${
+            isPrintMode ? "p-4" : "p-8"
+          }`}
+        >
           <div className="flex items-center justify-between">
             <div className="flex-1">
-              <CardTitle className="text-2xl mb-2">
+              <CardTitle
+                className={`${isPrintMode ? "text-xl mb-1" : "text-2xl mb-2"}`}
+              >
                 Battery Health Report from Tesla Data
               </CardTitle>
-              <p className="text-blue-100">
+              <p className={`text-blue-100 ${isPrintMode ? "text-sm" : ""}`}>
                 Certificate ID: {certificate.certificate_id}
               </p>
             </div>
 
-            <div className="flex items-center gap-6">
+            <div
+              className={`flex items-center ${isPrintMode ? "gap-4" : "gap-6"}`}
+            >
               <div className="text-right">
-                <div className="text-4xl font-bold">
+                <div
+                  className={`font-bold ${
+                    isPrintMode ? "text-3xl" : "text-4xl"
+                  }`}
+                >
                   {Math.round(100 - batteryHealth.degradation_percentage)}%
                 </div>
-                <p className="text-blue-100">Health Score</p>
+                <p className={`text-blue-100 ${isPrintMode ? "text-sm" : ""}`}>
+                  Health Score
+                </p>
               </div>
 
               <div className="flex flex-col items-center">
@@ -483,10 +517,14 @@ export function CertificateDisplay({
                   }/${locale}/certificate/${certificate.certificate_id}?vin=${
                     certificate.tesla_vin
                   }`}
-                  size={80}
-                  className="mb-2"
+                  size={isPrintMode ? 60 : 80}
+                  className={isPrintMode ? "mb-1" : "mb-2"}
                 />
-                <p className="text-xs text-blue-100 text-center">
+                <p
+                  className={`text-blue-100 text-center ${
+                    isPrintMode ? "text-xs" : "text-xs"
+                  }`}
+                >
                   Scan to Verify
                 </p>
               </div>
@@ -494,12 +532,22 @@ export function CertificateDisplay({
           </div>
         </CardHeader>
 
-        <CardContent className="p-8">
+        <CardContent className={`${isPrintMode ? "p-4" : "p-8"}`}>
           {/* Vehicle Information */}
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
+          <div
+            className={`grid md:grid-cols-2 ${
+              isPrintMode ? "gap-4 mb-4" : "gap-8 mb-8"
+            }`}
+          >
             <div>
-              <h3 className="text-lg font-semibold mb-4 flex items-center">
-                <Car className="h-5 w-5 mr-2" />
+              <h3
+                className={`font-semibold flex items-center ${
+                  isPrintMode ? "text-base mb-2" : "text-lg mb-4"
+                }`}
+              >
+                <Car
+                  className={`${isPrintMode ? "h-4 w-4 mr-1" : "h-5 w-5 mr-2"}`}
+                />
                 Vehicle Information
               </h3>
               <div className="space-y-3">
@@ -525,8 +573,14 @@ export function CertificateDisplay({
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-4 flex items-center">
-                <Calendar className="h-5 w-5 mr-2" />
+              <h3
+                className={`font-semibold flex items-center ${
+                  isPrintMode ? "text-base mb-2" : "text-lg mb-4"
+                }`}
+              >
+                <Calendar
+                  className={`${isPrintMode ? "h-4 w-4 mr-1" : "h-5 w-5 mr-2"}`}
+                />
                 Assessment Details
               </h3>
               <div className="space-y-3">
@@ -672,13 +726,23 @@ export function CertificateDisplay({
 
           {/* Detailed Analysis - Only show if paid */}
           {certificate.is_paid && (
-            <div className="mb-8">
-              <h3 className="text-lg font-semibold mb-4 flex items-center">
-                <TrendingUp className="h-5 w-5 mr-2" />
+            <div className={`${isPrintMode ? "mb-4" : "mb-8"}`}>
+              <h3
+                className={`font-semibold flex items-center ${
+                  isPrintMode ? "text-base mb-2" : "text-lg mb-4"
+                }`}
+              >
+                <TrendingUp
+                  className={`${isPrintMode ? "h-4 w-4 mr-1" : "h-5 w-5 mr-2"}`}
+                />
                 Detailed Analysis
               </h3>
 
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div
+                className={`bg-gray-50 rounded-lg ${
+                  isPrintMode ? "p-3" : "p-6"
+                }`}
+              >
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <h4 className="font-medium mb-3">Battery Specifications</h4>
@@ -820,7 +884,7 @@ export function CertificateDisplay({
                 : batteryHealth.degradation_percentage < 15
                 ? "good"
                 : "fair"}{" "}
-              battery health with
+              battery health with{" "}
               {Math.round(batteryHealth.degradation_percentage * 10) / 10}%
               degradation. The battery is performing{" "}
               {batteryHealth.degradation_percentage < 10

@@ -1,11 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  ArrowLeft,
-  CheckCircle,
-  AlertTriangle,
-} from "lucide-react";
+import { ArrowLeft, CheckCircle, AlertTriangle } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { getLocaleLinks } from "@/lib/locale-links";
 import { createServerSupabaseClient } from "@/lib/supabase";
@@ -25,35 +21,54 @@ export async function generateMetadata({
   const { locale, id } = await params;
   const { vin } = await searchParams;
 
-  // Handle demo certificate
-  if (id === "CMB-DEMO-2024-SAMPLE") {
+  // All certificates including demo ones are now stored in the database
+  const supabase = await createServerSupabaseClient();
+  const { data: certificate } = await supabase
+    .from("certificates")
+    .select("*")
+    .eq("certificate_id", id)
+    .single();
+
+  if (!certificate) {
     return {
-      title: "Sample Tesla Battery Certificate - batterycert.com",
+      title: "Certificate Not Found - batterycert.com",
       description:
-        "View a sample Tesla battery health certificate. See how batterycert.com provides detailed battery degradation analysis and health assessments for Tesla vehicles.",
-      keywords: [
-        "sample Tesla certificate",
-        "battery health certificate",
-        "Tesla battery report",
-        "battery degradation sample",
-      ],
-      openGraph: {
-        title: "Sample Tesla Battery Certificate - batterycert.com",
-        description:
-          "View a sample Tesla battery health certificate. See how batterycert.com provides detailed battery degradation analysis and health assessments for Tesla vehicles.",
-        type: "website",
-        url: `https://batterycert.com/${locale}/certificate/${id}${vin ? '?vin=' + vin : ''}`,
-        siteName: "batterycert.com",
-      },
+        "The requested Tesla battery certificate could not be found.",
       robots: {
-        index: true,
-        follow: true,
-      },
-      alternates: {
-        canonical: `https://batterycert.com/${locale}/certificate/${id}${vin ? '?vin=' + vin : ''}`,
+        index: false,
+        follow: false,
       },
     };
   }
+
+  return {
+    title: `${certificate.vehicle_name} - Tesla Battery Certificate - batterycert.com`,
+    description: `View the Tesla battery health certificate for ${certificate.vehicle_name} with detailed degradation analysis, capacity data, and verification QR code.`,
+    keywords: [
+      "Tesla battery certificate",
+      "battery health report",
+      "battery degradation certificate",
+      "Tesla battery verification",
+    ],
+    openGraph: {
+      title: `${certificate.vehicle_name} - Tesla Battery Certificate - batterycert.com`,
+      description: `View the Tesla battery health certificate for ${certificate.vehicle_name} with detailed degradation analysis, capacity data, and verification QR code.`,
+      type: "website",
+      url: `https://batterycert.com/${locale}/certificate/${id}${
+        vin ? "?vin=" + vin : ""
+      }`,
+      siteName: "batterycert.com",
+    },
+    robots: {
+      index: false, // Don't index individual certificates
+      follow: true,
+    },
+    alternates: {
+      canonical: `https://batterycert.com/${locale}/certificate/${id}${
+        vin ? "?vin=" + vin : ""
+      }`,
+    },
+  };
 
   return {
     title: "Tesla Battery Certificate - batterycert.com",
@@ -70,7 +85,9 @@ export async function generateMetadata({
       description:
         "View your Tesla battery health certificate with detailed degradation analysis, capacity data, and verification QR code.",
       type: "website",
-      url: `https://batterycert.com/${locale}/certificate/${id}${vin ? '?vin=' + vin : ''}`,
+      url: `https://batterycert.com/${locale}/certificate/${id}${
+        vin ? "?vin=" + vin : ""
+      }`,
       siteName: "batterycert.com",
     },
     robots: {
@@ -78,7 +95,9 @@ export async function generateMetadata({
       follow: true,
     },
     alternates: {
-      canonical: `https://batterycert.com/${locale}/certificate/${id}${vin ? '?vin=' + vin : ''}`,
+      canonical: `https://batterycert.com/${locale}/certificate/${id}${
+        vin ? "?vin=" + vin : ""
+      }`,
     },
   };
 }
@@ -94,76 +113,29 @@ export default async function CertificatePage({
   const { vin, pdf } = await searchParams;
   const links = getLocaleLinks(locale);
 
-  // Handle demo certificate with hardcoded data
+  // All certificates including demo ones are now stored in the database
   let certificate;
   let error = null;
 
-  if (id === "CMB-DEMO-2024-SAMPLE") {
-    // Demo certificate with sample data
-    const demoVin = "5YJ3E1EA4NF123456";
-    
-    // Verify VIN matches for demo certificate too
-    if (vin && vin !== demoVin) {
-      error = { message: 'VIN mismatch' };
-      certificate = null;
-    } else {
-      certificate = {
-        id: "demo-123",
-        certificate_id: "CMB-DEMO-2024-SAMPLE",
-        tesla_vin: demoVin,
-        vehicle_name: "Razor Crest",
-        vehicle_model: "modely",
-        vehicle_trim: "Long Range",
-        vehicle_year: 2022,
-        odometer_miles: 39411.451506,
-        software_version: "2025.20.7",
-        battery_health_data: {
-          health_percentage: 92,
-          degradation_percentage: 7.3,
-          original_capacity_kwh: 79.5,
-          current_capacity_kwh: 73.7,
-          confidence_level: "high",
-          methodology: "SoC vs Ideal Battery Range Analysis",
-          battery_chemistry: "NCA (Nickel Cobalt Aluminum)",
-          battery_supplier: "Tesla/Panasonic",
-          assembly_plant: "Fremont, CA (2022)",
-          estimated_range_loss_miles: 326,
-        },
-        battery_data: {
-          battery_level: 25,
-          usable_battery_level: 25,
-          charge_limit_soc: 50,
-          ideal_battery_range: 82,
-          est_battery_range: 73.69,
-          battery_range: 82,
-        },
-        is_paid: true,
-        created_at: "2025-01-24T14:54:00.000Z",
-        user_id: null,
-      };
-    }
-  } else {
-    // Look up certificate data from database for real certificates
-    const supabase = await createServerSupabaseClient();
-    const { data: dbCertificate, error: dbError } = await supabase
-      .from("certificates")
-      .select("*")
-      .eq("certificate_id", id)
-      .single();
+  const supabase = await createServerSupabaseClient();
+  const { data: dbCertificate, error: dbError } = await supabase
+    .from("certificates")
+    .select("*")
+    .eq("certificate_id", id)
+    .single();
 
-    certificate = dbCertificate;
-    error = dbError;
+  certificate = dbCertificate;
+  error = dbError;
 
-    // Verify VIN matches if provided (security measure)
-    if (certificate && vin && certificate.tesla_vin !== vin) {
-      error = { message: 'VIN mismatch' };
-      certificate = null;
-    }
+  // Verify VIN matches if provided (security measure)
+  if (certificate && vin && certificate.tesla_vin !== vin) {
+    error = { message: "VIN mismatch" };
+    certificate = null;
   }
 
   // Require VIN parameter for all certificates (including demo) for security
   if (!error && certificate && !vin) {
-    error = { message: 'VIN parameter required' };
+    error = { message: "VIN parameter required" };
     certificate = null;
   }
 
@@ -203,13 +175,17 @@ export default async function CertificatePage({
   }
 
   // Check if we're in PDF generation mode
-  const isPdfMode = pdf === 'true';
+  const isPdfMode = pdf === "true";
 
   return (
-    <div className={`min-h-screen ${isPdfMode ? 'bg-white' : 'bg-gradient-to-br from-slate-50 to-blue-50'}`}>
+    <div
+      className={`min-h-screen ${
+        isPdfMode ? "bg-white" : "bg-gradient-to-br from-slate-50 to-blue-50"
+      }`}
+    >
       {/* Header - Hidden in PDF mode */}
       {!isPdfMode && (
-        <header className="border-b bg-white/80 backdrop-blur-sm">
+        <header className="border-b bg-white/80 backdrop-blur-sm print:hidden">
           <div className="container mx-auto px-4 py-4 flex items-center justify-between">
             <Link href={links.check} className="flex items-center space-x-2">
               <ArrowLeft className="h-5 w-5" />
@@ -217,18 +193,25 @@ export default async function CertificatePage({
             </Link>
             <div className="flex items-center space-x-4">
               <ShareButton certificateId={certificate.certificate_id} />
-              <DownloadButton certificateId={certificate.certificate_id} vin={certificate.tesla_vin} />
+              <DownloadButton
+                certificateId={certificate.certificate_id}
+                vin={certificate.tesla_vin}
+              />
             </div>
           </div>
         </header>
       )}
 
-      <div className={`container mx-auto px-4 ${isPdfMode ? 'py-4' : 'py-12'} max-w-4xl`}>
+      <div
+        className={`container mx-auto px-4 ${
+          isPdfMode ? "py-4" : "py-12"
+        } max-w-4xl`}
+      >
         {/* Payment Status Notice - Hidden in PDF mode */}
         {!isPdfMode && (
           <>
             {!certificate.is_paid ? (
-              <CertificatePayment 
+              <CertificatePayment
                 certificateId={certificate.certificate_id}
                 locale={locale}
                 vehicleName={certificate.vehicle_name}
@@ -247,9 +230,9 @@ export default async function CertificatePage({
                   </div>
                   <p className="text-green-700 text-sm">
                     This certificate is tamper-proof and directly connected to
-                    Tesla&apos;s official systems. The QR code below allows instant
-                    verification of authenticity. Buyers can trust this assessment
-                    is genuine and accurate.
+                    Tesla&apos;s official systems. The QR code below allows
+                    instant verification of authenticity. Buyers can trust this
+                    assessment is genuine and accurate.
                   </p>
                 </CardContent>
               </Card>
@@ -259,7 +242,7 @@ export default async function CertificatePage({
 
         {/* Certificate Display - Only show for paid certificates or PDF mode */}
         {certificate.is_paid || isPdfMode ? (
-          <CertificateDisplay 
+          <CertificateDisplay
             certificate={certificate}
             locale={locale}
             isPrintMode={isPdfMode}
@@ -274,7 +257,8 @@ export default async function CertificatePage({
                 Certificate Locked
               </h3>
               <p className="text-gray-600 mb-4">
-                Complete your payment above to unlock the full verified certificate with:
+                Complete your payment above to unlock the full verified
+                certificate with:
               </p>
               <ul className="text-sm text-gray-600 text-left max-w-md mx-auto space-y-2">
                 <li>• Detailed battery health analysis</li>
@@ -289,8 +273,8 @@ export default async function CertificatePage({
 
         {/* Email Capture - Only show for paid certificates and not in PDF mode */}
         {certificate.is_paid && !isPdfMode && (
-          <EmailCapture 
-            context="certificate_view" 
+          <EmailCapture
+            context="certificate_view"
             certificateId={certificate.certificate_id}
           />
         )}
@@ -304,7 +288,8 @@ export default async function CertificatePage({
                 <span className="font-medium">Verified by batterycert.com</span>
               </div>
               <p className="text-sm text-gray-600 mb-4">
-                This certificate can be verified using QR code or certificate ID:
+                This certificate can be verified using QR code or certificate
+                ID:
                 {certificate.certificate_id}
               </p>
               <div className="flex items-center justify-center space-x-4 text-xs text-gray-500">

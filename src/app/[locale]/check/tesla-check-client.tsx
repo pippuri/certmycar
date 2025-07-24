@@ -310,9 +310,6 @@ export default function TeslaCheckPageClient({
                       <div>
                         ✓ <strong>Performance Tier Ranking</strong>
                       </div>
-                      <div>
-                        ✓ <strong>Legal Document Status</strong>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -323,19 +320,19 @@ export default function TeslaCheckPageClient({
                     className="text-lg px-8 py-6 bg-white text-blue-600 hover:bg-gray-50 font-bold"
                     asChild
                   >
-                    <Link href={`/${locale}/certificate/${result.certificate_id}?vin=${result.vehicle.vin}`}>
-                      View Certificate Preview
+                    <Link
+                      href={`/api/checkout?certificate_id=${result.certificate_id}&vin=${result.vehicle.vin}&locale=${locale}`}
+                    >
+                      Purchase Certificate
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
                   </Button>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="text-lg px-8 py-6 border-white text-white hover:bg-white/10"
-                    asChild
-                  >
-                    <Link href={links.check}>Check Another Tesla</Link>
-                  </Button>
+                  {/* subtle link to check the sample */}
+                  <div>
+                    <span className="text-blue-100 text-sm">
+                      See Sample Certificate
+                    </span>
+                  </div>
                 </div>
 
                 <div className="text-center mt-6">

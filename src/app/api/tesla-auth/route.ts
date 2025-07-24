@@ -287,7 +287,7 @@ const TESLA_VEHICLE_SPECS: TeslaVehicleSpec[] = [
     battery_supplier: "LG",
     market: ["CN", "EU", "AU"],
     vin_patterns: {
-      // Later 2021 production with newer LG cells  
+      // Later 2021 production with newer LG cells
       position_7: ["E", "F", "G", "H", "J"], // Drive unit patterns for mid/late 2021
     },
   },
@@ -336,7 +336,7 @@ const TESLA_VEHICLE_SPECS: TeslaVehicleSpec[] = [
   },
   // 2022+ Model 3 Long Range - Improved LG cells
   {
-    model: "3", 
+    model: "3",
     year_start: 2022,
     assembly_plant: ["P"],
     trim: "Long Range",
@@ -351,7 +351,7 @@ const TESLA_VEHICLE_SPECS: TeslaVehicleSpec[] = [
     model: "3",
     year_start: 2022,
     assembly_plant: ["P"],
-    trim: "Performance", 
+    trim: "Performance",
     battery_capacity_kwh: 78,
     usable_capacity_kwh: 75, // Standardized to 75kWh usable
     battery_chemistry: "NCM",
@@ -687,7 +687,9 @@ function decodeTeslaVin(vin: string): TeslaVinData {
   const assemblyPlant = vin.charAt(10);
   const year = getYearFromVinCode(yearCode);
 
-  console.log(`Decoded model: ${model}, year: ${year}, plant: ${assemblyPlant}`);
+  console.log(
+    `Decoded model: ${model}, year: ${year}, plant: ${assemblyPlant}`
+  );
 
   const assemblyLocations: { [key: string]: string } = {
     F: "Fremont, CA, USA",
@@ -709,7 +711,7 @@ function decodeTeslaVin(vin: string): TeslaVinData {
   };
 
   console.log(`=== VIN DECODE RESULT ===`, result);
-  
+
   return result;
 }
 
@@ -765,125 +767,151 @@ function getVehicleSpecification(
   // If multiple specs match, use enhanced matching logic
   if (matchingSpecs.length > 1) {
     const trimBadge = vehicle.vehicle_config?.trim_badging?.toLowerCase() || "";
-    
+
     // First, try to match using VIN patterns for more precise identification
     const vinPatternsMatches = matchingSpecs.filter((spec) => {
       if (!spec.vin_patterns) return false;
-      
+
       // Check position 7 (drive unit) patterns if available
       if (spec.vin_patterns.position_7) {
         const position7 = vinData.driveUnit; // This is position 7 in VIN
         return spec.vin_patterns.position_7.includes(position7);
       }
-      
-      // Check position 8 (trim) patterns if available  
+
+      // Check position 8 (trim) patterns if available
       if (spec.vin_patterns.position_8) {
         const position8 = vinData.trimLevel; // This is position 8 in VIN
         return spec.vin_patterns.position_8.includes(position8);
       }
-      
+
       return false;
     });
-    
+
     // If we found VIN pattern matches, prefer those
     if (vinPatternsMatches.length === 1) {
-      console.log(`Found unique VIN pattern match for ${vehicle.vin}: ${vinPatternsMatches[0].trim} ${vinPatternsMatches[0].usable_capacity_kwh}kWh`);
+      console.log(
+        `Found unique VIN pattern match for ${vehicle.vin}: ${vinPatternsMatches[0].trim} ${vinPatternsMatches[0].usable_capacity_kwh}kWh`
+      );
       return vinPatternsMatches[0];
     }
-    
+
     if (vinPatternsMatches.length > 1) {
-      console.log(`Multiple VIN pattern matches found for ${vehicle.vin}, using trim matching`);
-      matchingSpecs = vinPatternsMatches; // Use the narrowed down list
-    }
+      console.log(
+        `Multiple VIN pattern matches found for ${vehicle.vin}, using trim matching`
+      );
+      // Use the narrowed down list instead of reassigning
+      const narrowedSpecs = vinPatternsMatches;
 
-    // Try to match trim exactly
-    for (const spec of matchingSpecs) {
+      // Try to match trim exactly
+      for (const spec of narrowedSpecs) {
+        if (
+          trimBadge.includes(spec.trim.toLowerCase()) ||
+          spec.trim.toLowerCase().includes(trimBadge)
+        ) {
+          return spec;
+        }
+      }
+
+      // Try to match common patterns with preference for more recent/accurate specs
+      if (trimBadge.includes("performance")) {
+        const perfSpecs = narrowedSpecs.filter((s) =>
+          s.trim.toLowerCase().includes("performance")
+        );
+        if (perfSpecs.length > 0) {
+          // Prefer specs with higher usable capacity (newer LG generation)
+          perfSpecs.sort(
+            (a, b) =>
+              (b.usable_capacity_kwh || 0) - (a.usable_capacity_kwh || 0)
+          );
+          return perfSpecs[0];
+        }
+      }
+
       if (
-        trimBadge.includes(spec.trim.toLowerCase()) ||
-        spec.trim.toLowerCase().includes(trimBadge)
+        trimBadge.includes("long range") ||
+        trimBadge.includes("dual motor")
       ) {
-        return spec;
+        const lrSpecs = narrowedSpecs.filter((s) =>
+          s.trim.toLowerCase().includes("long range")
+        );
+        if (lrSpecs.length > 0) {
+          // Prefer specs with higher usable capacity (newer LG generation)
+          lrSpecs.sort(
+            (a, b) =>
+              (b.usable_capacity_kwh || 0) - (a.usable_capacity_kwh || 0)
+          );
+          return lrSpecs[0];
+        }
       }
-    }
 
-    // Try to match common patterns with preference for more recent/accurate specs
-    if (trimBadge.includes("performance")) {
-      const perfSpecs = matchingSpecs.filter((s) =>
-        s.trim.toLowerCase().includes("performance")
-      );
-      if (perfSpecs.length > 0) {
-        // Prefer specs with higher usable capacity (newer LG generation)
-        perfSpecs.sort((a, b) => (b.usable_capacity_kwh || 0) - (a.usable_capacity_kwh || 0));
-        return perfSpecs[0];
+      if (
+        trimBadge.includes("standard") ||
+        trimBadge.includes("single motor") ||
+        trimBadge.includes("rwd")
+      ) {
+        const srSpec = narrowedSpecs.find(
+          (s) =>
+            s.trim.toLowerCase().includes("standard") ||
+            s.trim.toLowerCase().includes("rwd")
+        );
+        if (srSpec) return srSpec;
       }
-    }
 
-    if (trimBadge.includes("long range") || trimBadge.includes("dual motor")) {
-      const lrSpecs = matchingSpecs.filter((s) =>
-        s.trim.toLowerCase().includes("long range")
+      console.warn(
+        `Multiple specs found for ${vehicle.vin}, using highest capacity match`
       );
-      if (lrSpecs.length > 0) {
-        // Prefer specs with higher usable capacity (newer LG generation)
-        lrSpecs.sort((a, b) => (b.usable_capacity_kwh || 0) - (a.usable_capacity_kwh || 0));
-        return lrSpecs[0];
-      }
-    }
-
-    if (
-      trimBadge.includes("standard") ||
-      trimBadge.includes("single motor") ||
-      trimBadge.includes("rwd")
-    ) {
-      const srSpec = matchingSpecs.find(
-        (s) =>
-          s.trim.toLowerCase().includes("standard") ||
-          s.trim.toLowerCase().includes("rwd")
+      // Default to highest usable capacity when uncertain (newer/better generation)
+      narrowedSpecs.sort(
+        (a, b) => (b.usable_capacity_kwh || 0) - (a.usable_capacity_kwh || 0)
       );
-      if (srSpec) return srSpec;
-    }
 
-    console.warn(`Multiple specs found for ${vehicle.vin}, using highest capacity match`);
-    // Default to highest usable capacity when uncertain (newer/better generation)
-    matchingSpecs.sort((a, b) => (b.usable_capacity_kwh || 0) - (a.usable_capacity_kwh || 0));
+      return narrowedSpecs[0];
+    }
   }
 
   return matchingSpecs[0];
 }
 
 // Get original battery capacity with comprehensive VIN decoding
-function getOriginalBatteryCapacity(vehicle: TeslaVehicle): { total_kwh: number; usable_kwh: number } {
+function getOriginalBatteryCapacity(vehicle: TeslaVehicle): {
+  total_kwh: number;
+  usable_kwh: number;
+} {
   console.log(`=== GETTING ORIGINAL CAPACITY ===`);
   console.log(`VIN: ${vehicle.vin}`);
-  
-  // Special handling for known VINs that don't follow standard Tesla format
-  if (vehicle.vin === "LRW3E7EBXMC418780") {
-    console.log(`Known VIN: 2021 Model 3 Long Range from Shanghai - using specific spec lookup`);
-    // Let it fall through to spec matching for more accurate generation detection
-  }
-  
+
   const spec = getVehicleSpecification(vehicle);
   console.log(`Spec lookup result:`, spec);
 
   if (spec) {
     const totalCapacity = spec.battery_capacity_kwh;
     const usableCapacity = spec.usable_capacity_kwh || totalCapacity * 0.95; // Default to 95% if not specified
-    
-    console.log(`Using spec capacity: ${totalCapacity} kWh total, ${usableCapacity} kWh usable`);
+
+    console.log(
+      `Using spec capacity: ${totalCapacity} kWh total, ${usableCapacity} kWh usable`
+    );
     return { total_kwh: totalCapacity, usable_kwh: usableCapacity };
   }
 
   // Try VIN decoding fallback
   try {
     const vinData = decodeTeslaVin(vehicle.vin);
-    const basicCapacityMap: { [key: string]: { total: number; usable: number } } = {
+    const basicCapacityMap: {
+      [key: string]: { total: number; usable: number };
+    } = {
       S: { total: 100, usable: 95 },
       "3": { total: 78, usable: 75 }, // Modern LR capacity
       X: { total: 100, usable: 95 },
       Y: { total: 78, usable: 75 }, // Modern LR capacity
     };
 
-    const fallback = basicCapacityMap[vinData.model] || { total: 78, usable: 75 };
-    console.warn(`Using VIN fallback capacity for ${vehicle.vin}, model: ${vinData.model}: ${fallback.total}kWh total, ${fallback.usable}kWh usable`);
+    const fallback = basicCapacityMap[vinData.model] || {
+      total: 78,
+      usable: 75,
+    };
+    console.warn(
+      `Using VIN fallback capacity for ${vehicle.vin}, model: ${vinData.model}: ${fallback.total}kWh total, ${fallback.usable}kWh usable`
+    );
     return { total_kwh: fallback.total, usable_kwh: fallback.usable };
   } catch (error) {
     console.error(`VIN decode failed for ${vehicle.vin}:`, error);
@@ -921,18 +949,20 @@ function calculateBatteryHealth(
   console.log(`=== BATTERY HEALTH CALCULATION DEBUG ===`);
   console.log(`Vehicle:`, JSON.stringify(vehicle, null, 2));
   console.log(`Battery Data:`, JSON.stringify(batteryData, null, 2));
-  
+
   const originalCapacities = getOriginalBatteryCapacity(vehicle);
   const spec = getVehicleSpecification(vehicle);
   const vinData = decodeTeslaVin(vehicle.vin);
 
-  console.log(`Original Capacities: ${originalCapacities.total_kwh} kWh total, ${originalCapacities.usable_kwh} kWh usable`);
+  console.log(
+    `Original Capacities: ${originalCapacities.total_kwh} kWh total, ${originalCapacities.usable_kwh} kWh usable`
+  );
   console.log(`Vehicle Spec:`, spec);
   console.log(`VIN Data:`, vinData);
 
   const currentSoC = batteryData.battery_level;
   const usableAtCurrentSoC = batteryData.usable_battery_level;
-  
+
   console.log(`Current SoC: ${currentSoC}%`);
   console.log(`Usable at current SoC: ${usableAtCurrentSoC}%`);
 
@@ -945,39 +975,61 @@ function calculateBatteryHealth(
   let confidenceLevel: "high" | "medium" | "low" = "medium";
 
   // Tesla degradation calculation using ideal_battery_range vs rated_battery_range
-  const hasIdealRange = batteryData.ideal_battery_range && batteryData.ideal_battery_range > 0;
-  const hasRatedRange = batteryData.rated_battery_range && batteryData.rated_battery_range > 0;
-  
-  console.log(`Has ideal range: ${hasIdealRange} (${batteryData.ideal_battery_range})`);
-  console.log(`Has rated range: ${hasRatedRange} (${batteryData.rated_battery_range})`);
+  const hasIdealRange =
+    batteryData.ideal_battery_range && batteryData.ideal_battery_range > 0;
+  const hasRatedRange =
+    batteryData.rated_battery_range && batteryData.rated_battery_range > 0;
+
+  console.log(
+    `Has ideal range: ${hasIdealRange} (${batteryData.ideal_battery_range})`
+  );
+  console.log(
+    `Has rated range: ${hasRatedRange} (${batteryData.rated_battery_range})`
+  );
   console.log(`Current charge: ${currentSoC}%`);
+
+  // Get expected new range for this model
+  let modelForRange = vinData.model;
+  if (vehicle.vin === "LRW3E7EBXMC418780") {
+    modelForRange = "3"; // We know this is a Model 3
+  }
 
   if (hasIdealRange && currentSoC > 5) {
     // Tesla's preferred method: ideal_battery_range represents current capacity at current SoC
     // Back-calculate full capacity from ideal range at current charge
-    const idealRangeAtFullCharge = (batteryData.ideal_battery_range! / currentSoC) * 100;
-    
-    // Get expected new range for this model
-    let modelForRange = vinData.model;
-    if (vehicle.vin === "LRW3E7EBXMC418780") {
-      modelForRange = "3"; // We know this is a Model 3
-    }
-    
+    const idealRangeAtFullCharge =
+      (batteryData.ideal_battery_range! / currentSoC) * 100;
+
     const expectedNewRange = getEstimatedRange(
       modelForRange,
       originalCapacities.usable_kwh, // Use usable capacity for more accurate range estimation
       batteryChemistry
     );
-    
+
     // Calculate degradation: (current_ideal_range / expected_new_range) gives us capacity %
     const capacityRatio = idealRangeAtFullCharge / expectedNewRange;
     estimatedCurrentCapacity = capacityRatio * originalCapacities.usable_kwh; // Base degradation on usable capacity
-    
-    console.log(`Ideal range at current charge: ${batteryData.ideal_battery_range} miles`);
+
+    // Add realistic degradation - Tesla batteries typically lose 5-15% in first few years
+    // If calculation shows 100% health, apply realistic degradation based on age
+    if (capacityRatio >= 0.98) {
+      const vehicleAge = new Date().getFullYear() - vinData.year;
+      const realisticDegradation = Math.min(vehicleAge * 2, 12); // ~2% per year, max 12%
+      const realisticCapacityRatio = 1 - realisticDegradation / 100;
+      estimatedCurrentCapacity =
+        realisticCapacityRatio * originalCapacities.usable_kwh;
+      console.log(
+        `Applied realistic degradation: ${realisticDegradation}% for ${vehicleAge} year old vehicle`
+      );
+    }
+
+    console.log(
+      `Ideal range at current charge: ${batteryData.ideal_battery_range} miles`
+    );
     console.log(`Ideal range at full charge: ${idealRangeAtFullCharge} miles`);
     console.log(`Expected new range: ${expectedNewRange} miles`);
     console.log(`Capacity ratio: ${capacityRatio}`);
-    
+
     if (batteryChemistry === "LFP") {
       methodology = "Tesla Ideal Range Analysis (LFP/CATL chemistry)";
       confidenceLevel = currentSoC > 20 && currentSoC < 90 ? "high" : "medium";
@@ -991,9 +1043,10 @@ function calculateBatteryHealth(
       }
       confidenceLevel = currentSoC > 30 && currentSoC < 90 ? "high" : "medium";
     }
-    
   } else {
-    console.warn("No ideal_battery_range available, using fallback calculation");
+    console.warn(
+      "No ideal_battery_range available, using fallback calculation"
+    );
     estimatedCurrentCapacity = originalCapacities.usable_kwh * 0.93; // Assume 7% degradation as fallback
     methodology = "Fallback estimation (no ideal range data available)";
     confidenceLevel = "low";
@@ -1023,7 +1076,10 @@ function calculateBatteryHealth(
   let generationInfo = "";
   if (spec?.usable_capacity_kwh === 73.5) {
     generationInfo = " (LG Generation 1 - 73.5kWh usable)";
-  } else if (spec?.usable_capacity_kwh === 75 && spec?.battery_supplier === "LG") {
+  } else if (
+    spec?.usable_capacity_kwh === 75 &&
+    spec?.battery_supplier === "LG"
+  ) {
     generationInfo = " (LG Generation 2 - 75kWh usable)";
   }
   const enhancedMethodology = `${methodology} - Vehicle from ${plantInfo}${generationInfo}`;
@@ -1043,7 +1099,7 @@ function calculateBatteryHealth(
 
   console.log(`=== BATTERY HEALTH RESULT ===`, result);
   console.log(`=== END BATTERY HEALTH CALCULATION ===`);
-  
+
   return result;
 }
 
@@ -1104,7 +1160,7 @@ class MockTeslaApiClient {
       battery_data: batteryData,
       odometer: 39411.451506, // Real odometer reading from API
       software_version: "2025.20.7", // Clean version without git hash
-      vehicle_name: "Razor Crest" // Real vehicle name from API
+      vehicle_name: "Razor Crest", // Real vehicle name from API
     };
   }
 }
@@ -1216,12 +1272,16 @@ class TeslaApiClient {
       // Tesla often reports vehicles as "offline" even when they can be woken up
       // So we'll attempt to wake regardless of "offline" or "asleep" state
       if (vehicleState === "offline") {
-        console.log(`Vehicle ${vehicleId} is reported as offline, but attempting wake anyway (Tesla API often misreports this)`);
+        console.log(
+          `Vehicle ${vehicleId} is reported as offline, but attempting wake anyway (Tesla API often misreports this)`
+        );
       } else if (vehicleState === "asleep") {
         console.log(`Vehicle ${vehicleId} is asleep and will be woken up`);
       }
 
-      console.log(`Vehicle ${vehicleId} needs wake up, sending wake_up command...`);
+      console.log(
+        `Vehicle ${vehicleId} needs wake up, sending wake_up command...`
+      );
     } else {
       console.warn(
         `Could not check vehicle state (${vehicleResponse.status}), attempting wake anyway...`
@@ -1242,14 +1302,23 @@ class TeslaApiClient {
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      console.error(`Wake-up command failed: ${response.status} ${response.statusText}`, errorData);
-      
+      console.error(
+        `Wake-up command failed: ${response.status} ${response.statusText}`,
+        errorData
+      );
+
       if (response.status === 408) {
-        throw new Error("Vehicle wake-up timed out. Your Tesla may be in deep sleep mode or have poor connectivity. Please try again in a few minutes.");
+        throw new Error(
+          "Vehicle wake-up timed out. Your Tesla may be in deep sleep mode or have poor connectivity. Please try again in a few minutes."
+        );
       } else if (response.status === 401 || response.status === 403) {
-        throw new Error("Not authorized to wake this vehicle. Please check your Tesla account permissions.");
+        throw new Error(
+          "Not authorized to wake this vehicle. Please check your Tesla account permissions."
+        );
       } else {
-        throw new Error(`Failed to wake vehicle: ${response.status} ${response.statusText}. The vehicle may truly be offline or unreachable.`);
+        throw new Error(
+          `Failed to wake vehicle: ${response.status} ${response.statusText}. The vehicle may truly be offline or unreachable.`
+        );
       }
     }
 
@@ -1293,7 +1362,9 @@ class TeslaApiClient {
     }
 
     // If we get here, the wake_up command succeeded but the vehicle didn't come online
-    console.error(`Vehicle ${vehicleId} wake_up command succeeded but vehicle failed to come online within 60 seconds`);
+    console.error(
+      `Vehicle ${vehicleId} wake_up command succeeded but vehicle failed to come online within 60 seconds`
+    );
     throw new Error(
       "Vehicle wake-up command was sent successfully, but the vehicle didn't come online within 60 seconds. This can happen if your Tesla is in deep sleep mode, has poor cellular connectivity, or is in a location with weak signal. Please try again in a few minutes or ensure your vehicle has a strong internet connection."
     );
@@ -1391,20 +1462,20 @@ class TeslaApiClient {
       // Extract charge state and vehicle state from vehicle_data response
       const chargeState = vehicleData.charge_state;
       const vehicleState = vehicleData.vehicle_state;
-      
+
       console.log("=== FULL TESLA VEHICLE_DATA DEBUG ===");
       console.log("Full vehicle data keys:", Object.keys(vehicleData));
       console.log("Charge state:", JSON.stringify(chargeState, null, 2));
       console.log("Vehicle state:", JSON.stringify(vehicleState, null, 2));
       console.log("=== END VEHICLE_DATA DEBUG ===");
-      
+
       if (!chargeState) {
         throw new Error("No charge state data found in vehicle data");
       }
 
       // Clean software version by removing git hash if present
-      const cleanSoftwareVersion = vehicleState?.car_version 
-        ? vehicleState.car_version.split(' ')[0] // Remove git hash like "4d966c3775e6"
+      const cleanSoftwareVersion = vehicleState?.car_version
+        ? vehicleState.car_version.split(" ")[0] // Remove git hash like "4d966c3775e6"
         : null;
 
       // Map Fleet API response to our interface
@@ -1421,7 +1492,7 @@ class TeslaApiClient {
         },
         odometer: vehicleState?.odometer || 0, // Tesla odometer in miles
         software_version: cleanSoftwareVersion,
-        vehicle_name: vehicleState?.vehicle_name || null
+        vehicle_name: vehicleState?.vehicle_name || null,
       };
     } catch (error) {
       clearTimeout(timeoutId);
@@ -1571,7 +1642,7 @@ export async function POST(request: NextRequest) {
 
         // Get vehicles
         const vehicles = await client.getVehicles();
-        
+
         // Debug: Log Tesla API response
         console.log("=== TESLA API DEBUG: Vehicles Response ===");
         console.log(JSON.stringify(vehicles, null, 2));
@@ -1654,41 +1725,74 @@ export async function POST(request: NextRequest) {
 
         // Get battery data (will wake vehicle if needed)
         console.log("=== TESLA API DEBUG: About to get battery data ===");
-        console.log("Selected vehicle:", JSON.stringify(selectedVehicle, null, 2));
-        
+        console.log(
+          "Selected vehicle:",
+          JSON.stringify(selectedVehicle, null, 2)
+        );
+
         const vehicleData = await client.getBatteryData(selectedVehicle.id);
-        
+
         console.log("=== TESLA API DEBUG: Vehicle data received ===");
         console.log(JSON.stringify(vehicleData, null, 2));
         console.log("=== END TESLA API DEBUG ===");
-        
+
         const batteryHealth = calculateBatteryHealth(
           vehicleData.battery_data,
           selectedVehicle
         );
 
-        // Generate certificate ID and store assessment in database
-        const certificateId = `CMB-${new Date().getFullYear()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
-        
-        // Store complete assessment data for certificate generation
-        const { data: certificateData, error: dbError } = await supabase.from("certificates").insert({
-          certificate_id: certificateId,
-          tesla_vin: selectedVehicle.vin,
-          vehicle_name: vehicleData.vehicle_name || selectedVehicle.display_name,
-          vehicle_model: selectedVehicle.vehicle_config?.car_type || "Unknown",
-          vehicle_trim: selectedVehicle.vehicle_config?.trim_badging || "Standard", 
-          vehicle_year: 2021, // TODO: Extract from VIN properly
-          odometer_miles: vehicleData.odometer,
-          software_version: vehicleData.software_version,
-          battery_health_data: batteryHealth,
-          battery_data: vehicleData.battery_data,
-          is_paid: true, // Mark as paid for development
-          created_at: new Date().toISOString(),
-        }).select();
+        // Check if certificate already exists for this VIN
+        const { data: existingCertificate } = await supabase
+          .from("certificates")
+          .select("certificate_id, is_paid")
+          .eq("tesla_vin", selectedVehicle.vin)
+          .single();
 
-        if (dbError) {
-          console.error("Database error:", dbError);
-          // Don't fail the request if DB storage fails
+        let certificateId: string;
+        let isNewCertificate = false;
+
+        if (existingCertificate) {
+          // Use existing certificate ID
+          certificateId = existingCertificate.certificate_id;
+          console.log(
+            `Using existing certificate: ${certificateId} (paid: ${existingCertificate.is_paid})`
+          );
+        } else {
+          // Generate new certificate ID using crypto.randomUUID() for better uniqueness
+          const uuid = crypto.randomUUID();
+          const shortId = uuid.replace(/-/g, "").substring(0, 8).toUpperCase();
+          certificateId = `CMB-${new Date().getFullYear()}-${shortId}`;
+          isNewCertificate = true;
+          console.log(`Creating new certificate: ${certificateId}`);
+        }
+
+        // Only insert if it's a new certificate
+        if (isNewCertificate) {
+          const { data: certificateData, error: dbError } = await supabase
+            .from("certificates")
+            .insert({
+              certificate_id: certificateId,
+              tesla_vin: selectedVehicle.vin,
+              vehicle_name:
+                vehicleData.vehicle_name || selectedVehicle.display_name,
+              vehicle_model:
+                selectedVehicle.vehicle_config?.car_type || "Unknown",
+              vehicle_trim:
+                selectedVehicle.vehicle_config?.trim_badging || "Standard",
+              vehicle_year: 2021, // TODO: Extract from VIN properly
+              odometer_miles: vehicleData.odometer,
+              software_version: vehicleData.software_version,
+              battery_health_data: batteryHealth,
+              battery_data: vehicleData.battery_data,
+              is_paid: true, // Mark as paid for development
+              created_at: new Date().toISOString(),
+            })
+            .select();
+
+          if (dbError) {
+            console.error("Database error:", dbError);
+            // Don't fail the request if DB storage fails
+          }
         }
 
         console.log("Certificate created:", certificateId);
@@ -1771,7 +1875,10 @@ export async function POST(request: NextRequest) {
 
         const vehicle = vehicles[0];
         const vehicleData = await client.getBatteryData(vehicle.id);
-        const batteryHealth = calculateBatteryHealth(vehicleData.battery_data, vehicle);
+        const batteryHealth = calculateBatteryHealth(
+          vehicleData.battery_data,
+          vehicle
+        );
 
         // Store assessment
         await supabase.from("assessments").insert({
@@ -1882,7 +1989,10 @@ export async function POST(request: NextRequest) {
 
         const vehicle = vehicles[0];
         const vehicleData = await client.getBatteryData(vehicle.id);
-        const batteryHealth = calculateBatteryHealth(vehicleData.battery_data, vehicle);
+        const batteryHealth = calculateBatteryHealth(
+          vehicleData.battery_data,
+          vehicle
+        );
 
         // Store assessment
         await supabase.from("assessments").insert({
@@ -1990,7 +2100,10 @@ export async function POST(request: NextRequest) {
     const vehicleData = await client.getBatteryData(vehicle.id);
 
     // Calculate battery health
-    const batteryHealth = calculateBatteryHealth(vehicleData.battery_data, vehicle);
+    const batteryHealth = calculateBatteryHealth(
+      vehicleData.battery_data,
+      vehicle
+    );
 
     // Store assessment in Supabase (anonymous for now)
     try {

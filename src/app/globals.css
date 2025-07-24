@@ -1,1 +1,30 @@
 @import "tailwindcss";
+
+/* Print styles for certificates */
+@media print {
+  @page {
+    size: A3;
+    margin: 0.25in;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  [data-certificate-content] {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  [data-certificate-content] * {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .print\:compact {
+    transform: scale(0.95);
+    transform-origin: top left;
+  }
+}

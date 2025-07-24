@@ -141,6 +141,41 @@ export type Database = {
           user_id?: string | null;
         };
       };
+      stripe_products: {
+        Row: {
+          id: string;
+          product_id: string;
+          name: string;
+          description: string | null;
+          locale: string;
+          price_id: string;
+          active: boolean;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          product_id: string;
+          name: string;
+          description?: string | null;
+          locale: string;
+          price_id: string;
+          active?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          product_id?: string;
+          name?: string;
+          description?: string | null;
+          locale?: string;
+          price_id?: string;
+          active?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+      };
     };
   };
 };

@@ -1,39 +1,49 @@
-"use client"
+"use client";
 
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Zap } from "lucide-react"
-import Image from "next/image"
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Zap } from "lucide-react";
+import Image from "next/image";
 
 interface VehicleCardProps {
   vehicle: {
-    id: string
-    name: string
-    model: string
-    year: number
-    color: string
-    vin: string
-    batteryLevel: number
-    range: number
-    isCharging: boolean
-    lastSeen: string
-    image: string
-    mileage?: number
-    temperature?: number
-    state?: string // Tesla vehicle state: online, asleep, offline
-  }
-  isSelected?: boolean
-  onClick: () => void
-  locale?: string // For determining miles vs km display
+    id: string;
+    name: string;
+    model: string;
+    year: number;
+    color: string;
+    vin: string;
+    batteryLevel: number;
+    range: number;
+    isCharging: boolean;
+    lastSeen: string;
+    image: string;
+    mileage?: number;
+    temperature?: number;
+    state?: string; // Tesla vehicle state: online, asleep, offline
+  };
+  isSelected?: boolean;
+  onClick: () => void;
+  locale?: string; // For determining miles vs km display
 }
 
-export function VehicleCard({ vehicle, isSelected = false, onClick, locale }: VehicleCardProps) {
+export function VehicleCard({
+  vehicle,
+  isSelected = false,
+  onClick,
+  locale,
+}: VehicleCardProps) {
   // Helper function to determine if user should see miles (US, UK, AU) vs km (rest of world)
-  const usesMiles = locale?.startsWith('en-US') || locale?.startsWith('en-GB') || locale?.startsWith('en-AU');
+  const usesMiles =
+    locale?.startsWith("en-US") ||
+    locale?.startsWith("en-GB") ||
+    locale?.startsWith("en-AU");
   return (
     <Card
       className={`cursor-pointer transition-all duration-300 hover:shadow-lg ${
-        isSelected ? "ring-2 ring-blue-500 bg-blue-50 border-blue-200" : "hover:border-gray-300"
+        isSelected
+          ? "ring-2 ring-blue-500 bg-blue-50 border-blue-200"
+          : "hover:border-gray-300"
       }`}
       onClick={onClick}
     >
@@ -54,18 +64,20 @@ export function VehicleCard({ vehicle, isSelected = false, onClick, locale }: Ve
               </Badge>
             )}
             {vehicle.state && (
-              <Badge 
+              <Badge
                 className={`text-white ${
-                  vehicle.state === 'online' 
-                    ? 'bg-green-600 hover:bg-green-600' 
-                    : vehicle.state === 'asleep'
-                    ? 'bg-yellow-600 hover:bg-yellow-600'
-                    : 'bg-red-600 hover:bg-red-600'
+                  vehicle.state === "online"
+                    ? "bg-green-600 hover:bg-green-600"
+                    : vehicle.state === "asleep"
+                    ? "bg-yellow-600 hover:bg-yellow-600"
+                    : "bg-red-600 hover:bg-red-600"
                 }`}
               >
-                {vehicle.state === 'online' ? '🟢 Online' : 
-                 vehicle.state === 'asleep' ? '😴 Asleep (Can Wake)' : 
-                 '🔴 Offline'}
+                {vehicle.state === "online"
+                  ? "🟢 Online"
+                  : vehicle.state === "asleep"
+                  ? "😴 Asleep (Can Wake)"
+                  : "🔴 Offline"}
               </Badge>
             )}
           </div>
@@ -75,11 +87,16 @@ export function VehicleCard({ vehicle, isSelected = false, onClick, locale }: Ve
         <div className="p-6">
           <div className="flex items-start justify-between mb-4">
             <div>
-              <h3 className="font-semibold text-lg text-gray-900">{vehicle.name}</h3>
+              <h3 className="font-semibold text-lg text-gray-900">
+                {vehicle.name}
+              </h3>
               <p className="text-sm text-gray-600">
-                {vehicle.year} • {vehicle.color}
+                {vehicle.year} •{" "}
+                {vehicle.mileage ? `${vehicle.mileage} miles` : ""}
               </p>
-              <p className="text-xs text-gray-500 font-mono mt-1">VIN: {vehicle.vin}</p>
+              <p className="text-xs text-gray-500 font-mono mt-1">
+                VIN: {vehicle.vin}
+              </p>
             </div>
             {isSelected && (
               <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
@@ -90,26 +107,29 @@ export function VehicleCard({ vehicle, isSelected = false, onClick, locale }: Ve
 
           {/* Vehicle Action */}
           <div className="mt-4">
-            <div className={`text-center py-2 px-4 rounded-lg font-medium transition-colors ${
-              isSelected 
-                ? "bg-blue-100 text-blue-700 border border-blue-200" 
-                : "bg-gray-100 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
-            }`}>
+            <div
+              className={`text-center py-2 px-4 rounded-lg font-medium transition-colors ${
+                isSelected
+                  ? "bg-blue-100 text-blue-700 border border-blue-200"
+                  : "bg-gray-100 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+              }`}
+            >
               {isSelected ? "Selected" : "Select This Vehicle"}
             </div>
-            
+
             {/* Mileage if available */}
             {vehicle.mileage && (
               <p className="text-xs text-gray-500 mt-2 text-center">
-                {usesMiles 
+                {usesMiles
                   ? `${vehicle.mileage.toLocaleString()} miles`
-                  : `${Math.round(vehicle.mileage * 1.609).toLocaleString()} km`
-                }
+                  : `${Math.round(
+                      vehicle.mileage * 1.609
+                    ).toLocaleString()} km`}
               </p>
             )}
           </div>
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

@@ -65,6 +65,34 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
   const [isCheckingBattery, setIsCheckingBattery] = useState(false);
   const [sessionData, setSessionData] = useState<SessionData | null>(null);
 
+  // Function to decode year from VIN (10th character)
+  const decodeYearFromVIN = (vin: string): number => {
+    if (!vin || vin.length < 10) return 2020; // fallback
+
+    const yearChar = vin.charAt(9); // 10th character (0-indexed)
+
+    // VIN year decoding rules:
+    // 1981-2000: B=1981, C=1982, ..., Y=2000 (excluding I, O, Q, U, Z)
+    // 2001-2009: 1=2001, 2=2002, ..., 9=2009
+    // 2010-2030: A=2010, B=2011, ..., Y=2030 (excluding I, O, Q, U, Z)
+
+    if (yearChar >= "1" && yearChar <= "9") {
+      return 2000 + parseInt(yearChar);
+    }
+
+    if (yearChar >= "A" && yearChar <= "Y") {
+      // Skip I, O, Q, U, Z
+      const excludedChars = ["I", "O", "Q", "U", "Z"];
+      if (excludedChars.includes(yearChar)) return 2020;
+
+      // A=2010, B=2011, ..., Y=2030
+      const yearOffset = yearChar.charCodeAt(0) - "A".charCodeAt(0);
+      return 2010 + yearOffset;
+    }
+
+    return 2020; // fallback
+  };
+
   // Map Tesla API vehicle to UI Vehicle interface
   const mapTeslaVehicle = (teslaVehicle: TeslaVehicle): Vehicle => {
     // Debug: Log Tesla vehicle data
@@ -99,7 +127,7 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
       id: teslaVehicle.id?.toString() || teslaVehicle.id_s || "",
       name: displayName,
       model: model,
-      year: 2020, // TODO: Extract from VIN properly
+      year: decodeYearFromVIN(teslaVehicle.vin || ""),
       color: config.exterior_color || "Unknown",
       vin: teslaVehicle.vin || "",
       batteryLevel: charge.battery_level || 0,
@@ -144,7 +172,7 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
               id: "1",
               name: "My Tesla",
               model: "Model 3",
-              year: 2022,
+              year: decodeYearFromVIN("5YJ3E1EA4NF123456"), // 2023 from VIN (N = 14th letter)
               color: "Pearl White",
               vin: "5YJ3E1EA4NF123456",
               batteryLevel: 85,
@@ -160,7 +188,7 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
               id: "2",
               name: "Work Tesla",
               model: "Model Y",
-              year: 2023,
+              year: decodeYearFromVIN("7SAYGDEF8PF654321"), // 2025 from VIN (P = 16th letter)
               color: "Midnight Silver Metallic",
               vin: "7SAYGDEF8PF654321",
               batteryLevel: 42,
@@ -176,7 +204,7 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
               id: "3",
               name: "Weekend Ride",
               model: "Model S",
-              year: 2021,
+              year: decodeYearFromVIN("5YJSA1E4XMF789012"), // 2024 from VIN (M = 13th letter)
               color: "Deep Blue Metallic",
               vin: "5YJSA1E4XMF789012",
               batteryLevel: 91,

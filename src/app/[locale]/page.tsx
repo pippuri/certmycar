@@ -9,6 +9,7 @@ import {
   AlertTriangle,
   Users,
   TrendingUp,
+  Battery,
 } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { TeslaStatsVisual } from "@/components/tesla-stats-visual";
@@ -120,7 +121,7 @@ export default async function HomePage({
           }),
         }}
       />
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-slate-100">
         {/* Header */}
         <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
           <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -146,7 +147,7 @@ export default async function HomePage({
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8">
               Check Your Tesla Battery
               <br />
-              <span className="text-blue-600">In 30 Seconds</span>
+              <span className="text-slate-700">In 30 Seconds</span>
             </h1>
 
             {/* Interactive Hero Visual */}
@@ -168,28 +169,28 @@ export default async function HomePage({
                 asChild
               >
                 <Link
-                  href={`/${locale}/certificate/CMB-DEMO-2024-SAMPLE?vin=5YJ3E1EA4NF123456`}
+                  href={`/${locale}/certificate/CMB-2025-DEF456JKL?vin=5YJYGDEE2BF000001`}
                 >
                   View Sample Certificate
                 </Link>
               </Button>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-gray-600">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-gray-600 mb-8">
               <div className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-green-500" />
+                <CheckCircle className="h-4 w-4 text-emerald-600" />
                 <span>Free battery health check</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-green-500" />
+                <CheckCircle className="h-4 w-4 text-emerald-600" />
                 <span>No account required</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-green-500" />
+                <CheckCircle className="h-4 w-4 text-emerald-600" />
                 <span>Instant results</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-green-500" />
+                <CheckCircle className="h-4 w-4 text-emerald-600" />
                 <span>Optional Certificate ($10)</span>
               </div>
             </div>
@@ -197,15 +198,15 @@ export default async function HomePage({
         </section>
 
         {/* Problem Section */}
-        <section className="py-16 px-4 bg-gradient-to-r from-red-50 to-orange-50">
+        <section className="py-16 px-4 bg-gradient-to-r from-amber-50 to-orange-50">
           <div className="container mx-auto max-w-5xl">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                 Battery Replacement ={" "}
-                <span className="text-red-600">$15,000+</span>
+                <span className="text-amber-700">$15,000+</span>
               </h2>
               <p className="text-xl text-gray-600">
-                Don&apos;t get stuck with hidden battery issues
+                Buyers, don&apos;t get scammed with hidden battery issues
               </p>
             </div>
 
@@ -239,28 +240,30 @@ export default async function HomePage({
 
             <div className="grid md:grid-cols-3 gap-8 text-center">
               <div className="bg-white p-8 rounded-xl shadow-lg">
-                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <AlertTriangle className="h-8 w-8 text-red-600" />
+                <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <AlertTriangle className="h-8 w-8 text-amber-700" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Hidden Issues</h3>
+                <h3 className="text-xl font-bold mb-2">
+                  Find the Hidden Issues
+                </h3>
                 <p className="text-gray-600">
                   Sellers hide degradation problems
                 </p>
               </div>
 
               <div className="bg-white p-8 rounded-xl shadow-lg">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Shield className="h-8 w-8 text-blue-600" />
+                <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Shield className="h-8 w-8 text-emerald-700" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Verified Data</h3>
+                <h3 className="text-xl font-bold mb-2">Trusted Data</h3>
                 <p className="text-gray-600">
                   Direct from Tesla&apos;s systems
                 </p>
               </div>
 
               <div className="bg-white p-8 rounded-xl shadow-lg">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="h-8 w-8 text-green-600" />
+                <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <TrendingUp className="h-8 w-8 text-slate-700" />
                 </div>
                 <h3 className="text-xl font-bold mb-2">Higher Value</h3>
                 <p className="text-gray-600">Proven health increases price</p>
@@ -278,7 +281,7 @@ export default async function HomePage({
 
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 max-w-5xl mx-auto">
               <div className="text-center flex-1">
-                <div className="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-24 h-24 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-6">
                   <span className="text-white font-bold text-2xl">1</span>
                 </div>
                 <h3 className="text-2xl font-bold mb-2">Connect</h3>
@@ -291,7 +294,7 @@ export default async function HomePage({
               <div className="hidden md:block w-16 h-0.5 bg-gray-300"></div>
 
               <div className="text-center flex-1">
-                <div className="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-24 h-24 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-6">
                   <span className="text-white font-bold text-2xl">2</span>
                 </div>
                 <h3 className="text-2xl font-bold mb-2">Analyze</h3>
@@ -304,15 +307,15 @@ export default async function HomePage({
               <div className="hidden md:block w-16 h-0.5 bg-gray-300"></div>
 
               <div className="text-center flex-1">
-                <div className="w-24 h-24 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-24 h-24 bg-emerald-700 rounded-full flex items-center justify-center mx-auto mb-6">
                   <span className="text-white font-bold text-2xl">3</span>
                 </div>
                 <h3 className="text-2xl font-bold mb-2">
-                  Optional: Certificate ($10)
+                  Optional: Certificate
                 </h3>
                 <p className="text-gray-600 text-sm mt-2 max-w-xs mx-auto">
-                  Get a verified PDF certificate with QR code for buyers or
-                  insurance purposes. Valid for life.
+                  Get a verified PDF certificate with QR code for buyers to
+                  verify. Valid for 3 months. Single $10 fee.
                 </p>
               </div>
             </div>
@@ -320,40 +323,40 @@ export default async function HomePage({
         </section>
 
         {/* Use Cases Section */}
-        <section className="py-20 px-4 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <section className="py-20 px-4 bg-gradient-to-br from-slate-50 to-gray-100">
           <div className="container mx-auto text-center">
             <h2 className="text-4xl font-bold text-gray-900 mb-16">
-              Perfect for <span className="text-blue-600">Buyers</span>,{" "}
-              <span className="text-green-600">Sellers</span> &{" "}
-              <span className="text-purple-600">Owners</span>
+              Perfect for <span className="text-slate-700">Buyers</span>,{" "}
+              <span className="text-emerald-700">Sellers</span> &{" "}
+              <span className="text-slate-600">Owners</span>
             </h2>
 
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               <div className="bg-white p-8 rounded-xl shadow-lg">
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Users className="h-10 w-10 text-green-600" />
+                <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Users className="h-10 w-10 text-slate-700" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-green-600">
+                <h3 className="text-2xl font-bold mb-4 text-slate-700">
                   Buyers
                 </h3>
                 <p className="text-lg font-semibold">Avoid $15K+ surprises</p>
               </div>
 
               <div className="bg-white p-8 rounded-xl shadow-lg">
-                <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <TrendingUp className="h-10 w-10 text-blue-600" />
+                <div className="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <TrendingUp className="h-10 w-10 text-emerald-700" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-blue-600">
+                <h3 className="text-2xl font-bold mb-4 text-emerald-700">
                   Sellers
                 </h3>
                 <p className="text-lg font-semibold">Increase resale value</p>
               </div>
 
               <div className="bg-white p-8 rounded-xl shadow-lg">
-                <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <Zap className="h-10 w-10 text-purple-600" />
+                <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Zap className="h-10 w-10 text-gray-700" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-purple-600">
+                <h3 className="text-2xl font-bold mb-4 text-gray-700">
                   Owners
                 </h3>
                 <p className="text-lg font-semibold">Track battery health</p>
@@ -363,26 +366,43 @@ export default async function HomePage({
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 px-4 bg-gradient-to-r from-blue-600 to-blue-700">
+        <section className="py-20 px-4 bg-gradient-to-r from-slate-700 to-slate-800">
           <div className="container mx-auto text-center">
             <h2 className="text-4xl font-bold text-white mb-6">
               Ready to Check Your Tesla Battery?
             </h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Join thousands of Tesla owners who trust CertMyBattery for
+            <p className="text-xl text-slate-200 mb-8 max-w-2xl mx-auto">
+              Join thousands of Tesla owners who trust batterycert.com for
               accurate, instant battery health reports.
             </p>
-            <Button
-              size="lg"
-              variant="secondary"
-              className="text-lg px-8 py-6"
-              asChild
-            >
-              <Link href={links.check}>
-                Start Free Check
-                <ArrowRight className="ml-2 h-5 w-5" />
+
+            {/* Primary CTA Button */}
+            <div className="mb-6">
+              <Link
+                href="/check"
+                className="inline-flex items-center px-10 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xl rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+              >
+                <Battery className="w-6 h-6 mr-3" />
+                Check My Tesla Battery Now
+                <ArrowRight className="w-5 h-5 ml-3" />
               </Link>
-            </Button>
+            </div>
+
+            {/* Supporting text */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-slate-300">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4 text-emerald-400" />
+                <span>Free • No registration required</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4 text-emerald-400" />
+                <span>30 seconds • Instant results</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4 text-emerald-400" />
+                <span>Optional $10 certificate</span>
+              </div>
+            </div>
           </div>
         </section>
 
