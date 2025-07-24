@@ -323,7 +323,7 @@ export default function TeslaCheckPageClient({
                     className="text-lg px-8 py-6 bg-white text-blue-600 hover:bg-gray-50 font-bold"
                     asChild
                   >
-                    <Link href={`/${locale}/certificate/${result.certificate_id}`}>
+                    <Link href={`/${locale}/certificate/${result.certificate_id}?vin=${result.vehicle.vin}`}>
                       View Certificate Preview
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>

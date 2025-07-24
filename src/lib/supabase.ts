@@ -96,6 +96,9 @@ export type Database = {
           battery_health_data: Record<string, unknown>;
           battery_data: Record<string, unknown>;
           is_paid: boolean;
+          customer_email: string | null;
+          stripe_session_id: string | null;
+          paid_at: string | null;
           created_at: string;
           user_id: string | null;
         };
@@ -112,6 +115,9 @@ export type Database = {
           battery_health_data: Record<string, unknown>;
           battery_data: Record<string, unknown>;
           is_paid?: boolean;
+          customer_email?: string | null;
+          stripe_session_id?: string | null;
+          paid_at?: string | null;
           created_at?: string;
           user_id?: string | null;
         };
@@ -128,6 +134,9 @@ export type Database = {
           battery_health_data?: Record<string, unknown>;
           battery_data?: Record<string, unknown>;
           is_paid?: boolean;
+          customer_email?: string | null;
+          stripe_session_id?: string | null;
+          paid_at?: string | null;
           created_at?: string;
           user_id?: string | null;
         };
