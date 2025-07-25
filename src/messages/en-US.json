@@ -20,6 +20,7 @@
     "check": "Check Battery",
     "certificates": "Certificates",
     "about": "About",
+    "faq": "FAQ",
     "terms": "Terms of Service",
     "contact": "Contact",
     "language": "Language"
@@ -258,6 +259,7 @@
     "scan_to_verify": "Scan to Verify",
     "verified_by": "Verified by batterycert.com",
     "generated": "Generated",
+    "generated_date": "Jul 24, 2025",
     "valid_for_one_year": "Valid for 3 months"
   },
   "gdpr": {
@@ -385,6 +387,63 @@
     "share_text": "Check out this Tesla battery health certificate",
     "download_error": "Failed to download PDF: {error}"
   },
+  "faq": {
+    "meta": {
+      "title": "Frequently Asked Questions - Tesla Battery Health Check | batterycert.com",
+      "description": "Get answers to common questions about our Tesla battery health check service, privacy, pricing, and how our certificates work.",
+      "keywords": "Tesla battery FAQ, battery health questions, privacy policy, pricing, certificate verification"
+    },
+    "page_title": "Frequently Asked Questions",
+    "hero": {
+      "title": "Frequently Asked Questions",
+      "subtitle": "Everything you need to know about our Tesla battery health check service"
+    },
+    "privacy": {
+      "title": "Privacy & Security",
+      "oauth_question": "How does Tesla OAuth work and what data do you access?",
+      "oauth_answer": "We use Tesla's official OAuth system, which means you authenticate directly with Tesla - we never see your username or password. We only access basic vehicle information and battery data that Tesla allows third-party apps to read. We cannot access your personal information, payment details, or any other Tesla account data.",
+      "data_access_question": "What specific data do you collect from my Tesla?",
+      "data_access_answer": "We only collect battery-related data: current battery level, usable battery capacity, estimated range, and vehicle specifications (model, year, VIN). We do not access your location, driving history, personal settings, or any other vehicle data. Our analysis focuses solely on battery health and degradation.",
+      "credentials_question": "Do you store my Tesla login credentials?",
+      "credentials_answer": "Absolutely not. We never see, store, or have access to your Tesla username, password, or any login credentials. The OAuth process happens entirely between you and Tesla. We only receive a temporary access token that we use to read your battery data, and this token expires automatically.",
+      "storage_question": "How long do you keep my data?",
+      "storage_answer": "We keep your battery assessment data only as long as necessary to provide the service. If you purchase a certificate, we retain the certificate data for verification purposes. You can request deletion of your data at any time by contacting us. We do not sell, rent, or share your personal data with third parties.",
+      "third_party_question": "Do you share my data with third parties?",
+      "third_party_answer": "No, we do not sell, rent, or share your personal data with third parties. The only exceptions are: 1) Payment processing (Stripe) for certificate purchases, 2) Legal requirements if compelled by law, 3) Service providers who help us operate our platform (under strict confidentiality agreements)."
+    },
+    "pricing": {
+      "title": "Pricing & Certificates",
+      "why_charge_question": "Why do you charge for certificates when the battery check is free?",
+      "why_charge_answer": "The battery health check is completely free because we want to help Tesla owners understand their vehicle's condition. We charge for certificates because they require additional costs: Tesla API usage fees, PDF generation, secure storage, and verification systems. Plus, a paid certificate shows buyers that you're serious about transparency and increases your vehicle's value.",
+      "api_costs_question": "What are the Tesla API costs you mentioned?",
+      "api_costs_answer": "Tesla charges fees for API access to their vehicle data. While individual battery checks are relatively inexpensive, providing a verified certificate service requires ongoing API access for verification, which incurs monthly costs. Our $10 certificate fee helps cover these operational costs while keeping the service accessible.",
+      "certificate_value_question": "How does a certificate increase my vehicle's value?",
+      "certificate_value_answer": "A verified battery certificate proves to potential buyers that your Tesla's battery is in good condition, eliminating uncertainty about hidden degradation. This transparency builds trust and can justify a higher asking price. Buyers are willing to pay more for vehicles with proven battery health, as it reduces their risk of expensive battery replacement costs.",
+      "one_time_question": "Is the $10 certificate fee a one-time payment?",
+      "one_time_answer": "Yes, the $10 certificate fee is a one-time payment. You get a verified PDF certificate that's valid for 3 months and can be shared with unlimited potential buyers. There are no recurring fees, subscriptions, or hidden costs. If you need a new certificate after 3 months, you can purchase another one.",
+      "refund_question": "Do you offer refunds for certificates?",
+      "refund_answer": "We offer a 30-day money-back guarantee for all certificate purchases. If you're not satisfied with your certificate for any reason, contact us within 30 days and we'll provide a full refund. However, please note that once a certificate is verified by a buyer, we cannot issue refunds as the service has been used."
+    },
+    "service": {
+      "title": "Service & Accuracy",
+      "how_works_question": "How does the battery health assessment work?",
+      "how_works_answer": "Our system connects to your Tesla via the official Tesla API and analyzes your battery data in real-time. We compare your current battery capacity against the original specifications for your vehicle model and year, then calculate the degradation percentage. The assessment takes about 30 seconds and provides instant results.",
+      "accuracy_question": "How accurate is your battery health assessment?",
+      "accuracy_answer": "Our assessment is highly accurate because we use Tesla's own API data, which is the same data Tesla uses internally. We compare your battery against manufacturer specifications and real-world benchmarks. However, battery health can vary based on usage patterns, so we recommend using this as one tool in your overall vehicle evaluation.",
+      "certificate_validity_question": "How long is the certificate valid?",
+      "certificate_validity_answer": "Certificates are valid for 3 months from the date of purchase. This timeframe ensures the data remains current while giving you enough time to complete a sale. Battery health doesn't change significantly in 3 months, so the assessment remains relevant for most transactions.",
+      "verification_question": "How can buyers verify my certificate?",
+      "verification_answer": "Each certificate includes a unique QR code that buyers can scan to verify authenticity on our website. The verification page shows the certificate details and confirms it was issued by batterycert.com. This prevents fraud and ensures buyers can trust the battery health data.",
+      "support_question": "What if I have technical issues or questions?",
+      "support_answer": "We provide comprehensive support for all our services. If you encounter any technical issues, have questions about your battery assessment, or need help with your certificate, you can contact us through our support channels. We typically respond within 24 hours and are committed to ensuring you have a positive experience with our service."
+    },
+    "contact": {
+      "title": "Still Have Questions?",
+      "description": "We're here to help! If you have any questions about our service, privacy, or need technical support, don't hesitate to reach out.",
+      "check_battery": "Check My Battery",
+      "learn_more": "Learn More"
+    }
+  },
   "regions": {
     "na": "North America & Asia-Pacific",
     "eu": "Europe, Middle East & Africa"
@@ -473,5 +532,12 @@
       "failed_to_load": "Failed to load your vehicles. Please try again.",
       "failed_battery_check": "Failed to check battery health. Please try again."
     }
+  },
+  "stripe_receipt": {
+    "description": "Tesla Battery Health Certificate",
+    "certificate_access": "Certificate Access",
+    "vehicle": "Vehicle",
+    "certificate_id": "Certificate ID",
+    "footer": "Thank you for your purchase. Your certificate is now available for download and sharing."
   }
 }

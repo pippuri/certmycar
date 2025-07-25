@@ -1782,6 +1782,9 @@ export async function POST(request: NextRequest) {
 
         // Only insert if it's a new certificate
         if (isNewCertificate) {
+          // Decode VIN to get proper vehicle year and model info
+          const vinData = decodeTeslaVin(selectedVehicle.vin);
+          
           const { error: dbError } = await supabase
             .from("certificates")
             .insert({
@@ -1790,15 +1793,15 @@ export async function POST(request: NextRequest) {
               vehicle_name:
                 vehicleData.vehicle_name || selectedVehicle.display_name,
               vehicle_model:
-                selectedVehicle.vehicle_config?.car_type || "Unknown",
+                selectedVehicle.vehicle_config?.car_type || `Model ${vinData.model}`,
               vehicle_trim:
                 selectedVehicle.vehicle_config?.trim_badging || "Standard",
-              vehicle_year: 2021, // TODO: Extract from VIN properly
+              vehicle_year: vinData.year,
               odometer_miles: vehicleData.odometer,
               software_version: vehicleData.software_version,
               battery_health_data: batteryHealth,
               battery_data: vehicleData.battery_data,
-              is_paid: true, // Mark as paid for development
+              is_paid: false, // Require payment for certificates
               created_at: new Date().toISOString(),
             })
             .select();

@@ -183,6 +183,7 @@ export default async function HomePage({
                   scan_to_verify: heroVisualTranslations('scan_to_verify'),
                   verified_by: heroVisualTranslations('verified_by'),
                   generated: heroVisualTranslations('generated'),
+                  generated_date: heroVisualTranslations('generated_date'),
                   valid_for_one_year: heroVisualTranslations('valid_for_one_year')
                 }}
               />
