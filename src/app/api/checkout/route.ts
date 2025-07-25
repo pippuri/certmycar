@@ -87,7 +87,7 @@ export async function GET(request: NextRequest) {
       cancel_url: `${certificateUrl}&payment=cancelled`,
       customer_email: undefined, // Let customer enter their email
       
-      // Enable VAT collection for EU/UK customers
+      // Enable VAT collection for EU/UK customers (country only, not full address)
       automatic_tax: {
         enabled: true,
       },
@@ -95,8 +95,14 @@ export async function GET(request: NextRequest) {
         enabled: true,
       },
       
+      // Minimize address collection - only country for tax calculation
+      billing_address_collection: 'auto',
+      
       // Enable promo codes
       allow_promotion_codes: true,
+      
+      // Create customer for automatic email receipts (ensure receipts are enabled in Stripe Dashboard)
+      customer_creation: 'always',
       
       metadata: {
         certificateId,
@@ -225,7 +231,7 @@ export async function POST(request: NextRequest) {
       cancel_url: `${certificateUrl}&payment=cancelled`,
       customer_email: undefined, // Let customer enter their email
       
-      // Enable VAT collection for EU/UK customers
+      // Enable VAT collection for EU/UK customers (country only, not full address)
       automatic_tax: {
         enabled: true,
       },
@@ -233,8 +239,14 @@ export async function POST(request: NextRequest) {
         enabled: true,
       },
       
+      // Minimize address collection - only country for tax calculation
+      billing_address_collection: 'auto',
+      
       // Enable promo codes
       allow_promotion_codes: true,
+      
+      // Create customer for automatic email receipts (ensure receipts are enabled in Stripe Dashboard)
+      customer_creation: 'always',
       
       metadata: {
         certificateId,

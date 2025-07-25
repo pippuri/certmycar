@@ -176,6 +176,9 @@ export default async function CertificatePage({
           // Track certificate unlock
           serverAnalytics.trackCertificateUnlock(id, 'Unknown');
           
+          // Note: Email receipts are automatically sent by Stripe Checkout
+          // No need for manual receipt handling here
+          
           shouldRedirectAfterPayment = true;
         }
       } else {
