@@ -538,7 +538,20 @@ const TESLA_API_BASE = "https://fleet-api.prd.na.vn.cloud.tesla.com"; // Fleet A
 // Fleet API credentials from environment
 const TESLA_CLIENT_ID = process.env.TESLA_CLIENT_ID;
 const TESLA_CLIENT_SECRET = process.env.TESLA_CLIENT_SECRET;
-const TESLA_REDIRECT_URI = process.env.TESLA_REDIRECT_URI;
+
+// Dynamic redirect URI based on current host (handles Netlify branch deploys)
+function getTeslaRedirectUri(request: NextRequest): string {
+  const host = request.headers.get('host');
+  const protocol = request.headers.get('x-forwarded-proto') || 'https';
+  
+  // For development
+  if (host?.includes('localhost')) {
+    return `http://${host}/auth/callback`;
+  }
+  
+  // For production (handles both main domain and branch subdomains)
+  return `${protocol}://${host}/auth/callback`;
+}
 
 // Mock Tesla data for development/testing
 const MOCK_TESLA_VEHICLES = [
@@ -1566,7 +1579,7 @@ export async function POST(request: NextRequest) {
     if (requestBody.action === "start_oauth") {
       console.log("Starting Tesla OAuth flow...");
 
-      if (!TESLA_CLIENT_ID || !TESLA_REDIRECT_URI) {
+      if (!TESLA_CLIENT_ID) {
         return NextResponse.json(
           {
             error: "OAuth not configured",
@@ -1593,9 +1606,11 @@ export async function POST(request: NextRequest) {
       console.log("Requesting scopes:", scopes);
       console.log("========================");
 
+      const redirectUri = getTeslaRedirectUri(request);
+      
       const authUrl = new URL("https://auth.tesla.com/oauth2/v3/authorize");
       authUrl.searchParams.set("client_id", TESLA_CLIENT_ID);
-      authUrl.searchParams.set("redirect_uri", TESLA_REDIRECT_URI);
+      authUrl.searchParams.set("redirect_uri", redirectUri);
       authUrl.searchParams.set("response_type", "code");
       authUrl.searchParams.set("scope", scopes);
       authUrl.searchParams.set("state", state);
@@ -1960,7 +1975,7 @@ export async function POST(request: NextRequest) {
               client_secret: TESLA_CLIENT_SECRET!,
               code: requestBody.code,
               audience: apiUrl,
-              redirect_uri: TESLA_REDIRECT_URI!,
+              redirect_uri: getTeslaRedirectUri(request),
             }),
           }
         );

@@ -51,7 +51,7 @@ export async function GET(request: NextRequest) {
           client_id: process.env.TESLA_CLIENT_ID!,
           client_secret: process.env.TESLA_CLIENT_SECRET!,
           code,
-          redirect_uri: process.env.TESLA_REDIRECT_URI!,
+          redirect_uri: `${request.headers.get('x-forwarded-proto') || 'https'}://${request.headers.get('host')}/auth/callback`,
         }),
       }
     );
