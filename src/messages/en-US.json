@@ -1,0 +1,444 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "retry": "Try Again",
+    "back": "Back",
+    "next": "Next",
+    "continue": "Continue",
+    "cancel": "Cancel",
+    "close": "Close",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "share": "Share",
+    "download": "Download"
+  },
+  "navigation": {
+    "home": "Home",
+    "check": "Check Battery",
+    "certificates": "Certificates",
+    "about": "About",
+    "terms": "Terms of Service",
+    "contact": "Contact",
+    "language": "Language"
+  },
+  "homepage": {
+    "title": "Tesla Battery Health Check in 30 Seconds",
+    "subtitle": "Get instant, verified Tesla battery health assessments. Perfect for buying, selling, or knowing your Tesla's true condition.",
+    "cta_primary": "Check My Tesla",
+    "cta_secondary": "Sample Certificate",
+    "hero_title": "Know Your Tesla's True Battery Health",
+    "hero_subtitle": "Instant, official battery assessment using Tesla's own data. Get the facts before you buy or sell.",
+    "hero_visual": {
+      "verified_certificate": "Verified Certificate",
+      "battery_health_report": "Battery Health Report",
+      "certificate_id": "Certificate ID",
+      "certified": "CERTIFIED",
+      "verified": "VERIFIED",
+      "health_score": "Health Score",
+      "vehicle_information": "Vehicle Information",
+      "model": "Model",
+      "tesla_model_y": "Tesla Model Y",
+      "year": "Year",
+      "vin": "VIN",
+      "battery_metrics": "Battery Metrics",
+      "current_capacity": "Current Capacity",
+      "degradation": "Degradation",
+      "est_range": "Est. Range",
+      "miles": "miles",
+      "degradation_comparison": "Degradation Comparison",
+      "better_than_percentage": "Better than {percentage}%",
+      "this_vehicle": "This Vehicle ({percentage}%)",
+      "average": "Average ({percentage}%)",
+      "verified_data": "Verified Data",
+      "direct_tesla_api": "Direct Tesla API",
+      "tamper_proof": "Tamper Proof",
+      "qr_verification": "QR Verification",
+      "increase_value": "Increase Value",
+      "proven_health": "Proven Health",
+      "scan_to_verify": "Scan to Verify",
+      "verified_by": "Verified by",
+      "generated": "Generated",
+      "valid_for_one_year": "Valid for one year"
+    },
+    "features": {
+      "instant": {
+        "title": "Instant Results",
+        "description": "Get your battery health report in 30 seconds using Tesla's official API"
+      },
+      "verified": {
+        "title": "Verified Data",
+        "description": "Official Tesla data, not estimates. Real battery metrics from your vehicle"
+      },
+      "secure": {
+        "title": "Secure & Private",
+        "description": "Your Tesla credentials are never stored. Complete privacy guaranteed"
+      }
+    },
+    "stats": {
+      "title": "Trusted by Tesla Owners Worldwide",
+      "assessments": "Battery Assessments",
+      "accuracy": "Data Accuracy",
+      "satisfaction": "Customer Satisfaction"
+    },
+    "use_cases": {
+      "title": "Perfect for Every Tesla Owner",
+      "buying": {
+        "title": "Buying a Tesla?",
+        "description": "Verify battery health before purchase. Avoid expensive surprises."
+      },
+      "selling": {
+        "title": "Selling Your Tesla?",
+        "description": "Prove your battery's excellent condition with official documentation."
+      },
+      "monitoring": {
+        "title": "Current Owner?",
+        "description": "Track your battery health over time. Plan for the future."
+      }
+    },
+    "how_it_works": {
+      "title": "How It Works",
+      "step1": {
+        "title": "Connect to Tesla",
+        "description": "Securely connect to Tesla's official API"
+      },
+      "step2": {
+        "title": "Analyze Battery Data",
+        "description": "We analyze your vehicle's battery metrics"
+      },
+      "step3": {
+        "title": "Get Your Results",
+        "description": "Receive detailed health assessment instantly. Optional certificate available for $10"
+      }
+    },
+    "footer": "© 2025 batterycert.com. Built for Tesla owners, by Tesla enthusiasts."
+  },
+  "battery_check": {
+    "title": "Tesla Battery Health Check",
+    "connect_account": "Connect Your Tesla Account",
+    "login_with_tesla": "Login with Tesla",
+    "checking": "Checking Battery Health...",
+    "results": "Battery Health Results",
+    "health_score": "Health Score",
+    "degradation": "Degradation",
+    "confidence": "Confidence Level",
+    "methodology": "Analysis Method",
+    "get_certificate": "Get Verified Certificate",
+    "share_results": "Share Results",
+    "page": {
+      "title": "Check Your Battery Health",
+      "subtitle": "Connect your Tesla account to get an instant battery health assessment",
+      "region_notice": "Using Tesla {regionName} servers",
+      "wrong_region": "Wrong region? Change it here",
+      "connect_button": "Connect with Tesla Account",
+      "connecting": "Connecting to Tesla...",
+      "security_title": "Your Security is Our Priority",
+      "security_points": {
+        "no_credentials": "We never store your Tesla credentials",
+        "encrypted": "Connection is encrypted and secure",
+        "battery_only": "We only access battery data, nothing else"
+      },
+      "features": {
+        "secure_connection": {
+          "title": "Secure Connection",
+          "description": "256-bit encryption"
+        },
+        "no_storage": {
+          "title": "No Storage",
+          "description": "Credentials not saved"
+        },
+        "instant_results": {
+          "title": "Instant Results",
+          "description": "30 seconds or less"
+        }
+      }
+    },
+    "results": {
+      "title": "Battery Health Results",
+      "degradation_title": "Battery Degradation",
+      "battery_health": "Battery Health",
+      "excellent": "Excellent",
+      "good": "Good",
+      "fair": "Fair",
+      "current_capacity": "Current Capacity",
+      "original_capacity": "Original Capacity",
+      "current_charge": "Current Charge",
+      "certificate_title": "Get Your Official Certificate",
+      "certificate_subtitle": "Turn your results into a verified document that increases your Tesla's value",
+      "free_features": {
+        "title": "What You Got FREE",
+        "degradation": "Battery degradation percentage",
+        "capacity": "Current capacity data",
+        "charge": "Current charge level"
+      },
+      "paid_features": {
+        "title": "Official Certificate ($10)",
+        "full_dataset": "Full dataset for your vehicle",
+        "peer_comparison": "Peer Comparison vs Similar Vehicles",
+        "pdf_certificate": "Dated PDF Certificate with VIN",
+        "verification": "Authenticity Verification for buyers",
+        "physical_option": "Option for a physical certificate",
+        "performance_ranking": "Performance Tier Ranking"
+      },
+      "purchase_button": "Purchase Certificate",
+      "sample_link": "Sample Certificate",
+      "features_note": "Instant download • Secure payment • Valid for 3 months"
+    }
+  },
+  "certificate": {
+    "title": "Tesla Battery Health Certificate",
+    "verified_by": "Verified by batterycert.com",
+    "vehicle_info": "Vehicle Information",
+    "battery_health": "Battery Health Analysis",
+    "current_condition": "Current Condition",
+    "range_analysis": "Range Analysis",
+    "download_pdf": "Download PDF",
+    "email_certificate": "Email Certificate",
+    "valid_until": "Valid until",
+    "certificate_id": "Certificate ID",
+    "fraud_protection": "Fraud Protection Verified",
+    "fraud_description": "This certificate is tamper-proof and directly connected to Tesla's official systems.",
+    "display": {
+      "title": "Battery Health Report from Tesla Data",
+      "health_score": "Health Score",
+      "scan_to_verify": "Scan to Verify",
+      "vehicle_information": "Vehicle Information",
+      "model": "Model",
+      "year": "Year",
+      "assessment_details": "Assessment Details",
+      "test_date": "Test Date",
+      "mileage": "Mileage",
+      "software_version": "Software Version",
+      "not_available": "Not Available",
+      "battery_performance": "Battery Performance Metrics",
+      "better_than_percentage": "Better than {percentage}% of similar vehicles",
+      "degradation_comparison": "Degradation Comparison vs Average",
+      "detailed_analysis": "Detailed Analysis",
+      "battery_specifications": "Battery Specifications",
+      "original_capacity": "Original Capacity",
+      "capacity_loss": "Capacity Loss",
+      "methodology": "Methodology",
+      "performance_indicators": "Performance Indicators",
+      "battery_chemistry": "Battery Chemistry",
+      "battery_supplier": "Battery Supplier",
+      "confidence_level": "Confidence Level",
+      "overall_condition": "Overall Condition",
+      "assessment_summary": "Assessment Summary",
+      "summary_excellent": "This {vehicleName} demonstrates excellent battery health with {degradation}% degradation. The battery is performing exceptionally well for its usage. Current capacity of {currentCapacity} kWh from an original {originalCapacity} kWh. This vehicle represents an excellent purchase opportunity with minimal battery-related risks.",
+      "summary_good": "This {vehicleName} demonstrates good battery health with {degradation}% degradation. The battery is performing well for its usage. Current capacity of {currentCapacity} kWh from an original {originalCapacity} kWh. This vehicle represents a good purchase opportunity with normal wear patterns.",
+      "summary_fair": "This {vehicleName} demonstrates fair battery health with {degradation}% degradation. The battery is performing adequately for its usage. Current capacity of {currentCapacity} kWh from an original {originalCapacity} kWh. This vehicle shows higher than average degradation and should be considered carefully.",
+      "chart": {
+        "title": "Battery Health Over Time",
+        "this_vehicle": "This Vehicle",
+        "tesla_average": "Tesla Average",
+        "current": "Current",
+        "vs_average": "vs average"
+      }
+    }
+  },
+  "payment": {
+    "title": "Get Your Verified Certificate",
+    "description": "Unlock your official Tesla battery health certificate for just $10",
+    "price": "Optional $10 certificate",
+    "features": {
+      "official": "Official Tesla data verification",
+      "pdf": "Professional PDF certificate",
+      "qr": "QR code for buyer verification",
+      "valid": "Valid for 3 months"
+    },
+    "pay_now": "Pay Now",
+    "secure_payment": "Secure payment powered by Stripe"
+  },
+  "gdpr": {
+    "title": "We respect your privacy",
+    "message": "We use cookies and similar technologies to improve your experience, analyze site traffic, and personalize content. Your Tesla data is processed securely and never shared with third parties.",
+    "accept_all": "Accept All",
+    "decline": "Decline",
+    "cookie_settings": "Cookie Settings",
+    "essential_only": "Essential Only"
+  },
+  "privacy_policy": {
+    "title": "Privacy Policy",
+    "last_updated": "Last updated: January 21, 2025",
+    "sections": {
+      "information_collection": {
+        "title": "1. Information We Collect",
+        "tesla_data": {
+          "title": "Tesla Account Data",
+          "description": "When you authorize batterycert.com to access your Tesla account, we temporarily collect vehicle battery information, charging data, and basic vehicle specifications necessary for our assessment."
+        },
+        "personal_info": {
+          "title": "Personal Information",
+          "description": "For paid certificates, we collect your email address and payment information through Stripe. We do not store credit card details on our servers."
+        },
+        "usage_info": {
+          "title": "Usage Information",
+          "description": "We collect basic analytics about how you use our service, including browser type, operating system, and pages visited to improve our service."
+        }
+      },
+      "how_we_use": {
+        "title": "2. How We Use Your Information",
+        "description1": "Your Tesla data is used exclusively to generate battery health assessments. We do not sell, rent, or share your personal data with third parties except as required for payment processing or legal compliance.",
+        "description2": "Email addresses are used to send certificate downloads and optional service updates. You can unsubscribe at any time."
+      },
+      "data_security": {
+        "title": "3. Data Security",
+        "description": "We implement industry-standard security measures to protect your information. Tesla access tokens are used temporarily and discarded immediately after assessment completion. All data transmission is encrypted using TLS."
+      },
+      "data_retention": {
+        "title": "4. Data Retention",
+        "description": "Tesla account data is not permanently stored. Paid certificate data is retained for 1 year to provide ongoing verification services. Anonymous usage analytics may be retained longer for service improvement."
+      },
+      "your_rights": {
+        "title": "5. Your Rights",
+        "description1": "You have the right to request access to, correction of, or deletion of your personal information. For certificate verification purposes, some data may be retained longer than standard deletion timelines.",
+        "description2": "To exercise these rights, contact us through our support channels with your certificate ID or account information."
+      },
+      "third_party": {
+        "title": "6. Third-Party Services",
+        "description1": "We use Stripe for payment processing and may use analytics services to understand service usage. These services have their own privacy policies and data handling practices.",
+        "description2": "Tesla API access is governed by Tesla's own privacy policy and terms of service."
+      },
+      "changes": {
+        "title": "7. Changes to This Policy",
+        "description": "We may update this privacy policy periodically. Significant changes will be communicated via email or through prominent notices on our service."
+      },
+      "contact": {
+        "title": "8. Contact Information",
+        "description": "For privacy-related questions or to exercise your data rights, please contact TidyCalls LTD. through our official support channels or legal department."
+      }
+    },
+    "footer": {
+      "copyright": "© {year} batterycert.com, a TidyCalls LTD. company. All rights reserved."
+    }
+  },
+  "about": {
+    "title": "About batterycert.com",
+    "subtitle": "batterycert.com was founded by the team behind TidyCalls with a simple mission: to bring transparency and trust to the used electric vehicle market.",
+    "mission_title": "Our Mission",
+    "mission_description": "Our goal is to provide instant, accurate, and verifiable battery health certificates for Tesla vehicles. By leveraging direct API access, we eliminate guesswork and empower owners and buyers with the data they need to make informed decisions.",
+    "values_title": "Our Values",
+    "values_description": "We are committed to integrity, accuracy, and user experience. We treat your data with the highest security, never store your Tesla credentials, and provide a seamless flow to get you from login to results in seconds.",
+    "company_title": "A TidyCalls LTD Company",
+    "company_description": "With years of experience building robust, user-friendly applications at TidyCalls, we bring the same dedication to quality and security to batterycert.com.",
+    "legal_title": "Legal & Compliance",
+    "legal_description": "We are committed to transparency in our operations. You can view our legal documents below."
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "last_updated": "Last updated: January 21, 2025",
+    "acceptance_title": "1. Acceptance of Terms",
+    "acceptance_text": "By accessing and using batterycert.com (\"Service\"), you accept and agree to be bound by the terms and provisions of this agreement. If you do not agree to abide by the above, please do not use this Service.",
+    "service_title": "2. Service Description",
+    "service_text": "batterycert.com provides Tesla battery health assessment services through direct API integration with Tesla's systems. We offer free basic assessments and paid detailed certificates for vehicle buyers and sellers.",
+    "accounts_title": "3. User Accounts and Tesla Access",
+    "accounts_text": "To use our service, you must authorize batterycert.com to access your Tesla account data. We do not store your Tesla credentials. Access is temporary and used exclusively for the purpose of battery assessment.",
+    "payment_title": "4. Payment and Refunds",
+    "payment_text": "Paid certificates are processed through Stripe. All sales are final. Refunds may be considered on a case-by-case basis within 7 days of purchase if technical issues prevent certificate generation.",
+    "privacy_title": "5. Data and Privacy",
+    "privacy_text": "We respect your privacy and handle your data in accordance with our Privacy Policy. Tesla account data is processed temporarily and not permanently stored on our servers.",
+    "accuracy_title": "6. Accuracy Disclaimer",
+    "accuracy_text": "While we strive for accuracy, battery health assessments are estimates based on available data. Results should be used as guidance and not as a guarantee or warranty of actual battery condition.",
+    "liability_title": "7. Limitation of Liability",
+    "liability_text": "batterycert.com and TidyCalls LTD. shall not be liable for any indirect, incidental, special, consequential or punitive damages resulting from your use of the service.",
+    "law_title": "8. Governing Law",
+    "law_text": "These terms shall be governed by and construed in accordance with the laws of the jurisdiction in which TidyCalls LTD. is incorporated.",
+    "changes_title": "9. Changes to Terms",
+    "changes_text": "We reserve the right to update these terms at any time. Users will be notified of significant changes via email or through the service interface.",
+    "contact_title": "10. Contact Information",
+    "contact_text": "For questions about these terms, please contact us through our support channels or visit our Privacy Policy for data-related inquiries."
+  },
+  "stripe_receipt": {
+    "description": "Battery Health Certificate",
+    "certificate_access": "Certificate Access",
+    "vehicle": "Vehicle",
+    "certificate_id": "Certificate ID",
+    "footer": "View your certificate online using the link above. Keep this receipt for your records."
+  },
+  "email": {
+    "invoice": {
+      "subject": "Battery Certificate - Receipt & Access Link",
+      "greeting": "Thank you for your purchase!",
+      "body": "Your Tesla battery health certificate has been successfully generated. You can view and download your certificate using the link below:",
+      "view_certificate": "View Certificate",
+      "details_title": "Purchase Details:",
+      "vehicle": "Vehicle",
+      "certificate_id": "Certificate ID",
+      "purchase_date": "Purchase Date",
+      "amount": "Amount",
+      "invoice_note": "This email serves as your receipt. Please keep it for your records.",
+      "questions": "If you have any questions, please contact our customer support team.",
+      "footer": "Thank you for choosing batterycert.com"
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "network": "Network error. Please check your connection.",
+    "tesla_auth": "Tesla authentication failed. Please try again.",
+    "no_vehicles": "No Tesla vehicles found in your account.",
+    "vehicle_offline": "Your Tesla is currently offline. Please try again later.",
+    "invalid_certificate": "Invalid certificate ID.",
+    "certificate_not_found": "Certificate not found.",
+    "payment_failed": "Payment failed. Please try again."
+  },
+  "certificate_payment": {
+    "payment_required": "Payment Required",
+    "certificate_description": "This certificate requires payment to unlock the full verified report. Get your official Tesla battery health certificate with verification QR code and fraud protection.",
+    "pricing_loading": "Loading pricing...",
+    "pricing_error": "Failed to load pricing information",
+    "payment_button": "Complete Payment",
+    "payment_processing": "Processing...",
+    "payment_failed": "Payment failed",
+    "certificate_exists": "Certificate already exists",
+    "checkout_failed": "No checkout URL received"
+  },
+  "email_capture": {
+    "certificate_view": {
+      "title": "Get Certificate Updates",
+      "subtitle": "Optional: Receive important updates about this certificate or new Tesla battery insights.",
+      "cta": "Get Updates"
+    },
+    "download": {
+      "title": "Save Your Certificate",
+      "subtitle": "Get a copy of this certificate emailed to you for safekeeping.",
+      "cta": "Email Certificate"
+    },
+    "homepage": {
+      "title": "Stay Updated",
+      "subtitle": "Get Tesla battery health tips and important updates (optional).",
+      "cta": "Subscribe"
+    },
+    "success_message": "Thanks! You'll receive updates at {email}",
+    "unsubscribe_message": "You can unsubscribe anytime",
+    "email_placeholder": "your@email.com",
+    "submit": "Submit",
+    "submitting": "Submitting...",
+    "dismiss": "No Thanks"
+  },
+  "vehicle_card": {
+    "charging": "Charging",
+    "online": "Online",
+    "asleep": "Asleep",
+    "offline": "Offline",
+    "asleep_can_wake": "Asleep (Can Wake)",
+    "miles": "miles",
+    "kilometers": "km",
+    "vin": "VIN",
+    "battery_level": "Battery Level",
+    "range": "Range",
+    "temperature": "Temperature",
+    "last_seen": "Last Seen"
+  },
+  "certificate_actions": {
+    "share": "Share",
+    "copied": "Copied!",
+    "share_title": "Tesla Battery Certificate - {id}",
+    "share_text": "Check out this Tesla battery health certificate",
+    "download": "Download PDF",
+    "downloading": "Generating...",
+    "download_error": "Failed to download PDF",
+    "download_filename": "Tesla_Battery_Certificate_{id}.pdf"
+  }
+}

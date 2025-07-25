@@ -1,0 +1,203 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "retry": "Intentar de nuevo",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "continue": "Continuar",
+    "cancel": "Cancelar",
+    "close": "Cerrar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "share": "Compartir",
+    "download": "Descargar"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "check": "Comprobar Batería",
+    "certificates": "Certificados",
+    "about": "Acerca de",
+    "terms": "Términos de Servicio",
+    "contact": "Contacto",
+    "language": "Idioma"
+  },
+  "homepage": {
+    "title": "Comprobación de Salud de Batería Tesla en 30 Segundos",
+    "subtitle": "Obtenga evaluaciones instantáneas y verificadas de la salud de la batería Tesla. Perfecto para comprar, vender o conocer el estado real de su Tesla.",
+    "cta_primary": "Comprobar Mi Tesla",
+    "cta_secondary": "Saber Más",
+    "hero_title": "Conozca la Verdadera Salud de la Batería de su Tesla",
+    "hero_subtitle": "Evaluación instantánea y oficial de la batería utilizando los propios datos de Tesla. Obtenga los datos antes de comprar o vender.",
+    "features": {
+      "instant": {
+        "title": "Resultados instantáneos",
+        "description": "Obtenga su informe de salud de la batería en 30 segundos utilizando la API oficial de Tesla"
+      },
+      "verified": {
+        "title": "Datos verificados",
+        "description": "Datos oficiales de Tesla, no estimaciones. Métricas reales de la batería de su vehículo"
+      },
+      "secure": {
+        "title": "Seguro y privado",
+        "description": "Sus credenciales de Tesla nunca se almacenan. Privacidad completa garantizada"
+      }
+    },
+    "stats": {
+      "title": "Con la confianza de propietarios de Tesla de todo el mundo",
+      "assessments": "Evaluaciones de batería",
+      "accuracy": "Precisión de datos",
+      "satisfaction": "Satisfacción del cliente"
+    },
+    "use_cases": {
+      "title": "Perfecto para cada propietario de Tesla",
+      "buying": {
+        "title": "¿Comprando un Tesla?",
+        "description": "Verifique la salud de la batería antes de la compra. Evite sorpresas costosas."
+      },
+      "selling": {
+        "title": "¿Vendiendo su Tesla?",
+        "description": "Demuestre el excelente estado de su batería con documentación oficial."
+      },
+      "monitoring": {
+        "title": "¿Propietario actual?",
+        "description": "Haga seguimiento de la salud de su batería a lo largo del tiempo. Planifique para el futuro."
+      }
+    },
+    "how_it_works": {
+      "title": "Cómo funciona",
+      "step1": {
+        "title": "Conectar cuenta Tesla",
+        "description": "Conecte de forma segura con la API oficial de Tesla"
+      },
+      "step2": {
+        "title": "Analizar datos de la batería",
+        "description": "Analizamos las métricas de la batería de su vehículo"
+      },
+      "step3": {
+        "title": "Obtener su informe",
+        "description": "Reciba una evaluación detallada de salud al instante"
+      }
+    },
+    "footer": "© 2025 batterycert.com. Construido para propietarios de Tesla, por entusiastas de Tesla."
+  },
+  "battery_check": {
+    "title": "Comprobación de Salud de Batería Tesla",
+    "connect_account": "Conecte su cuenta Tesla",
+    "login_with_tesla": "Iniciar sesión con Tesla",
+    "checking": "Comprobando salud de la batería...",
+    "results": "Resultados de salud de la batería",
+    "health_score": "Puntuación de salud",
+    "degradation": "Degradación",
+    "confidence": "Nivel de confianza",
+    "methodology": "Método de análisis",
+    "get_certificate": "Obtener certificado verificado",
+    "share_results": "Compartir resultados"
+  },
+  "certificate": {
+    "title": "Certificado de Salud de Batería Tesla",
+    "verified_by": "Verificado por batterycert.com",
+    "vehicle_info": "Información del vehículo",
+    "battery_health": "Análisis de salud de la batería",
+    "current_condition": "Estado actual",
+    "range_analysis": "Análisis de autonomía",
+    "download_pdf": "Descargar PDF",
+    "email_certificate": "Enviar certificado por correo",
+    "valid_until": "Válido hasta",
+    "certificate_id": "ID del certificado",
+    "fraud_protection": "Protección contra fraude verificada",
+    "fraud_description": "Este certificado es a prueba de manipulación y está directamente conectado con los sistemas oficiales de Tesla."
+  },
+  "payment": {
+    "title": "Obtenga su certificado verificado",
+    "description": "Desbloquee su certificado oficial de salud de batería Tesla por solo €9",
+    "price": "€9",
+    "features": {
+      "official": "Verificación de datos oficiales de Tesla",
+      "pdf": "Certificado PDF profesional",
+      "qr": "Código QR para verificación del comprador",
+      "valid": "Válido durante 3 meses"
+    },
+    "pay_now": "Pagar ahora",
+    "secure_payment": "Pago seguro con tecnología de Stripe"
+  },
+  "gdpr": {
+    "title": "Respetamos su privacidad",
+    "message": "Utilizamos cookies y tecnologías similares para mejorar su experiencia, analizar el tráfico del sitio y personalizar el contenido. Sus datos de Tesla se procesan de forma segura y nunca se comparten con terceros.",
+    "accept_all": "Aceptar todo",
+    "decline": "Rechazar",
+    "cookie_settings": "Configuración de cookies",
+    "essential_only": "Solo esenciales"
+  },
+  "about": {
+    "title": "Acerca de batterycert.com",
+    "subtitle": "batterycert.com fue fundado por el equipo detrás de TidyCalls con una misión simple: llevar transparencia y confianza al mercado de vehículos eléctricos de segunda mano.",
+    "mission_title": "Nuestra misión",
+    "mission_description": "Nuestro objetivo es proporcionar certificados de salud de batería instantáneos, precisos y verificables para vehículos Tesla. Al aprovechar el acceso directo a la API, eliminamos las conjeturas y empoderamos a propietarios y compradores con los datos que necesitan para tomar decisiones informadas.",
+    "values_title": "Nuestros valores",
+    "values_description": "Estamos comprometidos con la integridad, la precisión y la experiencia del usuario. Tratamos sus datos con la máxima seguridad, nunca almacenamos sus credenciales de Tesla y proporcionamos un flujo fluido para llevarlo del inicio de sesión a los resultados en segundos.",
+    "company_title": "Una empresa de TidyCalls LTD",
+    "company_description": "Con años de experiencia construyendo aplicaciones robustas y fáciles de usar en TidyCalls, traemos la misma dedicación a la calidad y seguridad a batterycert.com.",
+    "legal_title": "Legal y cumplimiento",
+    "legal_description": "Estamos comprometidos con la transparencia en nuestras operaciones. Puede ver nuestros documentos legales a continuación."
+  },
+  "terms": {
+    "title": "Términos de servicio",
+    "last_updated": "Última actualización: 21 de enero de 2025",
+    "acceptance_title": "1. Aceptación de términos",
+    "acceptance_text": "Al acceder y utilizar batterycert.com (\"Servicio\"), usted acepta y se compromete a cumplir con los términos y disposiciones de este acuerdo. Si no está de acuerdo con cumplir lo anterior, por favor no utilice este Servicio.",
+    "service_title": "2. Descripción del servicio",
+    "service_text": "batterycert.com proporciona servicios de evaluación de salud de batería Tesla a través de la integración directa de API con los sistemas de Tesla. Ofrecemos evaluaciones básicas gratuitas y certificados detallados de pago para compradores y vendedores de vehículos.",
+    "accounts_title": "3. Cuentas de usuario y acceso a Tesla",
+    "accounts_text": "Para utilizar nuestro servicio, debe autorizar a batterycert.com a acceder a los datos de su cuenta Tesla. No almacenamos sus credenciales de Tesla. El acceso es temporal y se utiliza exclusivamente para el propósito de la evaluación de la batería.",
+    "payment_title": "4. Pago y reembolsos",
+    "payment_text": "Los certificados de pago se procesan a través de Stripe. Todas las ventas son definitivas. Los reembolsos pueden considerarse caso por caso dentro de los 7 días de la compra si problemas técnicos impiden la generación del certificado.",
+    "privacy_title": "5. Datos y privacidad",
+    "privacy_text": "Respetamos su privacidad y manejamos sus datos de acuerdo con nuestra Política de privacidad. Los datos de la cuenta Tesla se procesan temporalmente y no se almacenan permanentemente en nuestros servidores.",
+    "accuracy_title": "6. Descargo de responsabilidad de precisión",
+    "accuracy_text": "Aunque nos esforzamos por la precisión, las evaluaciones de salud de la batería son estimaciones basadas en datos disponibles. Los resultados deben utilizarse como guía y no como garantía del estado real de la batería.",
+    "liability_title": "7. Limitación de responsabilidad",
+    "liability_text": "batterycert.com y TidyCalls LTD. no serán responsables de ningún daño indirecto, incidental, especial, consecuente o punitivo resultante de su uso del servicio.",
+    "law_title": "8. Ley aplicable",
+    "law_text": "Estos términos se regirán e interpretarán de acuerdo con las leyes de la jurisdicción en la que TidyCalls LTD. está constituida.",
+    "changes_title": "9. Cambios en los términos",
+    "changes_text": "Nos reservamos el derecho de actualizar estos términos en cualquier momento. Los usuarios serán notificados de cambios significativos por correo electrónico o a través de la interfaz del servicio.",
+    "contact_title": "10. Información de contacto",
+    "contact_text": "Para preguntas sobre estos términos, por favor contáctenos a través de nuestros canales de soporte o visite nuestra Política de privacidad para consultas relacionadas con datos."
+  },
+  "stripe_receipt": {
+    "description": "Certificado de Salud de Batería Tesla",
+    "certificate_access": "Acceso al Certificado",
+    "vehicle": "Vehículo",
+    "certificate_id": "ID del Certificado",
+    "footer": "Ve su certificado en línea usando el enlace de arriba. Guarde este recibo para sus registros."
+  },
+  "email": {
+    "invoice": {
+      "subject": "Certificado de Batería Tesla - Recibo y Enlace de Acceso",
+      "greeting": "¡Gracias por su compra!",
+      "body": "Su certificado de salud de batería Tesla ha sido generado exitosamente. Puede ver y descargar su certificado usando el enlace de abajo:",
+      "view_certificate": "Ver Certificado",
+      "details_title": "Detalles de Compra:",
+      "vehicle": "Vehículo",
+      "certificate_id": "ID del Certificado",
+      "purchase_date": "Fecha de Compra",
+      "amount": "Cantidad",
+      "invoice_note": "Este correo electrónico sirve como su recibo. Por favor guárdelo para sus registros.",
+      "questions": "Si tiene alguna pregunta, por favor contacte a nuestro equipo de soporte al cliente.",
+      "footer": "Gracias por elegir batterycert.com"
+    }
+  },
+  "errors": {
+    "generic": "Algo salió mal. Por favor, inténtelo de nuevo.",
+    "network": "Error de red. Por favor, compruebe su conexión.",
+    "tesla_auth": "La autenticación de Tesla falló. Por favor, inténtelo de nuevo.",
+    "no_vehicles": "No se encontraron vehículos Tesla en su cuenta.",
+    "vehicle_offline": "Su Tesla está actualmente sin conexión. Por favor, inténtelo más tarde.",
+    "invalid_certificate": "ID de certificado inválido.",
+    "certificate_not_found": "Certificado no encontrado.",
+    "payment_failed": "El pago falló. Por favor, inténtelo de nuevo."
+  }
+}

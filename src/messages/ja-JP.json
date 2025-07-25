@@ -1,0 +1,203 @@
+{
+  "common": {
+    "loading": "読み込み中...",
+    "error": "エラー",
+    "success": "成功",
+    "retry": "再試行",
+    "back": "戻る",
+    "next": "次へ",
+    "continue": "続行",
+    "cancel": "キャンセル",
+    "close": "閉じる",
+    "save": "保存",
+    "delete": "削除",
+    "edit": "編集",
+    "share": "共有",
+    "download": "ダウンロード"
+  },
+  "navigation": {
+    "home": "ホーム",
+    "check": "バッテリーチェック",
+    "certificates": "証明書",
+    "about": "会社概要",
+    "terms": "利用規約",
+    "contact": "お問い合わせ",
+    "language": "言語"
+  },
+  "homepage": {
+    "title": "30秒でテスラバッテリー健康診断",
+    "subtitle": "即座に検証されたテスラバッテリーの健康状態を取得。売買時や愛車の真の状態を知るのに最適です。",
+    "cta_primary": "私のテスラをチェック",
+    "cta_secondary": "詳細を見る",
+    "hero_title": "あなたのテスラの真のバッテリー健康状態を知る",
+    "hero_subtitle": "テスラ公式データを使用した即座の正式バッテリー診断。売買前に事実を把握しましょう。",
+    "features": {
+      "instant": {
+        "title": "即座の結果",
+        "description": "テスラ公式APIを使用して30秒でバッテリーヘルスレポートを取得"
+      },
+      "verified": {
+        "title": "検証済みデータ",
+        "description": "推定値ではなく公式テスラデータ。あなたの車両からの実際のバッテリーメトリクス"
+      },
+      "secure": {
+        "title": "安全・プライベート",
+        "description": "テスラの認証情報は一切保存されません。完全なプライバシーを保証"
+      }
+    },
+    "stats": {
+      "title": "世界中のテスラオーナーに信頼されています",
+      "assessments": "バッテリー診断数",
+      "accuracy": "データ精度",
+      "satisfaction": "顧客満足度"
+    },
+    "use_cases": {
+      "title": "すべてのテスラオーナーに最適",
+      "buying": {
+        "title": "テスラをご購入予定？",
+        "description": "購入前にバッテリーの健康状態を検証。高額な驚きを避けましょう。"
+      },
+      "selling": {
+        "title": "テスラをご売却予定？",
+        "description": "公式文書でバッテリーの優秀な状態を証明しましょう。"
+      },
+      "monitoring": {
+        "title": "現在のオーナー様？",
+        "description": "時間経過とともにバッテリーの健康状態を追跡。将来の計画を立てましょう。"
+      }
+    },
+    "how_it_works": {
+      "title": "使用方法",
+      "step1": {
+        "title": "テスラアカウント接続",
+        "description": "テスラ公式APIに安全に接続"
+      },
+      "step2": {
+        "title": "バッテリーデータ解析",
+        "description": "お客様の車両のバッテリーメトリクスを解析"
+      },
+      "step3": {
+        "title": "レポート取得",
+        "description": "詳細な健康診断を即座に受け取り"
+      }
+    },
+    "footer": "© 2025 batterycert.com. テスラオーナーのために、テスラ愛好家によって構築されました。"
+  },
+  "battery_check": {
+    "title": "テスラバッテリー健康診断",
+    "connect_account": "テスラアカウントに接続",
+    "login_with_tesla": "テスラでログイン",
+    "checking": "バッテリーの健康状態をチェック中...",
+    "results": "バッテリー健康診断結果",
+    "health_score": "健康スコア",
+    "degradation": "劣化度",
+    "confidence": "信頼レベル",
+    "methodology": "解析方法",
+    "get_certificate": "検証済み証明書を取得",
+    "share_results": "結果を共有"
+  },
+  "certificate": {
+    "title": "テスラバッテリー健康証明書",
+    "verified_by": "batterycert.com により検証",
+    "vehicle_info": "車両情報",
+    "battery_health": "バッテリーヘルス解析",
+    "current_condition": "現在の状態",
+    "range_analysis": "航続距離解析",
+    "download_pdf": "PDFダウンロード",
+    "email_certificate": "証明書をメール送信",
+    "valid_until": "有効期限",
+    "certificate_id": "証明書ID",
+    "fraud_protection": "不正防止認証済み",
+    "fraud_description": "この証明書は改ざん防止機能付きで、テスラの公式システムに直接接続されています。"
+  },
+  "payment": {
+    "title": "検証済み証明書を取得",
+    "description": "わずか¥1,200で公式テスラバッテリー健康証明書を取得",
+    "price": "¥1,200",
+    "features": {
+      "official": "公式テスラデータ検証",
+      "pdf": "プロフェッショナルPDF証明書",
+      "qr": "購入者検証用QRコード",
+      "valid": "3ヶ月間有効"
+    },
+    "pay_now": "今すぐ支払う",
+    "secure_payment": "Stripe による安全な決済"
+  },
+  "gdpr": {
+    "title": "お客様のプライバシーを尊重いたします",
+    "message": "弊社では、お客様の体験向上、サイトトラフィックの分析、コンテンツのパーソナライゼーションのためにクッキーと類似技術を使用しています。お客様のテスラデータは安全に処理され、第三者と共有されることはありません。",
+    "accept_all": "すべて承認",
+    "decline": "拒否",
+    "cookie_settings": "クッキー設定",
+    "essential_only": "必須のみ"
+  },
+  "about": {
+    "title": "batterycert.com について",
+    "subtitle": "batterycert.com は TidyCalls チームによって設立され、シンプルな使命を掲げています：中古電気自動車市場に透明性と信頼をもたらすことです。",
+    "mission_title": "私たちの使命",
+    "mission_description": "私たちの目標は、テスラ車両の即座で正確、かつ検証可能なバッテリー健康証明書を提供することです。直接API アクセスを活用することで、推測を排除し、オーナーや購入者が情報に基づいた決定を下すために必要なデータを提供します。",
+    "values_title": "私たちの価値観",
+    "values_description": "私たちは誠実さ、正確性、ユーザーエクスペリエンスにコミットしています。お客様のデータを最高レベルのセキュリティで扱い、テスラの認証情報を一切保存せず、ログインから結果まで数秒でシームレスなフローを提供します。",
+    "company_title": "TidyCalls LTD 企業",
+    "company_description": "TidyCalls での堅牢でユーザーフレンドリーなアプリケーション構築の長年の経験を活かし、batterycert.com でも同じ品質とセキュリティへの献身をお届けします。",
+    "legal_title": "法務・コンプライアンス",
+    "legal_description": "私たちは事業運営の透明性にコミットしています。以下で法的文書をご覧いただけます。"
+  },
+  "terms": {
+    "title": "利用規約",
+    "last_updated": "最終更新: 2025年1月21日",
+    "acceptance_title": "1. 規約の承認",
+    "acceptance_text": "batterycert.com（「サービス」）にアクセスし使用することにより、お客様はこの契約の条項と規定に拘束されることに同意し承認するものとします。上記に同意されない場合は、このサービスをご利用にならないでください。",
+    "service_title": "2. サービス説明",
+    "service_text": "batterycert.com は、テスラのシステムとの直接API統合を通じてテスラバッテリー健康診断サービスを提供します。無料の基本診断と、車両の購入者・売却者向けの有料詳細証明書を提供しています。",
+    "accounts_title": "3. ユーザーアカウントとテスラアクセス",
+    "accounts_text": "弊社サービスをご利用いただくには、batterycert.com がお客様のテスラアカウントデータにアクセスすることを承認していただく必要があります。弊社ではテスラの認証情報を保存いたしません。アクセスは一時的で、バッテリー診断の目的でのみ使用されます。",
+    "payment_title": "4. お支払いと返金",
+    "payment_text": "有料証明書は Stripe を通じて処理されます。すべての販売は最終的なものです。技術的問題により証明書の生成ができない場合、購入から7日以内にケースバイケースで返金を検討する場合があります。",
+    "privacy_title": "5. データとプライバシー",
+    "privacy_text": "弊社はお客様のプライバシーを尊重し、プライバシーポリシーに従ってお客様のデータを取り扱います。テスラアカウントデータは一時的に処理され、弊社サーバーに永続的に保存されることはありません。",
+    "accuracy_title": "6. 精度に関する免責事項",
+    "accuracy_text": "弊社は精度を追求していますが、バッテリー健康診断は利用可能なデータに基づく推定値です。結果はガイダンスとしてご利用いただき、実際のバッテリー状態の保証や保証書としてはご利用にならないでください。",
+    "liability_title": "7. 責任の制限",
+    "liability_text": "batterycert.com および TidyCalls LTD. は、お客様のサービスご利用に起因する間接的、付随的、特別、結果的または懲罰的損害について責任を負いません。",
+    "law_title": "8. 準拠法",
+    "law_text": "これらの規約は、TidyCalls LTD. が法人設立された管轄区域の法律に従って統治され、解釈されるものとします。",
+    "changes_title": "9. 規約の変更",
+    "changes_text": "弊社はいつでもこれらの規約を更新する権利を留保します。重要な変更については、メールまたはサービスインターフェースを通じてユーザーに通知いたします。",
+    "contact_title": "10. お問い合わせ情報",
+    "contact_text": "これらの規約に関するご質問は、弊社サポートチャンネルを通じてお問い合わせいただくか、データ関連のお問い合わせについてはプライバシーポリシーをご覧ください。"
+  },
+  "stripe_receipt": {
+    "description": "テスラバッテリー健康証明書",
+    "certificate_access": "証明書アクセス",
+    "vehicle": "車両",
+    "certificate_id": "証明書ID",
+    "footer": "上記のリンクを使用してオンラインで証明書を表示してください。記録のためにこの領収書を保管してください。"
+  },
+  "email": {
+    "invoice": {
+      "subject": "テスラバッテリー証明書 - 領収書とアクセスリンク",
+      "greeting": "ご購入ありがとうございます！",
+      "body": "テスラバッテリー健康証明書が正常に生成されました。下記のリンクを使用して証明書を確認し、ダウンロードできます：",
+      "view_certificate": "証明書を表示",
+      "details_title": "購入詳細：",
+      "vehicle": "車両",
+      "certificate_id": "証明書ID",
+      "purchase_date": "購入日",
+      "amount": "金額",
+      "invoice_note": "このメールは領収書として機能します。記録のために保管してください。",
+      "questions": "ご質問がございましたら、カスタマーサポートチームにお問い合わせください。",
+      "footer": "batterycert.comをお選びいただき、ありがとうございます"
+    }
+  },
+  "errors": {
+    "generic": "何らかの問題が発生しました。再度お試しください。",
+    "network": "ネットワークエラーです。接続をご確認ください。",
+    "tesla_auth": "テスラ認証に失敗しました。再度お試しください。",
+    "no_vehicles": "お客様のアカウントにテスラ車両が見つかりません。",
+    "vehicle_offline": "お客様のテスラは現在オフラインです。後ほど再度お試しください。",
+    "invalid_certificate": "無効な証明書IDです。",
+    "certificate_not_found": "証明書が見つかりません。",
+    "payment_failed": "お支払いに失敗しました。再度お試しください。"
+  }
+}

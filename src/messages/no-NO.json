@@ -1,0 +1,203 @@
+{
+  "common": {
+    "loading": "Laster...",
+    "error": "Feil",
+    "success": "Suksess",
+    "retry": "Prøv igjen",
+    "back": "Tilbake",
+    "next": "Neste",
+    "continue": "Fortsett",
+    "cancel": "Avbryt",
+    "close": "Lukk",
+    "save": "Lagre",
+    "delete": "Slett",
+    "edit": "Rediger",
+    "share": "Del",
+    "download": "Last ned"
+  },
+  "navigation": {
+    "home": "Hjem",
+    "check": "Sjekk batteri",
+    "certificates": "Sertifikater",
+    "about": "Om oss",
+    "terms": "Brukervilkår",
+    "contact": "Kontakt",
+    "language": "Språk"
+  },
+  "homepage": {
+    "title": "Tesla batterihelse-sjekk på 30 sekunder",
+    "subtitle": "Få øyeblikkelig, verifisert Tesla batterihelse-vurdering. Perfekt for kjøp, salg eller for å vite din Teslas sanne tilstand.",
+    "cta_primary": "Sjekk min Tesla",
+    "cta_secondary": "Lær mer",
+    "hero_title": "Vit din Teslas sanne batterihelse",
+    "hero_subtitle": "Øyeblikkelig, offisiell batterivurdering med Teslas egne data. Få fakta før du kjøper eller selger.",
+    "features": {
+      "instant": {
+        "title": "Øyeblikkelige resultater",
+        "description": "Få din batterihelse-rapport på 30 sekunder med Teslas offisielle API"
+      },
+      "verified": {
+        "title": "Verifiserte data",
+        "description": "Offisielle Tesla-data, ikke estimater. Ekte batterimålinger fra ditt kjøretøy"
+      },
+      "secure": {
+        "title": "Sikker og privat",
+        "description": "Dine Tesla-påloggingsdata lagres aldrig. Fullstendig personvern garantert"
+      }
+    },
+    "stats": {
+      "title": "Betrodd av Tesla-eiere verden over",
+      "assessments": "Batterivurderinger",
+      "accuracy": "Datanøyaktighet",
+      "satisfaction": "Kundetilfredshet"
+    },
+    "use_cases": {
+      "title": "Perfekt for enhver Tesla-eier",
+      "buying": {
+        "title": "Kjøper du en Tesla?",
+        "description": "Verifiser batterihelsen før kjøp. Unngå dyre overraskelser."
+      },
+      "selling": {
+        "title": "Selger du din Tesla?",
+        "description": "Bevis ditt batteris utmerkede tilstand med offisiell dokumentasjon."
+      },
+      "monitoring": {
+        "title": "Nåværende eier?",
+        "description": "Spor din batterihelse over tid. Planlegg for fremtiden."
+      }
+    },
+    "how_it_works": {
+      "title": "Slik fungerer det",
+      "step1": {
+        "title": "Koble til Tesla-konto",
+        "description": "Koble sikkert til Teslas offisielle API"
+      },
+      "step2": {
+        "title": "Analyser batteridata",
+        "description": "Vi analyserer ditt kjøretøys batterimålinger"
+      },
+      "step3": {
+        "title": "Få din rapport",
+        "description": "Motta detaljert helsevurdering øyeblikkelig"
+      }
+    },
+    "footer": "© 2025 batterycert.com. Laget for Tesla-eiere, av Tesla-entusiaster."
+  },
+  "battery_check": {
+    "title": "Tesla batterihelse-sjekk",
+    "connect_account": "Koble til din Tesla-konto",
+    "login_with_tesla": "Logg inn med Tesla",
+    "checking": "Sjekker batterihelse...",
+    "results": "Batterihelse-resultater",
+    "health_score": "Helse-score",
+    "degradation": "Forringelse",
+    "confidence": "Konfidensnivå",
+    "methodology": "Analysemetode",
+    "get_certificate": "Få verifisert sertifikat",
+    "share_results": "Del resultater"
+  },
+  "certificate": {
+    "title": "Tesla batterihelse-sertifikat",
+    "verified_by": "Verifisert av batterycert.com",
+    "vehicle_info": "Kjøretøyinformasjon",
+    "battery_health": "Batterihelse-analyse",
+    "current_condition": "Nåværende tilstand",
+    "range_analysis": "Rekkevidde-analyse",
+    "download_pdf": "Last ned PDF",
+    "email_certificate": "Send sertifikat på e-post",
+    "valid_until": "Gyldig til",
+    "certificate_id": "Sertifikat-ID",
+    "fraud_protection": "Svindelbeskyttelse verifisert",
+    "fraud_description": "Dette sertifikatet er manipuleringssikkert og direkte koblet til Teslas offisielle systemer."
+  },
+  "payment": {
+    "title": "Få ditt verifiserte sertifikat",
+    "description": "Lås opp ditt offisielle Tesla batterihelse-sertifikat for bare 99 kr",
+    "price": "99 kr",
+    "features": {
+      "official": "Offisiell Tesla-dataverifisering",
+      "pdf": "Profesjonelt PDF-sertifikat",
+      "qr": "QR-kode for kjøperverifisering",
+      "valid": "Gyldig i 3 måneder"
+    },
+    "pay_now": "Betal nå",
+    "secure_payment": "Sikker betaling med Stripe"
+  },
+  "gdpr": {
+    "title": "Vi respekterer ditt personvern",
+    "message": "Vi bruker informasjonskapsler og lignende teknologier for å forbedre opplevelsen din, analysere nettstedstrafikk og personalisere innhold. Dine Tesla-data behandles sikkert og deles aldri med tredjeparter.",
+    "accept_all": "Godta alle",
+    "decline": "Avvis",
+    "cookie_settings": "Informasjonskapsel-innstillinger",
+    "essential_only": "Kun essensielle"
+  },
+  "about": {
+    "title": "Om batterycert.com",
+    "subtitle": "batterycert.com ble grunnlagt av teamet bak TidyCalls med et enkelt oppdrag: å bringe åpenhet og tillit til bruktbilmarkedet for elektriske kjøretøy.",
+    "mission_title": "Vårt oppdrag",
+    "mission_description": "Vårt mål er å tilby umiddelbare, nøyaktige og verifiserbare batterihelse-sertifikater for Tesla-kjøretøy. Ved å utnytte direkte API-tilgang eliminerer vi gjettearbeid og gir eiere og kjøpere dataene de trenger for å ta informerte beslutninger.",
+    "values_title": "Våre verdier",
+    "values_description": "Vi er forpliktet til integritet, nøyaktighet og brukeropplevelse. Vi behandler dine data med høyeste sikkerhet, lagrer aldri dine Tesla-påloggingsdata og gir en sømløs flyt for å få deg fra pålogging til resultater på sekunder.",
+    "company_title": "Et TidyCalls LTD-selskap",
+    "company_description": "Med mange års erfaring med å bygge robuste, brukervennlige applikasjoner hos TidyCalls, bringer vi samme dedikasjon til kvalitet og sikkerhet til batterycert.com.",
+    "legal_title": "Juridisk og etterlevelse",
+    "legal_description": "Vi er forpliktet til åpenhet i vår virksomhet. Du kan se våre juridiske dokumenter nedenfor."
+  },
+  "terms": {
+    "title": "Tjenestevilkår",
+    "last_updated": "Sist oppdatert: 21. januar 2025",
+    "acceptance_title": "1. Aksept av vilkår",
+    "acceptance_text": "Ved å få tilgang til og bruke batterycert.com (\"Tjeneste\") aksepterer og godtar du å være bundet av vilkårene i denne avtalen. Hvis du ikke godtar å følge ovennevnte, vennligst ikke bruk denne tjenesten.",
+    "service_title": "2. Tjenestebeskrivelse",
+    "service_text": "batterycert.com tilbyr Tesla batterihelse-vurderingstjenester gjennom direkte API-integrasjon med Teslas systemer. Vi tilbyr gratis grunnleggende vurderinger og betalte detaljerte sertifikater for kjøretøykjøpere og -selgere.",
+    "accounts_title": "3. Brukerkontoer og Tesla-tilgang",
+    "accounts_text": "For å bruke vår tjeneste må du autorisere batterycert.com til å få tilgang til dine Tesla-kontodata. Vi lagrer ikke dine Tesla-påloggingsdata. Tilgang er midlertidig og brukes utelukkende for batterivurdering.",
+    "payment_title": "4. Betaling og refusjoner",
+    "payment_text": "Betalte sertifikater behandles gjennom Stripe. Alle salg er endelige. Refusjoner kan vurderes fra sak til sak innen 7 dager etter kjøp hvis tekniske problemer forhindrer sertifikatgenerering.",
+    "privacy_title": "5. Data og personvern",
+    "privacy_text": "Vi respekterer ditt personvern og håndterer dine data i samsvar med vår personvernpolicy. Tesla-kontodata behandles midlertidig og lagres ikke permanent på våre servere.",
+    "accuracy_title": "6. Nøyaktighetsfraskrivelse",
+    "accuracy_text": "Selv om vi streber etter nøyaktighet, er batterihelse-vurderinger estimater basert på tilgjengelige data. Resultater bør brukes som veiledning og ikke som en garanti eller garantere for faktisk batteritilstand.",
+    "liability_title": "7. Ansvarsbegrensning",
+    "liability_text": "batterycert.com og TidyCalls LTD. skal ikke være ansvarlige for indirekte, tilfeldige, spesielle, følge- eller straffende skader som følge av din bruk av tjenesten.",
+    "law_title": "8. Gjeldende lov",
+    "law_text": "Disse vilkårene skal styres av og tolkes i samsvar med lovene i jurisdiksjonen der TidyCalls LTD. er inkorporert.",
+    "changes_title": "9. Endringer i vilkår",
+    "changes_text": "Vi forbeholder oss retten til å oppdatere disse vilkårene når som helst. Brukere vil bli varslet om betydelige endringer via e-post eller gjennom tjenestegrensesnittet.",
+    "contact_title": "10. Kontaktinformasjon",
+    "contact_text": "For spørsmål om disse vilkårene, vennligst kontakt oss gjennom våre supportkanaler eller besøk vår personvernpolicy for datarelaterte forespørsler."
+  },
+  "stripe_receipt": {
+    "description": "Tesla Batteri Helse Sertifikat",
+    "certificate_access": "Sertifikat Tilgang",
+    "vehicle": "Kjøretøy",
+    "certificate_id": "Sertifikat ID",
+    "footer": "Se sertifikatet ditt online ved hjelp av lenken ovenfor. Behold denne kvitteringen for dine opptegnelser."
+  },
+  "email": {
+    "invoice": {
+      "subject": "Tesla Batteri Sertifikat - Kvittering & Tilgangslink",
+      "greeting": "Takk for kjøpet ditt!",
+      "body": "Tesla batteri helse sertifikatet ditt har blitt generert. Du kan se og laste ned sertifikatet ditt ved hjelp av lenken nedenfor:",
+      "view_certificate": "Se Sertifikat",
+      "details_title": "Kjøpsdetaljer:",
+      "vehicle": "Kjøretøy",
+      "certificate_id": "Sertifikat ID",
+      "purchase_date": "Kjøpsdato",
+      "amount": "Beløp",
+      "invoice_note": "Denne e-posten fungerer som din kvittering. Behold den for dine opptegnelser.",
+      "questions": "Hvis du har spørsmål, vennligst kontakt vårt kundesupport-team.",
+      "footer": "Takk for at du valgte batterycert.com"
+    }
+  },
+  "errors": {
+    "generic": "Noe gikk galt. Prøv igjen.",
+    "network": "Nettverksfeil. Sjekk tilkoblingen din.",
+    "tesla_auth": "Tesla-autentisering feilet. Prøv igjen.",
+    "no_vehicles": "Ingen Tesla-kjøretøy funnet i kontoen din.",
+    "vehicle_offline": "Din Tesla er for øyeblikket offline. Prøv igjen senere.",
+    "invalid_certificate": "Ugyldig sertifikat-ID.",
+    "certificate_not_found": "Sertifikat ikke funnet.",
+    "payment_failed": "Betaling feilet. Prøv igjen."
+  }
+}
