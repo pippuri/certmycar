@@ -4,10 +4,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, CheckCircle, AlertTriangle } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { getLocaleLinks } from "@/lib/locale-links";
-import { createServerSupabaseClient } from "@/lib/supabase";
+import { createServerSupabaseClient, createServiceRoleSupabaseClient } from "@/lib/supabase";
 import { ShareButton, DownloadButton } from "@/components/certificate-actions";
 import { CertificateDisplay } from "@/components/certificate-display";
 import { CertificatePayment } from "@/components/certificate-payment";
+import CertificatePageClient from "./certificate-page-client";
 import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 
@@ -76,10 +77,15 @@ export default async function CertificatePage({
   searchParams,
 }: {
   params: Promise<{ locale: string; id: string }>;
-  searchParams: Promise<{ vin?: string; pdf?: string }>;
+  searchParams: Promise<{
+    vin?: string;
+    pdf?: string;
+    payment?: string;
+    session_id?: string;
+  }>;
 }) {
   const { locale, id } = await params;
-  const { vin, pdf } = await searchParams;
+  const { vin, pdf, payment, session_id } = await searchParams;
   const links = getLocaleLinks(locale);
   const t = await getTranslations({ locale, namespace: "certificate_page" });
   const displayTranslations = await getTranslations({
@@ -109,6 +115,73 @@ export default async function CertificatePage({
     }),
   };
 
+  // Handle payment verification server-side if returning from Stripe
+  console.log("Payment verification debug:", { payment, session_id, id, vin });
+  console.log("Condition check:", { 
+    paymentMatch: payment === "success", 
+    hasSessionId: !!session_id,
+    sessionIdLength: session_id?.length,
+    sessionIdType: typeof session_id 
+  });
+  let shouldRedirectAfterPayment = false;
+  if (payment === "success" && session_id) {
+    console.log("Entering payment verification block");
+    try {
+      // Import Stripe here to avoid loading it unnecessarily
+      const { getStripe } = await import("@/lib/stripe");
+      const stripe = getStripe();
+      console.log("Retrieving Stripe session:", session_id);
+      const session = await stripe.checkout.sessions.retrieve(session_id);
+      console.log("Stripe session retrieved:", {
+        payment_status: session.payment_status,
+        metadata: session.metadata,
+        customer_email: session.customer_details?.email
+      });
+
+      if (
+        session.payment_status === "paid" &&
+        session.metadata?.certificateId === id
+      ) {
+        console.log("Payment verified, updating certificate as paid");
+        // Update certificate as paid using service role (bypasses RLS)
+        const serviceSupabase = createServiceRoleSupabaseClient();
+        const { error: updateError } = await serviceSupabase
+          .from("certificates")
+          .update({
+            is_paid: true,
+            customer_email: session.customer_details?.email,
+            stripe_session_id: session.id,
+            paid_at: new Date().toISOString(),
+          })
+          .eq("certificate_id", id);
+
+        if (updateError) {
+          console.error("Database update error:", updateError);
+        } else {
+          console.log("Certificate updated successfully, preparing redirect");
+          shouldRedirectAfterPayment = true;
+        }
+      } else {
+        console.log("Payment verification failed:", {
+          payment_status: session.payment_status,
+          expected_cert_id: id,
+          actual_cert_id: session.metadata?.certificateId
+        });
+      }
+    } catch (error) {
+      console.error("Server-side payment verification failed:", error);
+      // Continue with normal flow if verification fails
+    }
+  }
+
+  // Redirect after payment verification if needed
+  if (shouldRedirectAfterPayment) {
+    const cleanUrl = `/${locale}/certificate/${id}?vin=${vin}&t=${Date.now()}`;
+    console.log("Redirecting to clean URL:", cleanUrl);
+    const { redirect } = await import("next/navigation");
+    redirect(cleanUrl);
+  }
+
   // All certificates including demo ones are now stored in the database
   let certificate;
   let error = null;
@@ -119,6 +192,14 @@ export default async function CertificatePage({
     .select("*")
     .eq("certificate_id", id)
     .single();
+
+  console.log("Certificate loaded from database:", {
+    certificate_id: dbCertificate?.certificate_id,
+    is_paid: dbCertificate?.is_paid,
+    paid_at: dbCertificate?.paid_at,
+    stripe_session_id: dbCertificate?.stripe_session_id,
+    customer_email: dbCertificate?.customer_email
+  });
 
   certificate = dbCertificate;
   error = dbError;
@@ -172,7 +253,7 @@ export default async function CertificatePage({
   // Check if we're in PDF generation mode
   const isPdfMode = pdf === "true";
 
-  return (
+  const certificatePageContent = (
     <div
       className={`min-h-screen ${
         isPdfMode ? "bg-white" : "bg-gradient-to-br from-slate-50 to-blue-50"
@@ -367,15 +448,15 @@ export default async function CertificatePage({
                 </span>
                 <span>•</span>
                 <span>{t("verification_footer.valid_for")}</span>
-                <span>•</span>
-                <Link href="/verify" className="text-blue-600 hover:underline">
-                  {t("verification_footer.verify_certificate")}
-                </Link>
               </div>
             </CardContent>
           </Card>
         )}
       </div>
     </div>
+  );
+
+  return (
+    <CertificatePageClient>{certificatePageContent}</CertificatePageClient>
   );
 }

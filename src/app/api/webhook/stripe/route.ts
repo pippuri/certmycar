@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getStripe } from '@/lib/stripe';
-import { createServerSupabaseClient } from '@/lib/supabase';
+import { createServiceRoleSupabaseClient } from '@/lib/supabase';
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
@@ -39,24 +39,37 @@ export async function POST(request: NextRequest) {
           return NextResponse.json({ error: 'No certificate ID' }, { status: 400 });
         }
 
-        // Update certificate as paid
-        const supabase = await createServerSupabaseClient();
-        const { error } = await supabase
+        // Update certificate as paid (backup in case direct verification failed)
+        const supabase = createServiceRoleSupabaseClient();
+        
+        // First check if certificate is already marked as paid (from direct verification)
+        const { data: existingCert } = await supabase
           .from('certificates')
-          .update({ 
-            is_paid: true,
-            customer_email: customerEmail,
-            stripe_session_id: session.id,
-            paid_at: new Date().toISOString()
-          })
-          .eq('certificate_id', certificateId);
+          .select('is_paid, paid_at')
+          .eq('certificate_id', certificateId)
+          .single();
 
-        if (error) {
-          console.error('Failed to update certificate:', error);
-          return NextResponse.json({ error: 'Database update failed' }, { status: 500 });
+        if (existingCert?.is_paid) {
+          console.log(`Certificate ${certificateId} already marked as paid, skipping webhook update`);
+        } else {
+          // Only update if not already paid (backup processing)
+          const { error } = await supabase
+            .from('certificates')
+            .update({ 
+              is_paid: true,
+              customer_email: customerEmail,
+              stripe_session_id: session.id,
+              paid_at: new Date().toISOString()
+            })
+            .eq('certificate_id', certificateId);
+
+          if (error) {
+            console.error('Failed to update certificate via webhook:', error);
+            return NextResponse.json({ error: 'Database update failed' }, { status: 500 });
+          }
+
+          console.log(`Certificate ${certificateId} marked as paid via webhook backup for ${customerEmail}`);
         }
-
-        console.log(`Certificate ${certificateId} marked as paid for ${customerEmail}`);
         break;
       }
 

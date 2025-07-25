@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getStripe, getPricingForLocale } from "@/lib/stripe";
 import { createServerSupabaseClient } from "@/lib/supabase";
+import { getTranslations } from "next-intl/server";
 
 export async function GET(request: NextRequest) {
   try {
@@ -50,6 +51,18 @@ export async function GET(request: NextRequest) {
       return NextResponse.redirect(certificateUrl);
     }
 
+    // Get localized receipt messages
+    const stripeMessages = await getTranslations({ 
+      locale, 
+      namespace: 'stripe_receipt' 
+    });
+
+    // Build certificate URL for receipt
+    const certificateUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/certificate/${certificateId}?vin=${certificate.tesla_vin}`;
+    const successUrl = `${certificateUrl}&payment=success&session_id={CHECKOUT_SESSION_ID}`;
+    
+    console.log("Checkout URLs:", { certificateUrl, successUrl });
+
     // Create Stripe checkout session using the Price ID
     const stripe = getStripe();
     const session = await stripe.checkout.sessions.create({
@@ -61,12 +74,34 @@ export async function GET(request: NextRequest) {
         },
       ],
       mode: "payment",
-      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/certificate/${certificateId}?vin=${certificate.tesla_vin}&payment=success`,
-      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/certificate/${certificateId}?vin=${certificate.tesla_vin}&payment=cancelled`,
+      success_url: successUrl,
+      cancel_url: `${certificateUrl}&payment=cancelled`,
       customer_email: undefined, // Let customer enter their email
       metadata: {
         certificateId,
         locale,
+        vin: certificate.tesla_vin,
+      },
+      invoice_creation: {
+        enabled: true,
+        invoice_data: {
+          description: stripeMessages('description'),
+          custom_fields: [
+            {
+              name: stripeMessages('certificate_access'),
+              value: certificateUrl,
+            },
+            {
+              name: stripeMessages('vehicle'),
+              value: `${certificate.vehicle_model} (${certificate.vehicle_year})`,
+            },
+            {
+              name: stripeMessages('certificate_id'),
+              value: certificateId,
+            }
+          ],
+          footer: stripeMessages('footer'),
+        },
       },
     });
 
@@ -126,6 +161,18 @@ export async function POST(request: NextRequest) {
       });
     }
 
+    // Get localized receipt messages
+    const stripeMessages = await getTranslations({ 
+      locale, 
+      namespace: 'stripe_receipt' 
+    });
+
+    // Build certificate URL for receipt
+    const certificateUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/certificate/${certificateId}?vin=${certificate.tesla_vin}`;
+    const successUrl = `${certificateUrl}&payment=success&session_id={CHECKOUT_SESSION_ID}`;
+    
+    console.log("Checkout URLs:", { certificateUrl, successUrl });
+
     // Create Stripe checkout session using the Price ID
     const stripe = getStripe();
     const session = await stripe.checkout.sessions.create({
@@ -137,12 +184,34 @@ export async function POST(request: NextRequest) {
         },
       ],
       mode: "payment",
-      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/certificate/${certificateId}?vin=${certificate.tesla_vin}&payment=success`,
-      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/certificate/${certificateId}?vin=${certificate.tesla_vin}&payment=cancelled`,
+      success_url: successUrl,
+      cancel_url: `${certificateUrl}&payment=cancelled`,
       customer_email: undefined, // Let customer enter their email
       metadata: {
         certificateId,
         locale,
+        vin: certificate.tesla_vin,
+      },
+      invoice_creation: {
+        enabled: true,
+        invoice_data: {
+          description: stripeMessages('description'),
+          custom_fields: [
+            {
+              name: stripeMessages('certificate_access'),
+              value: certificateUrl,
+            },
+            {
+              name: stripeMessages('vehicle'),
+              value: `${certificate.vehicle_model} (${certificate.vehicle_year})`,
+            },
+            {
+              name: stripeMessages('certificate_id'),
+              value: certificateId,
+            }
+          ],
+          footer: stripeMessages('footer'),
+        },
       },
     });
 

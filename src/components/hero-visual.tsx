@@ -37,6 +37,7 @@ interface HeroVisualTranslations {
   scan_to_verify: string;
   verified_by: string;
   generated: string;
+  generated_date: string;
   valid_for_one_year: string;
 }
 
@@ -79,6 +80,7 @@ export function HeroVisual({ translations }: HeroVisualProps = {}) {
     scan_to_verify: "Scan to Verify",
     verified_by: "Verified by batterycert.com",
     generated: "Generated",
+    generated_date: "Jul 24, 2025",
     valid_for_one_year: "Valid for 3 months",
   };
 
@@ -373,7 +375,7 @@ export function HeroVisual({ translations }: HeroVisualProps = {}) {
               </div>
               <div className="flex items-center space-x-4">
                 <span>
-                  {text.generated}: {new Date().toLocaleDateString()}
+                  {text.generated}: {text.generated_date}
                 </span>
                 <span>•</span>
                 <span>{text.valid_for_one_year}</span>
