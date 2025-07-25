@@ -1782,7 +1782,7 @@ export async function POST(request: NextRequest) {
 
         // Only insert if it's a new certificate
         if (isNewCertificate) {
-          const { data: certificateData, error: dbError } = await supabase
+          const { error: dbError } = await supabase
             .from("certificates")
             .insert({
               certificate_id: certificateId,

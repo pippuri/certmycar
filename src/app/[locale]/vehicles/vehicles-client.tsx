@@ -227,7 +227,7 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
     };
 
     fetchVehicles();
-  }, []);
+  }, [mapTeslaVehicle]);
 
   const handleVehicleAndCheck = async (vehicleId: string) => {
     setSelectedVehicleId(vehicleId);

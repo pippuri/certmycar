@@ -45,21 +45,21 @@ export default async function TeslaCheckPage({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
+  const { locale: _locale } = await params;
 
   // Get region from locale parameter
-  const region = localeToRegion(locale);
+  const region = localeToRegion(_locale);
   const regionName = formatRegionName(region);
 
   // Get locale-aware links
-  const links = getLocaleLinks(locale);
+  const links = getLocaleLinks(_locale);
 
   return (
     <TeslaCheckPageClient
       region={region}
       regionName={regionName}
       links={links}
-      locale={locale}
+      locale={_locale}
     />
   );
 }

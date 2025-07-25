@@ -73,7 +73,7 @@ export default function TeslaCheckPageClient({
   const [canRetry, setCanRetry] = useState(false);
 
   // Helper function to determine if user should see miles (US, UK, AU) vs km (rest of world)
-  const usesMiles =
+  const _usesMiles =
     locale.startsWith("en-US") ||
     locale.startsWith("en-GB") ||
     locale.startsWith("en-AU");

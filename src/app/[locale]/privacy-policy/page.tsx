@@ -44,8 +44,8 @@ export default async function PrivacyPolicyPage({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
-  const links = getLocaleLinks(locale);
+  const { locale: _locale } = await params;
+  const links = getLocaleLinks(_locale);
 
   return (
     <div className="bg-gradient-to-br from-slate-50 to-blue-50">

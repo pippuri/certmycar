@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import {
   Zap,
   Shield,
-  Lock,
   CheckCircle,
   ArrowRight,
   AlertTriangle,
@@ -12,7 +11,6 @@ import {
   Battery,
 } from "lucide-react";
 import { Logo } from "@/components/logo";
-import { TeslaStatsVisual } from "@/components/tesla-stats-visual";
 import { HeroVisual } from "@/components/hero-visual";
 import { GDPRBanner } from "@/components/gdpr-banner";
 import { getLocaleLinks } from "@/lib/locale-links";
@@ -87,8 +85,8 @@ export default async function HomePage({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
-  const links = getLocaleLinks(locale);
+  const { locale: _locale } = await params;
+  const links = getLocaleLinks(_locale);
   return (
     <>
       {/* Structured Data for Homepage */}
@@ -170,7 +168,7 @@ export default async function HomePage({
                 asChild
               >
                 <Link
-                  href={`/${locale}/certificate/CMB-2025-DEF456JKL?vin=5YJYGDEE2BF000001`}
+                  href={`/${_locale}/certificate/CMB-2025-DEF456JKL?vin=5YJYGDEE2BF000001`}
                 >
                   View Sample Certificate
                 </Link>
@@ -419,7 +417,7 @@ export default async function HomePage({
       </div>
 
       {/* GDPR Banner for EU users */}
-      <GDPRBanner locale={locale} />
+      <GDPRBanner locale={_locale} />
     </>
   );
 }
