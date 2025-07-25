@@ -32,8 +32,8 @@ interface GDPRConsent {
   timestamp: number;
 }
 
-// EU country codes that require GDPR compliance
-const EU_COUNTRIES = [
+// Country codes that require GDPR compliance (EU + UK GDPR)
+const GDPR_COUNTRIES = [
   "AT",
   "BE",
   "BG",
@@ -45,6 +45,7 @@ const EU_COUNTRIES = [
   "FI",
   "FR",
   "DE",
+  "GB", // UK GDPR (post-Brexit)
   "GR",
   "HU",
   "IE",
@@ -63,11 +64,11 @@ const EU_COUNTRIES = [
   "SE",
 ];
 
-// Check if locale indicates EU region
-function isEULocale(locale: string): boolean {
+// Check if locale requires GDPR compliance (EU + UK)
+function requiresGDPR(locale: string): boolean {
   // Extract country code from locale (e.g., "en-GB" -> "GB", "de-DE" -> "DE")
   const countryCode = locale.split("-")[1];
-  return countryCode ? EU_COUNTRIES.includes(countryCode) : false;
+  return countryCode ? GDPR_COUNTRIES.includes(countryCode) : false;
 }
 
 export function GDPRBanner({ locale, translations }: GDPRBannerProps) {
@@ -93,8 +94,8 @@ export function GDPRBanner({ locale, translations }: GDPRBannerProps) {
   };
 
   useEffect(() => {
-    // Only show for EU locales
-    if (!isEULocale(locale)) {
+    // Only show for locales that require GDPR compliance (EU + UK)
+    if (!requiresGDPR(locale)) {
       return;
     }
 

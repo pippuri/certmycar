@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getStripe, getPricingForLocale } from "@/lib/stripe";
 import { createServerSupabaseClient } from "@/lib/supabase";
 import { getTranslations } from "next-intl/server";
+import { serverAnalytics } from "@/lib/analytics-server";
 
 export async function GET(request: NextRequest) {
   try {
@@ -104,6 +105,14 @@ export async function GET(request: NextRequest) {
         },
       },
     });
+
+    // Track checkout session creation
+    serverAnalytics.trackCheckoutSessionCreated(
+      certificateId,
+      session.id,
+      certificate.vehicle_model || 'Unknown',
+      pricing.amount / 100 // Convert cents to dollars
+    );
 
     // Redirect to Stripe checkout
     return NextResponse.redirect(session.url!);
@@ -214,6 +223,14 @@ export async function POST(request: NextRequest) {
         },
       },
     });
+
+    // Track checkout session creation
+    serverAnalytics.trackCheckoutSessionCreated(
+      certificateId,
+      session.id,
+      certificate.vehicle_model || 'Unknown',
+      pricing.amount / 100 // Convert cents to dollars
+    );
 
     return NextResponse.json({
       sessionId: session.id,

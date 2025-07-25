@@ -13,6 +13,8 @@ import {
 import { Logo } from "@/components/logo";
 import { HeroVisual } from "@/components/hero-visual";
 import { GDPRBanner } from "@/components/gdpr-banner";
+import { AnalyticsTracker } from "@/components/analytics-tracker";
+import { HeroCTAButton, SampleCertificateButton, AnalyticsButton } from "@/components/analytics-button";
 import { getLocaleLinks } from "@/lib/locale-links";
 import { getTranslations } from 'next-intl/server';
 import type { Metadata } from "next";
@@ -91,6 +93,7 @@ export default async function HomePage({
   const gdprTranslations = await getTranslations({ locale, namespace: 'gdpr' });
   return (
     <>
+      <AnalyticsTracker page="homepage" locale={locale} />
       {/* Structured Data for Homepage */}
       <script
         type="application/ld+json"
@@ -190,24 +193,15 @@ export default async function HomePage({
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <Button size="lg" className="text-lg px-8 py-6" asChild>
-                <Link href={links.check}>
-                  {t('hero.cta_primary')}
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
+              <HeroCTAButton href={links.check}>
+                {t('hero.cta_primary')}
+              </HeroCTAButton>
+              <SampleCertificateButton 
+                href={`/${locale}/certificate/CMB-2025-DEF456JKL?vin=5YJYGDEE2BF000001`}
                 className="text-lg px-8 py-6 bg-transparent"
-                asChild
               >
-                <Link
-                  href={`/${locale}/certificate/CMB-2025-DEF456JKL?vin=5YJYGDEE2BF000001`}
-                >
-                  {t('hero.cta_secondary')}
-                </Link>
-              </Button>
+                {t('hero.cta_secondary')}
+              </SampleCertificateButton>
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-gray-600 mb-8">
@@ -407,14 +401,16 @@ export default async function HomePage({
 
             {/* Primary CTA Button */}
             <div className="mb-6">
-              <Link
-                href="/check"
+              <AnalyticsButton
+                href={links.check}
+                eventName="cta_section_click"
+                eventData={{ section: 'bottom_cta' }}
                 className="inline-flex items-center px-10 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xl rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
               >
                 <Battery className="w-6 h-6 mr-3" />
                 {t('cta_section.button_text')}
                 <ArrowRight className="w-5 h-5 ml-3" />
-              </Link>
+              </AnalyticsButton>
             </div>
 
             {/* Supporting text */}

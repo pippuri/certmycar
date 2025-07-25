@@ -10,6 +10,7 @@ import { CertificateDisplay } from "@/components/certificate-display";
 import { CertificatePayment } from "@/components/certificate-payment";
 import CertificatePageClient from "./certificate-page-client";
 import { getTranslations } from "next-intl/server";
+import { serverAnalytics } from "@/lib/analytics-server";
 import type { Metadata } from "next";
 
 export async function generateMetadata({
@@ -143,6 +144,18 @@ export default async function CertificatePage({
         session.metadata?.certificateId === id
       ) {
         console.log("Payment verified, updating certificate as paid");
+        
+        // Track payment success
+        serverAnalytics.trackPaymentSuccess(
+          id,
+          session.id,
+          'Unknown', // We'll get the vehicle model after DB update
+          (session.amount_total || 0) / 100 // Convert cents to dollars
+        );
+        
+        // Track payment verification
+        serverAnalytics.trackPaymentVerification(id, session.id, 'immediate');
+        
         // Update certificate as paid using service role (bypasses RLS)
         const serviceSupabase = createServiceRoleSupabaseClient();
         const { error: updateError } = await serviceSupabase
@@ -159,6 +172,10 @@ export default async function CertificatePage({
           console.error("Database update error:", updateError);
         } else {
           console.log("Certificate updated successfully, preparing redirect");
+          
+          // Track certificate unlock
+          serverAnalytics.trackCertificateUnlock(id, 'Unknown');
+          
           shouldRedirectAfterPayment = true;
         }
       } else {
@@ -457,6 +474,11 @@ export default async function CertificatePage({
   );
 
   return (
-    <CertificatePageClient>{certificatePageContent}</CertificatePageClient>
+    <CertificatePageClient
+      certificateId={id}
+      isPaid={certificate?.is_paid || false}
+    >
+      {certificatePageContent}
+    </CertificatePageClient>
   );
 }

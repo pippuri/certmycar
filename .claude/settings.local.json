@@ -14,7 +14,8 @@
       "Bash(npm view:*)",
       "Bash(pkill:*)",
       "Bash(true)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(gh repo view:*)"
     ],
     "deny": []
   }

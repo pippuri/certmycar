@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Share2, Download, Check, Loader2 } from "lucide-react";
+import { analytics } from "@/lib/analytics";
 
 interface CertificateActionsTranslations {
   share: string;
@@ -40,6 +41,8 @@ export function ShareButton({ certificateId, translations }: ShareButtonProps) {
     setIsSharing(true);
 
     try {
+      let shareMethod = 'clipboard';
+      
       if (navigator.share) {
         // Use native sharing if available
         await navigator.share({
@@ -48,11 +51,20 @@ export function ShareButton({ certificateId, translations }: ShareButtonProps) {
           url: window.location.href,
         });
         setIsShared(true);
+        shareMethod = 'native_share';
       } else {
         // Fallback to clipboard
         await navigator.clipboard.writeText(window.location.href);
         setIsShared(true);
         setTimeout(() => setIsShared(false), 2000);
+        shareMethod = 'clipboard';
+      }
+      
+      // Track certificate share - don't break sharing if analytics fails
+      try {
+        analytics.trackCertificateShare(certificateId, shareMethod);
+      } catch (analyticsError) {
+        console.warn('Certificate share tracking failed:', analyticsError);
       }
     } catch (error) {
       console.error("Share error:", error);
@@ -136,6 +148,13 @@ export function DownloadButton({
       // Cleanup
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
+      
+      // Track certificate download - don't break download if analytics fails
+      try {
+        analytics.trackCertificateDownload(certificateId, 'Unknown'); // Vehicle model would need to be passed as prop
+      } catch (analyticsError) {
+        console.warn('Certificate download tracking failed:', analyticsError);
+      }
     } catch (error) {
       console.error("Download error:", error);
       alert(

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { getTeslaApiUrl } from "@/lib/tesla-regions";
+import { analytics } from "@/lib/analytics";
 
 interface BatteryHealthResult {
   success: boolean;
@@ -213,6 +214,14 @@ export default function TeslaCheckPageClient({
 
   const handleTeslaOAuth = async () => {
     console.log("Tesla OAuth button clicked");
+    
+    // Track Tesla connection attempt - don't break auth if analytics fails
+    try {
+      analytics.trackTeslaConnectionAttempt(region);
+    } catch (analyticsError) {
+      console.warn('Tesla connection attempt tracking failed:', analyticsError);
+    }
+    
     setIsLoading(true);
     setError("");
 
@@ -296,6 +305,26 @@ export default function TeslaCheckPageClient({
       // Handle successful OAuth with Tesla data
       try {
         const teslaData = JSON.parse(decodeURIComponent(data));
+        
+        // Track Tesla connection success - don't break results if analytics fails
+        try {
+          const vehicleCount = teslaData.vehicle ? 1 : 0;
+          analytics.trackTeslaConnectionSuccess(region, vehicleCount);
+          
+          // Track battery analysis completion
+          if (teslaData.battery_health) {
+            analytics.trackBatteryAnalysisComplete(
+              teslaData.vehicle?.model || 'Unknown',
+              teslaData.battery_health.degradation_percentage,
+              teslaData.battery_health.health_percentage > 90 ? 'excellent' : 
+              teslaData.battery_health.health_percentage > 80 ? 'good' : 'fair',
+              teslaData.battery_health.battery_chemistry || 'Unknown'
+            );
+          }
+        } catch (analyticsError) {
+          console.warn('Tesla success/analysis tracking failed:', analyticsError);
+        }
+        
         setResult(teslaData);
         setIsLoading(false);
         setCanRetry(false); // Clear retry state on success
@@ -307,6 +336,14 @@ export default function TeslaCheckPageClient({
         );
       } catch (parseError) {
         console.error("Failed to parse Tesla data:", parseError);
+        
+        // Track Tesla auth parsing error - don't break error handling if analytics fails
+        try {
+          analytics.trackTeslaConnectionError("Failed to parse Tesla data", region);
+        } catch (analyticsError) {
+          console.warn('Tesla error tracking failed:', analyticsError);
+        }
+        
         setError("Failed to process Tesla authentication results");
         setIsLoading(false);
       }
@@ -457,6 +494,14 @@ export default function TeslaCheckPageClient({
                   >
                     <Link
                       href={`/api/checkout?certificate_id=${result.certificate_id}&vin=${result.vehicle.vin}&locale=${locale}`}
+                      onClick={() => {
+                        // Track certificate purchase intent
+                        analytics.trackCertificatePurchaseIntent(
+                          result.certificate_id,
+                          result.vehicle.model,
+                          10.00 // Price in USD
+                        );
+                      }}
                     >
                       {t.certificate_promo.purchase_button}
                       <ArrowRight className="ml-2 h-5 w-5" />

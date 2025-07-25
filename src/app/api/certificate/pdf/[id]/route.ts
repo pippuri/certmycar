@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { generateCertificatePDF } from "@/lib/pdf-generator";
+import { serverAnalytics } from "@/lib/analytics-server";
 
 export async function GET(
   request: NextRequest,
@@ -22,6 +23,9 @@ export async function GET(
 
     // Generate PDF using Playwright (includes VIN validation)
     const pdfBuffer = await generateCertificatePDF(id, vin);
+
+    // Track certificate PDF generation
+    serverAnalytics.trackCertificatePDFGenerated(id, 'Unknown'); // Vehicle model would need to be fetched from DB
 
     // Return PDF as response
     return new NextResponse(pdfBuffer, {
