@@ -541,14 +541,14 @@ const TESLA_CLIENT_SECRET = process.env.TESLA_CLIENT_SECRET;
 
 // Dynamic redirect URI based on current host (handles Netlify branch deploys)
 function getTeslaRedirectUri(request: NextRequest): string {
-  const host = request.headers.get('host');
-  const protocol = request.headers.get('x-forwarded-proto') || 'https';
-  
+  const host = request.headers.get("host");
+  const protocol = request.headers.get("x-forwarded-proto") || "https";
+
   // For development
-  if (host?.includes('localhost')) {
+  if (host?.includes("localhost")) {
     return `http://${host}/auth/callback`;
   }
-  
+
   // For production (handles both main domain and branch subdomains)
   return `${protocol}://${host}/auth/callback`;
 }
@@ -1207,7 +1207,7 @@ class TeslaApiClient {
           grant_type: "client_credentials",
           client_id: TESLA_CLIENT_ID,
           client_secret: TESLA_CLIENT_SECRET,
-          scope: "openid email offline_access",
+          scope: "openid vehicle_device_data",
         }),
       });
 
@@ -1599,15 +1599,14 @@ export async function POST(request: NextRequest) {
         nonce: crypto.randomUUID(),
       };
       const state = Buffer.from(JSON.stringify(stateData)).toString("base64");
-      const scopes =
-        "openid vehicle_device_data vehicle_cmds vehicle_charging_cmds energy_cmds";
+      const scopes = "openid vehicle_device_data";
 
       console.log("=== TESLA OAUTH DEBUG ===");
       console.log("Requesting scopes:", scopes);
       console.log("========================");
 
       const redirectUri = getTeslaRedirectUri(request);
-      
+
       const authUrl = new URL("https://auth.tesla.com/oauth2/v3/authorize");
       authUrl.searchParams.set("client_id", TESLA_CLIENT_ID);
       authUrl.searchParams.set("redirect_uri", redirectUri);
