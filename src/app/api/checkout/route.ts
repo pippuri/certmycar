@@ -48,7 +48,11 @@ export async function GET(request: NextRequest) {
 
     if (certificate.is_paid) {
       // Redirect to the existing certificate instead of showing an error
-      const certificateUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/certificate/${certificateId}?vin=${certificate.tesla_vin}`;
+      // Build certificate URL using current request host
+    const host = request.headers.get('host');
+    const protocol = request.headers.get('x-forwarded-proto') || 'https';
+    const baseUrl = `${protocol}://${host}`;
+    const certificateUrl = `${baseUrl}/${locale}/certificate/${certificateId}?vin=${certificate.tesla_vin}`;
       return NextResponse.redirect(certificateUrl);
     }
 
@@ -59,10 +63,14 @@ export async function GET(request: NextRequest) {
     });
 
     // Build certificate URL for receipt
-    const certificateUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/certificate/${certificateId}?vin=${certificate.tesla_vin}`;
+    // Build certificate URL using current request host
+    const host = request.headers.get('host');
+    const protocol = request.headers.get('x-forwarded-proto') || 'https';
+    const baseUrl = `${protocol}://${host}`;
+    const certificateUrl = `${baseUrl}/${locale}/certificate/${certificateId}?vin=${certificate.tesla_vin}`;
     const successUrl = `${certificateUrl}&payment=success&session_id={CHECKOUT_SESSION_ID}`;
     
-    console.log("Checkout URLs:", { certificateUrl, successUrl });
+    console.log("Checkout URLs:", { baseUrl, certificateUrl, successUrl });
 
     // Create Stripe checkout session using the Price ID
     const stripe = getStripe();
@@ -163,7 +171,11 @@ export async function POST(request: NextRequest) {
 
     if (certificate.is_paid) {
       // Return the certificate URL instead of an error
-      const certificateUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/certificate/${certificateId}?vin=${certificate.tesla_vin}`;
+      // Build certificate URL using current request host
+    const host = request.headers.get('host');
+    const protocol = request.headers.get('x-forwarded-proto') || 'https';
+    const baseUrl = `${protocol}://${host}`;
+    const certificateUrl = `${baseUrl}/${locale}/certificate/${certificateId}?vin=${certificate.tesla_vin}`;
       return NextResponse.json({
         url: certificateUrl,
         message: "Certificate already exists",
@@ -177,10 +189,14 @@ export async function POST(request: NextRequest) {
     });
 
     // Build certificate URL for receipt
-    const certificateUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${locale}/certificate/${certificateId}?vin=${certificate.tesla_vin}`;
+    // Build certificate URL using current request host
+    const host = request.headers.get('host');
+    const protocol = request.headers.get('x-forwarded-proto') || 'https';
+    const baseUrl = `${protocol}://${host}`;
+    const certificateUrl = `${baseUrl}/${locale}/certificate/${certificateId}?vin=${certificate.tesla_vin}`;
     const successUrl = `${certificateUrl}&payment=success&session_id={CHECKOUT_SESSION_ID}`;
     
-    console.log("Checkout URLs:", { certificateUrl, successUrl });
+    console.log("Checkout URLs:", { baseUrl, certificateUrl, successUrl });
 
     // Create Stripe checkout session using the Price ID
     const stripe = getStripe();
