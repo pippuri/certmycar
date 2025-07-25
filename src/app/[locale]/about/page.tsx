@@ -86,6 +86,12 @@ export default async function AboutPage({
             vehicle market. We believe that buying or selling an EV should be a
             clear, confident process for everyone involved.
           </p>
+          <p className="text-xl text-gray-600 mb-12">
+            You can reach us at{" "}
+            <a href="mailto:batterycert@tidycalls.com">
+              batterycert@tidycalls.com
+            </a>
+          </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto mb-20">
@@ -150,7 +156,8 @@ export default async function AboutPage({
       <footer className="border-t bg-white">
         <div className="container mx-auto px-4 py-6 text-center text-gray-600">
           &copy; {new Date().getFullYear()} batterycert.com, a TidyCalls LTD.
-          company. All rights reserved.
+          company. 124 City Road, EC1V 2NX, London. Company number 16329940 All
+          rights reserved.
         </div>
       </footer>
     </div>

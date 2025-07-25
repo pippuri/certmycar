@@ -93,9 +93,15 @@ function calculateBenchmarkStats(
 function BatteryDegradationChart({
   vehicleYear,
   currentDegradation,
+  translations,
 }: {
   vehicleYear: number;
   currentDegradation: number;
+  translations: {
+    title: string;
+    this_vehicle: string;
+    tesla_average: string;
+  };
 }) {
   const [hoveredPoint, setHoveredPoint] = useState<{
     x: number;
@@ -189,19 +195,19 @@ function BatteryDegradationChart({
     <div className="w-full bg-white rounded-lg border p-6">
       <div className="mb-4">
         <h4 className="font-semibold text-gray-900 mb-2">
-          Battery Health Over Time
+          {translations.title}
         </h4>
         <div className="flex items-center gap-4 text-sm">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 bg-blue-500 rounded"></div>
-            <span className="text-gray-600">This Vehicle</span>
+            <span className="text-gray-600">{translations.this_vehicle}</span>
           </div>
           <div className="flex items-center gap-2">
             <div
               className="w-3 h-1 bg-gray-400 rounded"
               style={{ borderTop: "2px dashed" }}
             ></div>
-            <span className="text-gray-600">Tesla Average</span>
+            <span className="text-gray-600">{translations.tesla_average}</span>
           </div>
         </div>
       </div>
@@ -406,14 +412,117 @@ interface CertificateDisplayProps {
   certificate: CertificateData;
   locale: string;
   isPrintMode?: boolean;
+  translations?: {
+    chart: {
+      title: string;
+      this_vehicle: string;
+      tesla_average: string;
+    };
+    title: string;
+    certificate_id: string;
+    health_score: string;
+    scan_to_verify: string;
+    vehicle_information: string;
+    model: string;
+    year: string;
+    assessment_details: string;
+    test_date: string;
+    mileage: string;
+    software_version: string;
+    not_available: string;
+    valid_until: string;
+    battery_performance: string;
+    better_than_percentage: string;
+    degradation_comparison: string;
+    detailed_analysis: string;
+    battery_specifications: string;
+    original_capacity: string;
+    current_capacity: string;
+    capacity_loss: string;
+    methodology: string;
+    performance_indicators: string;
+    battery_chemistry: string;
+    battery_supplier: string;
+    confidence_level: string;
+    overall_condition: string;
+    assessment_summary: string;
+    summary_excellent: string;
+    summary_good: string;
+    summary_fair: string;
+    conditions: {
+      excellent: string;
+      good: string;
+      average: string;
+      fair: string;
+      poor: string;
+    };
+    units: {
+      kwh: string;
+      miles: string;
+      km: string;
+    };
+  };
 }
 
 export function CertificateDisplay({
   certificate,
   locale,
   isPrintMode = false,
+  translations,
 }: CertificateDisplayProps) {
   const batteryHealth = certificate.battery_health_data;
+
+  // Fallback translations for backward compatibility
+  const t = translations || {
+    chart: {
+      title: "Battery Health Over Time",
+      this_vehicle: "This Vehicle",
+      tesla_average: "Tesla Average"
+    },
+    title: "Battery Health Report from Tesla Data",
+    certificate_id: "Certificate ID",
+    health_score: "Health Score",
+    scan_to_verify: "Scan to Verify",
+    vehicle_information: "Vehicle Information",
+    model: "Model",
+    year: "Year",
+    assessment_details: "Assessment Details",
+    test_date: "Test Date",
+    mileage: "Mileage",
+    software_version: "Software Version",
+    not_available: "Not Available",
+    valid_until: "Valid Until",
+    battery_performance: "Battery Performance Metrics",
+    better_than_percentage: "Better than {percentage}% of similar vehicles",
+    degradation_comparison: "Degradation Comparison vs Average",
+    detailed_analysis: "Detailed Analysis",
+    battery_specifications: "Battery Specifications",
+    original_capacity: "Original Capacity",
+    current_capacity: "Current Capacity",
+    capacity_loss: "Capacity Loss",
+    methodology: "Methodology",
+    performance_indicators: "Performance Indicators",
+    battery_chemistry: "Battery Chemistry",
+    battery_supplier: "Battery Supplier",
+    confidence_level: "Confidence Level",
+    overall_condition: "Overall Condition",
+    assessment_summary: "Assessment Summary",
+    summary_excellent: "This {vehicleName} demonstrates excellent battery health with {degradation}% degradation. The battery is performing exceptionally well for its usage. Current capacity of {currentCapacity} kWh from an original {originalCapacity} kWh. This vehicle represents an excellent purchase opportunity with minimal battery-related risks.",
+    summary_good: "This {vehicleName} demonstrates good battery health with {degradation}% degradation. The battery is performing well for its usage. Current capacity of {currentCapacity} kWh from an original {originalCapacity} kWh. This vehicle represents a good purchase opportunity with normal wear patterns.",
+    summary_fair: "This {vehicleName} demonstrates fair battery health with {degradation}% degradation. The battery is performing adequately for its usage. Current capacity of {currentCapacity} kWh from an original {originalCapacity} kWh. This vehicle shows higher than average degradation and should be considered carefully.",
+    conditions: {
+      excellent: "Excellent",
+      good: "Good",
+      average: "Average",
+      fair: "Fair",
+      poor: "Poor"
+    },
+    units: {
+      kwh: "kWh",
+      miles: "miles",
+      km: "km"
+    }
+  };
 
   // Calculate vehicle age and benchmark stats
   const currentYear = new Date().getFullYear();
@@ -430,9 +539,12 @@ export function CertificateDisplay({
       certificate.battery_data?.est_battery_range ||
       0;
     const currentCharge = certificate.battery_data?.battery_level || 0;
-    return currentCharge > 0
+    const rangeInMiles = currentCharge > 0
       ? Math.round((currentRange / currentCharge) * 100)
       : 0;
+    
+    // Convert to kilometers if not using miles
+    return usesMiles ? rangeInMiles : Math.round(rangeInMiles * 1.609);
   };
 
   // Helper function to determine if user should see miles vs km
@@ -486,10 +598,10 @@ export function CertificateDisplay({
               <CardTitle
                 className={`${isPrintMode ? "text-xl mb-1" : "text-2xl mb-2"}`}
               >
-                Battery Health Report from Tesla Data
+                {t.title}
               </CardTitle>
               <p className={`text-blue-100 ${isPrintMode ? "text-sm" : ""}`}>
-                Certificate ID: {certificate.certificate_id}
+                {t.certificate_id}: {certificate.certificate_id}
               </p>
             </div>
 
@@ -505,7 +617,7 @@ export function CertificateDisplay({
                   {Math.round(100 - batteryHealth.degradation_percentage)}%
                 </div>
                 <p className={`text-blue-100 ${isPrintMode ? "text-sm" : ""}`}>
-                  Health Score
+                  {t.health_score}
                 </p>
               </div>
 
@@ -525,7 +637,7 @@ export function CertificateDisplay({
                     isPrintMode ? "text-xs" : "text-xs"
                   }`}
                 >
-                  Scan to Verify
+                  {t.scan_to_verify}
                 </p>
               </div>
             </div>
@@ -548,17 +660,17 @@ export function CertificateDisplay({
                 <Car
                   className={`${isPrintMode ? "h-4 w-4 mr-1" : "h-5 w-5 mr-2"}`}
                 />
-                Vehicle Information
+{t.vehicle_information}
               </h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Model</span>
+                  <span className="text-gray-600">{t.model}</span>
                   <span className="font-medium">
                     {certificate.vehicle_name}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Year</span>
+                  <span className="text-gray-600">{t.year}</span>
                   <span className="font-medium">
                     {certificate.vehicle_year}
                   </span>
@@ -581,7 +693,7 @@ export function CertificateDisplay({
                 <Calendar
                   className={`${isPrintMode ? "h-4 w-4 mr-1" : "h-5 w-5 mr-2"}`}
                 />
-                Assessment Details
+{t.assessment_details}
               </h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
@@ -595,11 +707,11 @@ export function CertificateDisplay({
                       ? usesMiles
                         ? `${Math.round(
                             certificate.odometer_miles
-                          ).toLocaleString()} miles`
+                          ).toLocaleString()} ${t.units.miles}`
                         : `${Math.round(
                             certificate.odometer_miles * 1.609
-                          ).toLocaleString()} km`
-                      : "Not Available"}
+                          ).toLocaleString()} ${t.units.km}`
+                      : t.not_available}
                   </span>
                 </div>
                 <div className="flex justify-between">
@@ -620,7 +732,7 @@ export function CertificateDisplay({
           <div className="mb-8 print:mb-6">
             <h3 className="text-lg font-semibold mb-4 print:mb-3 flex items-center print:text-base">
               <Zap className="h-5 w-5 mr-2 print:h-4 print:w-4" />
-              Battery Performance Metrics
+{t.battery_performance}
             </h3>
 
             <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-6 print:gap-2">
@@ -659,7 +771,7 @@ export function CertificateDisplay({
                     {benchmarkStats.condition}
                   </p>
                   <p className="text-xs text-gray-600 mt-1 print:mt-0 print:text-xs">
-                    Better than {benchmarkStats.percentileBetter}%
+                    {t.better_than_percentage.replace('{percentage}', benchmarkStats.percentileBetter.toString())}
                   </p>
                 </CardContent>
               </Card>
@@ -687,7 +799,7 @@ export function CertificateDisplay({
                     Full Charge Range
                   </p>
                   <p className="text-xs sm:text-sm text-gray-600 mt-0 sm:mt-1 print:text-xs print:mt-0">
-                    {usesMiles ? "miles" : "km"}
+                    {usesMiles ? t.units.miles : t.units.km}
                   </p>
                 </CardContent>
               </Card>
@@ -711,8 +823,7 @@ export function CertificateDisplay({
                     : "bg-orange-100 text-orange-800"
                 }`}
               >
-                Better than {benchmarkStats.percentileBetter}% of similar
-                vehicles
+{t.better_than_percentage.replace('{percentage}', benchmarkStats.percentileBetter.toString())}
               </div>
             </div>
 
@@ -720,6 +831,7 @@ export function CertificateDisplay({
               <BatteryDegradationChart
                 vehicleYear={certificate.vehicle_year}
                 currentDegradation={batteryHealth.degradation_percentage}
+                translations={t.chart}
               />
             </div>
           </div>
@@ -878,28 +990,15 @@ export function CertificateDisplay({
                   : "text-red-700"
               }`}
             >
-              This {certificate.vehicle_name} demonstrates{" "}
-              {batteryHealth.degradation_percentage < 10
-                ? "excellent"
+              {(batteryHealth.degradation_percentage < 10
+                ? t.summary_excellent
                 : batteryHealth.degradation_percentage < 15
-                ? "good"
-                : "fair"}{" "}
-              battery health with{" "}
-              {Math.round(batteryHealth.degradation_percentage * 10) / 10}%
-              degradation. The battery is performing{" "}
-              {batteryHealth.degradation_percentage < 10
-                ? "exceptionally well"
-                : batteryHealth.degradation_percentage < 15
-                ? "well"
-                : "adequately"}{" "}
-              for its usage. Current capacity of{" "}
-              {Math.round(batteryHealth.current_capacity_kwh * 10) / 10} kWh
-              from an original {batteryHealth.original_capacity_kwh} kWh.
-              {batteryHealth.degradation_percentage < 10
-                ? " This vehicle represents an excellent purchase opportunity with minimal battery-related risks."
-                : batteryHealth.degradation_percentage < 15
-                ? " This vehicle represents a good purchase opportunity with normal wear patterns."
-                : " This vehicle shows higher than average degradation and should be considered carefully."}
+                ? t.summary_good
+                : t.summary_fair)
+                .replace('{vehicleName}', certificate.vehicle_name)
+                .replace('{degradation}', (Math.round(batteryHealth.degradation_percentage * 10) / 10).toString())
+                .replace('{currentCapacity}', (Math.round(batteryHealth.current_capacity_kwh * 10) / 10).toString())
+                .replace('{originalCapacity}', batteryHealth.original_capacity_kwh.toString())}
             </p>
           </div>
         </CardContent>

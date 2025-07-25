@@ -6,9 +6,9 @@ import { Logo } from "@/components/logo";
 import { getLocaleLinks } from "@/lib/locale-links";
 import { createServerSupabaseClient } from "@/lib/supabase";
 import { ShareButton, DownloadButton } from "@/components/certificate-actions";
-import { EmailCapture } from "@/components/email-capture";
 import { CertificateDisplay } from "@/components/certificate-display";
 import { CertificatePayment } from "@/components/certificate-payment";
+import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 
 export async function generateMetadata({
@@ -20,6 +20,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, id } = await params;
   const { vin } = await searchParams;
+  const t = await getTranslations({
+    locale,
+    namespace: "certificate_page.meta",
+  });
 
   // All certificates including demo ones are now stored in the database
   const supabase = await createServerSupabaseClient();
@@ -31,9 +35,8 @@ export async function generateMetadata({
 
   if (!certificate) {
     return {
-      title: "Certificate Not Found - batterycert.com",
-      description:
-        "The requested Tesla battery certificate could not be found.",
+      title: t("not_found_title"),
+      description: t("not_found_description"),
       robots: {
         index: false,
         follow: false,
@@ -41,49 +44,15 @@ export async function generateMetadata({
     };
   }
 
-  return {
-    title: `${certificate.vehicle_name} - Tesla Battery Certificate - batterycert.com`,
-    description: `View the Tesla battery health certificate for ${certificate.vehicle_name} with detailed degradation analysis, capacity data, and verification QR code.`,
-    keywords: [
-      "Tesla battery certificate",
-      "battery health report",
-      "battery degradation certificate",
-      "Tesla battery verification",
-    ],
-    openGraph: {
-      title: `${certificate.vehicle_name} - Tesla Battery Certificate - batterycert.com`,
-      description: `View the Tesla battery health certificate for ${certificate.vehicle_name} with detailed degradation analysis, capacity data, and verification QR code.`,
-      type: "website",
-      url: `https://batterycert.com/${locale}/certificate/${id}${
-        vin ? "?vin=" + vin : ""
-      }`,
-      siteName: "batterycert.com",
-    },
-    robots: {
-      index: false, // Don't index individual certificates
-      follow: true,
-    },
-    alternates: {
-      canonical: `https://batterycert.com/${locale}/certificate/${id}${
-        vin ? "?vin=" + vin : ""
-      }`,
-    },
-  };
+  const keywordsArray = t("keywords").split(", ");
 
   return {
-    title: "Tesla Battery Certificate - batterycert.com",
-    description:
-      "View your Tesla battery health certificate with detailed degradation analysis, capacity data, and verification QR code.",
-    keywords: [
-      "Tesla battery certificate",
-      "battery health report",
-      "battery degradation certificate",
-      "Tesla battery verification",
-    ],
+    title: t("title", { vehicleName: certificate.vehicle_name }),
+    description: t("description", { vehicleName: certificate.vehicle_name }),
+    keywords: keywordsArray,
     openGraph: {
-      title: "Tesla Battery Certificate - batterycert.com",
-      description:
-        "View your Tesla battery health certificate with detailed degradation analysis, capacity data, and verification QR code.",
+      title: t("title", { vehicleName: certificate.vehicle_name }),
+      description: t("description", { vehicleName: certificate.vehicle_name }),
       type: "website",
       url: `https://batterycert.com/${locale}/certificate/${id}${
         vin ? "?vin=" + vin : ""
@@ -112,6 +81,15 @@ export default async function CertificatePage({
   const { locale, id } = await params;
   const { vin, pdf } = await searchParams;
   const links = getLocaleLinks(locale);
+  const t = await getTranslations({ locale, namespace: "certificate_page" });
+  const displayTranslations = await getTranslations({
+    locale,
+    namespace: "certificate_display",
+  });
+  const paymentTranslations = await getTranslations({
+    locale,
+    namespace: "certificate_payment",
+  });
 
   // All certificates including demo ones are now stored in the database
   let certificate;
@@ -158,14 +136,13 @@ export default async function CertificatePage({
                 <AlertTriangle className="h-8 w-8 text-red-600" />
               </div>
               <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                Certificate Not Found
+                {t("not_found.title")}
               </h2>
               <p className="text-gray-600 mb-6">
-                The certificate ID &quot;{id}&quot; was not found or may have
-                expired.
+                {t("not_found.description", { id })}
               </p>
               <Button asChild>
-                <Link href={links.check}>Check Your Tesla Battery</Link>
+                <Link href={links.check}>{t("not_found.button")}</Link>
               </Button>
             </CardContent>
           </Card>
@@ -215,6 +192,22 @@ export default async function CertificatePage({
                 certificateId={certificate.certificate_id}
                 locale={locale}
                 vehicleName={certificate.vehicle_name}
+                translations={{
+                  payment_required: paymentTranslations("payment_required"),
+                  certificate_description: paymentTranslations(
+                    "certificate_description"
+                  ),
+                  pricing_description: paymentTranslations(
+                    "pricing_description"
+                  ),
+                  pricing_loading: paymentTranslations("pricing_loading"),
+                  pricing_error: paymentTranslations("pricing_error"),
+                  certificate_price: paymentTranslations("certificate_price"),
+                  payment_button: paymentTranslations("payment_button"),
+                  payment_processing: paymentTranslations("payment_processing"),
+                  loading: paymentTranslations("loading"),
+                  secure_payment: paymentTranslations("secure_payment"),
+                }}
               />
             ) : (
               // Anti-Fraud Notice for paid certificates
@@ -225,14 +218,11 @@ export default async function CertificatePage({
                       <CheckCircle className="h-5 w-5 text-green-600" />
                     </div>
                     <h3 className="font-semibold text-green-800">
-                      Fraud Protection Verified
+                      {t("fraud_protection.title")}
                     </h3>
                   </div>
                   <p className="text-green-700 text-sm">
-                    This certificate is tamper-proof and directly connected to
-                    Tesla&apos;s official systems. The QR code below allows
-                    instant verification of authenticity. Buyers can trust this
-                    assessment is genuine and accurate.
+                    {t("fraud_protection.description")}
                   </p>
                 </CardContent>
               </Card>
@@ -246,6 +236,64 @@ export default async function CertificatePage({
             certificate={certificate}
             locale={locale}
             isPrintMode={isPdfMode}
+            translations={{
+              chart: {
+                title: displayTranslations("chart.title"),
+                this_vehicle: displayTranslations("chart.this_vehicle"),
+                tesla_average: displayTranslations("chart.tesla_average"),
+              },
+              title: displayTranslations("title"),
+              certificate_id: displayTranslations("certificate_id"),
+              health_score: displayTranslations("health_score"),
+              scan_to_verify: displayTranslations("scan_to_verify"),
+              vehicle_information: displayTranslations("vehicle_information"),
+              model: displayTranslations("model"),
+              year: displayTranslations("year"),
+              assessment_details: displayTranslations("assessment_details"),
+              test_date: displayTranslations("test_date"),
+              mileage: displayTranslations("mileage"),
+              software_version: displayTranslations("software_version"),
+              not_available: displayTranslations("not_available"),
+              valid_until: displayTranslations("valid_until"),
+              battery_performance: displayTranslations("battery_performance"),
+              better_than_percentage: displayTranslations.raw(
+                "better_than_percentage"
+              ),
+              degradation_comparison: displayTranslations(
+                "degradation_comparison"
+              ),
+              detailed_analysis: displayTranslations("detailed_analysis"),
+              battery_specifications: displayTranslations(
+                "battery_specifications"
+              ),
+              original_capacity: displayTranslations("original_capacity"),
+              current_capacity: displayTranslations("current_capacity"),
+              capacity_loss: displayTranslations("capacity_loss"),
+              methodology: displayTranslations("methodology"),
+              performance_indicators: displayTranslations(
+                "performance_indicators"
+              ),
+              battery_chemistry: displayTranslations("battery_chemistry"),
+              battery_supplier: displayTranslations("battery_supplier"),
+              confidence_level: displayTranslations("confidence_level"),
+              overall_condition: displayTranslations("overall_condition"),
+              assessment_summary: displayTranslations("assessment_summary"),
+              summary_excellent: displayTranslations.raw("summary_excellent"),
+              summary_good: displayTranslations.raw("summary_good"),
+              summary_fair: displayTranslations.raw("summary_fair"),
+              conditions: {
+                excellent: displayTranslations("conditions.excellent"),
+                good: displayTranslations("conditions.good"),
+                average: displayTranslations("conditions.average"),
+                fair: displayTranslations("conditions.fair"),
+                poor: displayTranslations("conditions.poor"),
+              },
+              units: {
+                kwh: displayTranslations("units.kwh"),
+                miles: displayTranslations("units.miles"),
+                km: displayTranslations("units.km"),
+              },
+            }}
           />
         ) : (
           <Card className="mb-8 bg-gray-100 border-gray-300">
@@ -254,29 +302,22 @@ export default async function CertificatePage({
                 <AlertTriangle className="h-8 w-8 text-gray-500" />
               </div>
               <h3 className="text-xl font-semibold text-gray-700 mb-2">
-                Certificate Locked
+                {t("certificate_locked.title")}
               </h3>
               <p className="text-gray-600 mb-4">
-                Complete your payment above to unlock the full verified
-                certificate with:
+                {t("certificate_locked.description")}
               </p>
               <ul className="text-sm text-gray-600 text-left max-w-md mx-auto space-y-2">
-                <li>• Detailed battery health analysis</li>
-                <li>• Official degradation percentage</li>
-                <li>• Verification QR code</li>
-                <li>• Downloadable PDF certificate</li>
-                <li>• Fraud protection guarantee</li>
+                <li>• {t("certificate_locked.features.detailed_analysis")}</li>
+                <li>
+                  • {t("certificate_locked.features.degradation_percentage")}
+                </li>
+                <li>• {t("certificate_locked.features.qr_code")}</li>
+                <li>• {t("certificate_locked.features.downloadable_pdf")}</li>
+                <li>• {t("certificate_locked.features.fraud_protection")}</li>
               </ul>
             </CardContent>
           </Card>
-        )}
-
-        {/* Email Capture - Only show for paid certificates and not in PDF mode */}
-        {certificate.is_paid && !isPdfMode && (
-          <EmailCapture
-            context="certificate_view"
-            certificateId={certificate.certificate_id}
-          />
         )}
 
         {/* Verification Footer - Hidden in PDF mode */}
@@ -285,16 +326,17 @@ export default async function CertificatePage({
             <CardContent className="p-6 text-center">
               <div className="flex items-center justify-center mb-4">
                 <CheckCircle className="h-6 w-6 text-green-600 mr-2" />
-                <span className="font-medium">Verified by batterycert.com</span>
+                <span className="font-medium">
+                  {t("verification_footer.verified_by")}
+                </span>
               </div>
               <p className="text-sm text-gray-600 mb-4">
-                This certificate can be verified using QR code or certificate
-                ID:
+                {t("verification_footer.verification_description")}{" "}
                 {certificate.certificate_id}
               </p>
               <div className="flex items-center justify-center space-x-4 text-xs text-gray-500">
                 <span>
-                  Generated:{" "}
+                  {t("verification_footer.generated")}{" "}
                   {new Date(certificate.created_at).toLocaleDateString(locale)}{" "}
                   {new Date(certificate.created_at).toLocaleTimeString(locale, {
                     hour: "2-digit",
@@ -302,10 +344,10 @@ export default async function CertificatePage({
                   })}
                 </span>
                 <span>•</span>
-                <span>Valid for 3 months</span>
+                <span>{t("verification_footer.valid_for")}</span>
                 <span>•</span>
                 <Link href="/verify" className="text-blue-600 hover:underline">
-                  Verify Certificate
+                  {t("verification_footer.verify_certificate")}
                 </Link>
               </div>
             </CardContent>

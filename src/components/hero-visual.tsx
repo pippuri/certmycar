@@ -7,9 +7,78 @@ import { Battery, Zap, CheckCircle, TrendingUp, Shield } from "lucide-react";
 import { QRCode } from "./qr-code";
 import { CertificateIcon } from "./certificate-icon";
 
-export function HeroVisual() {
+interface HeroVisualProps {
+  translations?: {
+    verified_certificate: string;
+    battery_health_report: string;
+    certificate_id: string;
+    certified: string;
+    verified: string;
+    health_score: string;
+    vehicle_information: string;
+    model: string;
+    tesla_model_y: string;
+    year: string;
+    vin: string;
+    battery_metrics: string;
+    current_capacity: string;
+    degradation: string;
+    est_range: string;
+    miles: string;
+    degradation_comparison: string;
+    better_than_percentage: string;
+    this_vehicle: string;
+    average: string;
+    verified_data: string;
+    direct_tesla_api: string;
+    tamper_proof: string;
+    qr_verification: string;
+    increase_value: string;
+    proven_health: string;
+    scan_to_verify: string;
+    verified_by: string;
+    generated: string;
+    valid_for_one_year: string;
+  };
+}
+
+export function HeroVisual({ translations }: HeroVisualProps = {}) {
   const [batteryLevel, setBatteryLevel] = useState(92);
   const [isAnimating, setIsAnimating] = useState(false);
+
+  // Fallback translations for backward compatibility
+  const t = translations || {
+    verified_certificate: "Verified Certificate",
+    battery_health_report: "Tesla Battery Health Report",
+    certificate_id: "Certificate ID",
+    certified: "CERTIFIED",
+    verified: "VERIFIED",
+    health_score: "Health Score",
+    vehicle_information: "Vehicle Information",
+    model: "Model",
+    tesla_model_y: "Tesla Model Y Long Range",
+    year: "Year",
+    vin: "VIN",
+    battery_metrics: "Battery Metrics",
+    current_capacity: "Current Capacity",
+    degradation: "Degradation",
+    est_range: "Est. Range",
+    miles: "miles",
+    degradation_comparison: "Degradation Comparison vs Average",
+    better_than_percentage: "Better than 78% of similar vehicles",
+    this_vehicle: "This Vehicle (92%)",
+    average: "Average (85%)",
+    verified_data: "Verified Data",
+    direct_tesla_api: "Direct Tesla API",
+    tamper_proof: "Tamper-Proof",
+    qr_verification: "QR Verification",
+    increase_value: "Increase Value",
+    proven_health: "Proven Health",
+    scan_to_verify: "Scan to Verify",
+    verified_by: "Verified by batterycert.com",
+    generated: "Generated",
+    valid_for_one_year: "Valid for 1 year"
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -33,12 +102,12 @@ export function HeroVisual() {
             <div>
               <Badge className="bg-emerald-100 text-emerald-800 hover:bg-emerald-100 mb-3">
                 <CertificateIcon className="w-4 h-4 mr-2 text-emerald-600" />
-                Verified Certificate
+                {t.verified_certificate}
               </Badge>
               <h2 className="text-2xl font-bold text-gray-900">
-                Tesla Battery Health Report
+                {t.battery_health_report}
               </h2>
-              <p className="text-gray-600">Certificate ID: CMB-2024-001234</p>
+              <p className="text-gray-600">{t.certificate_id}: CMB-2024-001234</p>
             </div>
 
             {/* Large Certificate Approval Stamp */}
@@ -48,10 +117,10 @@ export function HeroVisual() {
                   <div className="text-center">
                     <Shield className="h-12 w-12 text-white mx-auto mb-1" />
                     <div className="text-white font-bold text-xs">
-                      CERTIFIED
+                      {t.certified}
                     </div>
                     <div className="text-white text-xs opacity-90">
-                      VERIFIED
+                      {t.verified}
                     </div>
                   </div>
                 </div>
@@ -67,7 +136,7 @@ export function HeroVisual() {
               >
                 {batteryLevel}%
               </div>
-              <p className="text-gray-600">Health Score</p>
+              <p className="text-gray-600">{t.health_score}</p>
             </div>
           </div>
 
@@ -76,19 +145,19 @@ export function HeroVisual() {
             <div>
               <h3 className="font-semibold text-lg mb-4 flex items-center text-gray-800">
                 <Zap className="h-5 w-5 mr-2 text-slate-600" />
-                Vehicle Information
+                {t.vehicle_information}
               </h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Model</span>
-                  <span className="font-medium">Tesla Model Y Long Range</span>
+                  <span className="text-gray-600">{t.model}</span>
+                  <span className="font-medium">{t.tesla_model_y}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Year</span>
+                  <span className="text-gray-600">{t.year}</span>
                   <span className="font-medium">2022</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">VIN</span>
+                  <span className="text-gray-600">{t.vin}</span>
                   <span className="font-medium font-mono">5YJ3E***F123456</span>
                 </div>
               </div>
@@ -97,20 +166,20 @@ export function HeroVisual() {
             <div>
               <h3 className="font-semibold text-lg mb-4 flex items-center text-gray-800">
                 <Battery className="h-5 w-5 mr-2 text-emerald-600" />
-                Battery Metrics
+                {t.battery_metrics}
               </h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Current Capacity</span>
+                  <span className="text-gray-600">{t.current_capacity}</span>
                   <span className="font-medium">73.1 kWh</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Degradation</span>
+                  <span className="text-gray-600">{t.degradation}</span>
                   <span className="font-medium text-emerald-600">8%</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Est. Range</span>
-                  <span className="font-medium">326 miles</span>
+                  <span className="text-gray-600">{t.est_range}</span>
+                  <span className="font-medium">326 {t.miles}</span>
                 </div>
               </div>
             </div>
@@ -120,11 +189,11 @@ export function HeroVisual() {
           <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-lg text-gray-800">
-                Degradation Comparison vs Average
+                {t.degradation_comparison}
               </h3>
               <Badge className="bg-emerald-100 text-emerald-800 hover:bg-emerald-100">
                 <TrendingUp className="w-4 h-4 mr-1" />
-                Better than 78% of similar vehicles
+                {t.better_than_percentage}
               </Badge>
             </div>
 

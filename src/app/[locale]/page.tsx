@@ -14,6 +14,7 @@ import { Logo } from "@/components/logo";
 import { HeroVisual } from "@/components/hero-visual";
 import { GDPRBanner } from "@/components/gdpr-banner";
 import { getLocaleLinks } from "@/lib/locale-links";
+import { getTranslations } from 'next-intl/server';
 import type { Metadata } from "next";
 
 export async function generateMetadata({
@@ -22,12 +23,11 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const meta = await getTranslations({ locale, namespace: 'meta.homepage' });
 
   return {
-    title:
-      "Tesla Battery Health Check - Get Instant Results in 30 Seconds | batterycert.com",
-    description:
-      "Check your Tesla battery health instantly with our free assessment tool. Get verified battery degradation data, capacity analysis, and optional PDF certificates for buying or selling your Tesla.",
+    title: meta('title'),
+    description: meta('description'),
     keywords: [
       "Tesla battery health",
       "battery degradation",
@@ -41,9 +41,8 @@ export async function generateMetadata({
       "EV battery verification",
     ],
     openGraph: {
-      title: "Tesla Battery Health Check - Instant Results in 30 Seconds",
-      description:
-        "Get instant, verified Tesla battery health assessments. Perfect for buying, selling, or knowing your Tesla's true condition.",
+      title: meta('og_title'),
+      description: meta('og_description'),
       type: "website",
       url: "https://batterycert.com",
       siteName: "batterycert.com",
@@ -52,15 +51,14 @@ export async function generateMetadata({
           url: "https://batterycert.com/og-image.png",
           width: 1200,
           height: 630,
-          alt: "Tesla Battery Health Check",
+          alt: meta('og_alt'),
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Tesla Battery Health Check - Instant Results in 30 Seconds",
-      description:
-        "Get instant, verified Tesla battery health assessments. Perfect for buying, selling, or knowing your Tesla's true condition.",
+      title: meta('og_title'),
+      description: meta('og_description'),
       images: ["https://batterycert.com/og-image.png"],
     },
     robots: {
@@ -85,8 +83,12 @@ export default async function HomePage({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  const { locale: _locale } = await params;
-  const links = getLocaleLinks(_locale);
+  const { locale } = await params;
+  const links = getLocaleLinks(locale);
+  const t = await getTranslations({ locale, namespace: 'homepage' });
+  const structured = await getTranslations({ locale, namespace: 'structured_data.service' });
+  const heroVisualTranslations = await getTranslations({ locale, namespace: 'hero_visual' });
+  const gdprTranslations = await getTranslations({ locale, namespace: 'gdpr' });
   return (
     <>
       {/* Structured Data for Homepage */}
@@ -96,22 +98,21 @@ export default async function HomePage({
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Service",
-            name: "Tesla Battery Health Check",
-            description:
-              "Get instant, verified Tesla battery health assessments. Perfect for buying, selling, or knowing your Tesla's true condition.",
+            name: structured('name'),
+            description: structured('description'),
             provider: {
               "@type": "Organization",
               name: "batterycert.com",
               url: "https://batterycert.com",
             },
-            serviceType: "Battery Health Assessment",
-            areaServed: "Worldwide",
+            serviceType: structured('service_type'),
+            areaServed: structured('area_served'),
             url: "https://batterycert.com",
             offers: {
               "@type": "Offer",
               price: "0",
               priceCurrency: "USD",
-              description: "Free Tesla battery health check",
+              description: structured('offer_description'),
             },
             potentialAction: {
               "@type": "UseAction",
@@ -134,7 +135,7 @@ export default async function HomePage({
                 href={links.about}
                 className="text-gray-600 hover:text-gray-900"
               >
-                About
+                {t('navigation.about')}
               </Link>
             </nav>
           </div>
@@ -144,20 +145,53 @@ export default async function HomePage({
         <section className="py-20 px-4">
           <div className="container mx-auto text-center max-w-6xl">
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-8">
-              Check Your Tesla Battery
+              {t('hero.title')}
               <br />
-              <span className="text-slate-700">In 30 Seconds</span>
+              <span className="text-slate-700">{t('hero.title_highlight')}</span>
             </h1>
 
             {/* Interactive Hero Visual */}
             <div className="mb-12">
-              <HeroVisual />
+              <HeroVisual 
+                translations={{
+                  verified_certificate: heroVisualTranslations('verified_certificate'),
+                  battery_health_report: heroVisualTranslations('battery_health_report'),
+                  certificate_id: heroVisualTranslations('certificate_id'),
+                  certified: heroVisualTranslations('certified'),
+                  verified: heroVisualTranslations('verified'),
+                  health_score: heroVisualTranslations('health_score'),
+                  vehicle_information: heroVisualTranslations('vehicle_information'),
+                  model: heroVisualTranslations('model'),
+                  tesla_model_y: heroVisualTranslations('tesla_model_y'),
+                  year: heroVisualTranslations('year'),
+                  vin: heroVisualTranslations('vin'),
+                  battery_metrics: heroVisualTranslations('battery_metrics'),
+                  current_capacity: heroVisualTranslations('current_capacity'),
+                  degradation: heroVisualTranslations('degradation'),
+                  est_range: heroVisualTranslations('est_range'),
+                  miles: heroVisualTranslations('miles'),
+                  degradation_comparison: heroVisualTranslations('degradation_comparison'),
+                  better_than_percentage: heroVisualTranslations('better_than_percentage'),
+                  this_vehicle: heroVisualTranslations('this_vehicle'),
+                  average: heroVisualTranslations('average'),
+                  verified_data: heroVisualTranslations('verified_data'),
+                  direct_tesla_api: heroVisualTranslations('direct_tesla_api'),
+                  tamper_proof: heroVisualTranslations('tamper_proof'),
+                  qr_verification: heroVisualTranslations('qr_verification'),
+                  increase_value: heroVisualTranslations('increase_value'),
+                  proven_health: heroVisualTranslations('proven_health'),
+                  scan_to_verify: heroVisualTranslations('scan_to_verify'),
+                  verified_by: heroVisualTranslations('verified_by'),
+                  generated: heroVisualTranslations('generated'),
+                  valid_for_one_year: heroVisualTranslations('valid_for_one_year')
+                }}
+              />
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button size="lg" className="text-lg px-8 py-6" asChild>
                 <Link href={links.check}>
-                  Check My Tesla
+                  {t('hero.cta_primary')}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
@@ -168,9 +202,9 @@ export default async function HomePage({
                 asChild
               >
                 <Link
-                  href={`/${_locale}/certificate/CMB-2025-DEF456JKL?vin=5YJYGDEE2BF000001`}
+                  href={`/${locale}/certificate/CMB-2025-DEF456JKL?vin=5YJYGDEE2BF000001`}
                 >
-                  View Sample Certificate
+                  {t('hero.cta_secondary')}
                 </Link>
               </Button>
             </div>
@@ -178,19 +212,19 @@ export default async function HomePage({
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-gray-600 mb-8">
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-emerald-600" />
-                <span>Free battery health check</span>
+                <span>{t('hero_features.free_check')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-emerald-600" />
-                <span>No account required</span>
+                <span>{t('hero_features.no_account')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-emerald-600" />
-                <span>Instant results</span>
+                <span>{t('hero_features.instant_results')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-emerald-600" />
-                <span>Optional Certificate ($10)</span>
+                <span>{t('hero_features.optional_certificate')}</span>
               </div>
             </div>
           </div>
@@ -201,11 +235,11 @@ export default async function HomePage({
           <div className="container mx-auto max-w-5xl">
             <div className="text-center mb-12">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Battery Replacement ={" "}
-                <span className="text-amber-700">$15,000+</span>
+                {t('problem_section.title')}
+                <span className="text-amber-700">{t('problem_section.title_price')}</span>
               </h2>
               <p className="text-xl text-gray-600">
-                Buyers, don&apos;t get scammed with hidden battery issues
+                {t('problem_section.subtitle')}
               </p>
             </div>
 
@@ -214,7 +248,7 @@ export default async function HomePage({
               <div className="max-w-4xl mx-auto">
                 <div className="bg-white p-6 rounded-xl shadow-lg">
                   <h3 className="text-2xl font-bold text-gray-900 mb-4 text-center">
-                    See Why Battery Health Matters
+                    {t('problem_section.video_title')}
                   </h3>
                   <div
                     className="relative w-full"
@@ -230,8 +264,7 @@ export default async function HomePage({
                     />
                   </div>
                   <p className="text-sm text-gray-500 mt-3 text-center">
-                    Watch this video to understand the common scam.
-                    batterycert.com helps you avoid it.
+                    {t('problem_section.video_description')}
                   </p>
                 </div>
               </div>
@@ -243,10 +276,10 @@ export default async function HomePage({
                   <AlertTriangle className="h-8 w-8 text-amber-700" />
                 </div>
                 <h3 className="text-xl font-bold mb-2">
-                  Find the Hidden Issues
+                  {t('problem_section.cards.hidden_issues.title')}
                 </h3>
                 <p className="text-gray-600">
-                  Sellers hide degradation problems
+                  {t('problem_section.cards.hidden_issues.description')}
                 </p>
               </div>
 
@@ -254,9 +287,9 @@ export default async function HomePage({
                 <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Shield className="h-8 w-8 text-emerald-700" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Trusted Data</h3>
+                <h3 className="text-xl font-bold mb-2">{t('problem_section.cards.trusted_data.title')}</h3>
                 <p className="text-gray-600">
-                  Direct from Tesla&apos;s systems
+                  {t('problem_section.cards.trusted_data.description')}
                 </p>
               </div>
 
@@ -264,8 +297,8 @@ export default async function HomePage({
                 <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <TrendingUp className="h-8 w-8 text-slate-700" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">Higher Value</h3>
-                <p className="text-gray-600">Proven health increases price</p>
+                <h3 className="text-xl font-bold mb-2">{t('problem_section.cards.higher_value.title')}</h3>
+                <p className="text-gray-600">{t('problem_section.cards.higher_value.description')}</p>
               </div>
             </div>
           </div>
@@ -275,7 +308,7 @@ export default async function HomePage({
         <section className="py-20 px-4 bg-white/50">
           <div className="container mx-auto text-center">
             <h2 className="text-4xl font-bold text-gray-900 mb-16">
-              Simple 3-Step Process
+              {t('how_it_works.title')}
             </h2>
 
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 max-w-5xl mx-auto">
@@ -283,10 +316,9 @@ export default async function HomePage({
                 <div className="w-24 h-24 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-6">
                   <span className="text-white font-bold text-2xl">1</span>
                 </div>
-                <h3 className="text-2xl font-bold mb-2">Connect</h3>
+                <h3 className="text-2xl font-bold mb-2">{t('how_it_works.steps.connect.title')}</h3>
                 <p className="text-gray-600 text-sm mt-2 max-w-xs mx-auto">
-                  Securely connect via Tesla&apos;s official OAuth. We never see
-                  your credentials - you authenticate directly with Tesla.
+                  {t('how_it_works.steps.connect.description')}
                 </p>
               </div>
 
@@ -296,10 +328,9 @@ export default async function HomePage({
                 <div className="w-24 h-24 bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-6">
                   <span className="text-white font-bold text-2xl">2</span>
                 </div>
-                <h3 className="text-2xl font-bold mb-2">Analyze</h3>
+                <h3 className="text-2xl font-bold mb-2">{t('how_it_works.steps.analyze.title')}</h3>
                 <p className="text-gray-600 text-sm mt-2 max-w-xs mx-auto">
-                  Our system instantly analyzes your battery data using
-                  Tesla&apos;s API and calculates degradation percentage.
+                  {t('how_it_works.steps.analyze.description')}
                 </p>
               </div>
 
@@ -310,11 +341,10 @@ export default async function HomePage({
                   <span className="text-white font-bold text-2xl">3</span>
                 </div>
                 <h3 className="text-2xl font-bold mb-2">
-                  Optional: Certificate
+                  {t('how_it_works.steps.certificate.title')}
                 </h3>
                 <p className="text-gray-600 text-sm mt-2 max-w-xs mx-auto">
-                  Get a verified PDF certificate with QR code for buyers to
-                  verify. Valid for 3 months. Single $10 fee.
+                  {t('how_it_works.steps.certificate.description')}
                 </p>
               </div>
             </div>
@@ -325,9 +355,9 @@ export default async function HomePage({
         <section className="py-20 px-4 bg-gradient-to-br from-slate-50 to-gray-100">
           <div className="container mx-auto text-center">
             <h2 className="text-4xl font-bold text-gray-900 mb-16">
-              Perfect for <span className="text-slate-700">Buyers</span>,{" "}
-              <span className="text-emerald-700">Sellers</span> &{" "}
-              <span className="text-slate-600">Owners</span>
+              {t('use_cases.title')}<span className="text-slate-700">{t('use_cases.title_buyers')}</span>,{" "}
+              <span className="text-emerald-700">{t('use_cases.title_sellers')}</span> &{" "}
+              <span className="text-slate-600">{t('use_cases.title_owners')}</span>
             </h2>
 
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
@@ -336,9 +366,9 @@ export default async function HomePage({
                   <Users className="h-10 w-10 text-slate-700" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-slate-700">
-                  Buyers
+                  {t('use_cases.buyers.title')}
                 </h3>
-                <p className="text-lg font-semibold">Avoid $15K+ surprises</p>
+                <p className="text-lg font-semibold">{t('use_cases.buyers.description')}</p>
               </div>
 
               <div className="bg-white p-8 rounded-xl shadow-lg">
@@ -346,9 +376,9 @@ export default async function HomePage({
                   <TrendingUp className="h-10 w-10 text-emerald-700" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-emerald-700">
-                  Sellers
+                  {t('use_cases.sellers.title')}
                 </h3>
-                <p className="text-lg font-semibold">Increase resale value</p>
+                <p className="text-lg font-semibold">{t('use_cases.sellers.description')}</p>
               </div>
 
               <div className="bg-white p-8 rounded-xl shadow-lg">
@@ -356,9 +386,9 @@ export default async function HomePage({
                   <Zap className="h-10 w-10 text-gray-700" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-gray-700">
-                  Owners
+                  {t('use_cases.owners.title')}
                 </h3>
-                <p className="text-lg font-semibold">Track battery health</p>
+                <p className="text-lg font-semibold">{t('use_cases.owners.description')}</p>
               </div>
             </div>
           </div>
@@ -368,11 +398,10 @@ export default async function HomePage({
         <section className="py-20 px-4 bg-gradient-to-r from-slate-700 to-slate-800">
           <div className="container mx-auto text-center">
             <h2 className="text-4xl font-bold text-white mb-6">
-              Ready to Check Your Tesla Battery?
+              {t('cta_section.title')}
             </h2>
             <p className="text-xl text-slate-200 mb-8 max-w-2xl mx-auto">
-              Join thousands of Tesla owners who trust batterycert.com for
-              accurate, instant battery health reports.
+              {t('cta_section.subtitle')}
             </p>
 
             {/* Primary CTA Button */}
@@ -382,7 +411,7 @@ export default async function HomePage({
                 className="inline-flex items-center px-10 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xl rounded-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
               >
                 <Battery className="w-6 h-6 mr-3" />
-                Check My Tesla Battery Now
+                {t('cta_section.button_text')}
                 <ArrowRight className="w-5 h-5 ml-3" />
               </Link>
             </div>
@@ -391,15 +420,15 @@ export default async function HomePage({
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-slate-300">
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-emerald-400" />
-                <span>Free • No registration required</span>
+                <span>{t('cta_section.features.free_registration')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-emerald-400" />
-                <span>30 seconds • Instant results</span>
+                <span>{t('cta_section.features.speed')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-emerald-400" />
-                <span>Optional $10 certificate</span>
+                <span>{t('cta_section.features.certificate')}</span>
               </div>
             </div>
           </div>
@@ -409,15 +438,32 @@ export default async function HomePage({
         <footer className="py-8 px-4 bg-gray-900 text-gray-400">
           <div className="container mx-auto text-center">
             <p>
-              © 2025 batterycert.com. Built for Tesla owners, by Tesla
-              enthusiasts.
+              {t('footer.copyright')}
             </p>
           </div>
         </footer>
       </div>
 
       {/* GDPR Banner for EU users */}
-      <GDPRBanner locale={_locale} />
+      <GDPRBanner 
+        locale={locale}
+        translations={{
+          title: gdprTranslations('title'),
+          message: gdprTranslations('message'),
+          accept_all: gdprTranslations('accept_all'),
+          decline: gdprTranslations('decline'),
+          cookie_settings: gdprTranslations('cookie_settings'),
+          essential_only: gdprTranslations('essential_only'),
+          settings: {
+            essential_cookies: gdprTranslations('settings.essential_cookies'),
+            always_on: gdprTranslations('settings.always_on'),
+            analytics: gdprTranslations('settings.analytics'),
+            marketing: gdprTranslations('settings.marketing'),
+            optional: gdprTranslations('settings.optional'),
+            back: gdprTranslations('settings.back')
+          }
+        }}
+      />
     </>
   );
 }

@@ -57,13 +57,89 @@ interface SessionData {
   locale: string;
 }
 
-export default function VehicleSelectionClient({ locale }: { locale: string }) {
+interface VehicleSelectionClientProps {
+  locale: string;
+  translations?: {
+    back_to_login: string;
+    loading: {
+      title: string;
+      description: string;
+    };
+    page: {
+      title: string;
+      subtitle: string;
+    };
+    checking_battery: string;
+    no_vehicles: {
+      title: string;
+      description: string;
+      try_again: string;
+    };
+    info_cards: {
+      instant_analysis: {
+        title: string;
+        description: string;
+      };
+      detailed_report: {
+        title: string;
+        description: string;
+      };
+      verified_certificate: {
+        title: string;
+        description: string;
+      };
+    };
+    errors: {
+      failed_to_load: string;
+      failed_battery_check: string;
+    };
+  };
+}
+
+export default function VehicleSelectionClient({ locale, translations }: VehicleSelectionClientProps) {
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [selectedVehicleId, setSelectedVehicleId] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const [isCheckingBattery, setIsCheckingBattery] = useState(false);
   const [sessionData, setSessionData] = useState<SessionData | null>(null);
+
+  // Fallback translations for backward compatibility
+  const t = translations || {
+    back_to_login: "Back to Login",
+    loading: {
+      title: "Loading Your Vehicles...",
+      description: "Fetching your Tesla vehicles from your account"
+    },
+    page: {
+      title: "Select Your Tesla",
+      subtitle: "Choose the vehicle you'd like to check. We'll analyze its battery health in just 30 seconds."
+    },
+    checking_battery: "Checking Battery Health...",
+    no_vehicles: {
+      title: "No Vehicles Found",
+      description: "We couldn't find any Tesla vehicles associated with your account. Please make sure you have vehicles registered to your Tesla account.",
+      try_again: "Try Again"
+    },
+    info_cards: {
+      instant_analysis: {
+        title: "Instant Analysis",
+        description: "Get your battery health results in 30 seconds"
+      },
+      detailed_report: {
+        title: "Detailed Report",
+        description: "Analysis with degradation percentage and capacity data"
+      },
+      verified_certificate: {
+        title: "Verified Certificate",
+        description: "Optional $10 verified certificate for buying/selling protection"
+      }
+    },
+    errors: {
+      failed_to_load: "Failed to load your vehicles. Please try again.",
+      failed_battery_check: "Failed to check battery health. Please try again."
+    }
+  };
 
   // Function to decode year from VIN (10th character)
   const decodeYearFromVIN = (vin: string): number => {
@@ -220,7 +296,7 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
           setVehicles(mockVehicles);
         }
       } catch {
-        setError("Failed to load your vehicles. Please try again.");
+        setError(t.errors.failed_to_load);
       } finally {
         setIsLoading(false);
       }
@@ -272,7 +348,7 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
       setError(
         error instanceof Error
           ? error.message
-          : "Failed to check battery health. Please try again."
+          : t.errors.failed_battery_check
       );
     } finally {
       setIsCheckingBattery(false);
@@ -288,7 +364,7 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
             <Button variant="outline" asChild>
               <Link href={`/${locale}/check`}>
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Login
+                {t.back_to_login}
               </Link>
             </Button>
           </div>
@@ -299,10 +375,10 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
                 <Loader2 className="h-8 w-8 text-blue-600 animate-spin" />
               </div>
               <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                Loading Your Vehicles...
+                {t.loading.title}
               </h2>
               <p className="text-gray-600">
-                Fetching your Tesla vehicles from your account
+                {t.loading.description}
               </p>
             </CardContent>
           </Card>
@@ -320,7 +396,7 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
           <Button variant="outline" asChild>
             <Link href={`/${locale}/check`}>
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Login
+              {t.back_to_login}
             </Link>
           </Button>
         </div>
@@ -328,11 +404,10 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
         {/* Page Title */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Select Your Tesla
+            {t.page.title}
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Choose the vehicle you&apos;d like to check. We&apos;ll analyze its
-            battery health in just 30 seconds.
+            {t.page.subtitle}
           </p>
         </div>
 
@@ -371,7 +446,7 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
                 <div className="flex items-center justify-center space-x-2 text-blue-600">
                   <Loader2 className="h-5 w-5 animate-spin" />
                   <span className="text-lg font-medium">
-                    Checking Battery Health...
+                    {t.checking_battery}
                   </span>
                 </div>
               </div>
@@ -385,15 +460,13 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
                 <AlertTriangle className="h-8 w-8 text-gray-400" />
               </div>
               <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                No Vehicles Found
+                {t.no_vehicles.title}
               </h2>
               <p className="text-gray-600 mb-6">
-                We couldn&apos;t find any Tesla vehicles associated with your
-                account. Please make sure you have vehicles registered to your
-                Tesla account.
+                {t.no_vehicles.description}
               </p>
               <Button variant="outline" asChild>
-                <Link href={`/${locale}/check`}>Try Again</Link>
+                <Link href={`/${locale}/check`}>{t.no_vehicles.try_again}</Link>
               </Button>
             </CardContent>
           </Card>
@@ -407,10 +480,10 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
                 <Zap className="h-6 w-6 text-green-600" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">
-                Instant Analysis
+                {t.info_cards.instant_analysis.title}
               </h3>
               <p className="text-sm text-gray-600">
-                Get your battery health results in 30 seconds
+                {t.info_cards.instant_analysis.description}
               </p>
             </CardContent>
           </Card>
@@ -421,10 +494,10 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
                 <AlertTriangle className="h-6 w-6 text-blue-600" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">
-                Detailed Report
+                {t.info_cards.detailed_report.title}
               </h3>
               <p className="text-sm text-gray-600">
-                Analysis with degradation percentage and capacity data
+                {t.info_cards.detailed_report.description}
               </p>
             </CardContent>
           </Card>
@@ -435,10 +508,10 @@ export default function VehicleSelectionClient({ locale }: { locale: string }) {
                 <AlertTriangle className="h-6 w-6 text-purple-600" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">
-                Verified Certificate
+                {t.info_cards.verified_certificate.title}
               </h3>
               <p className="text-sm text-gray-600">
-                Optional $10 verified certificate for buying/selling protection
+                {t.info_cards.verified_certificate.description}
               </p>
             </CardContent>
           </Card>
