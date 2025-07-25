@@ -111,7 +111,7 @@ export async function GET(request: NextRequest) {
       certificateId,
       session.id,
       certificate.vehicle_model || 'Unknown',
-      pricing.amount / 100 // Convert cents to dollars
+      pricing.price / 100 // Convert cents to dollars
     );
 
     // Redirect to Stripe checkout
@@ -229,7 +229,7 @@ export async function POST(request: NextRequest) {
       certificateId,
       session.id,
       certificate.vehicle_model || 'Unknown',
-      pricing.amount / 100 // Convert cents to dollars
+      pricing.price / 100 // Convert cents to dollars
     );
 
     return NextResponse.json({

@@ -206,11 +206,6 @@ export default function TeslaCheckPageClient({
     }
   };
 
-  // Helper function to determine if user should see miles (US, UK, AU) vs km (rest of world)
-  const _usesMiles =
-    locale.startsWith("en-US") ||
-    locale.startsWith("en-GB") ||
-    locale.startsWith("en-AU");
 
   const handleTeslaOAuth = async () => {
     console.log("Tesla OAuth button clicked");
@@ -278,7 +273,7 @@ export default function TeslaCheckPageClient({
   };
 
   // Handle OAuth callback results when returning from Tesla
-  React.useEffect(() => {
+  useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const success = urlParams.get("success");
     const data = urlParams.get("data");
@@ -348,7 +343,7 @@ export default function TeslaCheckPageClient({
         setIsLoading(false);
       }
     }
-  }, []);
+  }, [region]);
 
   const handleRetry = async () => {
     console.log("Retrying Tesla OAuth...");

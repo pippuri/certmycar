@@ -8,7 +8,7 @@ interface AnalyticsTrackerProps {
   locale?: string;
 }
 
-export function AnalyticsTracker({ page, locale }: AnalyticsTrackerProps) {
+export function AnalyticsTracker({ page }: AnalyticsTrackerProps) {
   useEffect(() => {
     // Track page view - never break page rendering if analytics fails
     try {

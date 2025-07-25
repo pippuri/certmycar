@@ -9,9 +9,9 @@ declare global {
     gtag: (
       command: 'config' | 'event' | 'purchase',
       targetId: string,
-      config?: Record<string, any>
+      config?: Record<string, unknown>
     ) => void;
-    dataLayer: any[];
+    dataLayer: unknown[];
   }
 }
 
@@ -29,7 +29,7 @@ export interface ConversionEvent {
   event_category: 'conversion_funnel';
   value?: number;
   currency?: string;
-  custom_parameters?: Record<string, any>;
+  custom_parameters?: Record<string, unknown>;
 }
 
 // Conversion funnel tracking functions
@@ -267,7 +267,7 @@ export const analytics = {
   },
 
   // Custom Conversion Events
-  trackCustomConversion: (eventName: string, parameters: Record<string, any>) => {
+  trackCustomConversion: (eventName: string, parameters: Record<string, unknown>) => {
     gtag('event', eventName, {
       event_category: 'conversion_funnel',
       ...parameters,
@@ -276,10 +276,10 @@ export const analytics = {
 };
 
 // Helper function to safely call gtag - never throws errors
-function gtag(command: string, eventName: string, parameters: Record<string, any>) {
+function gtag(command: string, eventName: string, parameters: Record<string, unknown>) {
   try {
     if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag(command as any, eventName, parameters);
+      window.gtag(command as 'config' | 'event' | 'purchase', eventName, parameters);
     } else if (process.env.NODE_ENV === 'development') {
       console.log(`Analytics Event: ${eventName}`, parameters);
     }
@@ -310,7 +310,7 @@ export const performance = {
               }
             }
           }).observe({ entryTypes: ['paint'] });
-        } catch (error) {
+        } catch {
           // FCP tracking failed, continue silently
         }
 
@@ -326,11 +326,11 @@ export const performance = {
               metric_rating: lastEntry.startTime < 2500 ? 'good' : lastEntry.startTime < 4000 ? 'needs-improvement' : 'poor',
             });
           }).observe({ entryTypes: ['largest-contentful-paint'] });
-        } catch (error) {
+        } catch {
           // LCP tracking failed, continue silently
         }
       }
-    } catch (error) {
+    } catch {
       // Web Vitals tracking failed entirely, continue silently
     }
   },
@@ -338,17 +338,17 @@ export const performance = {
   trackPageLoadStart: (page: string) => {
     try {
       if (typeof window !== 'undefined') {
-        const startTime = performance.now();
+        const startTime = window.performance.now();
         return () => {
           try {
-            const loadTime = performance.now() - startTime;
+            const loadTime = window.performance.now() - startTime;
             analytics.trackPageLoadTime(page, loadTime);
-          } catch (error) {
+          } catch {
             // Page load time tracking failed, continue silently
           }
         };
       }
-    } catch (error) {
+    } catch {
       // Performance tracking setup failed, continue silently
     }
     return () => {};

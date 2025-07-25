@@ -11,7 +11,7 @@ export interface ServerAnalyticsEvent {
   price?: number;
   currency?: string;
   error_message?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 // Server-side event logging (can be extended to send to analytics services)

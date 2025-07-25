@@ -12,7 +12,7 @@ interface AnalyticsButtonProps {
   size?: "default" | "sm" | "lg" | "icon";
   className?: string;
   eventName: string;
-  eventData?: Record<string, any>;
+  eventData?: Record<string, unknown>;
 }
 
 export function AnalyticsButton({ 
