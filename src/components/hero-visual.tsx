@@ -6,83 +6,84 @@ import { Badge } from "@/components/ui/badge";
 import { Battery, Zap, CheckCircle, TrendingUp, Shield } from "lucide-react";
 import { QRCode } from "./qr-code";
 import { CertificateIcon } from "./certificate-icon";
-import { useTranslations } from "next-intl";
+
+interface HeroVisualTranslations {
+  verified_certificate: string;
+  battery_health_report: string;
+  certificate_id: string;
+  certified: string;
+  verified: string;
+  health_score: string;
+  vehicle_information: string;
+  model: string;
+  tesla_model_y: string;
+  year: string;
+  vin: string;
+  battery_metrics: string;
+  current_capacity: string;
+  degradation: string;
+  est_range: string;
+  miles: string;
+  degradation_comparison: string;
+  better_than_percentage: string;
+  this_vehicle: string;
+  average: string;
+  verified_data: string;
+  direct_tesla_api: string;
+  tamper_proof: string;
+  qr_verification: string;
+  increase_value: string;
+  proven_health: string;
+  scan_to_verify: string;
+  verified_by: string;
+  generated: string;
+  valid_for_one_year: string;
+}
 
 interface HeroVisualProps {
-  translations?: {
-    verified_certificate: string;
-    battery_health_report: string;
-    certificate_id: string;
-    certified: string;
-    verified: string;
-    health_score: string;
-    vehicle_information: string;
-    model: string;
-    tesla_model_y: string;
-    year: string;
-    vin: string;
-    battery_metrics: string;
-    current_capacity: string;
-    degradation: string;
-    est_range: string;
-    miles: string;
-    degradation_comparison: string;
-    better_than_percentage: string;
-    this_vehicle: string;
-    average: string;
-    verified_data: string;
-    direct_tesla_api: string;
-    tamper_proof: string;
-    qr_verification: string;
-    increase_value: string;
-    proven_health: string;
-    scan_to_verify: string;
-    verified_by: string;
-    generated: string;
-    valid_for_one_year: string;
-  };
+  translations?: HeroVisualTranslations;
 }
 
 export function HeroVisual({ translations }: HeroVisualProps = {}) {
   const [batteryLevel, setBatteryLevel] = useState(92);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  // Use translations from next-intl or fallback to props
-  const t = useTranslations("hero_visual");
-
-  // Use translations from props if provided, otherwise use next-intl translations
-  const text = translations || {
-    verified_certificate: t("verified_certificate"),
-    battery_health_report: t("battery_health_report"),
-    certificate_id: t("certificate_id"),
-    certified: t("certified"),
-    verified: t("verified"),
-    health_score: t("health_score"),
-    vehicle_information: t("vehicle_information"),
-    model: t("model"),
-    tesla_model_y: t("tesla_model_y"),
-    year: t("year"),
-    vin: t("vin"),
-    battery_metrics: t("battery_metrics"),
-    current_capacity: t("current_capacity"),
-    degradation: t("degradation"),
-    est_range: t("est_range"),
-    miles: t("miles"),
-    degradation_comparison: t("degradation_comparison"),
-    better_than_percentage: t("better_than_percentage"),
-    this_vehicle: t("this_vehicle"),
-    average: t("average"),
-    verified_data: t("verified_data"),
-    direct_tesla_api: t("direct_tesla_api"),
-    tamper_proof: t("tamper_proof"),
-    qr_verification: t("qr_verification"),
-    increase_value: t("increase_value"),
-    proven_health: t("proven_health"),
-    scan_to_verify: t("scan_to_verify"),
-    verified_by: t("verified_by"),
-    generated: t("generated"),
-    valid_for_one_year: t("valid_for_one_year"),
+  // Default translations for fallback
+  const defaultTranslations: HeroVisualTranslations = {
+    verified_certificate: "Verified Certificate",
+    battery_health_report: "Tesla Battery Health Report",
+    certificate_id: "Certificate ID",
+    certified: "CERTIFIED",
+    verified: "VERIFIED",
+    health_score: "Health Score",
+    vehicle_information: "Vehicle Information",
+    model: "Model",
+    tesla_model_y: "Tesla Model Y Long Range",
+    year: "Year",
+    vin: "VIN",
+    battery_metrics: "Battery Metrics",
+    current_capacity: "Current Capacity",
+    degradation: "Degradation",
+    est_range: "Est. Range",
+    miles: "miles",
+    degradation_comparison: "Degradation Comparison vs Average",
+    better_than_percentage: "Better than 78% of similar vehicles",
+    this_vehicle: "This Vehicle (92%)",
+    average: "Average (85%)",
+    verified_data: "Verified Data",
+    direct_tesla_api: "Direct Tesla API",
+    tamper_proof: "Tamper-Proof",
+    qr_verification: "QR Verification",
+    increase_value: "Increase Value",
+    proven_health: "Proven Health",
+    scan_to_verify: "Scan to Verify",
+    verified_by: "Verified by batterycert.com",
+    generated: "Generated",
+    valid_for_one_year: "Valid for 3 months",
   };
+
+  // Use translations from props if provided, otherwise use defaults
+  const text = translations || defaultTranslations;
 
   useEffect(() => {
     const interval = setInterval(() => {

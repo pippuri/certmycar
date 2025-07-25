@@ -90,6 +90,24 @@ export default async function CertificatePage({
     locale,
     namespace: "certificate_payment",
   });
+  const certificateActionsTranslations = await getTranslations({
+    locale,
+    namespace: "certificate_actions",
+  });
+
+  const certificateActionsTranslationsObj = {
+    share: certificateActionsTranslations("share"),
+    copied: certificateActionsTranslations("copied"),
+    download_pdf: certificateActionsTranslations("download_pdf"),
+    generating: certificateActionsTranslations("generating"),
+    share_title: certificateActionsTranslations("share_title", {
+      certificateId: id,
+    }),
+    share_text: certificateActionsTranslations("share_text"),
+    download_error: certificateActionsTranslations("download_error", {
+      error: "Unknown error",
+    }),
+  };
 
   // All certificates including demo ones are now stored in the database
   let certificate;
@@ -169,10 +187,14 @@ export default async function CertificatePage({
               <Logo size="sm" />
             </Link>
             <div className="flex items-center space-x-4">
-              <ShareButton certificateId={certificate.certificate_id} />
+              <ShareButton
+                certificateId={certificate.certificate_id}
+                translations={certificateActionsTranslationsObj}
+              />
               <DownloadButton
                 certificateId={certificate.certificate_id}
                 vin={certificate.tesla_vin}
+                translations={certificateActionsTranslationsObj}
               />
             </div>
           </div>

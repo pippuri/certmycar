@@ -3,16 +3,38 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Share2, Download, Check, Loader2 } from "lucide-react";
-import { useTranslations } from "next-intl";
+
+interface CertificateActionsTranslations {
+  share: string;
+  copied: string;
+  download_pdf: string;
+  generating: string;
+  share_title: string;
+  share_text: string;
+  download_error: string;
+}
 
 interface ShareButtonProps {
   certificateId: string;
+  translations?: CertificateActionsTranslations;
 }
 
-export function ShareButton({ certificateId }: ShareButtonProps) {
+export function ShareButton({ certificateId, translations }: ShareButtonProps) {
   const [isSharing, setIsSharing] = useState(false);
   const [isShared, setIsShared] = useState(false);
-  const t = useTranslations("certificate_actions");
+
+  // Default translations for fallback
+  const defaultTranslations: CertificateActionsTranslations = {
+    share: "Share",
+    copied: "Copied!",
+    download_pdf: "Download PDF",
+    generating: "Generating...",
+    share_title: "Tesla Battery Certificate - {certificateId}",
+    share_text: "Check out this Tesla battery health certificate",
+    download_error: "Failed to download PDF: {error}",
+  };
+
+  const t = translations || defaultTranslations;
 
   const handleShare = async () => {
     setIsSharing(true);
@@ -21,8 +43,8 @@ export function ShareButton({ certificateId }: ShareButtonProps) {
       if (navigator.share) {
         // Use native sharing if available
         await navigator.share({
-          title: t("share_title", { certificateId }),
-          text: t("share_text"),
+          title: t.share_title.replace("{certificateId}", certificateId),
+          text: t.share_text,
           url: window.location.href,
         });
         setIsShared(true);
@@ -53,7 +75,7 @@ export function ShareButton({ certificateId }: ShareButtonProps) {
       ) : (
         <Share2 className="h-4 w-4 mr-2" />
       )}
-      {isShared ? t("copied") : t("share")}
+      {isShared ? t.copied : t.share}
     </Button>
   );
 }
@@ -61,11 +83,28 @@ export function ShareButton({ certificateId }: ShareButtonProps) {
 interface DownloadButtonProps {
   certificateId: string;
   vin: string;
+  translations?: CertificateActionsTranslations;
 }
 
-export function DownloadButton({ certificateId, vin }: DownloadButtonProps) {
+export function DownloadButton({
+  certificateId,
+  vin,
+  translations,
+}: DownloadButtonProps) {
   const [isDownloading, setIsDownloading] = useState(false);
-  const t = useTranslations("certificate_actions");
+
+  // Default translations for fallback
+  const defaultTranslations: CertificateActionsTranslations = {
+    share: "Share",
+    copied: "Copied!",
+    download_pdf: "Download PDF",
+    generating: "Generating...",
+    share_title: "Tesla Battery Certificate - {certificateId}",
+    share_text: "Check out this Tesla battery health certificate",
+    download_error: "Failed to download PDF: {error}",
+  };
+
+  const t = translations || defaultTranslations;
 
   const handleDownload = async () => {
     setIsDownloading(true);
@@ -100,9 +139,10 @@ export function DownloadButton({ certificateId, vin }: DownloadButtonProps) {
     } catch (error) {
       console.error("Download error:", error);
       alert(
-        t("download_error", {
-          error: error instanceof Error ? error.message : "Unknown error",
-        })
+        t.download_error.replace(
+          "{error}",
+          error instanceof Error ? error.message : "Unknown error"
+        )
       );
     } finally {
       setIsDownloading(false);
@@ -116,7 +156,7 @@ export function DownloadButton({ certificateId, vin }: DownloadButtonProps) {
       ) : (
         <Download className="h-4 w-4 mr-2" />
       )}
-      {isDownloading ? t("generating") : t("download_pdf")}
+      {isDownloading ? t.generating : t.download_pdf}
     </Button>
   );
 }
