@@ -86,6 +86,18 @@ export async function GET(request: NextRequest) {
       success_url: successUrl,
       cancel_url: `${certificateUrl}&payment=cancelled`,
       customer_email: undefined, // Let customer enter their email
+      
+      // Enable VAT collection for EU/UK customers
+      automatic_tax: {
+        enabled: true,
+      },
+      tax_id_collection: {
+        enabled: true,
+      },
+      
+      // Enable promo codes
+      allow_promotion_codes: true,
+      
       metadata: {
         certificateId,
         locale,
@@ -212,6 +224,18 @@ export async function POST(request: NextRequest) {
       success_url: successUrl,
       cancel_url: `${certificateUrl}&payment=cancelled`,
       customer_email: undefined, // Let customer enter their email
+      
+      // Enable VAT collection for EU/UK customers
+      automatic_tax: {
+        enabled: true,
+      },
+      tax_id_collection: {
+        enabled: true,
+      },
+      
+      // Enable promo codes
+      allow_promotion_codes: true,
+      
       metadata: {
         certificateId,
         locale,
