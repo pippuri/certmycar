@@ -96,66 +96,11 @@ A NextJS-based platform that provides instant Tesla battery health assessments w
 - ✅ **File storage** for PDF certificates
 - ✅ **Row Level Security** for data protection
 - ✅ **Auto-generated APIs** (REST + GraphQL)
+- ✅ You have supabase tools available
 
 ### Database Schema (Supabase)
 
-```sql
--- Managed by Supabase Auth
-auth.users (
-  id, email, created_at, raw_user_meta_data
-)
-
--- Extended user profiles
-public.profiles (
-  id uuid references auth.users primary key,
-  stripe_customer_id text,
-  created_at timestamp default now()
-)
-
--- Vehicle specifications lookup (static data)
-public.vehicle_specs (
-  id serial primary key,
-  model text not null,
-  year integer not null,
-  battery_type text not null,
-  original_capacity_kwh decimal not null,
-  created_at timestamp default now()
-)
-
--- Battery assessments (anonymous + logged in)
-public.assessments (
-  id uuid primary key default gen_random_uuid(),
-  tesla_vin text not null,
-  battery_health text not null, -- 'Good', 'Fair', 'Poor'
-  degradation_pct decimal not null,
-  assessment_date timestamp default now(),
-  user_id uuid references auth.users null, -- null for anonymous
-  user_agent text,
-
-  -- RLS policies applied
-  constraint valid_health check (battery_health in ('Good', 'Fair', 'Poor'))
-)
-
--- Certificates (paid only)
-public.certificates (
-  id uuid primary key default gen_random_uuid(),
-  user_id uuid references auth.users not null,
-  assessment_id uuid references assessments not null,
-  stripe_payment_intent text not null,
-  verification_token text unique not null,
-  pdf_path text, -- Supabase Storage path
-  created_at timestamp default now()
-)
-
--- Row Level Security (RLS) policies
-alter table profiles enable row level security;
-alter table assessments enable row level security;
-alter table certificates enable row level security;
-
--- Users can only see their own data
-create policy "Users can view own profile" on profiles for select using (auth.uid() = id);
-create policy "Users can view own certificates" on certificates for select using (auth.uid() = user_id);
-```
+Use the tools to figure this out
 
 ## User Journey Flows
 
@@ -166,12 +111,9 @@ graph TD
     A[Landing Page] --> B[Check My Tesla]
     B --> C[Tesla OAuth]
     C --> D[Battery Assessment]
-    D --> E{Satisfied?}
-    E -->|Yes| F[Get Certificate - $9.99]
-    E -->|No| G[Exit]
-    F --> H[Create Account]
-    H --> I[Payment]
-    I --> J[PDF Certificate + QR]
+    D -->|Yes| F[Get Certificate - $10 (or local equivalent)]
+    E --> I[Payment]
+    F --> J[PDF Certificate + QR]
 ```
 
 ### Flow 2: Buyer Verification

@@ -49,8 +49,8 @@ export default async function AboutPage({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
-  const links = getLocaleLinks(locale);
+  const { locale: _locale } = await params;
+  const links = getLocaleLinks(_locale);
 
   return (
     <div className="bg-gradient-to-br from-slate-50 to-blue-50">
@@ -85,6 +85,12 @@ export default async function AboutPage({
             simple mission: to bring transparency and trust to the used electric
             vehicle market. We believe that buying or selling an EV should be a
             clear, confident process for everyone involved.
+          </p>
+          <p className="text-xl text-gray-600 mb-12">
+            You can reach us at{" "}
+            <a href="mailto:batterycert@tidycalls.com">
+              batterycert@tidycalls.com
+            </a>
           </p>
         </div>
 
@@ -150,7 +156,8 @@ export default async function AboutPage({
       <footer className="border-t bg-white">
         <div className="container mx-auto px-4 py-6 text-center text-gray-600">
           &copy; {new Date().getFullYear()} batterycert.com, a TidyCalls LTD.
-          company. All rights reserved.
+          company. 124 City Road, EC1V 2NX, London. Company number 16329940 All
+          rights reserved.
         </div>
       </footer>
     </div>

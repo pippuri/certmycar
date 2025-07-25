@@ -10,12 +10,25 @@ interface CertificatePaymentProps {
   certificateId: string;
   locale: string;
   vehicleName?: string;
+  translations?: {
+    payment_required: string;
+    certificate_description: string;
+    pricing_description: string;
+    pricing_loading: string;
+    pricing_error: string;
+    certificate_price: string;
+    payment_button: string;
+    payment_processing: string;
+    loading: string;
+    secure_payment: string;
+  };
 }
 
 export function CertificatePayment({
   certificateId,
   locale,
   vehicleName,
+  translations,
 }: CertificatePaymentProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -29,6 +42,20 @@ export function CertificatePayment({
   } | null>(null);
   const [isLoadingPricing, setIsLoadingPricing] = useState(true);
 
+  // Fallback translations for backward compatibility
+  const t = translations || {
+    payment_required: "Payment Required",
+    certificate_description: "This certificate requires payment to unlock the full verified report.",
+    pricing_description: "Get your official Tesla battery health certificate with verification QR code and fraud protection.",
+    pricing_loading: "Loading...",
+    pricing_error: "Failed to load pricing information",
+    certificate_price: "Certificate Price",
+    payment_button: "Complete Payment",
+    payment_processing: "Processing...",
+    loading: "Loading...",
+    secure_payment: "Secure payment powered by Stripe • Instant access after payment • Email receipt included"
+  };
+
   // Load pricing from database
   useEffect(() => {
     async function loadPricing() {
@@ -37,14 +64,14 @@ export function CertificatePayment({
         setPricing(pricingData);
       } catch (error) {
         console.error("Failed to load pricing:", error);
-        setError("Failed to load pricing information");
+        setError(t.pricing_error);
       } finally {
         setIsLoadingPricing(false);
       }
     }
 
     loadPricing();
-  }, [locale]);
+  }, [locale, t.pricing_error]);
 
   const handlePayment = async () => {
     setIsLoading(true);
@@ -94,18 +121,16 @@ export function CertificatePayment({
           <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
             <AlertTriangle className="h-5 w-5 text-yellow-600" />
           </div>
-          <h3 className="font-semibold text-yellow-800">Payment Required</h3>
+          <h3 className="font-semibold text-yellow-800">{t.payment_required}</h3>
         </div>
 
         <div className="mb-4">
           <p className="text-yellow-700 text-sm mb-2">
-            This certificate requires payment to unlock the full verified
-            report.
+            {t.certificate_description}
           </p>
           <p className="text-yellow-700 text-sm mb-4">
-            Get your official Tesla battery health certificate{" "}
+            {t.pricing_description}{" "}
             {vehicleName ? `for ${vehicleName}` : ""}
-            with verification QR code and fraud protection.
           </p>
         </div>
 
@@ -117,9 +142,9 @@ export function CertificatePayment({
 
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm text-yellow-600 mb-1">Certificate Price</p>
+            <p className="text-sm text-yellow-600 mb-1">{t.certificate_price}</p>
             {isLoadingPricing ? (
-              <p className="text-2xl font-bold text-yellow-800">Loading...</p>
+              <p className="text-2xl font-bold text-yellow-800">{t.pricing_loading}</p>
             ) : pricing ? (
               <p className="text-2xl font-bold text-yellow-800">
                 {pricing.formattedPrice}
@@ -137,17 +162,17 @@ export function CertificatePayment({
             {isLoading ? (
               <>
                 <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                Processing...
+                {t.payment_processing}
               </>
             ) : isLoadingPricing ? (
               <>
                 <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                Loading...
+                {t.loading}
               </>
             ) : (
               <>
                 <CreditCard className="h-4 w-4 mr-2" />
-                Complete Payment
+                {t.payment_button}
               </>
             )}
           </Button>
@@ -155,8 +180,7 @@ export function CertificatePayment({
 
         <div className="mt-4 pt-4 border-t border-yellow-200">
           <p className="text-xs text-yellow-600">
-            Secure payment powered by Stripe • Instant access after payment •
-            Email receipt included
+            {t.secure_payment}
           </p>
         </div>
       </CardContent>

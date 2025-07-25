@@ -3,7 +3,7 @@ import { createServerSupabaseClient } from "@/lib/supabase";
 
 export async function POST(request: NextRequest) {
   try {
-    const { certificateId, url } = await request.json();
+    const { certificateId } = await request.json();
 
     // Fetch certificate to get VIN
     const supabase = await createServerSupabaseClient();
@@ -21,8 +21,10 @@ export async function POST(request: NextRequest) {
     }
 
     // Include VIN in share URL for security
-    const shareUrl = `${process.env.NEXT_PUBLIC_SITE_URL || "https://batterycert.com"}/certificate/${certificateId}?vin=${certificate.tesla_vin}`;
-    
+    const shareUrl = `${
+      process.env.NEXT_PUBLIC_SITE_URL || "https://batterycert.com"
+    }/certificate/${certificateId}?vin=${certificate.tesla_vin}`;
+
     // In the future, you could:
     // - Track sharing analytics
     // - Generate short URLs
@@ -31,7 +33,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       shareUrl,
-      message: "Share URL generated successfully"
+      message: "Share URL generated successfully",
     });
   } catch (error) {
     console.error("Share error:", error);

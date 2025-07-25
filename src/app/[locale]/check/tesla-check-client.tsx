@@ -59,6 +59,71 @@ interface TeslaCheckPageClientProps {
     region: string;
     [key: string]: string;
   };
+  translations?: {
+    back_to_home: string;
+    results: {
+      battery_degradation: string;
+      battery_health: string;
+      excellent: string;
+      good: string;
+      fair: string;
+      current_capacity: string;
+      original_capacity: string;
+      current_charge: string;
+    };
+    certificate_promo: {
+      title: string;
+      subtitle: string;
+      free_section: {
+        title: string;
+        degradation: string;
+        capacity: string;
+        charge: string;
+      };
+      paid_section: {
+        title: string;
+        full_dataset: string;
+        peer_comparison: string;
+        pdf_certificate: string;
+        authenticity: string;
+        physical_option: string;
+        performance_ranking: string;
+      };
+      purchase_button: string;
+      sample_link: string;
+      features: string;
+    };
+    auth_form: {
+      title: string;
+      subtitle: string;
+      region_info: string;
+      region_change: string;
+      connect_button: string;
+      connecting: string;
+      try_again: string;
+      retry_info: string;
+    };
+    security: {
+      title: string;
+      no_storage: string;
+      encrypted: string;
+      battery_only: string;
+    };
+    features: {
+      secure_connection: {
+        title: string;
+        subtitle: string;
+      };
+      no_storage: {
+        title: string;
+        subtitle: string;
+      };
+      instant_results: {
+        title: string;
+        subtitle: string;
+      };
+    };
+  };
 }
 
 export default function TeslaCheckPageClient({
@@ -66,14 +131,82 @@ export default function TeslaCheckPageClient({
   regionName,
   locale,
   links,
+  translations,
 }: TeslaCheckPageClientProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState<BatteryHealthResult | null>(null);
   const [canRetry, setCanRetry] = useState(false);
 
+  // Fallback translations for backward compatibility
+  const t = translations || {
+    back_to_home: "Back to Home",
+    results: {
+      battery_degradation: "Battery Degradation",
+      battery_health: "Battery Health",
+      excellent: "Excellent",
+      good: "Good",
+      fair: "Fair",
+      current_capacity: "Current Capacity",
+      original_capacity: "Original Capacity",
+      current_charge: "Current Charge"
+    },
+    certificate_promo: {
+      title: "Get Your Official Certificate",
+      subtitle: "Turn your results into a verified document that increases your Tesla's value",
+      free_section: {
+        title: "What You Got FREE",
+        degradation: "✓ Battery degradation percentage",
+        capacity: "✓ Current capacity data",
+        charge: "✓ Current charge level"
+      },
+      paid_section: {
+        title: "Official Certificate ($10)",
+        full_dataset: "✓ Full dataset for your vehicle",
+        peer_comparison: "✓ Peer Comparison vs Similar Vehicles",
+        pdf_certificate: "✓ Dated PDF Certificate with VIN",
+        authenticity: "✓ Authenticity Verification for buyers",
+        physical_option: "✓ Option for a physical certificate",
+        performance_ranking: "✓ Performance Tier Ranking"
+      },
+      purchase_button: "Purchase Certificate",
+      sample_link: "Sample Certificate",
+      features: "💎 Instant download • 🔒 Secure payment • 📄 Valid for 3 months"
+    },
+    auth_form: {
+      title: "Check Your Battery Health",
+      subtitle: "Connect your Tesla account to get an instant battery health assessment",
+      region_info: "Using Tesla {regionName} servers",
+      region_change: "Wrong region? Change it here",
+      connect_button: "Connect with Tesla Account",
+      connecting: "Connecting to Tesla...",
+      try_again: "Try Again",
+      retry_info: "Tesla may remember your session and connect faster"
+    },
+    security: {
+      title: "Your Security is Our Priority",
+      no_storage: "• We never store your Tesla credentials",
+      encrypted: "• Connection is encrypted and secure",
+      battery_only: "• We only access battery data, nothing else"
+    },
+    features: {
+      secure_connection: {
+        title: "Secure Connection",
+        subtitle: "256-bit encryption"
+      },
+      no_storage: {
+        title: "No Storage",
+        subtitle: "Credentials not saved"
+      },
+      instant_results: {
+        title: "Instant Results",
+        subtitle: "30 seconds or less"
+      }
+    }
+  };
+
   // Helper function to determine if user should see miles (US, UK, AU) vs km (rest of world)
-  const usesMiles =
+  const _usesMiles =
     locale.startsWith("en-US") ||
     locale.startsWith("en-GB") ||
     locale.startsWith("en-AU");
@@ -206,7 +339,7 @@ export default function TeslaCheckPageClient({
             <Button variant="outline" asChild>
               <Link href={links.home}>
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Home
+{t.back_to_home}
               </Link>
             </Button>
           </div>
@@ -218,7 +351,7 @@ export default function TeslaCheckPageClient({
               <CardContent className="pt-6">
                 <div className="mb-8">
                   <div className="text-lg font-semibold text-gray-600 mb-2">
-                    Battery Degradation
+                    {t.results.battery_degradation}
                   </div>
                   <div
                     className={`text-8xl font-black mb-2 ${getHealthColor(
@@ -228,12 +361,12 @@ export default function TeslaCheckPageClient({
                     {result.battery_health.degradation_percentage}%
                   </div>
                   <div className="text-xl font-semibold text-gray-700 mb-4">
-                    Battery Health:{" "}
+                    {t.results.battery_health}:{" "}
                     {result.battery_health.degradation_percentage < 10
-                      ? "Excellent"
+                      ? t.results.excellent
                       : result.battery_health.degradation_percentage < 15
-                      ? "Good"
-                      : "Fair"}
+                      ? t.results.good
+                      : t.results.fair}
                   </div>
                 </div>
 
@@ -244,7 +377,7 @@ export default function TeslaCheckPageClient({
                       {result.battery_health.current_capacity_kwh} kWh
                     </div>
                     <div className="text-sm text-gray-600">
-                      Current Capacity
+                      {t.results.current_capacity}
                     </div>
                   </div>
                   <div className="text-center bg-gray-50 rounded-lg p-4">
@@ -252,14 +385,14 @@ export default function TeslaCheckPageClient({
                       {result.battery_health.original_capacity_kwh} kWh
                     </div>
                     <div className="text-sm text-gray-600">
-                      Original Capacity
+                      {t.results.original_capacity}
                     </div>
                   </div>
                   <div className="text-center bg-gray-50 rounded-lg p-4">
                     <div className="text-2xl font-bold text-green-600 mb-1">
                       {result.battery_data.current_charge}%
                     </div>
-                    <div className="text-sm text-gray-600">Current Charge</div>
+                    <div className="text-sm text-gray-600">{t.results.current_charge}</div>
                   </div>
                 </div>
               </CardContent>
@@ -270,48 +403,47 @@ export default function TeslaCheckPageClient({
               <CardContent className="pt-6">
                 <div className="text-center mb-8">
                   <h2 className="text-3xl font-bold mb-4">
-                    Get Your Official Certificate
+                    {t.certificate_promo.title}
                   </h2>
                   <p className="text-blue-100 text-lg">
-                    Turn your results into a verified document that increases
-                    your Tesla&apos;s value
+                    {t.certificate_promo.subtitle}
                   </p>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-8 mb-8">
                   <div className="text-center">
                     <h3 className="text-xl font-semibold mb-4">
-                      What You Got FREE
+                      {t.certificate_promo.free_section.title}
                     </h3>
                     <div className="space-y-2 text-blue-100">
-                      <div>✓ Battery degradation percentage</div>
-                      <div>✓ Current capacity data</div>
-                      <div>✓ Current charge level</div>
+                      <div>{t.certificate_promo.free_section.degradation}</div>
+                      <div>{t.certificate_promo.free_section.capacity}</div>
+                      <div>{t.certificate_promo.free_section.charge}</div>
                     </div>
                   </div>
 
                   <div className="text-center border-l border-blue-400 pl-8">
                     <h3 className="text-xl font-semibold mb-4">
-                      Official Certificate ($10)
+                      {t.certificate_promo.paid_section.title}
                     </h3>
                     <div className="space-y-2 text-white">
                       <div>
-                        ✓ <strong>Full dataset for your vehicle</strong>
+                        {t.certificate_promo.paid_section.full_dataset}
                       </div>
                       <div>
-                        ✓ <strong>Peer Comparison vs Similar Vehicles</strong>
+                        {t.certificate_promo.paid_section.peer_comparison}
                       </div>
                       <div>
-                        ✓ <strong>Dated PDF Certificate with VIN</strong>
+                        {t.certificate_promo.paid_section.pdf_certificate}
                       </div>
                       <div>
-                        ✓ <strong>Authenticity Verification for buyers</strong>
+                        {t.certificate_promo.paid_section.authenticity}
                       </div>
                       <div>
-                        ✓ <strong>Option for a physical certificate</strong>
+                        {t.certificate_promo.paid_section.physical_option}
                       </div>
                       <div>
-                        ✓ <strong>Performance Tier Ranking</strong>
+                        {t.certificate_promo.paid_section.performance_ranking}
                       </div>
                     </div>
                   </div>
@@ -326,7 +458,7 @@ export default function TeslaCheckPageClient({
                     <Link
                       href={`/api/checkout?certificate_id=${result.certificate_id}&vin=${result.vehicle.vin}&locale=${locale}`}
                     >
-                      Purchase Certificate
+                      {t.certificate_promo.purchase_button}
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
                   </Button>
@@ -338,16 +470,16 @@ export default function TeslaCheckPageClient({
                     <Link
                       href="/certificate/CMB-2025-DEF456JKL?vin=5YJYGDEE2BF000001"
                       className="underline"
+                      target="_blank"
                     >
-                      Sample Certificate
+                      {t.certificate_promo.sample_link}
                     </Link>
                   </p>
                 </div>
 
                 <div className="text-center mt-6">
                   <p className="text-blue-100 text-sm">
-                    💎 Instant download • 🔒 Secure payment • 📄 Valid for 3
-                    months
+                    {t.certificate_promo.features}
                   </p>
                 </div>
               </CardContent>
@@ -368,7 +500,7 @@ export default function TeslaCheckPageClient({
           <Button variant="outline" asChild>
             <Link href={links.home}>
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Home
+              {t.back_to_home}
             </Link>
           </Button>
         </div>
@@ -381,16 +513,15 @@ export default function TeslaCheckPageClient({
                 <Zap className="h-8 w-8 text-blue-600" />
               </div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                Check Your Battery Health
+                {t.auth_form.title}
               </h1>
               <p className="text-gray-600 mb-2">
-                Connect your Tesla account to get an instant battery health
-                assessment
+                {t.auth_form.subtitle}
               </p>
               {regionName && (
                 <div className="text-center">
                   <p className="text-sm text-blue-600 font-medium mb-2">
-                    Using Tesla {regionName} servers
+                    {t.auth_form.region_info.replace('{regionName}', regionName)}
                   </p>
                   <Button
                     variant="link"
@@ -399,7 +530,7 @@ export default function TeslaCheckPageClient({
                     asChild
                   >
                     <Link href={links.region}>
-                      Wrong region? Change it here
+                      {t.auth_form.region_change}
                     </Link>
                   </Button>
                 </div>
@@ -418,12 +549,12 @@ export default function TeslaCheckPageClient({
                   {isLoading ? (
                     <>
                       <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                      Connecting to Tesla...
+                      {t.auth_form.connecting}
                     </>
                   ) : (
                     <>
                       <Zap className="mr-2 h-5 w-5" />
-                      Connect with Tesla Account
+                      {t.auth_form.connect_button}
                     </>
                   )}
                 </Button>
@@ -449,17 +580,17 @@ export default function TeslaCheckPageClient({
                         {isLoading ? (
                           <>
                             <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                            Connecting to Tesla...
+                            {t.auth_form.connecting}
                           </>
                         ) : (
                           <>
                             <ArrowRight className="mr-2 h-5 w-5" />
-                            Try Again
+                            {t.auth_form.try_again}
                           </>
                         )}
                       </Button>
                       <p className="text-sm text-gray-600 mt-2">
-                        Tesla may remember your session and connect faster
+                        {t.auth_form.retry_info}
                       </p>
                     </div>
                   )}
@@ -473,12 +604,12 @@ export default function TeslaCheckPageClient({
                 <Shield className="h-5 w-5 text-green-600 mt-0.5" />
                 <div className="text-sm">
                   <h4 className="font-medium text-green-900 mb-1">
-                    Your Security is Our Priority
+                    {t.security.title}
                   </h4>
                   <ul className="text-green-800 space-y-1">
-                    <li>• We never store your Tesla credentials</li>
-                    <li>• Connection is encrypted and secure</li>
-                    <li>• We only access battery data, nothing else</li>
+                    <li>{t.security.no_storage}</li>
+                    <li>{t.security.encrypted}</li>
+                    <li>{t.security.battery_only}</li>
                   </ul>
                 </div>
               </div>
@@ -491,8 +622,8 @@ export default function TeslaCheckPageClient({
                   <Lock className="h-5 w-5 text-blue-600" />
                 </div>
                 <div className="text-xs text-gray-600">
-                  <div className="font-medium">Secure Connection</div>
-                  <div>256-bit encryption</div>
+                  <div className="font-medium">{t.features.secure_connection.title}</div>
+                  <div>{t.features.secure_connection.subtitle}</div>
                 </div>
               </div>
               <div className="flex flex-col items-center space-y-2">
@@ -500,8 +631,8 @@ export default function TeslaCheckPageClient({
                   <CheckCircle className="h-5 w-5 text-green-600" />
                 </div>
                 <div className="text-xs text-gray-600">
-                  <div className="font-medium">No Storage</div>
-                  <div>Credentials not saved</div>
+                  <div className="font-medium">{t.features.no_storage.title}</div>
+                  <div>{t.features.no_storage.subtitle}</div>
                 </div>
               </div>
               <div className="flex flex-col items-center space-y-2">
@@ -509,8 +640,8 @@ export default function TeslaCheckPageClient({
                   <Zap className="h-5 w-5 text-purple-600" />
                 </div>
                 <div className="text-xs text-gray-600">
-                  <div className="font-medium">Instant Results</div>
-                  <div>30 seconds or less</div>
+                  <div className="font-medium">{t.features.instant_results.title}</div>
+                  <div>{t.features.instant_results.subtitle}</div>
                 </div>
               </div>
             </div>
