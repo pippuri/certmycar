@@ -304,9 +304,9 @@ export default function CertificatePage() {
               CMB-2024-001234
             </p>
             <div className="flex items-center justify-center space-x-4 text-xs text-gray-500">
-              <span>Generated: Jan 21, 2025 2:54 PM</span>
+              <span>Generated: July 25, 2025 2:54 PM</span>
               <span>•</span>
-              <span>Valid for 1 year</span>
+              <span>Valid for 3 months</span>
               <span>•</span>
               <Link href="/verify" className="text-blue-600 hover:underline">
                 Verify Certificate

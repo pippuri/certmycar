@@ -14,6 +14,7 @@ import {
 import { Logo } from "@/components/logo";
 import { TeslaStatsVisual } from "@/components/tesla-stats-visual";
 import { HeroVisual } from "@/components/hero-visual";
+import { GDPRBanner } from "@/components/gdpr-banner";
 import { getLocaleLinks } from "@/lib/locale-links";
 import type { Metadata } from "next";
 
@@ -416,6 +417,9 @@ export default async function HomePage({
           </div>
         </footer>
       </div>
+
+      {/* GDPR Banner for EU users */}
+      <GDPRBanner locale={locale} />
     </>
   );
 }

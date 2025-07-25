@@ -296,16 +296,19 @@ export default function TeslaCheckPageClient({
                     </h3>
                     <div className="space-y-2 text-white">
                       <div>
-                        ✓ <strong>Dated PDF Certificate with VIN</strong>
-                      </div>
-                      <div>
-                        ✓ <strong>Certificate Verification for buyers</strong>
-                      </div>
-                      <div>
-                        ✓ <strong>Option for a physical certificate</strong>
+                        ✓ <strong>Full dataset for your vehicle</strong>
                       </div>
                       <div>
                         ✓ <strong>Peer Comparison vs Similar Vehicles</strong>
+                      </div>
+                      <div>
+                        ✓ <strong>Dated PDF Certificate with VIN</strong>
+                      </div>
+                      <div>
+                        ✓ <strong>Authenticity Verification for buyers</strong>
+                      </div>
+                      <div>
+                        ✓ <strong>Option for a physical certificate</strong>
                       </div>
                       <div>
                         ✓ <strong>Performance Tier Ranking</strong>
@@ -327,6 +330,8 @@ export default function TeslaCheckPageClient({
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </Link>
                   </Button>
+                </div>
+                <div className="text-center">
                   {/* subtle link to check the sample */}
                   <p className="text-blue-100 text-sm">
                     See{" "}
@@ -341,8 +346,8 @@ export default function TeslaCheckPageClient({
 
                 <div className="text-center mt-6">
                   <p className="text-blue-100 text-sm">
-                    💎 Instant download • 🔒 Secure payment • 📄 Valid for
-                    resale
+                    💎 Instant download • 🔒 Secure payment • 📄 Valid for 3
+                    months
                   </p>
                 </div>
               </CardContent>
