@@ -1,7 +1,7 @@
 {
   "common": {
     "loading": "Loading...",
-    "error": "Error", 
+    "error": "Error",
     "success": "Success",
     "retry": "Try Again",
     "back": "Back",
@@ -54,7 +54,7 @@
     },
     "hero_features": {
       "free_check": "Free battery health check",
-      "no_account": "No account required", 
+      "no_account": "No account required",
       "instant_results": "Instant results",
       "optional_certificate": "Optional Certificate ($10)"
     },
@@ -74,7 +74,7 @@
           "description": "Direct from Tesla's systems"
         },
         "higher_value": {
-          "title": "Higher Value", 
+          "title": "Higher Value",
           "description": "Proven health increases price"
         }
       }
@@ -99,7 +99,7 @@
     "use_cases": {
       "title": "Perfect for ",
       "title_buyers": "Buyers",
-      "title_sellers": "Sellers", 
+      "title_sellers": "Sellers",
       "title_owners": "Owners",
       "buyers": {
         "title": "Buyers",
@@ -120,7 +120,7 @@
       "button_text": "Check My Tesla Battery Now",
       "features": {
         "free_registration": "Free • No registration required",
-        "speed": "30 seconds • Instant results", 
+        "speed": "30 seconds • Instant results",
         "certificate": "Optional $10 certificate"
       }
     },
@@ -174,7 +174,7 @@
     },
     "title": "Battery Health Report from Tesla Data",
     "certificate_id": "Certificate ID",
-    "health_score": "Health Score", 
+    "health_score": "Health Score",
     "scan_to_verify": "Scan to Verify",
     "vehicle_information": "Vehicle Information",
     "model": "Model",
@@ -191,7 +191,7 @@
     "detailed_analysis": "Detailed Analysis",
     "battery_specifications": "Battery Specifications",
     "original_capacity": "Original Capacity",
-    "current_capacity": "Current Capacity", 
+    "current_capacity": "Current Capacity",
     "capacity_loss": "Capacity Loss",
     "methodology": "Methodology",
     "performance_indicators": "Performance Indicators",
@@ -205,7 +205,7 @@
     "summary_fair": "This {vehicleName} demonstrates fair battery health with {degradation}% degradation. The battery is performing adequately for its usage. Current capacity of {currentCapacity} kWh from an original {originalCapacity} kWh. This vehicle shows higher than average degradation and should be considered carefully.",
     "conditions": {
       "excellent": "Excellent",
-      "good": "Good", 
+      "good": "Good",
       "average": "Average",
       "fair": "Fair",
       "poor": "Poor"
@@ -233,7 +233,7 @@
     "battery_health_report": "Tesla Battery Health Report",
     "certificate_id": "Certificate ID",
     "certified": "CERTIFIED",
-    "verified": "VERIFIED", 
+    "verified": "VERIFIED",
     "health_score": "Health Score",
     "vehicle_information": "Vehicle Information",
     "model": "Model",
@@ -282,7 +282,7 @@
       "battery_degradation": "Battery Degradation",
       "battery_health": "Battery Health",
       "excellent": "Excellent",
-      "good": "Good", 
+      "good": "Good",
       "fair": "Fair",
       "current_capacity": "Current Capacity",
       "original_capacity": "Original Capacity",
@@ -300,7 +300,7 @@
       "paid_section": {
         "title": "Official Certificate ($10)",
         "full_dataset": "✓ Full dataset for your vehicle",
-        "peer_comparison": "✓ Peer Comparison vs Similar Vehicles", 
+        "peer_comparison": "✓ Peer Comparison vs Similar Vehicles",
         "pdf_certificate": "✓ Dated PDF Certificate with VIN",
         "authenticity": "✓ Authenticity Verification for buyers",
         "physical_option": "✓ Option for a physical certificate",
@@ -332,7 +332,7 @@
         "subtitle": "256-bit encryption"
       },
       "no_storage": {
-        "title": "No Storage", 
+        "title": "No Storage",
         "subtitle": "Credentials not saved"
       },
       "instant_results": {
@@ -363,7 +363,96 @@
         "description": "Get your battery health results in 30 seconds"
       },
       "detailed_report": {
-        "title": "Detailed Report", 
+        "title": "Detailed Report",
+        "description": "Analysis with degradation percentage and capacity data"
+      },
+      "verified_certificate": {
+        "title": "Verified Certificate",
+        "description": "Optional $10 verified certificate for buying/selling protection"
+      }
+    },
+    "errors": {
+      "failed_to_load": "Failed to load your vehicles. Please try again.",
+      "failed_battery_check": "Failed to check battery health. Please try again."
+    }
+  },
+  "regions": {
+    "na": "North America & Asia-Pacific",
+    "eu": "Europe, Middle East & Africa"
+  },
+  "check_page": {
+    "meta": {
+      "title": "Check Your Tesla Battery Health - Free Instant Assessment | batterycert.com",
+      "description": "Get an instant, free Tesla battery health check. Connect your Tesla account to receive detailed degradation analysis and battery capacity data in 30 seconds.",
+      "keywords": "Tesla battery check, battery health test, Tesla degradation check, free battery assessment, Tesla battery analysis"
+    },
+    "title": "Check Your Tesla Battery Health",
+    "subtitle": "Connect your Tesla account to get an instant battery health assessment",
+    "region_notice": "Using Tesla {regionName} servers",
+    "wrong_region": "Wrong region? Change it here",
+    "connect_button": "Connect with Tesla Account",
+    "connecting": "Connecting to Tesla...",
+    "security_title": "Your Security is Our Priority",
+    "security_points": {
+      "no_credentials": "We never store your Tesla credentials",
+      "encrypted": "Connection is encrypted and secure",
+      "battery_only": "We only access battery data, nothing else"
+    },
+    "features": {
+      "secure_connection": {
+        "title": "Secure Connection",
+        "description": "256-bit encryption"
+      },
+      "no_storage": {
+        "title": "No Storage",
+        "description": "Credentials not saved"
+      },
+      "instant_results": {
+        "title": "Instant Results",
+        "description": "30 seconds or less"
+      }
+    }
+  },
+  "vehicles_page": {
+    "meta": {
+      "title": "Select Your Tesla Vehicle - Battery Health Check | batterycert.com",
+      "description": "Choose which Tesla vehicle to analyze. Get instant battery health assessment with degradation percentage and capacity data.",
+      "keywords": "Tesla vehicle selection, multiple Tesla cars, battery health check, Tesla fleet analysis"
+    },
+    "loading": {
+      "title": "Loading Your Vehicles...",
+      "description": "Fetching your Tesla vehicles from your account"
+    },
+    "title": "Select Your Tesla",
+    "subtitle": "Choose the vehicle you'd like to check. We'll analyze its battery health in just 30 seconds.",
+    "checking_battery": "Checking Battery Health...",
+    "vehicle_card": {
+      "charging": "Charging",
+      "online": "Online",
+      "asleep": "Asleep",
+      "offline": "Offline",
+      "asleep_can_wake": "Asleep (Can Wake)",
+      "miles": "miles",
+      "kilometers": "km",
+      "vin": "VIN",
+      "battery_level": "Battery Level",
+      "range": "Range",
+      "temperature": "Temperature",
+      "last_seen": "Last Seen",
+      "odometer": "Odometer"
+    },
+    "no_vehicles": {
+      "title": "No Vehicles Found",
+      "description": "We couldn't find any Tesla vehicles associated with your account. Please make sure you have vehicles registered to your Tesla account.",
+      "try_again": "Try Again"
+    },
+    "info_cards": {
+      "instant_analysis": {
+        "title": "Instant Analysis",
+        "description": "Get your battery health results in 30 seconds"
+      },
+      "detailed_report": {
+        "title": "Detailed Report",
         "description": "Analysis with degradation percentage and capacity data"
       },
       "verified_certificate": {

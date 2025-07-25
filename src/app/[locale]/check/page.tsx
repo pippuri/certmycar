@@ -1,5 +1,5 @@
 import React from "react";
-import { localeToRegion, formatRegionName } from "@/lib/tesla-regions";
+import { localeToRegion } from "@/lib/tesla-regions";
 import { getLocaleLinks } from "@/lib/locale-links";
 import TeslaCheckPageClient from "./tesla-check-client";
 import { getTranslations } from "next-intl/server";
@@ -50,7 +50,6 @@ export default async function TeslaCheckPage({
 
   // Get region from locale parameter
   const region = localeToRegion(_locale);
-  const regionName = formatRegionName(region);
 
   // Get locale-aware links
   const links = getLocaleLinks(_locale);
@@ -61,6 +60,20 @@ export default async function TeslaCheckPage({
     namespace: "tesla_check",
   });
 
+  // Load root translations for regions
+  const rootTranslations = await getTranslations({
+    locale: _locale,
+  });
+
+  // Get localized region name
+  const regionName =
+    region === "eu"
+      ? rootTranslations("regions.eu")
+      : rootTranslations("regions.na");
+
+  // Construct the region info text directly
+  const regionInfoText = `Using Tesla ${regionName} servers`;
+
   return (
     <TeslaCheckPageClient
       region={region}
@@ -70,41 +83,69 @@ export default async function TeslaCheckPage({
       translations={{
         back_to_home: teslaCheckTranslations("back_to_home"),
         results: {
-          battery_degradation: teslaCheckTranslations("results.battery_degradation"),
+          battery_degradation: teslaCheckTranslations(
+            "results.battery_degradation"
+          ),
           battery_health: teslaCheckTranslations("results.battery_health"),
           excellent: teslaCheckTranslations("results.excellent"),
           good: teslaCheckTranslations("results.good"),
           fair: teslaCheckTranslations("results.fair"),
           current_capacity: teslaCheckTranslations("results.current_capacity"),
-          original_capacity: teslaCheckTranslations("results.original_capacity"),
+          original_capacity: teslaCheckTranslations(
+            "results.original_capacity"
+          ),
           current_charge: teslaCheckTranslations("results.current_charge"),
         },
         certificate_promo: {
           title: teslaCheckTranslations("certificate_promo.title"),
           subtitle: teslaCheckTranslations("certificate_promo.subtitle"),
           free_section: {
-            title: teslaCheckTranslations("certificate_promo.free_section.title"),
-            degradation: teslaCheckTranslations("certificate_promo.free_section.degradation"),
-            capacity: teslaCheckTranslations("certificate_promo.free_section.capacity"),
-            charge: teslaCheckTranslations("certificate_promo.free_section.charge"),
+            title: teslaCheckTranslations(
+              "certificate_promo.free_section.title"
+            ),
+            degradation: teslaCheckTranslations(
+              "certificate_promo.free_section.degradation"
+            ),
+            capacity: teslaCheckTranslations(
+              "certificate_promo.free_section.capacity"
+            ),
+            charge: teslaCheckTranslations(
+              "certificate_promo.free_section.charge"
+            ),
           },
           paid_section: {
-            title: teslaCheckTranslations("certificate_promo.paid_section.title"),
-            full_dataset: teslaCheckTranslations("certificate_promo.paid_section.full_dataset"),
-            peer_comparison: teslaCheckTranslations("certificate_promo.paid_section.peer_comparison"),
-            pdf_certificate: teslaCheckTranslations("certificate_promo.paid_section.pdf_certificate"),
-            authenticity: teslaCheckTranslations("certificate_promo.paid_section.authenticity"),
-            physical_option: teslaCheckTranslations("certificate_promo.paid_section.physical_option"),
-            performance_ranking: teslaCheckTranslations("certificate_promo.paid_section.performance_ranking"),
+            title: teslaCheckTranslations(
+              "certificate_promo.paid_section.title"
+            ),
+            full_dataset: teslaCheckTranslations(
+              "certificate_promo.paid_section.full_dataset"
+            ),
+            peer_comparison: teslaCheckTranslations(
+              "certificate_promo.paid_section.peer_comparison"
+            ),
+            pdf_certificate: teslaCheckTranslations(
+              "certificate_promo.paid_section.pdf_certificate"
+            ),
+            authenticity: teslaCheckTranslations(
+              "certificate_promo.paid_section.authenticity"
+            ),
+            physical_option: teslaCheckTranslations(
+              "certificate_promo.paid_section.physical_option"
+            ),
+            performance_ranking: teslaCheckTranslations(
+              "certificate_promo.paid_section.performance_ranking"
+            ),
           },
-          purchase_button: teslaCheckTranslations("certificate_promo.purchase_button"),
+          purchase_button: teslaCheckTranslations(
+            "certificate_promo.purchase_button"
+          ),
           sample_link: teslaCheckTranslations("certificate_promo.sample_link"),
           features: teslaCheckTranslations("certificate_promo.features"),
         },
         auth_form: {
           title: teslaCheckTranslations("auth_form.title"),
           subtitle: teslaCheckTranslations("auth_form.subtitle"),
-          region_info: teslaCheckTranslations("auth_form.region_info"),
+          region_info: regionInfoText,
           region_change: teslaCheckTranslations("auth_form.region_change"),
           connect_button: teslaCheckTranslations("auth_form.connect_button"),
           connecting: teslaCheckTranslations("auth_form.connecting"),
@@ -120,7 +161,9 @@ export default async function TeslaCheckPage({
         features: {
           secure_connection: {
             title: teslaCheckTranslations("features.secure_connection.title"),
-            subtitle: teslaCheckTranslations("features.secure_connection.subtitle"),
+            subtitle: teslaCheckTranslations(
+              "features.secure_connection.subtitle"
+            ),
           },
           no_storage: {
             title: teslaCheckTranslations("features.no_storage.title"),
@@ -128,7 +171,9 @@ export default async function TeslaCheckPage({
           },
           instant_results: {
             title: teslaCheckTranslations("features.instant_results.title"),
-            subtitle: teslaCheckTranslations("features.instant_results.subtitle"),
+            subtitle: teslaCheckTranslations(
+              "features.instant_results.subtitle"
+            ),
           },
         },
       }}

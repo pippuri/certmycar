@@ -93,10 +93,28 @@ interface VehicleSelectionClientProps {
       failed_to_load: string;
       failed_battery_check: string;
     };
+    vehicle_card: {
+      charging: string;
+      online: string;
+      asleep: string;
+      offline: string;
+      asleep_can_wake: string;
+      miles: string;
+      kilometers: string;
+      vin: string;
+      battery_level: string;
+      range: string;
+      temperature: string;
+      last_seen: string;
+      odometer: string;
+    };
   };
 }
 
-export default function VehicleSelectionClient({ locale, translations }: VehicleSelectionClientProps) {
+export default function VehicleSelectionClient({
+  locale,
+  translations,
+}: VehicleSelectionClientProps) {
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [selectedVehicleId, setSelectedVehicleId] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
@@ -109,36 +127,54 @@ export default function VehicleSelectionClient({ locale, translations }: Vehicle
     back_to_login: "Back to Login",
     loading: {
       title: "Loading Your Vehicles...",
-      description: "Fetching your Tesla vehicles from your account"
+      description: "Fetching your Tesla vehicles from your account",
     },
     page: {
       title: "Select Your Tesla",
-      subtitle: "Choose the vehicle you'd like to check. We'll analyze its battery health in just 30 seconds."
+      subtitle:
+        "Choose the vehicle you'd like to check. We'll analyze its battery health in just 30 seconds.",
     },
     checking_battery: "Checking Battery Health...",
     no_vehicles: {
       title: "No Vehicles Found",
-      description: "We couldn't find any Tesla vehicles associated with your account. Please make sure you have vehicles registered to your Tesla account.",
-      try_again: "Try Again"
+      description:
+        "We couldn't find any Tesla vehicles associated with your account. Please make sure you have vehicles registered to your Tesla account.",
+      try_again: "Try Again",
     },
     info_cards: {
       instant_analysis: {
         title: "Instant Analysis",
-        description: "Get your battery health results in 30 seconds"
+        description: "Get your battery health results in 30 seconds",
       },
       detailed_report: {
         title: "Detailed Report",
-        description: "Analysis with degradation percentage and capacity data"
+        description: "Analysis with degradation percentage and capacity data",
       },
       verified_certificate: {
         title: "Verified Certificate",
-        description: "Optional $10 verified certificate for buying/selling protection"
-      }
+        description:
+          "Optional $10 verified certificate for buying/selling protection",
+      },
     },
     errors: {
       failed_to_load: "Failed to load your vehicles. Please try again.",
-      failed_battery_check: "Failed to check battery health. Please try again."
-    }
+      failed_battery_check: "Failed to check battery health. Please try again.",
+    },
+    vehicle_card: {
+      charging: "Charging",
+      online: "Online",
+      asleep: "Asleep",
+      offline: "Offline",
+      asleep_can_wake: "Asleep (Can Wake)",
+      miles: "miles",
+      kilometers: "km",
+      vin: "VIN",
+      battery_level: "Battery Level",
+      range: "Range",
+      temperature: "Temperature",
+      last_seen: "Last Seen",
+      odometer: "Odometer",
+    },
   };
 
   // Function to decode year from VIN (10th character)
@@ -346,9 +382,7 @@ export default function VehicleSelectionClient({ locale, translations }: Vehicle
     } catch (error) {
       console.error("Battery check error:", error);
       setError(
-        error instanceof Error
-          ? error.message
-          : t.errors.failed_battery_check
+        error instanceof Error ? error.message : t.errors.failed_battery_check
       );
     } finally {
       setIsCheckingBattery(false);
@@ -377,9 +411,7 @@ export default function VehicleSelectionClient({ locale, translations }: Vehicle
               <h2 className="text-2xl font-bold text-gray-900 mb-2">
                 {t.loading.title}
               </h2>
-              <p className="text-gray-600">
-                {t.loading.description}
-              </p>
+              <p className="text-gray-600">{t.loading.description}</p>
             </CardContent>
           </Card>
         </div>
@@ -462,9 +494,7 @@ export default function VehicleSelectionClient({ locale, translations }: Vehicle
               <h2 className="text-2xl font-bold text-gray-900 mb-2">
                 {t.no_vehicles.title}
               </h2>
-              <p className="text-gray-600 mb-6">
-                {t.no_vehicles.description}
-              </p>
+              <p className="text-gray-600 mb-6">{t.no_vehicles.description}</p>
               <Button variant="outline" asChild>
                 <Link href={`/${locale}/check`}>{t.no_vehicles.try_again}</Link>
               </Button>

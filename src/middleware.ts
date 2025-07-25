@@ -1,20 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// All supported locales (expanded set)
+// Supported locales - temporarily only English until all translations are complete
 export const locales = [
   "en-US", // English (US)
   "en-GB", // English (UK)
-  "sv-SE", // Swedish
-  "no-NO", // Norwegian
-  "da-DK", // Danish
-  "nl-NL", // Dutch
-  "fr-FR", // French
-  "de-DE", // German
-  "it-IT", // Italian
-  "es-ES", // Spanish
-  "ja-JP", // Japanese
-  "ko-KR", // Korean
-  "fi-FI", // Finnish
 ];
 export const defaultLocale = "en-US";
 
@@ -52,22 +41,9 @@ function getLocale(request: NextRequest): string {
       // Try language-only match (e.g., en -> en-US)
       const [lang] = locale.split("-");
 
-      // Language-based fallbacks
+      // Language-based fallbacks - only English for now
       const languageFallbacks: Record<string, string> = {
         en: detectRegionFromHeaders(request) === "eu" ? "en-GB" : "en-US",
-        sv: "sv-SE",
-        no: "no-NO",
-        nb: "no-NO", // Norwegian Bokmål
-        nn: "no-NO", // Norwegian Nynorsk
-        da: "da-DK",
-        nl: "nl-NL",
-        fr: "fr-FR",
-        de: "de-DE",
-        it: "it-IT",
-        es: "es-ES",
-        ja: "ja-JP",
-        ko: "ko-KR",
-        fi: "fi-FI",
       };
 
       if (

@@ -188,7 +188,7 @@ export default async function PrivacyPolicyPage({
             <p className="text-gray-700 mb-6 leading-relaxed">
               For privacy-related questions or to exercise your data rights,
               please contact TidyCalls LTD. through our official support
-              channels or legal department.
+              channels or email us at batterycert@tidycalls.com.
             </p>
           </div>
 
