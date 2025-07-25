@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Battery, Zap, CheckCircle, TrendingUp, Shield } from "lucide-react";
 import { QRCode } from "./qr-code";
 import { CertificateIcon } from "./certificate-icon";
+import { useTranslations } from "next-intl";
 
 interface HeroVisualProps {
   translations?: {
@@ -46,38 +47,41 @@ export function HeroVisual({ translations }: HeroVisualProps = {}) {
   const [batteryLevel, setBatteryLevel] = useState(92);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  // Fallback translations for backward compatibility
-  const t = translations || {
-    verified_certificate: "Verified Certificate",
-    battery_health_report: "Tesla Battery Health Report",
-    certificate_id: "Certificate ID",
-    certified: "CERTIFIED",
-    verified: "VERIFIED",
-    health_score: "Health Score",
-    vehicle_information: "Vehicle Information",
-    model: "Model",
-    tesla_model_y: "Tesla Model Y Long Range",
-    year: "Year",
-    vin: "VIN",
-    battery_metrics: "Battery Metrics",
-    current_capacity: "Current Capacity",
-    degradation: "Degradation",
-    est_range: "Est. Range",
-    miles: "miles",
-    degradation_comparison: "Degradation Comparison vs Average",
-    better_than_percentage: "Better than 78% of similar vehicles",
-    this_vehicle: "This Vehicle (92%)",
-    average: "Average (85%)",
-    verified_data: "Verified Data",
-    direct_tesla_api: "Direct Tesla API",
-    tamper_proof: "Tamper-Proof",
-    qr_verification: "QR Verification",
-    increase_value: "Increase Value",
-    proven_health: "Proven Health",
-    scan_to_verify: "Scan to Verify",
-    verified_by: "Verified by batterycert.com",
-    generated: "Generated",
-    valid_for_one_year: "Valid for 1 year"
+  // Use translations from next-intl or fallback to props
+  const t = useTranslations("hero_visual");
+
+  // Use translations from props if provided, otherwise use next-intl translations
+  const text = translations || {
+    verified_certificate: t("verified_certificate"),
+    battery_health_report: t("battery_health_report"),
+    certificate_id: t("certificate_id"),
+    certified: t("certified"),
+    verified: t("verified"),
+    health_score: t("health_score"),
+    vehicle_information: t("vehicle_information"),
+    model: t("model"),
+    tesla_model_y: t("tesla_model_y"),
+    year: t("year"),
+    vin: t("vin"),
+    battery_metrics: t("battery_metrics"),
+    current_capacity: t("current_capacity"),
+    degradation: t("degradation"),
+    est_range: t("est_range"),
+    miles: t("miles"),
+    degradation_comparison: t("degradation_comparison"),
+    better_than_percentage: t("better_than_percentage"),
+    this_vehicle: t("this_vehicle"),
+    average: t("average"),
+    verified_data: t("verified_data"),
+    direct_tesla_api: t("direct_tesla_api"),
+    tamper_proof: t("tamper_proof"),
+    qr_verification: t("qr_verification"),
+    increase_value: t("increase_value"),
+    proven_health: t("proven_health"),
+    scan_to_verify: t("scan_to_verify"),
+    verified_by: t("verified_by"),
+    generated: t("generated"),
+    valid_for_one_year: t("valid_for_one_year"),
   };
 
   useEffect(() => {
@@ -102,12 +106,14 @@ export function HeroVisual({ translations }: HeroVisualProps = {}) {
             <div>
               <Badge className="bg-emerald-100 text-emerald-800 hover:bg-emerald-100 mb-3">
                 <CertificateIcon className="w-4 h-4 mr-2 text-emerald-600" />
-                {t.verified_certificate}
+                {text.verified_certificate}
               </Badge>
               <h2 className="text-2xl font-bold text-gray-900">
-                {t.battery_health_report}
+                {text.battery_health_report}
               </h2>
-              <p className="text-gray-600">{t.certificate_id}: CMB-2024-001234</p>
+              <p className="text-gray-600">
+                {text.certificate_id}: CMB-2024-001234
+              </p>
             </div>
 
             {/* Large Certificate Approval Stamp */}
@@ -117,10 +123,10 @@ export function HeroVisual({ translations }: HeroVisualProps = {}) {
                   <div className="text-center">
                     <Shield className="h-12 w-12 text-white mx-auto mb-1" />
                     <div className="text-white font-bold text-xs">
-                      {t.certified}
+                      {text.certified}
                     </div>
                     <div className="text-white text-xs opacity-90">
-                      {t.verified}
+                      {text.verified}
                     </div>
                   </div>
                 </div>
@@ -136,7 +142,7 @@ export function HeroVisual({ translations }: HeroVisualProps = {}) {
               >
                 {batteryLevel}%
               </div>
-              <p className="text-gray-600">{t.health_score}</p>
+              <p className="text-gray-600">{text.health_score}</p>
             </div>
           </div>
 
@@ -145,19 +151,19 @@ export function HeroVisual({ translations }: HeroVisualProps = {}) {
             <div>
               <h3 className="font-semibold text-lg mb-4 flex items-center text-gray-800">
                 <Zap className="h-5 w-5 mr-2 text-slate-600" />
-                {t.vehicle_information}
+                {text.vehicle_information}
               </h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">{t.model}</span>
-                  <span className="font-medium">{t.tesla_model_y}</span>
+                  <span className="text-gray-600">{text.model}</span>
+                  <span className="font-medium">{text.tesla_model_y}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">{t.year}</span>
+                  <span className="text-gray-600">{text.year}</span>
                   <span className="font-medium">2022</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">{t.vin}</span>
+                  <span className="text-gray-600">{text.vin}</span>
                   <span className="font-medium font-mono">5YJ3E***F123456</span>
                 </div>
               </div>
@@ -166,20 +172,20 @@ export function HeroVisual({ translations }: HeroVisualProps = {}) {
             <div>
               <h3 className="font-semibold text-lg mb-4 flex items-center text-gray-800">
                 <Battery className="h-5 w-5 mr-2 text-emerald-600" />
-                {t.battery_metrics}
+                {text.battery_metrics}
               </h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">{t.current_capacity}</span>
+                  <span className="text-gray-600">{text.current_capacity}</span>
                   <span className="font-medium">73.1 kWh</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">{t.degradation}</span>
+                  <span className="text-gray-600">{text.degradation}</span>
                   <span className="font-medium text-emerald-600">8%</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">{t.est_range}</span>
-                  <span className="font-medium">326 {t.miles}</span>
+                  <span className="text-gray-600">{text.est_range}</span>
+                  <span className="font-medium">326 {text.miles}</span>
                 </div>
               </div>
             </div>
@@ -189,11 +195,11 @@ export function HeroVisual({ translations }: HeroVisualProps = {}) {
           <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
               <h3 className="font-semibold text-lg text-gray-800">
-                {t.degradation_comparison}
+                {text.degradation_comparison}
               </h3>
               <Badge className="bg-emerald-100 text-emerald-800 hover:bg-emerald-100">
                 <TrendingUp className="w-4 h-4 mr-1" />
-                {t.better_than_percentage}
+                {text.better_than_percentage}
               </Badge>
             </div>
 
@@ -311,11 +317,11 @@ export function HeroVisual({ translations }: HeroVisualProps = {}) {
                   <div className="flex flex-col space-y-2 text-xs">
                     <div className="flex items-center space-x-2">
                       <div className="w-3 h-0.5 bg-emerald-500"></div>
-                      <span className="text-gray-700">This Vehicle (92%)</span>
+                      <span className="text-gray-700">{text.this_vehicle}</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <div className="w-3 h-0.5 border-t-2 border-dashed border-amber-500"></div>
-                      <span className="text-gray-700">Average (85%)</span>
+                      <span className="text-gray-700">{text.average}</span>
                     </div>
                   </div>
                 </div>
@@ -327,18 +333,20 @@ export function HeroVisual({ translations }: HeroVisualProps = {}) {
           <div className="grid md:grid-cols-4 gap-4">
             <div className="bg-slate-50 p-4 rounded-lg text-center">
               <CheckCircle className="h-8 w-8 text-slate-600 mx-auto mb-2" />
-              <p className="font-medium text-slate-800">Verified Data</p>
-              <p className="text-sm text-slate-600">Direct Tesla API</p>
+              <p className="font-medium text-slate-800">{text.verified_data}</p>
+              <p className="text-sm text-slate-600">{text.direct_tesla_api}</p>
             </div>
             <div className="bg-slate-50 p-4 rounded-lg text-center">
               <Shield className="h-8 w-8 text-slate-600 mx-auto mb-2" />
-              <p className="font-medium text-slate-800">Tamper-Proof</p>
-              <p className="text-sm text-slate-600">QR Verification</p>
+              <p className="font-medium text-slate-800">{text.tamper_proof}</p>
+              <p className="text-sm text-slate-600">{text.qr_verification}</p>
             </div>
             <div className="bg-slate-50 p-4 rounded-lg text-center">
               <TrendingUp className="h-8 w-8 text-slate-600 mx-auto mb-2" />
-              <p className="font-medium text-slate-800">Increase Value</p>
-              <p className="text-sm text-slate-600">Proven Health</p>
+              <p className="font-medium text-slate-800">
+                {text.increase_value}
+              </p>
+              <p className="text-sm text-slate-600">{text.proven_health}</p>
             </div>
             <div className="bg-slate-50 p-4 rounded-lg text-center">
               <div className="flex justify-center mb-3">
@@ -348,7 +356,9 @@ export function HeroVisual({ translations }: HeroVisualProps = {}) {
                   className="border-0 shadow-none p-0"
                 />
               </div>
-              <p className="font-medium text-slate-800">Scan to Verify</p>
+              <p className="font-medium text-slate-800">
+                {text.scan_to_verify}
+              </p>
               <p className="text-sm text-slate-600">batterycert.com</p>
             </div>
           </div>
@@ -358,12 +368,14 @@ export function HeroVisual({ translations }: HeroVisualProps = {}) {
             <div className="flex items-center justify-between text-sm text-gray-500">
               <div className="flex items-center space-x-2">
                 <CertificateIcon className="w-4 h-4 text-gray-400" />
-                <span>Verified by batterycert.com</span>
+                <span>{text.verified_by}</span>
               </div>
               <div className="flex items-center space-x-4">
-                <span>Generated: Jan 21, 2025</span>
+                <span>
+                  {text.generated}: {new Date().toLocaleDateString()}
+                </span>
                 <span>•</span>
-                <span>Valid for 1 year</span>
+                <span>{text.valid_for_one_year}</span>
               </div>
             </div>
           </div>

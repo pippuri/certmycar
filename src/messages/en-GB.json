@@ -56,11 +56,11 @@
       "free_check": "Free battery health check",
       "no_account": "No account required",
       "instant_results": "Instant results",
-      "optional_certificate": "Optional Certificate ($10)"
+      "optional_certificate": "Optional Certificate (£8)"
     },
     "problem_section": {
       "title": "Battery Replacement = ",
-      "title_price": "$15,000+",
+      "title_price": "£15,000+",
       "subtitle": "Buyers, don't get scammed with hidden battery issues",
       "video_title": "See Why Battery Health Matters",
       "video_description": "Watch this video to understand the common scam. batterycert.com helps you avoid it.",
@@ -92,7 +92,7 @@
         },
         "certificate": {
           "title": "Optional: Certificate",
-          "description": "Get a verified PDF certificate with QR code for buyers to verify. Valid for 3 months. Single $10 fee."
+          "description": "Get a verified PDF certificate with QR code for buyers to verify. Valid for 3 months. Single £8 fee."
         }
       }
     },
@@ -121,7 +121,7 @@
       "features": {
         "free_registration": "Free • No registration required",
         "speed": "30 seconds • Instant results",
-        "certificate": "Optional $10 certificate"
+        "certificate": "Optional £8 certificate"
       }
     },
     "footer": {
@@ -247,8 +247,8 @@
     "miles": "miles",
     "degradation_comparison": "Degradation Comparison vs Average",
     "better_than_percentage": "Better than 78% of similar vehicles",
-    "this_vehicle": "This Vehicle ({percentage}%)",
-    "average": "Average ({percentage}%)",
+    "this_vehicle": "This Vehicle (92%)",
+    "average": "Average (85%)",
     "verified_data": "Verified Data",
     "direct_tesla_api": "Direct Tesla API",
     "tamper_proof": "Tamper-Proof",
@@ -258,7 +258,7 @@
     "scan_to_verify": "Scan to Verify",
     "verified_by": "Verified by batterycert.com",
     "generated": "Generated",
-    "valid_for_one_year": "Valid for 1 year"
+    "valid_for_one_year": "Valid for 3 months"
   },
   "gdpr": {
     "title": "We respect your privacy",
@@ -298,7 +298,7 @@
         "charge": "✓ Current charge level"
       },
       "paid_section": {
-        "title": "Official Certificate ($10)",
+        "title": "Official Certificate (£8)",
         "full_dataset": "✓ Full dataset for your vehicle",
         "peer_comparison": "✓ Peer Comparison vs Similar Vehicles",
         "pdf_certificate": "✓ Dated PDF Certificate with VIN",
@@ -368,7 +368,7 @@
       },
       "verified_certificate": {
         "title": "Verified Certificate",
-        "description": "Optional $10 verified certificate for buying/selling protection"
+        "description": "Optional £8 verified certificate for buying/selling protection"
       }
     },
     "errors": {
@@ -466,7 +466,7 @@
       },
       "verified_certificate": {
         "title": "Verified Certificate",
-        "description": "Optional $10 verified certificate for buying/selling protection"
+        "description": "Optional £8 verified certificate for buying/selling protection"
       }
     },
     "errors": {

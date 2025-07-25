@@ -247,8 +247,8 @@
     "miles": "miles",
     "degradation_comparison": "Degradation Comparison vs Average",
     "better_than_percentage": "Better than 78% of similar vehicles",
-    "this_vehicle": "This Vehicle ({percentage}%)",
-    "average": "Average ({percentage}%)",
+    "this_vehicle": "This Vehicle (92%)",
+    "average": "Average (85%)",
     "verified_data": "Verified Data",
     "direct_tesla_api": "Direct Tesla API",
     "tamper_proof": "Tamper-Proof",
@@ -258,7 +258,7 @@
     "scan_to_verify": "Scan to Verify",
     "verified_by": "Verified by batterycert.com",
     "generated": "Generated",
-    "valid_for_one_year": "Valid for 1 year"
+    "valid_for_one_year": "Valid for 3 months"
   },
   "gdpr": {
     "title": "We respect your privacy",
