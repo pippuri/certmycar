@@ -6,58 +6,6 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "batterycert.com - Tesla Battery Health Check in 30 Seconds",
-  description:
-    "Get instant, verified Tesla battery health assessments. Perfect for buying, selling, or knowing your Tesla's true condition.",
-  metadataBase: new URL("https://batterycert.com"),
-  keywords: [
-    "Tesla battery health",
-    "Tesla battery check",
-    "EV battery certification",
-    "Tesla battery degradation",
-    "electric vehicle inspection",
-    "Tesla battery report",
-    "battery health assessment",
-  ],
-  authors: [{ name: "batterycert.com" }],
-  creator: "batterycert.com",
-  publisher: "batterycert.com",
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  openGraph: {
-    title: "Tesla Battery Health Check in 30 Seconds | batterycert.com",
-    description:
-      "Get instant, verified Tesla battery health assessments. Perfect for buying, selling, or knowing your Tesla's true condition.",
-    url: "https://batterycert.com",
-    siteName: "batterycert.com",
-    locale: "en_US",
-    type: "website",
-    images: [
-      {
-        url: "/opengraph-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Tesla Battery Health Check - batterycert.com",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Tesla Battery Health Check in 30 Seconds",
-    description:
-      "Get instant, verified Tesla battery health assessments. Perfect for buying, selling, or knowing your Tesla's true condition.",
-    creator: "@batterycert",
-    images: ["/opengraph-image.png"],
-  },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
@@ -72,10 +20,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
+    <html lang="en">
       <head>
-        <link rel="canonical" href="https://batterycert.com" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="canonical" href="https://batterycert.com" />
         <meta name="theme-color" content="#2563eb" />
 
         {/* Google Analytics */}

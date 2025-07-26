@@ -1,25 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-
-// Supported locales
-export const locales = [
-  "en-US", // English (US)
-  "en-GB", // English (UK)
-  "de-DE", // German (Germany)
-  "es-ES", // Spanish (Spain)
-  "fr-FR", // French (France)
-  "it-IT", // Italian (Italy)
-  "cs-CZ", // Czech (Czech Republic)
-  "fi-FI", // Finnish (Finland)
-  "nl-NL", // Dutch (Netherlands)
-  "no-NO", // Norwegian (Norway)
-  "pl-PL", // Polish (Poland)
-  "sv-SE", // Swedish (Sweden)
-  "tr-TR", // Turkish (Turkey)
-];
-export const defaultLocale = "en-US";
+import { locales, defaultLocale, type Locale } from "@/i18n";
 
 // Get locale from request
-function getLocale(request: NextRequest): string {
+function getLocale(request: NextRequest): Locale {
   // Check if there is any supported locale in the pathname
   const { pathname } = request.nextUrl;
   const pathnameHasLocale = locales.some(
@@ -28,7 +11,7 @@ function getLocale(request: NextRequest): string {
 
   if (pathnameHasLocale) {
     // Extract locale from pathname
-    return pathname.split("/")[1];
+    return pathname.split("/")[1] as Locale;
   }
 
   // Check Accept-Language header
@@ -45,15 +28,15 @@ function getLocale(request: NextRequest): string {
 
     for (const { locale } of languages) {
       // Try exact match first (e.g., en-US)
-      if (locales.includes(locale)) {
-        return locale;
+      if (locales.includes(locale as Locale)) {
+        return locale as Locale;
       }
 
       // Try language-only match (e.g., en -> en-US)
       const [lang] = locale.split("-");
 
       // Language-based fallbacks
-      const languageFallbacks: Record<string, string> = {
+      const languageFallbacks: Record<string, Locale> = {
         en: detectRegionFromHeaders(request) === "eu" ? "en-GB" : "en-US",
         de: "de-DE",
         es: "es-ES",
@@ -68,10 +51,7 @@ function getLocale(request: NextRequest): string {
         tr: "tr-TR",
       };
 
-      if (
-        languageFallbacks[lang] &&
-        locales.includes(languageFallbacks[lang])
-      ) {
+      if (languageFallbacks[lang]) {
         return languageFallbacks[lang];
       }
     }
