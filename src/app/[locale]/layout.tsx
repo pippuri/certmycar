@@ -1,6 +1,7 @@
 import type React from "react";
 import type { Metadata } from "next";
 import "../globals.css";
+import { locales } from "@/i18n";
 
 export const metadata: Metadata = {
   title: "batterycert.com- Tesla Battery Health Check in 30 Seconds",
@@ -12,8 +13,8 @@ export const metadata: Metadata = {
     "electric vehicle",
     "EV",
     "battery test",
-    "batterycert.comification",
-    "Instant Battery Health Check",
+    "verifiable batterycert.com certificate",
+    "FREE Instant Battery Health Check",
   ],
   openGraph: {
     title: "batterycert.com - Tesla Battery Health Check",
@@ -24,14 +25,35 @@ export const metadata: Metadata = {
   },
 };
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
+
   return (
-    <>
-      {children}
-    </>
+    <html lang={locale}>
+      <head>
+        {/* Hreflang tags for multilingual SEO */}
+        {locales.map((localeCode) => (
+          <link
+            key={localeCode}
+            rel="alternate"
+            hrefLang={localeCode}
+            href={`https://batterycert.com/${localeCode}`}
+          />
+        ))}
+        {/* Default/fallback hreflang */}
+        <link
+          rel="alternate"
+          hrefLang="x-default"
+          href="https://batterycert.com/en-US"
+        />
+      </head>
+      <body>{children}</body>
+    </html>
   );
 }
