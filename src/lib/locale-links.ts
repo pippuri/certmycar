@@ -1,4 +1,4 @@
-import { defaultLocale } from "../middleware";
+import { defaultLocale } from "@/i18n";
 
 /**
  * Create a locale-aware link path

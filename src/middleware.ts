@@ -39,7 +39,7 @@ function getLocale(request: NextRequest): Locale {
       const languageFallbacks: Record<string, Locale> = {
         en: detectRegionFromHeaders(request) === "eu" ? "en-GB" : "en-US",
         de: "de-DE",
-        es: "es-ES",
+        es: "es-ES", 
         fr: "fr-FR",
         it: "it-IT",
         cs: "cs-CZ",

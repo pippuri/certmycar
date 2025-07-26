@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   Zap,
   Shield,
@@ -9,10 +8,10 @@ import {
   TrendingUp,
   Battery,
 } from "lucide-react";
-import { Logo } from "@/components/logo";
 import { HeroVisual } from "@/components/hero-visual";
 import { GDPRBanner } from "@/components/gdpr-banner";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { Header } from "@/components/header";
 import { AnalyticsTracker } from "@/components/analytics-tracker";
 import {
   HeroCTAButton,
@@ -153,23 +152,7 @@ export default async function HomePage({
       />
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-slate-100">
         {/* Header */}
-        <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
-          <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Link href="/">
-                <Logo size="md" />
-              </Link>
-            </div>
-            <nav className="hidden md:flex items-center space-x-8">
-              <Link
-                href={links.about}
-                className="text-gray-600 hover:text-gray-900"
-              >
-                {t("navigation.about")}
-              </Link>
-            </nav>
-          </div>
-        </header>
+        <Header locale={locale as Locale} />
 
         {/* Hero Section */}
         <section className="py-20 px-4">
