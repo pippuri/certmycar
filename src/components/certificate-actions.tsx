@@ -95,12 +95,14 @@ export function ShareButton({ certificateId, translations }: ShareButtonProps) {
 interface DownloadButtonProps {
   certificateId: string;
   vin: string;
+  locale?: string;
   translations?: CertificateActionsTranslations;
 }
 
 export function DownloadButton({
   certificateId,
   vin,
+  locale = "en-US",
   translations,
 }: DownloadButtonProps) {
   const [isDownloading, setIsDownloading] = useState(false);
@@ -122,9 +124,9 @@ export function DownloadButton({
     setIsDownloading(true);
 
     try {
-      // Call PDF generation API with VIN for security
+      // Call PDF generation API with VIN for security and locale for language
       const response = await fetch(
-        `/api/certificate/pdf/${certificateId}?vin=${encodeURIComponent(vin)}`
+        `/api/certificate/pdf/${certificateId}?vin=${encodeURIComponent(vin)}&locale=${encodeURIComponent(locale)}`
       );
 
       if (!response.ok) {

@@ -53,7 +53,8 @@ class PDFGenerator {
 
   async generateCertificatePDF(
     certificateId: string,
-    vin?: string
+    vin?: string,
+    locale: string = "en-US"
   ): Promise<Buffer> {
     await this.initialize();
 
@@ -86,7 +87,7 @@ class PDFGenerator {
       // Navigate to certificate page with print mode
       const baseUrl =
         process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-      const certificateUrl = `${baseUrl}/en-US/certificate/${certificateId}?vin=${certificate.tesla_vin}&pdf=true`;
+      const certificateUrl = `${baseUrl}/${locale}/certificate/${certificateId}?vin=${certificate.tesla_vin}&pdf=true`;
 
       console.log(`Loading certificate page: ${certificateUrl}`);
 
@@ -164,13 +165,14 @@ let pdfGenerator: PDFGenerator | null = null;
 
 export async function generateCertificatePDF(
   certificateId: string,
-  vin?: string
+  vin?: string,
+  locale: string = "en-US"
 ): Promise<Buffer> {
   if (!pdfGenerator) {
     pdfGenerator = new PDFGenerator();
   }
 
-  return await pdfGenerator.generateCertificatePDF(certificateId, vin);
+  return await pdfGenerator.generateCertificatePDF(certificateId, vin, locale);
 }
 
 export async function closePDFGenerator() {

@@ -126,7 +126,8 @@
       }
     },
     "footer": {
-      "copyright": "© 2025 batterycert.com. Built for Tesla owners and buyers in the name of fair play."
+      "copyright": "© 2025 batterycert.com. Built for Tesla owners and buyers in the name of fair play.",
+      "language_switcher": "Change language:"
     }
   },
   "certificate_page": {

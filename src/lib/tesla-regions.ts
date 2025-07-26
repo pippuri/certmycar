@@ -17,6 +17,7 @@ export const NA_LOCALES = [
 ];
 export const EU_LOCALES = [
   "en-GB",
+  "de-DE", // German (Germany)
   "en-NO",
   "en-NL",
   "en-DE",

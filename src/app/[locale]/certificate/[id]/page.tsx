@@ -295,6 +295,7 @@ export default async function CertificatePage({
               <DownloadButton
                 certificateId={certificate.certificate_id}
                 vin={certificate.tesla_vin}
+                locale={locale}
                 translations={certificateActionsTranslationsObj}
               />
             </div>
@@ -372,6 +373,7 @@ export default async function CertificatePage({
               vehicle_information: displayTranslations("vehicle_information"),
               model: displayTranslations("model"),
               year: displayTranslations("year"),
+              vin: displayTranslations("vin"),
               assessment_details: displayTranslations("assessment_details"),
               test_date: displayTranslations("test_date"),
               mileage: displayTranslations("mileage"),
@@ -392,6 +394,16 @@ export default async function CertificatePage({
               original_capacity: displayTranslations("original_capacity"),
               current_capacity: displayTranslations("current_capacity"),
               capacity_loss: displayTranslations("capacity_loss"),
+              full_charge_range: displayTranslations("full_charge_range"),
+              current_label: displayTranslations("current_label"),
+              vs_label: displayTranslations("vs_label"),
+              health_label: displayTranslations("health_label"),
+              average_label: displayTranslations("average_label"),
+              confidence_levels: {
+                high: displayTranslations("confidence_levels.high"),
+                medium: displayTranslations("confidence_levels.medium"),
+                low: displayTranslations("confidence_levels.low"),
+              },
               methodology: displayTranslations("methodology"),
               performance_indicators: displayTranslations(
                 "performance_indicators"

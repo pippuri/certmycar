@@ -10,8 +10,9 @@ export async function GET(
     const { id } = await params;
     const url = new URL(request.url);
     const vin = url.searchParams.get("vin");
+    const locale = url.searchParams.get("locale") || "en-US";
 
-    console.log(`PDF generation request for certificate ${id}, VIN: ${vin}`);
+    console.log(`PDF generation request for certificate ${id}, VIN: ${vin}, locale: ${locale}`);
 
     // VIN is required for security
     if (!vin) {
@@ -22,7 +23,7 @@ export async function GET(
     }
 
     // Generate PDF using Playwright (includes VIN validation)
-    const pdfBuffer = await generateCertificatePDF(id, vin);
+    const pdfBuffer = await generateCertificatePDF(id, vin, locale);
 
     // Track certificate PDF generation
     serverAnalytics.trackCertificatePDFGenerated(id, 'Unknown'); // Vehicle model would need to be fetched from DB

@@ -119,7 +119,7 @@ Row Level Security (RLS) enabled for data protection.
 2. **One Click**: "Check My Tesla" button → Tesla login → Vehicle selection
 3. **Free Analysis Result**: Shows overall score (e.g., "10% degradation, Good") with peer comparison blurb
 4. **Value Proposition**: Promote $10 certified result for buyer verification
-5. **Purchase Options**: 
+5. **Purchase Options**:
    - Digital PDF certificate (instant download)
    - Email delivery option
    - Physical paper certificate (mailed)
@@ -139,25 +139,29 @@ Row Level Security (RLS) enabled for data protection.
 ### Certificate Design & Visual Elements
 
 **Certificate Requirements**:
+
 - Replace car color with **fake VIN** for privacy protection
 - Add **large stamp of approval/certificate icon** for authenticity
 - Include QR code for buyer verification
 - Professional PDF layout with company branding
 
 **Analysis Results Display**:
-- **Overall Score**: Clear badge showing "10% degradation, Good" 
+
+- **Overall Score**: Clear badge showing "10% degradation, Good"
 - **Peer Comparison**: Short blurb explaining degradation vs similar vehicles
 - **Call-to-Action**: Prominent $10 certification upgrade promotion
 
 ### Purchase Flow Integration
 
 **Stripe Checkout Options**:
+
 - **Digital PDF** ($10): Instant download + email delivery
 - **Paper Certificate** ($15): Professional printed certificate mailed
 - **QR Code Sticker** ($12): Waterproof sticker for vehicle window
 - **Complete Package** ($20): All of the above
 
 **Post-Purchase Experience**:
+
 - Immediate access to certificate page
 - Download PDF functionality
 - Email delivery confirmation
@@ -167,12 +171,14 @@ Row Level Security (RLS) enabled for data protection.
 ### Data Collection & Privacy
 
 **Anonymous Data Storage**:
+
 - Store all battery analysis results for peer comparison dataset
 - Build VIN history database (anonymized)
 - No personal data required for analysis
 - Track degradation trends across Tesla models/years
 
 **Optional User Association**:
+
 - **Social/Google Login**: Optional for users wanting email delivery
 - **Benefits**: Access to historical results, email certificates, account management
 - **Privacy**: Users can remain anonymous or opt-in to account creation
@@ -180,6 +186,7 @@ Row Level Security (RLS) enabled for data protection.
 ### Database Schema Updates
 
 **Enhanced Tables**:
+
 - **`assessments`**: Add peer comparison data, market analysis
 - **`certificates`**: Add delivery preferences, verification tokens
 - **`vin_history`**: Track multiple assessments per VIN over time
@@ -198,6 +205,8 @@ Row Level Security (RLS) enabled for data protection.
 - Use Playwright for E2E testing with SEO and performance verification
 - Fix linting errors automatically without asking
 - Test configuration supports local development and CI
+- Run the test case and next lint after each change
+- Don't start overlapping Next servers in the background. Ensure you kill those after you're done with them!!
 
 ### Code Standards
 

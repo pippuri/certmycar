@@ -101,6 +101,10 @@ function BatteryDegradationChart({
     title: string;
     this_vehicle: string;
     tesla_average: string;
+    current_label: string;
+    vs_label: string;
+    health_label: string;
+    average_label: string;
   };
 }) {
   const [hoveredPoint, setHoveredPoint] = useState<{
@@ -354,11 +358,11 @@ function BatteryDegradationChart({
 
       <div className="mt-4 text-center">
         <div className="text-sm text-gray-600">
-          Current:{" "}
+          {translations.current_label}:{" "}
           <span className="font-medium text-blue-600">
-            {(100 - currentDegradation).toFixed(1)}% health
+            {(100 - currentDegradation).toFixed(1)}% {translations.health_label}
           </span>
-          {" vs "}
+          {" "}{translations.vs_label}{" "}
           <span className="font-medium text-gray-600">
             {(
               100 -
@@ -369,7 +373,7 @@ function BatteryDegradationChart({
                 ) as keyof typeof TESLA_BENCHMARKS.degradationByAge
               ]
             ).toFixed(1)}
-            % average
+            % {translations.average_label}
           </span>
         </div>
       </div>
@@ -425,6 +429,7 @@ interface CertificateDisplayProps {
     vehicle_information: string;
     model: string;
     year: string;
+    vin: string;
     assessment_details: string;
     test_date: string;
     mileage: string;
@@ -439,6 +444,16 @@ interface CertificateDisplayProps {
     original_capacity: string;
     current_capacity: string;
     capacity_loss: string;
+    full_charge_range: string;
+    current_label: string;
+    vs_label: string;
+    health_label: string;
+    average_label: string;
+    confidence_levels: {
+      high: string;
+      medium: string;
+      low: string;
+    };
     methodology: string;
     performance_indicators: string;
     battery_chemistry: string;
@@ -486,6 +501,7 @@ export function CertificateDisplay({
     vehicle_information: "Vehicle Information",
     model: "Model",
     year: "Year",
+    vin: "VIN",
     assessment_details: "Assessment Details",
     test_date: "Test Date",
     mileage: "Mileage",
@@ -500,6 +516,16 @@ export function CertificateDisplay({
     original_capacity: "Original Capacity",
     current_capacity: "Current Capacity",
     capacity_loss: "Capacity Loss",
+    full_charge_range: "Full Charge Range",
+    current_label: "Current",
+    vs_label: "vs",
+    health_label: "health",
+    average_label: "average",
+    confidence_levels: {
+      high: "High",
+      medium: "Medium",
+      low: "Low"
+    },
     methodology: "Methodology",
     performance_indicators: "Performance Indicators",
     battery_chemistry: "Battery Chemistry",
@@ -556,10 +582,11 @@ export function CertificateDisplay({
   // Format date consistently to avoid hydration errors
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    const day = date.getDate();
-    const month = date.toLocaleDateString("en-US", { month: "long" });
-    const year = date.getFullYear();
-    return `${month} ${day}, ${year}`;
+    return date.toLocaleDateString(locale, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
   };
 
   // Format date
@@ -676,7 +703,7 @@ export function CertificateDisplay({
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">VIN</span>
+                  <span className="text-gray-600">{t.vin}</span>
                   <span className="font-medium font-mono">
                     {certificate.tesla_vin}
                   </span>
@@ -697,11 +724,11 @@ export function CertificateDisplay({
               </h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Test Date</span>
+                  <span className="text-gray-600">{t.test_date}</span>
                   <span className="font-medium">{testDate}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Mileage</span>
+                  <span className="text-gray-600">{t.mileage}</span>
                   <span className="font-medium">
                     {certificate.odometer_miles
                       ? usesMiles
@@ -715,13 +742,13 @@ export function CertificateDisplay({
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Software Version</span>
+                  <span className="text-gray-600">{t.software_version}</span>
                   <span className="font-medium">
-                    {certificate.software_version || "Not Available"}
+                    {certificate.software_version || t.not_available}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Valid Until</span>
+                  <span className="text-gray-600">{t.valid_until}</span>
                   <span className="font-medium">{validUntilFormatted}</span>
                 </div>
               </div>
@@ -760,7 +787,7 @@ export function CertificateDisplay({
                       .replace("text-", "text-")
                       .replace("-600", "-800")}`}
                   >
-                    Health Score
+                    {t.health_score}
                   </p>
                   <p
                     className={`text-xs sm:text-sm mt-0 sm:mt-1 print:text-xs print:mt-0 ${benchmarkStats.color.replace(
@@ -768,7 +795,7 @@ export function CertificateDisplay({
                       "-700"
                     )}`}
                   >
-                    {benchmarkStats.condition}
+                    {t.conditions[benchmarkStats.condition.toLowerCase() as keyof typeof t.conditions]}
                   </p>
                   <p className="text-xs text-gray-600 mt-1 print:mt-0 print:text-xs">
                     {t.better_than_percentage.replace('{percentage}', benchmarkStats.percentileBetter.toString())}
@@ -782,10 +809,10 @@ export function CertificateDisplay({
                     {Math.round(batteryHealth.current_capacity_kwh)}
                   </div>
                   <p className="text-xs sm:text-sm md:text-base text-blue-800 font-medium print:text-xs">
-                    Current Capacity
+                    {t.current_capacity}
                   </p>
                   <p className="text-xs sm:text-sm text-blue-700 mt-0 sm:mt-1 print:text-xs print:mt-0">
-                    kWh
+                    {t.units.kwh}
                   </p>
                 </CardContent>
               </Card>
@@ -796,7 +823,7 @@ export function CertificateDisplay({
                     {calculateFullChargeRange()}
                   </div>
                   <p className="text-xs sm:text-sm md:text-base text-gray-800 font-medium print:text-xs">
-                    Full Charge Range
+                    {t.full_charge_range}
                   </p>
                   <p className="text-xs sm:text-sm text-gray-600 mt-0 sm:mt-1 print:text-xs print:mt-0">
                     {usesMiles ? t.units.miles : t.units.km}
@@ -811,7 +838,7 @@ export function CertificateDisplay({
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold flex items-center">
                 <TrendingUp className="h-5 w-5 mr-2" />
-                Degradation Comparison vs Average
+                {t.degradation_comparison}
               </h3>
               <div
                 className={`px-3 py-1 rounded-full text-sm font-medium ${
@@ -831,7 +858,13 @@ export function CertificateDisplay({
               <BatteryDegradationChart
                 vehicleYear={certificate.vehicle_year}
                 currentDegradation={batteryHealth.degradation_percentage}
-                translations={t.chart}
+                translations={{
+                  ...t.chart,
+                  current_label: t.current_label,
+                  vs_label: t.vs_label,
+                  health_label: t.health_label,
+                  average_label: t.average_label,
+                }}
               />
             </div>
           </div>
@@ -847,7 +880,7 @@ export function CertificateDisplay({
                 <TrendingUp
                   className={`${isPrintMode ? "h-4 w-4 mr-1" : "h-5 w-5 mr-2"}`}
                 />
-                Detailed Analysis
+                {t.detailed_analysis}
               </h3>
 
               <div
@@ -857,22 +890,22 @@ export function CertificateDisplay({
               >
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <h4 className="font-medium mb-3">Battery Specifications</h4>
+                    <h4 className="font-medium mb-3">{t.battery_specifications}</h4>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Original Capacity</span>
-                        <span>{batteryHealth.original_capacity_kwh} kWh</span>
+                        <span className="text-gray-600">{t.original_capacity}</span>
+                        <span>{batteryHealth.original_capacity_kwh} {t.units.kwh}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Current Capacity</span>
+                        <span className="text-gray-600">{t.current_capacity}</span>
                         <span>
                           {Math.round(batteryHealth.current_capacity_kwh * 10) /
                             10}{" "}
-                          kWh
+                          {t.units.kwh}
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Capacity Loss</span>
+                        <span className="text-gray-600">{t.capacity_loss}</span>
                         <span
                           className={
                             batteryHealth.degradation_percentage < 10
@@ -887,7 +920,7 @@ export function CertificateDisplay({
                               batteryHealth.current_capacity_kwh) *
                               10
                           ) / 10}{" "}
-                          kWh (
+                          {t.units.kwh} (
                           {Math.round(
                             batteryHealth.degradation_percentage * 10
                           ) / 10}
@@ -895,7 +928,7 @@ export function CertificateDisplay({
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Methodology</span>
+                        <span className="text-gray-600">{t.methodology}</span>
                         <span className="text-sm">
                           {batteryHealth.methodology}
                         </span>
@@ -904,22 +937,22 @@ export function CertificateDisplay({
                   </div>
 
                   <div>
-                    <h4 className="font-medium mb-3">Performance Indicators</h4>
+                    <h4 className="font-medium mb-3">{t.performance_indicators}</h4>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Battery Chemistry</span>
+                        <span className="text-gray-600">{t.battery_chemistry}</span>
                         <span>
                           {batteryHealth.battery_chemistry || "Lithium-ion"}
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Battery Supplier</span>
+                        <span className="text-gray-600">{t.battery_supplier}</span>
                         <span>
                           {batteryHealth.battery_supplier || "Tesla/Panasonic"}
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Confidence Level</span>
+                        <span className="text-gray-600">{t.confidence_level}</span>
                         <span
                           className={
                             batteryHealth.confidence_level === "high"
@@ -929,14 +962,11 @@ export function CertificateDisplay({
                               : "text-red-600"
                           }
                         >
-                          {batteryHealth.confidence_level
-                            ?.charAt(0)
-                            .toUpperCase() +
-                            batteryHealth.confidence_level?.slice(1)}
+                          {batteryHealth.confidence_level && t.confidence_levels[batteryHealth.confidence_level as keyof typeof t.confidence_levels] || batteryHealth.confidence_level}
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Overall Condition</span>
+                        <span className="text-gray-600">{t.overall_condition}</span>
                         <span
                           className={
                             batteryHealth.degradation_percentage < 10
@@ -947,10 +977,10 @@ export function CertificateDisplay({
                           }
                         >
                           {batteryHealth.degradation_percentage < 10
-                            ? "Excellent"
+                            ? t.conditions.excellent
                             : batteryHealth.degradation_percentage < 15
-                            ? "Good"
-                            : "Fair"}
+                            ? t.conditions.good
+                            : t.conditions.fair}
                         </span>
                       </div>
                     </div>

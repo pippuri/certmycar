@@ -12,10 +12,12 @@ import {
 import { Logo } from "@/components/logo";
 import { HeroVisual } from "@/components/hero-visual";
 import { GDPRBanner } from "@/components/gdpr-banner";
+import { LanguageSwitcher } from "@/components/language-switcher";
 import { AnalyticsTracker } from "@/components/analytics-tracker";
 import { HeroCTAButton, SampleCertificateButton, AnalyticsButton } from "@/components/analytics-button";
 import { getLocaleLinks } from "@/lib/locale-links";
 import { getTranslations } from 'next-intl/server';
+import type { Locale } from "@/i18n";
 import type { Metadata } from "next";
 
 export async function generateMetadata({
@@ -432,10 +434,18 @@ export default async function HomePage({
 
         {/* Footer */}
         <footer className="py-8 px-4 bg-gray-900 text-gray-400">
-          <div className="container mx-auto text-center">
-            <p>
-              {t('footer.copyright')}
-            </p>
+          <div className="container mx-auto">
+            <div className="flex flex-col items-center gap-4">
+              <div className="text-center">
+                <p>
+                  {t('footer.copyright')}
+                </p>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <span className="text-sm text-gray-500">{t('footer.language_switcher')}</span>
+                <LanguageSwitcher currentLocale={locale as Locale} />
+              </div>
+            </div>
           </div>
         </footer>
       </div>

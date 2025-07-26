@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// Supported locales - temporarily only English until all translations are complete
+// Supported locales
 export const locales = [
   "en-US", // English (US)
   "en-GB", // English (UK)
+  "de-DE", // German (Germany)
 ];
 export const defaultLocale = "en-US";
 
@@ -41,9 +42,10 @@ function getLocale(request: NextRequest): string {
       // Try language-only match (e.g., en -> en-US)
       const [lang] = locale.split("-");
 
-      // Language-based fallbacks - only English for now
+      // Language-based fallbacks
       const languageFallbacks: Record<string, string> = {
         en: detectRegionFromHeaders(request) === "eu" ? "en-GB" : "en-US",
+        de: "de-DE",
       };
 
       if (

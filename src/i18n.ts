@@ -1,10 +1,11 @@
 import { notFound } from "next/navigation";
 import { getRequestConfig } from "next-intl/server";
 
-// Define supported locales - temporarily only English until all translations are complete
+// Define supported locales
 export const locales = [
   "en-US", // English (US)
   "en-GB", // English (UK)
+  "de-DE", // German (Germany)
 ] as const;
 
 export type Locale = (typeof locales)[number];
@@ -15,12 +16,14 @@ export const defaultLocale: Locale = "en-US";
 export const localeLabels: Record<Locale, string> = {
   "en-US": "English (US)",
   "en-GB": "English (UK)",
+  "de-DE": "Deutsch",
 };
 
 // Locale to country mapping for region detection
 export const localeToCountry: Record<Locale, string> = {
   "en-US": "US",
   "en-GB": "GB",
+  "de-DE": "DE",
 };
 
 export default getRequestConfig(async ({ locale }) => {
