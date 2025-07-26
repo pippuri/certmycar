@@ -10,7 +10,7 @@ interface AnalyticsTrackerProps {
 declare global {
   interface Window {
     gtag: (
-      command: string,
+      command: "config" | "event" | "purchase",
       targetId: string,
       config?: Record<string, unknown>
     ) => void;
