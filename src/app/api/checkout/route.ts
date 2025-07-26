@@ -25,8 +25,13 @@ export async function GET(request: NextRequest) {
     const pricing = await getPricingForLocale(locale);
 
     if (!pricing) {
+      console.error(`Pricing not available for locale: ${locale}`);
       return NextResponse.json(
-        { error: "Pricing not available for this locale" },
+        { 
+          error: "Pricing not available for this locale",
+          locale: locale,
+          debug: "Check server logs for database connection issues"
+        },
         { status: 400 }
       );
     }

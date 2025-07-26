@@ -16,7 +16,9 @@
       "Bash(true)",
       "Bash(find:*)",
       "Bash(gh repo view:*)",
-      "Bash(npm start)"
+      "Bash(npm start)",
+      "Bash(supabase sql:*)",
+      "Bash(supabase:*)"
     ],
     "deny": []
   }

@@ -519,7 +519,9 @@
       "range": "Reichweite",
       "temperature": "Temperatur",
       "last_seen": "Zuletzt gesehen",
-      "odometer": "Kilometerstand"
+      "odometer": "Kilometerstand",
+      "selected": "Ausgewählt",
+      "select_this_vehicle": "Dieses Fahrzeug auswählen"
     },
     "no_vehicles": {
       "title": "Keine Fahrzeuge gefunden",

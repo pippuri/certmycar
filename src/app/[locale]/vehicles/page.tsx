@@ -48,7 +48,7 @@ export default async function VehicleSelectionPage({
     <VehicleSelectionClient 
       locale={locale} 
       translations={{
-        back_to_login: "← Back to Login",
+        back_to_login: pageTranslations("back_to_login"),
         loading: {
           title: pageTranslations("loading.title"),
           description: pageTranslations("loading.description"),
@@ -95,6 +95,8 @@ export default async function VehicleSelectionPage({
           temperature: pageTranslations("vehicle_card.temperature"),
           last_seen: pageTranslations("vehicle_card.last_seen"),
           odometer: pageTranslations("vehicle_card.odometer"),
+          selected: pageTranslations("vehicle_card.selected"),
+          select_this_vehicle: pageTranslations("vehicle_card.select_this_vehicle"),
         },
       }}
     />);

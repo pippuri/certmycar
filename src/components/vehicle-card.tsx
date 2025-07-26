@@ -25,6 +25,18 @@ interface VehicleCardProps {
   isSelected?: boolean;
   onClick: () => void;
   locale?: string; // For determining miles vs km display
+  translations?: {
+    charging: string;
+    online: string;
+    asleep: string;
+    offline: string;
+    asleep_can_wake: string;
+    miles: string;
+    kilometers: string;
+    vin: string;
+    selected: string;
+    select_this_vehicle: string;
+  };
 }
 
 export function VehicleCard({
@@ -32,12 +44,27 @@ export function VehicleCard({
   isSelected = false,
   onClick,
   locale,
+  translations,
 }: VehicleCardProps) {
   // Helper function to determine if user should see miles (US, UK, AU) vs km (rest of world)
   const usesMiles =
     locale?.startsWith("en-US") ||
     locale?.startsWith("en-GB") ||
     locale?.startsWith("en-AU");
+
+  // Fallback translations
+  const t = translations || {
+    charging: "Charging",
+    online: "Online",
+    asleep: "Asleep",
+    offline: "Offline",
+    asleep_can_wake: "Asleep (Can Wake)",
+    miles: "miles",
+    kilometers: "km",
+    vin: "VIN",
+    selected: "Selected",
+    select_this_vehicle: "Select This Vehicle",
+  };
   return (
     <Card
       className={`cursor-pointer transition-all duration-300 hover:shadow-lg ${
@@ -60,7 +87,7 @@ export function VehicleCard({
             {vehicle.isCharging && (
               <Badge className="bg-green-500 hover:bg-green-500 text-white">
                 <Zap className="w-3 h-3 mr-1" />
-                Charging
+                {t.charging}
               </Badge>
             )}
             {vehicle.state && (
@@ -74,10 +101,10 @@ export function VehicleCard({
                 }`}
               >
                 {vehicle.state === "online"
-                  ? "🟢 Online"
+                  ? `🟢 ${t.online}`
                   : vehicle.state === "asleep"
-                  ? "😴 Asleep (Can Wake)"
-                  : "🔴 Offline"}
+                  ? `😴 ${t.asleep_can_wake}`
+                  : `🔴 ${t.offline}`}
               </Badge>
             )}
           </div>
@@ -95,7 +122,7 @@ export function VehicleCard({
                 {vehicle.mileage ? `${vehicle.mileage} miles` : ""}
               </p>
               <p className="text-xs text-gray-500 font-mono mt-1">
-                VIN: {vehicle.vin}
+                {t.vin}: {vehicle.vin}
               </p>
             </div>
             {isSelected && (
@@ -114,17 +141,17 @@ export function VehicleCard({
                   : "bg-gray-100 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
               }`}
             >
-              {isSelected ? "Selected" : "Select This Vehicle"}
+              {isSelected ? t.selected : t.select_this_vehicle}
             </div>
 
             {/* Mileage if available */}
             {vehicle.mileage && (
               <p className="text-xs text-gray-500 mt-2 text-center">
                 {usesMiles
-                  ? `${vehicle.mileage.toLocaleString()} miles`
+                  ? `${vehicle.mileage.toLocaleString()} ${t.miles}`
                   : `${Math.round(
                       vehicle.mileage * 1.609
-                    ).toLocaleString()} km`}
+                    ).toLocaleString()} ${t.kilometers}`}
               </p>
             )}
           </div>

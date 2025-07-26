@@ -107,6 +107,8 @@ interface VehicleSelectionClientProps {
       temperature: string;
       last_seen: string;
       odometer: string;
+      selected: string;
+      select_this_vehicle: string;
     };
   };
 }
@@ -174,6 +176,8 @@ export default function VehicleSelectionClient({
       temperature: "Temperature",
       last_seen: "Last Seen",
       odometer: "Odometer",
+      selected: "Selected",
+      select_this_vehicle: "Select This Vehicle",
     },
   };
 
@@ -468,6 +472,7 @@ export default function VehicleSelectionClient({
                   isSelected={selectedVehicleId === vehicle.id}
                   onClick={() => handleVehicleAndCheck(vehicle.id)}
                   locale={locale}
+                  translations={t.vehicle_card}
                 />
               ))}
             </div>
