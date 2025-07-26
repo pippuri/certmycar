@@ -195,8 +195,8 @@ export default async function TermsPage({
 
       <footer className="border-t bg-white">
         <div className="container mx-auto px-4 py-6 text-center text-gray-600">
-          &copy; {new Date().getFullYear()} batterycert.com, a TidyCalls LTD.
-          company. All rights reserved.
+          &copy; 2024 batterycert.com, a TidyCalls LTD. company. All rights
+          reserved.
         </div>
       </footer>
     </div>

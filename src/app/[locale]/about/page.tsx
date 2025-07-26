@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { getLocaleLinks } from "@/lib/locale-links";
+import { getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
 
 export async function generateMetadata({
@@ -11,27 +12,17 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "about_page.meta" });
 
   return {
-    title:
-      "About batterycert.com - Tesla Battery Health Certification Platform",
-    description:
-      "Learn about batterycert.com, the trusted platform for Tesla battery health assessments. We bring transparency to the used EV market with instant, verified battery health certificates.",
-    keywords: [
-      "about batterycert.com",
-      "Tesla battery certification",
-      "EV battery transparency",
-      "TidyCalls company",
-      "battery health platform",
-      "electric vehicle certification",
-    ],
+    title: t("title"),
+    description: t("description"),
+    keywords: t("keywords").split(", "),
     openGraph: {
-      title:
-        "About batterycert.com - Tesla Battery Health Certification Platform",
-      description:
-        "Learn about batterycert.com, the trusted platform for Tesla battery health assessments. We bring transparency to the used EV market.",
+      title: t("og_title"),
+      description: t("og_description"),
       type: "website",
-      url: "https://batterycert.com/about",
+      url: `https://batterycert.com/${locale}/about`,
       siteName: "batterycert.com",
     },
     robots: {
@@ -39,7 +30,7 @@ export async function generateMetadata({
       follow: true,
     },
     alternates: {
-      canonical: "https://batterycert.com/about",
+      canonical: `https://batterycert.com/${locale}/about`,
     },
   };
 }
@@ -49,8 +40,9 @@ export default async function AboutPage({
 }: {
   params: Promise<{ locale: string }>;
 }) {
-  const { locale: _locale } = await params;
-  const links = getLocaleLinks(_locale);
+  const { locale } = await params;
+  const links = getLocaleLinks(locale);
+  const t = await getTranslations({ locale, namespace: "about_page" });
 
   return (
     <div className="bg-gradient-to-br from-slate-50 to-blue-50">
@@ -66,10 +58,10 @@ export default async function AboutPage({
               href={links.home}
               className="text-gray-600 hover:text-gray-900"
             >
-              Home
+              {t("navigation.home")}
             </Link>
             <Button variant="outline" asChild>
-              <Link href={links.check}>Get Your Report</Link>
+              <Link href={links.check}>{t("navigation.get_report")}</Link>
             </Button>
           </nav>
         </div>
@@ -78,16 +70,11 @@ export default async function AboutPage({
       <main className="container mx-auto px-4 py-16">
         <div className="text-center max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            About batterycert.com
+            {t("hero.title")}
           </h1>
+          <p className="text-xl text-gray-600 mb-12">{t("hero.description")}</p>
           <p className="text-xl text-gray-600 mb-12">
-            batterycert.com was founded by the team behind TidyCalls with a
-            simple mission: to bring transparency and trust to the used electric
-            vehicle market. We believe that buying or selling an EV should be a
-            clear, confident process for everyone involved.
-          </p>
-          <p className="text-xl text-gray-600 mb-12">
-            You can reach us at{" "}
+            {t("hero.contact_text")}{" "}
             <a href="mailto:batterycert@tidycalls.com">
               batterycert@tidycalls.com
             </a>
@@ -99,25 +86,19 @@ export default async function AboutPage({
             <div>
               <div className="flex items-center mb-3">
                 <Target className="w-8 h-8 mr-4 text-blue-600" />
-                <h3 className="text-2xl font-semibold">Our Mission</h3>
+                <h3 className="text-2xl font-semibold">{t("mission.title")}</h3>
               </div>
               <p className="text-gray-700 leading-relaxed">
-                Our goal is to provide instant, accurate, and verifiable battery
-                health certificates for Tesla vehicles. By leveraging direct API
-                access, we eliminate guesswork and empower owners and buyers
-                with the data they need to make informed decisions.
+                {t("mission.description")}
               </p>
             </div>
             <div>
               <div className="flex items-center mb-3">
                 <Handshake className="w-8 h-8 mr-4 text-green-600" />
-                <h3 className="text-2xl font-semibold">Our Values</h3>
+                <h3 className="text-2xl font-semibold">{t("values.title")}</h3>
               </div>
               <p className="text-gray-700 leading-relaxed">
-                We are committed to integrity, accuracy, and user experience. We
-                handle your data with the utmost security, never storing your
-                Tesla credentials, and provide a seamless flow to get you from
-                login to results in seconds.
+                {t("values.description")}
               </p>
             </div>
           </div>
@@ -126,28 +107,26 @@ export default async function AboutPage({
               <Building className="w-12 h-12 text-gray-400" />
             </div>
             <h4 className="text-xl font-bold text-center text-gray-800 mb-2">
-              A TidyCalls LTD Company
+              {t("company.title")}
             </h4>
             <p className="text-center text-gray-600">
-              Leveraging years of experience in building robust, user-friendly
-              applications at TidyCalls, we bring the same dedication to quality
-              and security to batterycert.com.
+              {t("company.description")}
             </p>
           </div>
         </div>
 
         <div className="text-center max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-4">Legal & Compliance</h2>
-          <p className="text-gray-600 mb-8">
-            We are committed to transparency in our operations. You can review
-            our legal documents below.
-          </p>
-          <div className="flex justify-center gap-4">
+          <h2 className="text-3xl font-bold mb-4">{t("legal.title")}</h2>
+          <p className="text-gray-600 mb-8">{t("legal.description")}</p>
+          <div className="flex justify-center gap-4 flex-wrap">
             <Button asChild>
-              <Link href={links.terms}>Terms of Service</Link>
+              <Link href={links.terms}>{t("legal.terms_button")}</Link>
             </Button>
             <Button variant="outline" asChild>
-              <Link href={links.privacy}>Privacy Policy</Link>
+              <Link href={links.privacy}>{t("legal.privacy_button")}</Link>
+            </Button>
+            <Button variant="outline" asChild>
+              <Link href={links.faq}>{t("legal.faq_button")}</Link>
             </Button>
           </div>
         </div>
@@ -155,9 +134,7 @@ export default async function AboutPage({
 
       <footer className="border-t bg-white">
         <div className="container mx-auto px-4 py-6 text-center text-gray-600">
-          &copy; {new Date().getFullYear()} batterycert.com, a TidyCalls LTD.
-          company. 124 City Road, EC1V 2NX, London. Company number 16329940 All
-          rights reserved.
+          {t("footer.copyright")}
         </div>
       </footer>
     </div>

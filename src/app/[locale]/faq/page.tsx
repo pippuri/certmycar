@@ -125,7 +125,7 @@ export default async function FAQPage({
         },
         {
           question: t("service.support_question"),
-          answer: t("support_answer"),
+          answer: t("service.support_answer"),
         },
       ],
     },

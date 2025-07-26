@@ -555,6 +555,46 @@
     "settings_note": "Możesz to zmienić później w ustawieniach, jeśli to konieczne.",
     "includes": "Zawiera"
   },
+  "about_page": {
+    "meta": {
+      "title": "O batterycert.com - Platforma certyfikacji zdrowia baterii Tesli",
+      "description": "Poznaj batterycert.com, zaufaną platformę do oceny zdrowia baterii Tesli. Wnosimy przejrzystość na rynek używanych pojazdów elektrycznych z natychmiastowymi, zweryfikowanymi certyfikatami zdrowia baterii.",
+      "keywords": "o batterycert.com, certyfikacja baterii Tesli, przejrzystość baterii EV, firma TidyCalls, platforma zdrowia baterii, certyfikacja pojazdów elektrycznych",
+      "og_title": "O batterycert.com - Platforma certyfikacji zdrowia baterii Tesli",
+      "og_description": "Poznaj batterycert.com, zaufaną platformę do oceny zdrowia baterii Tesli. Wnosimy przejrzystość na rynek używanych pojazdów elektrycznych."
+    },
+    "navigation": {
+      "home": "Strona główna",
+      "get_report": "Pobierz raport"
+    },
+    "hero": {
+      "title": "O batterycert.com",
+      "description": "batterycert.com został założony przez zespół stojący za TidyCalls z prostą misją: wnieść przejrzystość i zaufanie na rynek używanych pojazdów elektrycznych. Wierzymy, że kupno lub sprzedaż pojazdu elektrycznego powinno być jasnym, pewnym procesem dla wszystkich zaangażowanych.",
+      "contact_text": "Możesz się z nami skontaktować pod adresem"
+    },
+    "mission": {
+      "title": "Nasza Misja",
+      "description": "Naszym celem jest dostarczanie natychmiastowych, dokładnych i weryfikowalnych certyfikatów zdrowia baterii dla pojazdów Tesli. Wykorzystując bezpośredni dostęp do API, eliminujemy zgadywanie i dajemy właścicielom i kupującym dane, których potrzebują do podejmowania świadomych decyzji."
+    },
+    "values": {
+      "title": "Nasze Wartości",
+      "description": "Jesteśmy zaangażowani w integralność, dokładność i doświadczenie użytkownika. Traktujemy Twoje dane z najwyższym bezpieczeństwem, nigdy nie przechowujemy Twoich danych logowania Tesli i zapewniamy płynny przepływ od logowania do wyników w ciągu sekund."
+    },
+    "company": {
+      "title": "Firma TidyCalls LTD",
+      "description": "Wykorzystując lata doświadczeń w budowaniu solidnych, przyjaznych dla użytkownika aplikacji w TidyCalls, wnosimy to samo zaangażowanie w jakość i bezpieczeństwo do batterycert.com."
+    },
+    "legal": {
+      "title": "Prawne i Zgodność",
+      "description": "Jesteśmy zaangażowani w przejrzystość w naszych operacjach. Możesz przejrzeć nasze dokumenty prawne poniżej.",
+      "terms_button": "Warunki usługi",
+      "privacy_button": "Polityka prywatności",
+      "faq_button": "FAQ"
+    },
+    "footer": {
+      "copyright": "© 2024 batterycert.com, firma TidyCalls LTD. 124 City Road, EC1V 2NX, Londyn. Numer firmy 16329940 Wszystkie prawa zastrzeżone."
+    }
+  },
   "stripe_receipt": {
     "description": "Certyfikat stanu baterii Tesli",
     "certificate_access": "Dostęp do certyfikatu",

@@ -555,6 +555,46 @@
     "settings_note": "Gerekirse bunu daha sonra ayarlardan değiştirebilirsiniz.",
     "includes": "İçerir"
   },
+  "about_page": {
+    "meta": {
+      "title": "Hakkımızda - batterycert.com - Tesla Pil Sağlığı Sertifikasyon Platformu",
+      "description": "batterycert.com'u keşfedin, Tesla pil sağlığı değerlendirmeleri için güvenilir platform. İkinci el elektrikli araç pazarına anında, doğrulanmış pil sağlığı sertifikaları ile şeffaflık getiriyoruz.",
+      "keywords": "hakkımızda batterycert.com, Tesla pil sertifikasyonu, EV pil şeffaflığı, TidyCalls şirketi, pil sağlığı platformu, elektrikli araç sertifikasyonu",
+      "og_title": "Hakkımızda - batterycert.com - Tesla Pil Sağlığı Sertifikasyon Platformu",
+      "og_description": "batterycert.com'u keşfedin, Tesla pil sağlığı değerlendirmeleri için güvenilir platform. İkinci el elektrikli araç pazarına şeffaflık getiriyoruz."
+    },
+    "navigation": {
+      "home": "Ana Sayfa",
+      "get_report": "Raporunuzu alın"
+    },
+    "hero": {
+      "title": "Hakkımızda - batterycert.com",
+      "description": "batterycert.com, TidyCalls ekibi tarafından basit bir misyonla kuruldu: ikinci el elektrikli araç pazarına şeffaflık ve güven getirmek. Bir elektrikli aracı satın almanın veya satmanın, tüm katılımcılar için net, güvenli bir süreç olması gerektiğine inanıyoruz.",
+      "contact_text": "Bize şu adresten ulaşabilirsiniz"
+    },
+    "mission": {
+      "title": "Misyonumuz",
+      "description": "Amacımız Tesla araçları için anında, doğru ve doğrulanabilir pil sağlığı sertifikaları sağlamaktır. Doğrudan API erişimini kullanarak tahminleri ortadan kaldırır ve sahipleri ve alıcıları bilinçli kararlar almak için ihtiyaç duydukları verilerle güçlendiririz."
+    },
+    "values": {
+      "title": "Değerlerimiz",
+      "description": "Dürüstlük, doğruluk ve kullanıcı deneyimine bağlıyız. Verilerinizi en yüksek güvenlikle işleriz, Tesla kimlik bilgilerinizi asla saklamayız ve sizi girişten sonuçlara saniyeler içinde götüren sorunsuz bir akış sağlarız."
+    },
+    "company": {
+      "title": "Bir TidyCalls LTD Şirketi",
+      "description": "TidyCalls'ta sağlam, kullanıcı dostu uygulamalar oluşturma konusunda yılların deneyimini kullanarak, aynı kalite ve güvenlik taahhüdünü batterycert.com'a getiriyoruz."
+    },
+    "legal": {
+      "title": "Yasal ve Uyumluluk",
+      "description": "Operasyonlarımızda şeffaflığa bağlıyız. Yasal belgelerimizi aşağıda inceleyebilirsiniz.",
+      "terms_button": "Hizmet şartları",
+      "privacy_button": "Gizlilik politikası",
+      "faq_button": "SSS"
+    },
+    "footer": {
+      "copyright": "© 2024 batterycert.com, bir TidyCalls LTD. şirketi. 124 City Road, EC1V 2NX, Londra. Şirket numarası 16329940 Tüm hakları saklıdır."
+    }
+  },
   "stripe_receipt": {
     "description": "Tesla pil sağlığı sertifikası",
     "certificate_access": "Sertifika erişimi",

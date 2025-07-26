@@ -555,6 +555,46 @@
     "settings_note": "Du kan endre dette senere i innstillinger hvis nødvendig.",
     "includes": "Inkluderer"
   },
+  "about_page": {
+    "meta": {
+      "title": "Om batterycert.com - Tesla Batterihelse Sertifiseringsplattform",
+      "description": "Lær om batterycert.com, den pålitelige plattformen for Tesla batterihelsevurderinger. Vi bringer transparens til brukt EV-markedet med øyeblikkelige, verifiserte batterihelse sertifikater.",
+      "keywords": "om batterycert.com, Tesla batteri sertifisering, EV batteri transparens, TidyCalls selskap, batterihelse plattform, elektrisk kjøretøy sertifisering",
+      "og_title": "Om batterycert.com - Tesla Batterihelse Sertifiseringsplattform",
+      "og_description": "Lær om batterycert.com, den pålitelige plattformen for Tesla batterihelsevurderinger. Vi bringer transparens til brukt EV-markedet."
+    },
+    "navigation": {
+      "home": "Hjem",
+      "get_report": "Få din rapport"
+    },
+    "hero": {
+      "title": "Om batterycert.com",
+      "description": "batterycert.com ble grunnlagt av teamet bak TidyCalls med en enkel misjon: å bringe transparens og tillit til brukt elektrisk kjøretøy marked. Vi tror at å kjøpe eller selge en EV bør være en klar, selvsikker prosess for alle involverte.",
+      "contact_text": "Du kan nå oss på"
+    },
+    "mission": {
+      "title": "Vår Misjon",
+      "description": "Vårt mål er å levere øyeblikkelige, nøyaktige og verifiserbare batterihelse sertifikater for Tesla-kjøretøy. Ved å utnytte direkte API-tilgang eliminerer vi gjetting og gir eiere og kjøpere dataene de trenger for å ta informerte beslutninger."
+    },
+    "values": {
+      "title": "Våre Verdier",
+      "description": "Vi er forpliktet til integritet, nøyaktighet og brukeropplevelse. Vi håndterer dine data med høyeste sikkerhet, lagrer aldri dine Tesla-påloggingsdetaljer og gir en sømløs flyt for å få deg fra innlogging til resultater på sekunder."
+    },
+    "company": {
+      "title": "Et TidyCalls LTD Selskap",
+      "description": "Ved å utnytte års erfaring med å bygge robuste, brukervennlige applikasjoner hos TidyCalls, bringer vi samme dedikasjon til kvalitet og sikkerhet til batterycert.com."
+    },
+    "legal": {
+      "title": "Juridisk & Compliance",
+      "description": "Vi er forpliktet til transparens i våre operasjoner. Du kan se gjennom våre juridiske dokumenter nedenfor.",
+      "terms_button": "Tjenestevilkår",
+      "privacy_button": "Personvernpolicy",
+      "faq_button": "FAQ"
+    },
+    "footer": {
+      "copyright": "© 2024 batterycert.com, et TidyCalls LTD. selskap. 124 City Road, EC1V 2NX, London. Selskapsnummer 16329940 Alle rettigheter forbeholdt."
+    }
+  },
   "stripe_receipt": {
     "description": "Tesla Batterihelsesertifikat",
     "certificate_access": "Sertifikattilgang",

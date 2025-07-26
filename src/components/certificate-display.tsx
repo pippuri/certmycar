@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, Car, Zap, TrendingUp } from "lucide-react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { QRCode } from "./qr-code";
 
 // Tesla battery degradation benchmarks based on real-world data
@@ -119,8 +119,12 @@ function BatteryDegradationChart({
       isCurrent: boolean;
     };
   } | null>(null);
-  const currentYear = new Date().getFullYear();
+  const [currentYear, setCurrentYear] = useState<number>(0);
   const vehicleAge = currentYear - vehicleYear;
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
 
   const generateDegradationData = () => {
     // Generate years from vehicle year to current year (no future projections)
@@ -361,8 +365,8 @@ function BatteryDegradationChart({
           {translations.current_label}:{" "}
           <span className="font-medium text-blue-600">
             {(100 - currentDegradation).toFixed(1)}% {translations.health_label}
-          </span>
-          {" "}{translations.vs_label}{" "}
+          </span>{" "}
+          {translations.vs_label}{" "}
           <span className="font-medium text-gray-600">
             {(
               100 -
@@ -492,7 +496,7 @@ export function CertificateDisplay({
     chart: {
       title: "Battery Health Over Time",
       this_vehicle: "This Vehicle",
-      tesla_average: "Tesla Average"
+      tesla_average: "Tesla Average",
     },
     title: "Battery Health Report from Tesla Data",
     certificate_id: "Certificate ID",
@@ -524,7 +528,7 @@ export function CertificateDisplay({
     confidence_levels: {
       high: "High",
       medium: "Medium",
-      low: "Low"
+      low: "Low",
     },
     methodology: "Methodology",
     performance_indicators: "Performance Indicators",
@@ -533,21 +537,24 @@ export function CertificateDisplay({
     confidence_level: "Confidence Level",
     overall_condition: "Overall Condition",
     assessment_summary: "Assessment Summary",
-    summary_excellent: "This {vehicleName} demonstrates excellent battery health with {degradation}% degradation. The battery is performing exceptionally well for its usage. Current capacity of {currentCapacity} kWh from an original {originalCapacity} kWh. This vehicle represents an excellent purchase opportunity with minimal battery-related risks.",
-    summary_good: "This {vehicleName} demonstrates good battery health with {degradation}% degradation. The battery is performing well for its usage. Current capacity of {currentCapacity} kWh from an original {originalCapacity} kWh. This vehicle represents a good purchase opportunity with normal wear patterns.",
-    summary_fair: "This {vehicleName} demonstrates fair battery health with {degradation}% degradation. The battery is performing adequately for its usage. Current capacity of {currentCapacity} kWh from an original {originalCapacity} kWh. This vehicle shows higher than average degradation and should be considered carefully.",
+    summary_excellent:
+      "This {vehicleName} demonstrates excellent battery health with {degradation}% degradation. The battery is performing exceptionally well for its usage. Current capacity of {currentCapacity} kWh from an original {originalCapacity} kWh. This vehicle represents an excellent purchase opportunity with minimal battery-related risks.",
+    summary_good:
+      "This {vehicleName} demonstrates good battery health with {degradation}% degradation. The battery is performing well for its usage. Current capacity of {currentCapacity} kWh from an original {originalCapacity} kWh. This vehicle represents a good purchase opportunity with normal wear patterns.",
+    summary_fair:
+      "This {vehicleName} demonstrates fair battery health with {degradation}% degradation. The battery is performing adequately for its usage. Current capacity of {currentCapacity} kWh from an original {originalCapacity} kWh. This vehicle shows higher than average degradation and should be considered carefully.",
     conditions: {
       excellent: "Excellent",
       good: "Good",
       average: "Average",
       fair: "Fair",
-      poor: "Poor"
+      poor: "Poor",
     },
     units: {
       kwh: "kWh",
       miles: "miles",
-      km: "km"
-    }
+      km: "km",
+    },
   };
 
   // Calculate vehicle age and benchmark stats
@@ -565,10 +572,9 @@ export function CertificateDisplay({
       certificate.battery_data?.est_battery_range ||
       0;
     const currentCharge = certificate.battery_data?.battery_level || 0;
-    const rangeInMiles = currentCharge > 0
-      ? Math.round((currentRange / currentCharge) * 100)
-      : 0;
-    
+    const rangeInMiles =
+      currentCharge > 0 ? Math.round((currentRange / currentCharge) * 100) : 0;
+
     // Convert to kilometers if not using miles
     return usesMiles ? rangeInMiles : Math.round(rangeInMiles * 1.609);
   };
@@ -583,9 +589,9 @@ export function CertificateDisplay({
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString(locale, {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
 
@@ -687,7 +693,7 @@ export function CertificateDisplay({
                 <Car
                   className={`${isPrintMode ? "h-4 w-4 mr-1" : "h-5 w-5 mr-2"}`}
                 />
-{t.vehicle_information}
+                {t.vehicle_information}
               </h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
@@ -720,7 +726,7 @@ export function CertificateDisplay({
                 <Calendar
                   className={`${isPrintMode ? "h-4 w-4 mr-1" : "h-5 w-5 mr-2"}`}
                 />
-{t.assessment_details}
+                {t.assessment_details}
               </h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
@@ -759,7 +765,7 @@ export function CertificateDisplay({
           <div className="mb-8 print:mb-6">
             <h3 className="text-lg font-semibold mb-4 print:mb-3 flex items-center print:text-base">
               <Zap className="h-5 w-5 mr-2 print:h-4 print:w-4" />
-{t.battery_performance}
+              {t.battery_performance}
             </h3>
 
             <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-6 print:gap-2">
@@ -795,10 +801,17 @@ export function CertificateDisplay({
                       "-700"
                     )}`}
                   >
-                    {t.conditions[benchmarkStats.condition.toLowerCase() as keyof typeof t.conditions]}
+                    {
+                      t.conditions[
+                        benchmarkStats.condition.toLowerCase() as keyof typeof t.conditions
+                      ]
+                    }
                   </p>
                   <p className="text-xs text-gray-600 mt-1 print:mt-0 print:text-xs">
-                    {t.better_than_percentage.replace('{percentage}', benchmarkStats.percentileBetter.toString())}
+                    {t.better_than_percentage.replace(
+                      "{percentage}",
+                      benchmarkStats.percentileBetter.toString()
+                    )}
                   </p>
                 </CardContent>
               </Card>
@@ -850,7 +863,10 @@ export function CertificateDisplay({
                     : "bg-orange-100 text-orange-800"
                 }`}
               >
-{t.better_than_percentage.replace('{percentage}', benchmarkStats.percentileBetter.toString())}
+                {t.better_than_percentage.replace(
+                  "{percentage}",
+                  benchmarkStats.percentileBetter.toString()
+                )}
               </div>
             </div>
 
@@ -890,14 +906,22 @@ export function CertificateDisplay({
               >
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <h4 className="font-medium mb-3">{t.battery_specifications}</h4>
+                    <h4 className="font-medium mb-3">
+                      {t.battery_specifications}
+                    </h4>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
-                        <span className="text-gray-600">{t.original_capacity}</span>
-                        <span>{batteryHealth.original_capacity_kwh} {t.units.kwh}</span>
+                        <span className="text-gray-600">
+                          {t.original_capacity}
+                        </span>
+                        <span>
+                          {batteryHealth.original_capacity_kwh} {t.units.kwh}
+                        </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">{t.current_capacity}</span>
+                        <span className="text-gray-600">
+                          {t.current_capacity}
+                        </span>
                         <span>
                           {Math.round(batteryHealth.current_capacity_kwh * 10) /
                             10}{" "}
@@ -937,22 +961,30 @@ export function CertificateDisplay({
                   </div>
 
                   <div>
-                    <h4 className="font-medium mb-3">{t.performance_indicators}</h4>
+                    <h4 className="font-medium mb-3">
+                      {t.performance_indicators}
+                    </h4>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
-                        <span className="text-gray-600">{t.battery_chemistry}</span>
+                        <span className="text-gray-600">
+                          {t.battery_chemistry}
+                        </span>
                         <span>
                           {batteryHealth.battery_chemistry || "Lithium-ion"}
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">{t.battery_supplier}</span>
+                        <span className="text-gray-600">
+                          {t.battery_supplier}
+                        </span>
                         <span>
                           {batteryHealth.battery_supplier || "Tesla/Panasonic"}
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">{t.confidence_level}</span>
+                        <span className="text-gray-600">
+                          {t.confidence_level}
+                        </span>
                         <span
                           className={
                             batteryHealth.confidence_level === "high"
@@ -962,11 +994,17 @@ export function CertificateDisplay({
                               : "text-red-600"
                           }
                         >
-                          {batteryHealth.confidence_level && t.confidence_levels[batteryHealth.confidence_level as keyof typeof t.confidence_levels] || batteryHealth.confidence_level}
+                          {(batteryHealth.confidence_level &&
+                            t.confidence_levels[
+                              batteryHealth.confidence_level as keyof typeof t.confidence_levels
+                            ]) ||
+                            batteryHealth.confidence_level}
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-gray-600">{t.overall_condition}</span>
+                        <span className="text-gray-600">
+                          {t.overall_condition}
+                        </span>
                         <span
                           className={
                             batteryHealth.degradation_percentage < 10
@@ -1024,11 +1062,25 @@ export function CertificateDisplay({
                 ? t.summary_excellent
                 : batteryHealth.degradation_percentage < 15
                 ? t.summary_good
-                : t.summary_fair)
-                .replace('{vehicleName}', certificate.vehicle_name)
-                .replace('{degradation}', (Math.round(batteryHealth.degradation_percentage * 10) / 10).toString())
-                .replace('{currentCapacity}', (Math.round(batteryHealth.current_capacity_kwh * 10) / 10).toString())
-                .replace('{originalCapacity}', batteryHealth.original_capacity_kwh.toString())}
+                : t.summary_fair
+              )
+                .replace("{vehicleName}", certificate.vehicle_name)
+                .replace(
+                  "{degradation}",
+                  (
+                    Math.round(batteryHealth.degradation_percentage * 10) / 10
+                  ).toString()
+                )
+                .replace(
+                  "{currentCapacity}",
+                  (
+                    Math.round(batteryHealth.current_capacity_kwh * 10) / 10
+                  ).toString()
+                )
+                .replace(
+                  "{originalCapacity}",
+                  batteryHealth.original_capacity_kwh.toString()
+                )}
             </p>
           </div>
         </CardContent>

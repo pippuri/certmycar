@@ -555,6 +555,46 @@
     "settings_note": "Můžete to později změnit v nastavení, pokud je to potřeba.",
     "includes": "Zahrnuje"
   },
+  "about_page": {
+    "meta": {
+      "title": "O batterycert.com - Platforma pro certifikaci zdraví baterie Tesly",
+      "description": "Poznejte batterycert.com, důvěryhodnou platformu pro hodnocení zdraví baterie Tesly. Přinášíme transparentnost na trh s ojetými elektromobily s okamžitými, ověřenými certifikáty zdraví baterie.",
+      "keywords": "o batterycert.com, certifikace baterie Tesly, transparentnost baterie EV, společnost TidyCalls, platforma zdraví baterie, certifikace elektromobilů",
+      "og_title": "O batterycert.com - Platforma pro certifikaci zdraví baterie Tesly",
+      "og_description": "Poznejte batterycert.com, důvěryhodnou platformu pro hodnocení zdraví baterie Tesly. Přinášíme transparentnost na trh s ojetými elektromobily."
+    },
+    "navigation": {
+      "home": "Domů",
+      "get_report": "Získejte svůj report"
+    },
+    "hero": {
+      "title": "O batterycert.com",
+      "description": "batterycert.com byl založen týmem za TidyCalls s jednoduchou misí: přinést transparentnost a důvěru na trh s ojetými elektromobily. Věříme, že nákup nebo prodej elektromobilu by měl být jasný, sebevědomý proces pro všechny zúčastněné.",
+      "contact_text": "Můžete nás kontaktovat na"
+    },
+    "mission": {
+      "title": "Naše mise",
+      "description": "Naším cílem je poskytovat okamžité, přesné a ověřitelné certifikáty zdraví baterie pro vozidla Tesly. Využíváním přímého přístupu k API eliminujeme dohady a poskytujeme majitelům a kupujícím data, která potřebují k informovaným rozhodnutím."
+    },
+    "values": {
+      "title": "Naše hodnoty",
+      "description": "Zavazujeme se k integritě, přesnosti a uživatelskému zážitku. Zpracováváme vaše data s nejvyšší bezpečností, nikdy neukládáme vaše přihlašovací údaje Tesly a poskytujeme plynulý tok od přihlášení k výsledkům během sekund."
+    },
+    "company": {
+      "title": "Společnost TidyCalls LTD",
+      "description": "Využíváme let zkušeností ve vytváření robustních, uživatelsky přívětivých aplikací v TidyCalls a přinášíme stejnou oddanost kvalitě a bezpečnosti do batterycert.com."
+    },
+    "legal": {
+      "title": "Právní a dodržování předpisů",
+      "description": "Zavazujeme se k transparentnosti v našich operacích. Níže můžete zkontrolovat naše právní dokumenty.",
+      "terms_button": "Podmínky služby",
+      "privacy_button": "Zásady ochrany osobních údajů",
+      "faq_button": "FAQ"
+    },
+    "footer": {
+      "copyright": "© 2024 batterycert.com, společnost TidyCalls LTD. 124 City Road, EC1V 2NX, Londýn. Číslo společnosti 16329940 Všechna práva vyhrazena."
+    }
+  },
   "stripe_receipt": {
     "description": "Certifikát zdraví baterie Tesly",
     "certificate_access": "Přístup k certifikátu",

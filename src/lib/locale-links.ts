@@ -31,6 +31,7 @@ export function getLocaleLinks(currentLocale: string) {
     about: createLocalePath("about", currentLocale),
     terms: createLocalePath("terms", currentLocale),
     privacy: createLocalePath("privacy-policy", currentLocale),
+    faq: createLocalePath("faq", currentLocale),
     contact: createLocalePath("contact", currentLocale),
     certificate: createLocalePath("certificate", currentLocale),
   };

@@ -555,6 +555,46 @@
     "settings_note": "Voit muuttaa tätä myöhemmin asetuksissa tarvittaessa.",
     "includes": "Sisältää"
   },
+  "about_page": {
+    "meta": {
+      "title": "Tietoja batterycert.com - Tesla-akun terveyden sertifiointialusta",
+      "description": "Tutustu batterycert.com:iin, luotettavaan alustaan Tesla-akun terveyden arviointiin. Tuomme läpinäkyvyyttä käytettyjen sähköajoneuvojen markkinoille välittömillä, varmennetuilla akun terveyssertifikaateilla.",
+      "keywords": "tietoja batterycert.com, Tesla-akun sertifiointi, EV-akun läpinäkyvyys, TidyCalls-yritys, akun terveysalusta, sähköajoneuvon sertifiointi",
+      "og_title": "Tietoja batterycert.com - Tesla-akun terveyden sertifiointialusta",
+      "og_description": "Tutustu batterycert.com:iin, luotettavaan alustaan Tesla-akun terveyden arviointiin. Tuomme läpinäkyvyyttä käytettyjen sähköajoneuvojen markkinoille."
+    },
+    "navigation": {
+      "home": "Koti",
+      "get_report": "Hanki raporttisi"
+    },
+    "hero": {
+      "title": "Tietoja batterycert.com",
+      "description": "batterycert.com perustettiin TidyCallsin tiimin toimesta yksinkertaisella tehtävällä: tuoda läpinäkyvyyttä ja luottamusta käytettyjen sähköajoneuvojen markkinoille. Uskomme, että sähköajoneuvon ostaminen tai myyminen pitäisi olla selkeä, itsevarma prosessi kaikille osallistujille.",
+      "contact_text": "Voit tavoittaa meidät osoitteessa"
+    },
+    "mission": {
+      "title": "Tehtävämme",
+      "description": "Tavoitteemme on tarjota välittömiä, tarkkoja ja varmennettavissa olevia akun terveyssertifikaatteja Tesla-ajoneuvoille. Hyödyntämällä suoraa API-käyttöä eliminoimme arvailut ja annamme omistajille ja ostajille tarvitsemansa tiedot informoidun päätöksenteon kannalta."
+    },
+    "values": {
+      "title": "Arvomme",
+      "description": "Olemme sitoutuneet rehellisyyteen, tarkkuuteen ja käyttäjäkokemukseen. Käsittelemme tietojasi suurimmalla turvallisuudella, emme koskaan tallenna Tesla-kirjautumistietojasi ja tarjoamme saumattoman kulun kirjautumisesta tuloksiin sekunneissa."
+    },
+    "company": {
+      "title": "TidyCalls LTD -yritys",
+      "description": "Hyödyntäen vuosien kokemusta vahvojen, käyttäjäystävällisten sovellusten rakentamisessa TidyCallsissa, tuomme saman sitoutumisen laatuun ja turvallisuuteen batterycert.com:iin."
+    },
+    "legal": {
+      "title": "Oikeudellinen ja noudattaminen",
+      "description": "Olemme sitoutuneet läpinäkyvyyteen toiminnassamme. Voit tarkistaa oikeudelliset asiakirjamme alla.",
+      "terms_button": "Palvelun ehdot",
+      "privacy_button": "Tietosuojakäytäntö",
+      "faq_button": "UKK"
+    },
+    "footer": {
+      "copyright": "© 2024 batterycert.com, TidyCalls LTD -yritys. 124 City Road, EC1V 2NX, Lontoo. Yritysnumero 16329940 Kaikki oikeudet pidätetään."
+    }
+  },
   "stripe_receipt": {
     "description": "Tesla Akun terveyssertifikaatti",
     "certificate_access": "Sertifikaatin pääsy",
