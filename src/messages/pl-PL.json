@@ -1,0 +1,565 @@
+{
+  "common": {
+    "loading": "Ładowanie...",
+    "error": "Błąd",
+    "success": "Sukces",
+    "retry": "Spróbuj ponownie",
+    "back": "Wstecz",
+    "next": "Dalej",
+    "continue": "Kontynuuj",
+    "cancel": "Anuluj",
+    "close": "Zamknij",
+    "save": "Zapisz",
+    "delete": "Usuń",
+    "edit": "Edytuj",
+    "share": "Udostępnij",
+    "download": "Pobierz"
+  },
+  "navigation": {
+    "home": "Strona główna",
+    "check": "Sprawdź baterię",
+    "certificates": "Certyfikaty",
+    "about": "O nas",
+    "faq": "FAQ",
+    "terms": "Warunki użytkowania",
+    "contact": "Kontakt",
+    "language": "Język"
+  },
+  "meta": {
+    "homepage": {
+      "title": "Kontrola stanu baterii Tesla - Natychmiastowe wyniki w 30 sekund | batterycert.com",
+      "description": "Sprawdź natychmiast stan baterii swojego Tesli za pomocą naszego darmowego narzędzia oceny. Otrzymaj zweryfikowane dane o degradacji baterii, analizy pojemności i opcjonalne certyfikaty PDF do zakupu lub sprzedaży swojego Tesli.",
+      "og_title": "Kontrola stanu baterii Tesla - Natychmiastowe wyniki w 30 sekund",
+      "og_description": "Otrzymaj natychmiastowe, zweryfikowane oceny stanu baterii Tesli. Idealne do zakupu, sprzedaży lub poznania prawdziwego stanu swojego Tesli.",
+      "og_alt": "Kontrola stanu baterii Tesla"
+    }
+  },
+  "structured_data": {
+    "service": {
+      "name": "Kontrola stanu baterii Tesla",
+      "description": "Otrzymaj natychmiastowe, zweryfikowane oceny stanu baterii Tesli. Idealne do zakupu, sprzedaży lub poznania prawdziwego stanu swojego Tesli.",
+      "service_type": "Ocena stanu baterii",
+      "area_served": "Na całym świecie",
+      "offer_description": "Darmowa kontrola stanu baterii Tesli"
+    }
+  },
+  "homepage": {
+    "navigation": {
+      "about": "O nas"
+    },
+    "hero": {
+      "title": "Sprawdź baterię swojego Tesli",
+      "title_highlight": "w 30 sekund",
+      "cta_primary": "Sprawdź mojego Teslę",
+      "cta_secondary": "Zobacz przykładowy certyfikat"
+    },
+    "hero_features": {
+      "free_check": "Darmowa kontrola stanu baterii",
+      "no_account": "Nie wymaga konta",
+      "instant_results": "Natychmiastowe wyniki",
+      "optional_certificate": "Opcjonalny certyfikat (40 zł)"
+    },
+    "problem_section": {
+      "title": "Wymiana baterii = ",
+      "title_price": "60.000 zł+",
+      "subtitle": "Kupujący, nie daj się oszukać ukrytymi problemami z baterią",
+      "video_title": "Zobacz dlaczego stan baterii jest ważny",
+      "video_description": "Obejrzyj ten film, aby zrozumieć powszechne oszustwo. batterycert.com pomoże Ci go uniknąć.",
+      "cards": {
+        "hidden_issues": {
+          "title": "Znajdź ukryte problemy",
+          "description": "Sprzedawcy ukrywają problemy z degradacją"
+        },
+        "trusted_data": {
+          "title": "Zaufane dane",
+          "description": "Bezpośrednio z systemów Tesli"
+        },
+        "higher_value": {
+          "title": "Wyższa wartość",
+          "description": "Udowodniony stan zwiększa cenę"
+        }
+      }
+    },
+    "how_it_works": {
+      "title": "Prosty 3-etapowy proces",
+      "steps": {
+        "connect": {
+          "title": "Połącz",
+          "description": "Bezpieczne połączenie przez oficjalny OAuth Tesli. Nigdy nie widzimy Twoich danych logowania - autoryzujesz się bezpośrednio u Tesli."
+        },
+        "analyze": {
+          "title": "Analizuj",
+          "description": "Nasz system natychmiast analizuje dane baterii za pomocą API Tesli i oblicza procent degradacji."
+        },
+        "certificate": {
+          "title": "Opcjonalnie: Certyfikat",
+          "description": "Otrzymaj zweryfikowany certyfikat PDF z kodem QR do weryfikacji przez kupujących. Ważny przez 3 miesiące. Jednorazowa opłata 40 zł."
+        }
+      }
+    },
+    "use_cases": {
+      "title": "Idealne dla ",
+      "title_buyers": "Kupujących",
+      "title_sellers": "Sprzedawców",
+      "title_owners": "Właścicieli",
+      "buyers": {
+        "title": "Kupujący",
+        "description": "Uniknij niespodzianek za 60.000 zł+"
+      },
+      "sellers": {
+        "title": "Sprzedawcy",
+        "description": "Zwiększ wartość odsprzedaży"
+      },
+      "owners": {
+        "title": "Właściciele",
+        "description": "Śledź stan baterii"
+      }
+    },
+    "cta_section": {
+      "title": "Gotowy do sprawdzenia baterii swojego Tesli?",
+      "subtitle": "Dołącz do tysięcy właścicieli Tesli, którzy ufają batterycert.com w sprawie dokładnych, natychmiastowych raportów o stanie baterii.",
+      "button_text": "Sprawdź teraz baterię mojego Tesli",
+      "features": {
+        "free_registration": "Darmowe • Nie wymaga rejestracji",
+        "speed": "30 sekund • Natychmiastowe wyniki",
+        "certificate": "Opcjonalny certyfikat za 40 zł"
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 batterycert.com. Stworzone dla właścicieli i kupujących Tesli w imię sprawiedliwości.",
+      "language_switcher": "Zmień język:"
+    }
+  },
+  "certificate_page": {
+    "meta": {
+      "not_found_title": "Certyfikat nie znaleziony - batterycert.com",
+      "not_found_description": "Nie można znaleźć żądanego certyfikatu baterii Tesli.",
+      "title": "{vehicleName} - Certyfikat baterii Tesli - batterycert.com",
+      "description": "Zobacz certyfikat stanu baterii Tesli dla {vehicleName} z szczegółową analizą degradacji, danymi pojemności i kodem QR do weryfikacji.",
+      "default_title": "Certyfikat baterii Tesli - batterycert.com",
+      "default_description": "Zobacz swój certyfikat stanu baterii Tesli ze szczegółową analizą degradacji, danymi pojemności i kodem QR do weryfikacji.",
+      "keywords": "Certyfikat baterii Tesli, raport stanu baterii, certyfikat degradacji baterii, weryfikacja baterii Tesli"
+    },
+    "not_found": {
+      "title": "Certyfikat nie znaleziony",
+      "description": "ID certyfikatu \"{id}\" nie zostało znalezione lub mogło wygasnąć.",
+      "button": "Sprawdź baterię swojego Tesli"
+    },
+    "fraud_protection": {
+      "title": "Ochrona przed oszustwem zweryfikowana",
+      "description": "Ten certyfikat jest odporny na manipulacje i bezpośrednio połączony z oficjalnymi systemami Tesli. Kod QR poniżej umożliwia natychmiastową weryfikację autentyczności. Kupujący mogą ufać, że ta ocena jest prawdziwa i dokładna."
+    },
+    "certificate_locked": {
+      "title": "Certyfikat zablokowany",
+      "description": "Dokończ płatność powyżej, aby odblokować pełny zweryfikowany certyfikat z:",
+      "features": {
+        "detailed_analysis": "Szczegółowa analiza stanu baterii",
+        "degradation_percentage": "Oficjalny procent degradacji",
+        "qr_code": "Kod QR do weryfikacji",
+        "downloadable_pdf": "Certyfikat PDF do pobrania",
+        "fraud_protection": "Gwarancja ochrony przed oszustwem"
+      }
+    },
+    "verification_footer": {
+      "verified_by": "Zweryfikowane przez batterycert.com",
+      "verification_description": "Ten certyfikat można zweryfikować za pomocą kodu QR lub ID certyfikatu:",
+      "generated": "Wygenerowano:",
+      "valid_for": "Ważny przez 3 miesiące",
+      "verify_certificate": "Zweryfikuj certyfikat"
+    }
+  },
+  "certificate_display": {
+    "chart": {
+      "title": "Stan baterii w czasie",
+      "this_vehicle": "Ten pojazd",
+      "tesla_average": "Średnia Tesli"
+    },
+    "title": "Raport stanu baterii z danych Tesli",
+    "certificate_id": "ID certyfikatu",
+    "health_score": "Wynik stanu",
+    "scan_to_verify": "Zeskanuj do weryfikacji",
+    "vehicle_information": "Informacje o pojeździe",
+    "model": "Model",
+    "year": "Rok",
+    "vin": "Numer VIN",
+    "assessment_details": "Szczegóły oceny",
+    "test_date": "Data testu",
+    "mileage": "Przebieg",
+    "software_version": "Wersja oprogramowania",
+    "not_available": "Niedostępne",
+    "valid_until": "Ważny do",
+    "battery_performance": "Metryki wydajności baterii",
+    "better_than_percentage": "Lepsze niż {percentage}% podobnych pojazdów",
+    "degradation_comparison": "Porównanie degradacji vs średnia",
+    "detailed_analysis": "Szczegółowa analiza",
+    "battery_specifications": "Specyfikacje baterii",
+    "original_capacity": "Oryginalna pojemność",
+    "current_capacity": "Aktualna pojemność",
+    "capacity_loss": "Utrata pojemności",
+    "full_charge_range": "Zasięg przy pełnym ładowaniu",
+    "current_label": "Aktualny",
+    "vs_label": "vs",
+    "health_label": "Stan",
+    "average_label": "Średnia",
+    "confidence_levels": {
+      "high": "Wysoki",
+      "medium": "Średni",
+      "low": "Niski"
+    },
+    "methodology": "Metodologia",
+    "performance_indicators": "Wskaźniki wydajności",
+    "battery_chemistry": "Chemia baterii",
+    "battery_supplier": "Dostawca baterii",
+    "confidence_level": "Poziom pewności",
+    "overall_condition": "Ogólny stan",
+    "assessment_summary": "Podsumowanie oceny",
+    "summary_excellent": "Ten {vehicleName} wykazuje doskonały stan baterii z {degradation}% degradacją. Bateria działa wyjątkowo dobrze jak na swoje użytkowanie. Aktualna pojemność {currentCapacity} kWh z oryginalnych {originalCapacity} kWh. Ten pojazd reprezentuje doskonałą okazję zakupu z minimalnymi ryzykami związanymi z baterią.",
+    "summary_good": "Ten {vehicleName} wykazuje dobry stan baterii z {degradation}% degradacją. Bateria działa dobrze jak na swoje użytkowanie. Aktualna pojemność {currentCapacity} kWh z oryginalnych {originalCapacity} kWh. Ten pojazd reprezentuje dobrą okazję zakupu z normalnymi wzorcami zużycia.",
+    "summary_fair": "Ten {vehicleName} wykazuje zadowalający stan baterii z {degradation}% degradacją. Bateria działa odpowiednio jak na swoje użytkowanie. Aktualna pojemność {currentCapacity} kWh z oryginalnych {originalCapacity} kWh. Ten pojazd wykazuje wyższą niż średnia degradację i powinien być rozważony ostrożnie.",
+    "conditions": {
+      "excellent": "Doskonale",
+      "good": "Dobry",
+      "average": "Średni",
+      "fair": "Zadowalający",
+      "poor": "Słaby"
+    },
+    "units": {
+      "kwh": "kWh",
+      "miles": "miles",
+      "km": "km"
+    }
+  },
+  "certificate_payment": {
+    "payment_required": "Wymagana płatność",
+    "certificate_description": "Ten certyfikat wymaga płatności, aby odblokować pełny zweryfikowany raport.",
+    "pricing_description": "Otrzymaj swój oficjalny certyfikat stanu baterii Tesli z kodem QR do weryfikacji i ochroną przed oszustwem.",
+    "pricing_loading": "Ładowanie...",
+    "pricing_error": "Nie udało się załadować informacji o cenach",
+    "certificate_price": "Cena certyfikatu",
+    "payment_button": "Dokończ płatność",
+    "payment_processing": "Przetwarzanie...",
+    "loading": "Ładowanie...",
+    "secure_payment": "Bezpieczna płatność przez Stripe • Natychmiastowy dostęp po płatności • Paragon e-mail dołączony"
+  },
+  "hero_visual": {
+    "verified_certificate": "Zweryfikowany certyfikat",
+    "battery_health_report": "Raport stanu baterii Tesli",
+    "certificate_id": "ID certyfikatu",
+    "certified": "CERTYFIKOWANY",
+    "verified": "ZWERYFIKOWANY",
+    "health_score": "Wynik stanu",
+    "vehicle_information": "Informacje o pojeździe",
+    "model": "Model",
+    "tesla_model_y": "Tesla Model Y Long Range",
+    "year": "Rok",
+    "vin": "Numer VIN",
+    "battery_metrics": "Metryki baterii",
+    "current_capacity": "Aktualna pojemność",
+    "degradation": "Degradacja",
+    "est_range": "Szac. zasięg",
+    "miles": "miles",
+    "degradation_comparison": "Porównanie degradacji vs średnia",
+    "better_than_percentage": "Lepsze niż 78% podobnych pojazdów",
+    "this_vehicle": "Ten pojazd (92%)",
+    "average": "Średnia (85%)",
+    "verified_data": "Zweryfikowane dane",
+    "direct_tesla_api": "Bezpośrednie API Tesli",
+    "tamper_proof": "Odporny na manipulacje",
+    "qr_verification": "Weryfikacja QR",
+    "increase_value": "Zwiększ wartość",
+    "proven_health": "Udowodniony stan",
+    "scan_to_verify": "Zeskanuj do weryfikacji",
+    "verified_by": "Zweryfikowane przez batterycert.com",
+    "generated": "Wygenerowano",
+    "generated_date": "24 lipca 2025",
+    "valid_for_one_year": "Ważny przez 3 miesiące"
+  },
+  "gdpr": {
+    "title": "Szanujemy Twoją prywatność",
+    "message": "Używamy plików cookie i podobnych technologii, aby poprawić Twoje doświadczenie, analizować ruch na stronie i personalizować treści. Twoje dane Tesli są przetwarzane bezpiecznie i nigdy nie są udostępniane osobom trzecim.",
+    "accept_all": "Akceptuj wszystkie",
+    "decline": "Odrzuć",
+    "cookie_settings": "Ustawienia plików cookie",
+    "essential_only": "Tylko niezbędne",
+    "settings": {
+      "essential_cookies": "Niezbędne pliki cookie",
+      "always_on": "Zawsze włączone",
+      "analytics": "Analityka",
+      "marketing": "Marketing",
+      "optional": "Opcjonalne",
+      "back": "Wstecz"
+    }
+  },
+  "tesla_check": {
+    "back_to_home": "Powrót do strony głównej",
+    "results": {
+      "battery_degradation": "Degradacja baterii",
+      "battery_health": "Stan baterii",
+      "excellent": "Doskonale",
+      "good": "Dobry",
+      "fair": "Zadowalający",
+      "current_capacity": "Aktualna pojemność",
+      "original_capacity": "Oryginalna pojemność",
+      "current_charge": "Aktualne ładowanie"
+    },
+    "certificate_promo": {
+      "title": "Otrzymaj swój oficjalny certyfikat",
+      "subtitle": "Zamień swoje wyniki w zweryfikowany dokument, który zwiększa wartość Twojego Tesli",
+      "free_section": {
+        "title": "Co otrzymałeś ZA DARMO",
+        "degradation": "✓ Procent degradacji baterii",
+        "capacity": "✓ Aktualne dane pojemności",
+        "charge": "✓ Aktualny poziom ładowania"
+      },
+      "paid_section": {
+        "title": "Oficjalny certyfikat (40 zł)",
+        "full_dataset": "✓ Pełny zestaw danych dla Twojego pojazdu",
+        "peer_comparison": "✓ Porównanie z podobnymi pojazdami",
+        "pdf_certificate": "✓ Datowany certyfikat PDF z numerem VIN",
+        "authenticity": "✓ Weryfikacja autentyczności dla kupujących",
+        "physical_option": "✓ Opcja fizycznego certyfikatu",
+        "performance_ranking": "✓ Ranking wydajności"
+      },
+      "purchase_button": "Kup certyfikat",
+      "sample_link": "Przykładowy certyfikat",
+      "features": "💎 Natychmiastowe pobieranie • 🔒 Bezpieczna płatność • 📄 Ważny przez 3 miesiące"
+    },
+    "auth_form": {
+      "title": "Sprawdź stan swojej baterii",
+      "subtitle": "Połącz swoje konto Tesli, aby otrzymać natychmiastową ocenę stanu baterii",
+      "region_info": "Używanie serwerów Tesli {regionName}",
+      "region_change": "Zły region? Zmień tutaj",
+      "connect_button": "Połącz z kontem Tesli",
+      "connecting": "Łączenie z Teslą...",
+      "try_again": "Spróbuj ponownie",
+      "retry_info": "Tesla może pamiętać Twoją sesję i połączyć się szybciej"
+    },
+    "security": {
+      "title": "Twoje bezpieczeństwo jest naszym priorytetem",
+      "no_storage": "• Nigdy nie przechowujemy Twoich danych logowania do Tesli",
+      "encrypted": "• Połączenie jest zaszyfrowane i bezpieczne",
+      "battery_only": "• Mamy dostęp tylko do danych baterii, nic więcej"
+    },
+    "features": {
+      "secure_connection": {
+        "title": "Bezpieczne połączenie",
+        "subtitle": "Szyfrowanie 256-bitowe"
+      },
+      "no_storage": {
+        "title": "Brak przechowywania",
+        "subtitle": "Dane logowania nie są zapisywane"
+      },
+      "instant_results": {
+        "title": "Natychmiastowe wyniki",
+        "subtitle": "30 sekund lub mniej"
+      }
+    }
+  },
+  "vehicle_selection": {
+    "back_to_login": "Powrót do logowania",
+    "loading": {
+      "title": "Ładowanie Twoich pojazdów...",
+      "description": "Pobieranie Twoich pojazdów Tesli z konta"
+    },
+    "page": {
+      "title": "Wybierz swojego Teslę",
+      "subtitle": "Wybierz pojazd, który chcesz sprawdzić. Przeanalizujemy stan jego baterii w zaledwie 30 sekund."
+    },
+    "checking_battery": "Sprawdzanie stanu baterii...",
+    "no_vehicles": {
+      "title": "Nie znaleziono pojazdów",
+      "description": "Nie mogliśmy znaleźć żadnych pojazdów Tesli powiązanych z Twoim kontem. Upewnij się, że masz pojazdy zarejestrowane na swoim koncie Tesli.",
+      "try_again": "Spróbuj ponownie"
+    },
+    "info_cards": {
+      "instant_analysis": {
+        "title": "Natychmiastowa analiza",
+        "description": "Otrzymaj wyniki stanu baterii w 30 sekund"
+      },
+      "detailed_report": {
+        "title": "Szczegółowy raport",
+        "description": "Analiza z procentem degradacji i danymi pojemności"
+      },
+      "verified_certificate": {
+        "title": "Zweryfikowany certyfikat",
+        "description": "Opcjonalny zweryfikowany certyfikat za 40 zł dla ochrony kupna/sprzedaży"
+      }
+    },
+    "errors": {
+      "failed_to_load": "Nie udało się załadować Twoich pojazdów. Spróbuj ponownie.",
+      "failed_battery_check": "Nie udało się sprawdzić stanu baterii. Spróbuj ponownie."
+    }
+  },
+  "certificate_actions": {
+    "share": "Udostępnij",
+    "copied": "Skopiowano!",
+    "download_pdf": "Pobierz PDF",
+    "generating": "Generowanie...",
+    "share_title": "Certyfikat baterii Tesli - {certificateId}",
+    "share_text": "Sprawdź ten certyfikat stanu baterii Tesli",
+    "download_error": "Nie udało się pobrać PDF: {error}"
+  },
+  "faq": {
+    "meta": {
+      "title": "Często zadawane pytania - Kontrola stanu baterii Tesli | batterycert.com",
+      "description": "Otrzymaj odpowiedzi na często zadawane pytania dotyczące naszej usługi kontroli stanu baterii Tesli, prywatności, cen i działania naszych certyfikatów.",
+      "keywords": "FAQ baterii Tesli, pytania o stan baterii, polityka prywatności, ceny, weryfikacja certyfikatu"
+    },
+    "page_title": "Często zadawane pytania",
+    "hero": {
+      "title": "Często zadawane pytania",
+      "subtitle": "Wszystko, co musisz wiedzieć o naszej usłudze kontroli stanu baterii Tesli"
+    },
+    "privacy": {
+      "title": "Prywatność & Bezpieczeństwo",
+      "oauth_question": "Jak działa Tesla OAuth i do jakich danych masz dostęp?",
+      "oauth_answer": "Używamy oficjalnego systemu OAuth Tesli, co oznacza, że autoryzujesz się bezpośrednio u Tesli - nigdy nie widzimy Twojej nazwy użytkownika ani hasła. Mamy dostęp tylko do podstawowych informacji o pojeździe i danych baterii, które Tesla pozwala aplikacjom trzecich czytać. Nie możemy uzyskać dostępu do Twoich danych osobowych, szczegółów płatności ani innych danych konta Tesli.",
+      "data_access_question": "Jakie konkretne dane zbierasz z mojego Tesli?",
+      "data_access_answer": "Zbieramy tylko dane związane z baterią: aktualny poziom baterii, użyteczną pojemność baterii, szacowany zasięg i specyfikacje pojazdu (model, rok, numer VIN). Nie mamy dostępu do Twojej lokalizacji, historii jazdy, ustawień osobistych ani innych danych pojazdu. Nasza analiza skupia się wyłącznie na stanie baterii i degradacji.",
+      "credentials_question": "Czy przechowujesz moje dane logowania do Tesli?",
+      "credentials_answer": "Absolutnie nie. Nigdy nie widzimy, nie przechowujemy ani nie mamy dostępu do Twojej nazwy użytkownika Tesli, hasła ani innych danych logowania. Proces OAuth odbywa się całkowicie między Tobą a Teslą. Otrzymujemy tylko tymczasowy token dostępu, którego używamy do odczytu danych baterii, i ten token wygasa automatycznie.",
+      "storage_question": "Jak długo przechowujesz moje dane?",
+      "storage_answer": "Przechowujemy dane oceny baterii tylko tak długo, jak jest to konieczne do świadczenia usługi. Jeśli kupisz certyfikat, przechowujemy dane certyfikatu do celów weryfikacji. Możesz w każdej chwili poprosić o usunięcie swoich danych, kontaktując się z nami. Nie sprzedajemy, nie wynajmujemy ani nie udostępniamy Twoich danych osobowych osobom trzecim.",
+      "third_party_question": "Czy udostępniasz moje dane osobom trzecim?",
+      "third_party_answer": "Nie, nie sprzedajemy, nie wynajmujemy ani nie udostępniamy Twoich danych osobowych osobom trzecim. Jedynymi wyjątkami są: 1) Przetwarzanie płatności (Stripe) dla zakupów certyfikatów, 2) Wymagania prawne, jeśli wymagane przez prawo, 3) Dostawcy usług, którzy pomagają nam w prowadzeniu naszej platformy (pod ścisłymi umowami o poufności)."
+    },
+    "pricing": {
+      "title": "Ceny & Certyfikaty",
+      "why_charge_question": "Dlaczego pobierasz opłaty za certyfikaty, gdy kontrola baterii jest darmowa?",
+      "why_charge_answer": "Kontrola stanu baterii jest całkowicie darmowa, ponieważ chcemy pomóc właścicielom Tesli zrozumieć stan swojego pojazdu. Pobieramy opłaty za certyfikaty, ponieważ wymagają dodatkowych kosztów: opłaty za korzystanie z API Tesli, generowanie PDF, bezpieczne przechowywanie i systemy weryfikacji. Ponadto płatny certyfikat pokazuje kupującym, że jesteś poważny w kwestii przejrzystości i zwiększa wartość Twojego pojazdu.",
+      "api_costs_question": "Jakie są koszty API Tesli, o których wspomniałeś?",
+      "api_costs_answer": "Tesla pobiera opłaty za dostęp do API do danych pojazdów. Podczas gdy pojedyncze kontrole baterii są stosunkowo tanie, świadczenie zweryfikowanej usługi certyfikatu wymaga ciągłego dostępu do API do weryfikacji, co wiąże się z miesięcznymi kosztami. Nasza opłata za certyfikat w wysokości 40 zł pomaga pokryć te koszty operacyjne, jednocześnie utrzymując usługę dostępną.",
+      "certificate_value_question": "Jak certyfikat zwiększa wartość mojego pojazdu?",
+      "certificate_value_answer": "Zweryfikowany certyfikat baterii dowodzi potencjalnym kupującym, że bateria Twojego Tesli jest w dobrym stanie, eliminując niepewność co do ukrytej degradacji. Ta przejrzystość buduje zaufanie i może uzasadnić wyższą cenę sprzedaży. Kupujący są skłonni zapłacić więcej za pojazdy z udowodnionym stanem baterii, ponieważ zmniejsza to ich ryzyko kosztownej wymiany baterii.",
+      "one_time_question": "Czy opłata za certyfikat w wysokości 40 zł to jednorazowa płatność?",
+      "one_time_answer": "Tak, opłata za certyfikat w wysokości 40 zł to jednorazowa płatność. Otrzymujesz zweryfikowany certyfikat PDF, który jest ważny przez 3 miesiące i może być udostępniany nieograniczonej liczbie potencjalnych kupujących. Nie ma żadnych powtarzających się opłat, subskrypcji ani ukrytych kosztów. Jeśli potrzebujesz nowego certyfikatu po 3 miesiącach, możesz kupić kolejny.",
+      "refund_question": "Czy oferujesz zwroty za certyfikaty?",
+      "refund_answer": "Oferujemy 30-dniową gwarancję zwrotu pieniędzy dla wszystkich zakupów certyfikatów. Jeśli z jakiegokolwiek powodu nie jesteś zadowolony ze swojego certyfikatu, skontaktuj się z nami w ciągu 30 dni, a zapewnimy pełny zwrot. Należy jednak pamiętać, że po zweryfikowaniu certyfikatu przez kupującego nie możemy wydać zwrotu, ponieważ usługa została wykorzystana."
+    },
+    "service": {
+      "title": "Usługa & Dokładność",
+      "how_works_question": "Jak działa ocena stanu baterii?",
+      "how_works_answer": "Nasz system łączy się z Twoim Teslą przez oficjalne API Tesli i analizuje dane baterii w czasie rzeczywistym. Porównujemy aktualną pojemność baterii z oryginalnymi specyfikacjami dla modelu i roku Twojego pojazdu, a następnie obliczamy procent degradacji. Ocena trwa około 30 sekund i daje natychmiastowe wyniki.",
+      "accuracy_question": "Jak dokładna jest Twoja ocena stanu baterii?",
+      "accuracy_answer": "Nasza ocena jest bardzo dokładna, ponieważ używamy własnych danych API Tesli, które są tymi samymi danymi, których Tesla używa wewnętrznie. Porównujemy Twoją baterię ze specyfikacjami producenta i rzeczywistymi punktami odniesienia. Stan baterii może jednak różnić się w zależności od wzorców użytkowania, więc zalecamy używanie tego jako jednego narzędzia w ogólnej ocenie pojazdu.",
+      "certificate_validity_question": "Jak długo ważny jest certyfikat?",
+      "certificate_validity_answer": "Certyfikaty są ważne przez 3 miesiące od daty zakupu. Ten okres zapewnia, że dane pozostają aktualne, jednocześnie dając Ci wystarczająco dużo czasu na zakończenie sprzedaży. Stan baterii nie zmienia się znacząco w ciągu 3 miesięcy, więc ocena pozostaje istotna dla większości transakcji.",
+      "verification_question": "Jak kupujący mogą zweryfikować mój certyfikat?",
+      "verification_answer": "Każdy certyfikat zawiera unikalny kod QR, który kupujący mogą zeskanować, aby zweryfikować autentyczność na naszej stronie. Strona weryfikacji pokazuje szczegóły certyfikatu i potwierdza, że został wydany przez batterycert.com. To zapobiega oszustwom i zapewnia, że kupujący mogą ufać danym o stanie baterii.",
+      "support_question": "Co jeśli mam problemy techniczne lub pytania?",
+      "support_answer": "Zapewniamy kompleksowe wsparcie dla wszystkich naszych usług. Jeśli napotkasz problemy techniczne, masz pytania dotyczące oceny baterii lub potrzebujesz pomocy z certyfikatem, możesz skontaktować się z nami przez nasze kanały wsparcia. Zazwyczaj odpowiadamy w ciągu 24 godzin i jesteśmy zaangażowani w zapewnienie pozytywnego doświadczenia z naszą usługą."
+    },
+    "contact": {
+      "title": "Masz jeszcze pytania?",
+      "description": "Jesteśmy tutaj, aby pomóc! Jeśli masz pytania dotyczące naszej usługi, prywatności lub potrzebujesz wsparcia technicznego, nie wahaj się z nami skontaktować.",
+      "check_battery": "Sprawdź moją baterię",
+      "learn_more": "Dowiedz się więcej"
+    }
+  },
+  "regions": {
+    "na": "Ameryka Północna & Azja-Pacyfik",
+    "eu": "Europa, Bliski Wschód & Afryka"
+  },
+  "check_page": {
+    "meta": {
+      "title": "Sprawdź stan baterii swojego Tesli - Darmowa natychmiastowa ocena | batterycert.com",
+      "description": "Otrzymaj natychmiastową, darmową kontrolę stanu baterii Tesli. Połącz swoje konto Tesli, aby otrzymać szczegółową analizę degradacji i dane pojemności baterii w 30 sekund.",
+      "keywords": "Kontrola baterii Tesli, test stanu baterii, kontrola degradacji Tesli, darmowa ocena baterii, analiza baterii Tesli"
+    },
+    "title": "Sprawdź stan baterii swojego Tesli",
+    "subtitle": "Połącz swoje konto Tesli, aby otrzymać natychmiastową ocenę stanu baterii",
+    "region_notice": "Używanie serwerów Tesli {regionName}",
+    "wrong_region": "Zły region? Zmień tutaj",
+    "connect_button": "Połącz z kontem Tesli",
+    "connecting": "Łączenie z Teslą...",
+    "security_title": "Twoje bezpieczeństwo jest naszym priorytetem",
+    "security_points": {
+      "no_credentials": "Nigdy nie przechowujemy Twoich danych logowania do Tesli",
+      "encrypted": "Połączenie jest zaszyfrowane i bezpieczne",
+      "battery_only": "Mamy dostęp tylko do danych baterii, nic więcej"
+    },
+    "features": {
+      "secure_connection": {
+        "title": "Bezpieczne połączenie",
+        "description": "Szyfrowanie 256-bitowe"
+      },
+      "no_storage": {
+        "title": "Brak przechowywania",
+        "description": "Dane logowania nie są zapisywane"
+      },
+      "instant_results": {
+        "title": "Natychmiastowe wyniki",
+        "description": "30 sekund lub mniej"
+      }
+    }
+  },
+  "vehicles_page": {
+    "meta": {
+      "title": "Wybierz swój pojazd Tesli - Kontrola stanu baterii | batterycert.com",
+      "description": "Wybierz, który pojazd Tesli ma być analizowany. Otrzymaj natychmiastową ocenę stanu baterii z procentem degradacji i danymi pojemności.",
+      "keywords": "Wybór pojazdu Tesli, wiele samochodów Tesli, kontrola stanu baterii, analiza floty Tesli"
+    },
+    "loading": {
+      "title": "Ładowanie Twoich pojazdów...",
+      "description": "Pobieranie Twoich pojazdów Tesli z konta"
+    },
+    "title": "Wybierz swojego Teslę",
+    "subtitle": "Wybierz pojazd, który chcesz sprawdzić. Przeanalizujemy stan jego baterii w zaledwie 30 sekund.",
+    "checking_battery": "Sprawdzanie stanu baterii...",
+    "vehicle_card": {
+      "charging": "Ładowanie",
+      "online": "Online",
+      "asleep": "Śpi",
+      "offline": "Offline",
+      "asleep_can_wake": "Śpi (Może się obudzić)",
+      "miles": "miles",
+      "kilometers": "km",
+      "vin": "Numer VIN",
+      "battery_level": "Poziom baterii",
+      "range": "Zasięg",
+      "temperature": "Temperatura",
+      "last_seen": "Ostatnio widziany",
+      "odometer": "Licznik kilometrów",
+      "selected": "Wybrany",
+      "select_this_vehicle": "Wybierz ten pojazd"
+    },
+    "no_vehicles": {
+      "title": "Nie znaleziono pojazdów",
+      "description": "Nie mogliśmy znaleźć żadnych pojazdów Tesli powiązanych z Twoim kontem. Upewnij się, że masz pojazdy zarejestrowane na swoim koncie Tesli.",
+      "try_again": "Spróbuj ponownie"
+    },
+    "info_cards": {
+      "instant_analysis": {
+        "title": "Natychmiastowa analiza",
+        "description": "Otrzymaj wyniki stanu baterii w 30 sekund"
+      },
+      "detailed_report": {
+        "title": "Szczegółowy raport",
+        "description": "Analiza z procentem degradacji i danymi pojemności"
+      },
+      "verified_certificate": {
+        "title": "Zweryfikowany certyfikat",
+        "description": "Opcjonalny zweryfikowany certyfikat za 40 zł dla ochrony kupna/sprzedaży"
+      }
+    },
+    "errors": {
+      "failed_to_load": "Nie udało się załadować Twoich pojazdów. Spróbuj ponownie.",
+      "failed_battery_check": "Nie udało się sprawdzić stanu baterii. Spróbuj ponownie."
+    }
+  },
+  "region_selection": {
+    "title": "Wybierz swój region",
+    "description": "Tesla używa różnych serwerów dla różnych regionów. Proszę wybierz swój dla najlepszego doświadczenia.",
+    "recommended": "Zalecane",
+    "continue_button": "Kontynuuj do kontroli Tesli",
+    "settings_note": "Możesz to zmienić później w ustawieniach, jeśli to konieczne.",
+    "includes": "Zawiera"
+  },
+  "stripe_receipt": {
+    "description": "Certyfikat stanu baterii Tesli",
+    "certificate_access": "Dostęp do certyfikatu",
+    "vehicle": "Pojazd",
+    "certificate_id": "ID certyfikatu",
+    "footer": "Dziękujemy za zakup. Twój certyfikat jest teraz dostępny do pobrania i udostępniania."
+  }
+}

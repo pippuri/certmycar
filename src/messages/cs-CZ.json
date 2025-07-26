@@ -1,0 +1,565 @@
+{
+  "common": {
+    "loading": "Načítání...",
+    "error": "Chyba",
+    "success": "Úspěch",
+    "retry": "Zkusit znovu",
+    "back": "Zpět",
+    "next": "Další",
+    "continue": "Pokračovat",
+    "cancel": "Zrušit",
+    "close": "Zavřít",
+    "save": "Uložit",
+    "delete": "Smazat",
+    "edit": "Upravit",
+    "share": "Sdílet",
+    "download": "Stáhnout"
+  },
+  "navigation": {
+    "home": "Domů",
+    "check": "Zkontrolovat baterii",
+    "certificates": "Certifikáty",
+    "about": "O nás",
+    "faq": "FAQ",
+    "terms": "Podmínky použití",
+    "contact": "Kontakt",
+    "language": "Jazyk"
+  },
+  "meta": {
+    "homepage": {
+      "title": "Kontrola zdraví baterie Tesla - Okamžité výsledky za 30 sekund | batterycert.com",
+      "description": "Okamžitě zkontrolujte zdraví baterie vašeho Tesly pomocí našeho bezplatného nástroje pro hodnocení. Získejte ověřená data o degradaci baterie, analýzy kapacity a volitelné PDF certifikáty pro nákup nebo prodej vašeho Tesly.",
+      "og_title": "Kontrola zdraví baterie Tesla - Okamžité výsledky za 30 sekund",
+      "og_description": "Získejte okamžitá, ověřená hodnocení zdraví baterie Tesly. Perfektní pro nákup, prodej nebo poznání skutečného stavu vašeho Tesly.",
+      "og_alt": "Kontrola zdraví baterie Tesla"
+    }
+  },
+  "structured_data": {
+    "service": {
+      "name": "Kontrola zdraví baterie Tesla",
+      "description": "Získejte okamžitá, ověřená hodnocení zdraví baterie Tesly. Perfektní pro nákup, prodej nebo poznání skutečného stavu vašeho Tesly.",
+      "service_type": "Hodnocení zdraví baterie",
+      "area_served": "Celosvětově",
+      "offer_description": "Bezplatná kontrola zdraví baterie Tesly"
+    }
+  },
+  "homepage": {
+    "navigation": {
+      "about": "O nás"
+    },
+    "hero": {
+      "title": "Zkontrolujte baterii vašeho Tesly",
+      "title_highlight": "za 30 sekund",
+      "cta_primary": "Zkontrolovat moje Tesly",
+      "cta_secondary": "Zobrazit ukázkový certifikát"
+    },
+    "hero_features": {
+      "free_check": "Bezplatná kontrola zdraví baterie",
+      "no_account": "Není potřeba účet",
+      "instant_results": "Okamžité výsledky",
+      "optional_certificate": "Volitelný certifikát (250 Kč)"
+    },
+    "problem_section": {
+      "title": "Výměna baterie = ",
+      "title_price": "350.000 Kč+",
+      "subtitle": "Kupující, nenechte se podvést skrytými problémy s baterií",
+      "video_title": "Podívejte se, proč je zdraví baterie důležité",
+      "video_description": "Podívejte se na toto video, abyste pochopili běžný podvod. batterycert.com vám pomůže se mu vyhnout.",
+      "cards": {
+        "hidden_issues": {
+          "title": "Najděte skryté problémy",
+          "description": "Prodejci skrývají problémy s degradací"
+        },
+        "trusted_data": {
+          "title": "Důvěryhodná data",
+          "description": "Přímo ze systémů Tesly"
+        },
+        "higher_value": {
+          "title": "Vyšší hodnota",
+          "description": "Prokázané zdraví zvyšuje cenu"
+        }
+      }
+    },
+    "how_it_works": {
+      "title": "Jednoduchý 3-krokový proces",
+      "steps": {
+        "connect": {
+          "title": "Připojit",
+          "description": "Bezpečné připojení přes oficiální OAuth Tesly. Nikdy nevidíme vaše přihlašovací údaje - autentizujete se přímo u Tesly."
+        },
+        "analyze": {
+          "title": "Analyzovat",
+          "description": "Náš systém okamžitě analyzuje vaše data baterie pomocí API Tesly a vypočítá procento degradace."
+        },
+        "certificate": {
+          "title": "Volitelné: Certifikát",
+          "description": "Získejte ověřený PDF certifikát s QR kódem pro ověření kupujícími. Platný 3 měsíce. Jednorázový poplatek 250 Kč."
+        }
+      }
+    },
+    "use_cases": {
+      "title": "Perfektní pro ",
+      "title_buyers": "Kupující",
+      "title_sellers": "Prodejce",
+      "title_owners": "Vlastníky",
+      "buyers": {
+        "title": "Kupující",
+        "description": "Vyhněte se překvapením za 350.000 Kč+"
+      },
+      "sellers": {
+        "title": "Prodejci",
+        "description": "Zvyšte hodnotu při přeprodeji"
+      },
+      "owners": {
+        "title": "Vlastníci",
+        "description": "Sledujte zdraví baterie"
+      }
+    },
+    "cta_section": {
+      "title": "Připraveni zkontrolovat baterii vašeho Tesly?",
+      "subtitle": "Připojte se k tisícům vlastníků Tesly, kteří důvěřují batterycert.com pro přesné, okamžité zprávy o zdraví baterie.",
+      "button_text": "Zkontrolovat baterii mého Tesly nyní",
+      "features": {
+        "free_registration": "Zdarma • Není potřeba registrace",
+        "speed": "30 sekund • Okamžité výsledky",
+        "certificate": "Volitelný certifikát za 250 Kč"
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 batterycert.com. Vytvořeno pro vlastníky a kupující Tesly ve jménu férové hry.",
+      "language_switcher": "Změnit jazyk:"
+    }
+  },
+  "certificate_page": {
+    "meta": {
+      "not_found_title": "Certifikát nebyl nalezen - batterycert.com",
+      "not_found_description": "Požadovaný certifikát baterie Tesly nebyl nalezen.",
+      "title": "{vehicleName} - Certifikát baterie Tesly - batterycert.com",
+      "description": "Zobrazte certifikát zdraví baterie Tesly pro {vehicleName} s detailní analýzou degradace, daty kapacity a ověřovacím QR kódem.",
+      "default_title": "Certifikát baterie Tesly - batterycert.com",
+      "default_description": "Zobrazte svůj certifikát zdraví baterie Tesly s detailní analýzou degradace, daty kapacity a ověřovacím QR kódem.",
+      "keywords": "Certifikát baterie Tesly, zpráva o zdraví baterie, certifikát degradace baterie, ověření baterie Tesly"
+    },
+    "not_found": {
+      "title": "Certifikát nebyl nalezen",
+      "description": "ID certifikátu \"{id}\" nebylo nalezeno nebo mohlo vypršet.",
+      "button": "Zkontrolovat baterii vašeho Tesly"
+    },
+    "fraud_protection": {
+      "title": "Ochrana proti podvodu ověřena",
+      "description": "Tento certifikát je odolný proti manipulaci a přímo propojen s oficiálními systémy Tesly. QR kód níže umožňuje okamžité ověření autenticity. Kupující mohou důvěřovat, že toto hodnocení je pravé a přesné."
+    },
+    "certificate_locked": {
+      "title": "Certifikát uzamčen",
+      "description": "Dokončete platbu výše pro odemknutí úplného ověřeného certifikátu s:",
+      "features": {
+        "detailed_analysis": "Detailní analýza zdraví baterie",
+        "degradation_percentage": "Oficiální procento degradace",
+        "qr_code": "Ověřovací QR kód",
+        "downloadable_pdf": "Stažitelný PDF certifikát",
+        "fraud_protection": "Záruka ochrany proti podvodu"
+      }
+    },
+    "verification_footer": {
+      "verified_by": "Ověřeno batterycert.com",
+      "verification_description": "Tento certifikát lze ověřit pomocí QR kódu nebo ID certifikátu:",
+      "generated": "Vytvořeno:",
+      "valid_for": "Platný 3 měsíce",
+      "verify_certificate": "Ověřit certifikát"
+    }
+  },
+  "certificate_display": {
+    "chart": {
+      "title": "Zdraví baterie v průběhu času",
+      "this_vehicle": "Toto vozidlo",
+      "tesla_average": "Průměr Tesly"
+    },
+    "title": "Zpráva o zdraví baterie z dat Tesly",
+    "certificate_id": "ID certifikátu",
+    "health_score": "Skóre zdraví",
+    "scan_to_verify": "Naskenovat pro ověření",
+    "vehicle_information": "Informace o vozidle",
+    "model": "Model",
+    "year": "Rok",
+    "vin": "VIN",
+    "assessment_details": "Detaily hodnocení",
+    "test_date": "Datum testu",
+    "mileage": "Najeto",
+    "software_version": "Verze softwaru",
+    "not_available": "Není k dispozici",
+    "valid_until": "Platný do",
+    "battery_performance": "Metriky výkonu baterie",
+    "better_than_percentage": "Lepší než {percentage}% podobných vozidel",
+    "degradation_comparison": "Porovnání degradace vs průměr",
+    "detailed_analysis": "Detailní analýza",
+    "battery_specifications": "Specifikace baterie",
+    "original_capacity": "Původní kapacita",
+    "current_capacity": "Aktuální kapacita",
+    "capacity_loss": "Ztráta kapacity",
+    "full_charge_range": "Dojezd při plném nabití",
+    "current_label": "Aktuální",
+    "vs_label": "vs",
+    "health_label": "Zdraví",
+    "average_label": "Průměr",
+    "confidence_levels": {
+      "high": "Vysoká",
+      "medium": "Střední",
+      "low": "Nízká"
+    },
+    "methodology": "Metodologie",
+    "performance_indicators": "Indikátory výkonu",
+    "battery_chemistry": "Chemie baterie",
+    "battery_supplier": "Dodavatel baterie",
+    "confidence_level": "Úroveň důvěry",
+    "overall_condition": "Celkový stav",
+    "assessment_summary": "Shrnutí hodnocení",
+    "summary_excellent": "Toto {vehicleName} vykazuje vynikající zdraví baterie s {degradation}% degradací. Baterie funguje výjimečně dobře pro své použití. Aktuální kapacita {currentCapacity} kWh z původních {originalCapacity} kWh. Toto vozidlo představuje vynikající příležitost k nákupu s minimálními riziky souvisejícími s baterií.",
+    "summary_good": "Toto {vehicleName} vykazuje dobré zdraví baterie s {degradation}% degradací. Baterie funguje dobře pro své použití. Aktuální kapacita {currentCapacity} kWh z původních {originalCapacity} kWh. Toto vozidlo představuje dobrou příležitost k nákupu s normálními vzory opotřebení.",
+    "summary_fair": "Toto {vehicleName} vykazuje spravedlivé zdraví baterie s {degradation}% degradací. Baterie funguje přiměřeně pro své použití. Aktuální kapacita {currentCapacity} kWh z původních {originalCapacity} kWh. Toto vozidlo vykazuje vyšší než průměrnou degradaci a mělo by být pečlivě zváženo.",
+    "conditions": {
+      "excellent": "Vynikající",
+      "good": "Dobrý",
+      "average": "Průměrný",
+      "fair": "Spravedlivý",
+      "poor": "Špatný"
+    },
+    "units": {
+      "kwh": "kWh",
+      "miles": "míle",
+      "km": "km"
+    }
+  },
+  "certificate_payment": {
+    "payment_required": "Vyžadována platba",
+    "certificate_description": "Tento certifikát vyžaduje platbu pro odemknutí úplné ověřené zprávy.",
+    "pricing_description": "Získejte svůj oficiální certifikát zdraví baterie Tesly s ověřovacím QR kódem a ochranou proti podvodu.",
+    "pricing_loading": "Načítání...",
+    "pricing_error": "Nepodařilo se načíst informace o cenách",
+    "certificate_price": "Cena certifikátu",
+    "payment_button": "Dokončit platbu",
+    "payment_processing": "Zpracování...",
+    "loading": "Načítání...",
+    "secure_payment": "Bezpečná platba přes Stripe • Okamžitý přístup po platbě • E-mailový doklad zahrnut"
+  },
+  "hero_visual": {
+    "verified_certificate": "Ověřený certifikát",
+    "battery_health_report": "Zpráva o zdraví baterie Tesly",
+    "certificate_id": "ID certifikátu",
+    "certified": "CERTIFIKOVÁNO",
+    "verified": "OVĚŘENO",
+    "health_score": "Skóre zdraví",
+    "vehicle_information": "Informace o vozidle",
+    "model": "Model",
+    "tesla_model_y": "Tesla Model Y Long Range",
+    "year": "Rok",
+    "vin": "VIN",
+    "battery_metrics": "Metriky baterie",
+    "current_capacity": "Aktuální kapacita",
+    "degradation": "Degradace",
+    "est_range": "Odhad. dojezd",
+    "miles": "míle",
+    "degradation_comparison": "Porovnání degradace vs průměr",
+    "better_than_percentage": "Lepší než 78% podobných vozidel",
+    "this_vehicle": "Toto vozidlo (92%)",
+    "average": "Průměr (85%)",
+    "verified_data": "Ověřená data",
+    "direct_tesla_api": "Přímé API Tesly",
+    "tamper_proof": "Odolné proti manipulaci",
+    "qr_verification": "QR ověření",
+    "increase_value": "Zvýšit hodnotu",
+    "proven_health": "Prokázané zdraví",
+    "scan_to_verify": "Naskenovat pro ověření",
+    "verified_by": "Ověřeno batterycert.com",
+    "generated": "Vytvořeno",
+    "generated_date": "24. července 2025",
+    "valid_for_one_year": "Platný 3 měsíce"
+  },
+  "gdpr": {
+    "title": "Respektujeme vaše soukromí",
+    "message": "Používáme cookies a podobné technologie pro zlepšení vašeho zážitku, analýzu provozu na webu a personalizaci obsahu. Vaše data Tesly jsou zpracovávána bezpečně a nikdy nejsou sdílena s třetími stranami.",
+    "accept_all": "Přijmout vše",
+    "decline": "Odmítnout",
+    "cookie_settings": "Nastavení cookies",
+    "essential_only": "Pouze nezbytné",
+    "settings": {
+      "essential_cookies": "Nezbytné cookies",
+      "always_on": "Vždy zapnuto",
+      "analytics": "Analytika",
+      "marketing": "Marketing",
+      "optional": "Volitelné",
+      "back": "Zpět"
+    }
+  },
+  "tesla_check": {
+    "back_to_home": "Zpět na hlavní stránku",
+    "results": {
+      "battery_degradation": "Degradace baterie",
+      "battery_health": "Zdraví baterie",
+      "excellent": "Vynikající",
+      "good": "Dobrý",
+      "fair": "Spravedlivý",
+      "current_capacity": "Aktuální kapacita",
+      "original_capacity": "Původní kapacita",
+      "current_charge": "Aktuální nabití"
+    },
+    "certificate_promo": {
+      "title": "Získejte svůj oficiální certifikát",
+      "subtitle": "Převeďte své výsledky na ověřený dokument, který zvyšuje hodnotu vašeho Tesly",
+      "free_section": {
+        "title": "Co jste dostali ZDARMA",
+        "degradation": "✓ Procento degradace baterie",
+        "capacity": "✓ Aktuální data kapacity",
+        "charge": "✓ Aktuální úroveň nabití"
+      },
+      "paid_section": {
+        "title": "Oficiální certifikát (250 Kč)",
+        "full_dataset": "✓ Úplná data pro vaše vozidlo",
+        "peer_comparison": "✓ Porovnání s podobnými vozidly",
+        "pdf_certificate": "✓ Datovaný PDF certifikát s VIN",
+        "authenticity": "✓ Ověření autenticity pro kupující",
+        "physical_option": "✓ Možnost fyzického certifikátu",
+        "performance_ranking": "✓ Hodnocení výkonu"
+      },
+      "purchase_button": "Koupit certifikát",
+      "sample_link": "Ukázkový certifikát",
+      "features": "💎 Okamžité stažení • 🔒 Bezpečná platba • 📄 Platný 3 měsíce"
+    },
+    "auth_form": {
+      "title": "Zkontrolovat zdraví baterie",
+      "subtitle": "Připojte svůj účet Tesly pro získání okamžitého hodnocení zdraví baterie",
+      "region_info": "Používání serverů Tesly {regionName}",
+      "region_change": "Špatná oblast? Změnit zde",
+      "connect_button": "Připojit s účtem Tesly",
+      "connecting": "Připojování k Tesle...",
+      "try_again": "Zkusit znovu",
+      "retry_info": "Tesla si může pamatovat vaši relaci a připojit se rychleji"
+    },
+    "security": {
+      "title": "Vaše bezpečnost je naší prioritou",
+      "no_storage": "• Nikdy neukládáme vaše přihlašovací údaje Tesly",
+      "encrypted": "• Připojení je šifrované a bezpečné",
+      "battery_only": "• Máme přístup pouze k datům baterie, ničemu jinému"
+    },
+    "features": {
+      "secure_connection": {
+        "title": "Bezpečné připojení",
+        "subtitle": "256-bitové šifrování"
+      },
+      "no_storage": {
+        "title": "Žádné ukládání",
+        "subtitle": "Přihlašovací údaje se neukládají"
+      },
+      "instant_results": {
+        "title": "Okamžité výsledky",
+        "subtitle": "30 sekund nebo méně"
+      }
+    }
+  },
+  "vehicle_selection": {
+    "back_to_login": "Zpět k přihlášení",
+    "loading": {
+      "title": "Načítání vašich vozidel...",
+      "description": "Načítání vašich vozidel Tesly z účtu"
+    },
+    "page": {
+      "title": "Vyberte své Tesly",
+      "subtitle": "Vyberte vozidlo, které chcete zkontrolovat. Analyzujeme jeho zdraví baterie za pouhých 30 sekund."
+    },
+    "checking_battery": "Kontrola zdraví baterie...",
+    "no_vehicles": {
+      "title": "Nebyla nalezena žádná vozidla",
+      "description": "Nepodařilo se nám najít žádná vozidla Tesly spojená s vaším účtem. Ujistěte se, že máte vozidla registrovaná na vašem účtu Tesly.",
+      "try_again": "Zkusit znovu"
+    },
+    "info_cards": {
+      "instant_analysis": {
+        "title": "Okamžitá analýza",
+        "description": "Získejte výsledky zdraví baterie za 30 sekund"
+      },
+      "detailed_report": {
+        "title": "Detailní zpráva",
+        "description": "Analýza s procentem degradace a daty kapacity"
+      },
+      "verified_certificate": {
+        "title": "Ověřený certifikát",
+        "description": "Volitelný ověřený certifikát za 250 Kč pro ochranu nákupu/prodeje"
+      }
+    },
+    "errors": {
+      "failed_to_load": "Nepodařilo se načíst vaše vozidla. Zkuste to znovu.",
+      "failed_battery_check": "Nepodařilo se zkontrolovat zdraví baterie. Zkuste to znovu."
+    }
+  },
+  "certificate_actions": {
+    "share": "Sdílet",
+    "copied": "Zkopírováno!",
+    "download_pdf": "Stáhnout PDF",
+    "generating": "Generování...",
+    "share_title": "Certifikát baterie Tesly - {certificateId}",
+    "share_text": "Podívejte se na tento certifikát zdraví baterie Tesly",
+    "download_error": "Nepodařilo se stáhnout PDF: {error}"
+  },
+  "faq": {
+    "meta": {
+      "title": "Často kladené otázky - Kontrola zdraví baterie Tesly | batterycert.com",
+      "description": "Získejte odpovědi na běžné otázky o naší službě kontroly zdraví baterie Tesly, soukromí, cenách a jak fungují naše certifikáty.",
+      "keywords": "FAQ baterie Tesly, otázky o zdraví baterie, zásady ochrany osobních údajů, ceny, ověření certifikátu"
+    },
+    "page_title": "Často kladené otázky",
+    "hero": {
+      "title": "Často kladené otázky",
+      "subtitle": "Vše, co potřebujete vědět o naší službě kontroly zdraví baterie Tesly"
+    },
+    "privacy": {
+      "title": "Soukromí & Bezpečnost",
+      "oauth_question": "Jak funguje Tesla OAuth a k jakým datům máte přístup?",
+      "oauth_answer": "Používáme oficiální OAuth systém Tesly, což znamená, že se autentizujete přímo u Tesly - nikdy nevidíme vaše uživatelské jméno nebo heslo. Máme přístup pouze k základním informacím o vozidle a datům baterie, které Tesla povoluje třetím stranám číst. Nemůžeme získat přístup k vašim osobním údajům, platebním údajům nebo jiným datům účtu Tesly.",
+      "data_access_question": "Jaká konkrétní data shromažďujete z mého Tesly?",
+      "data_access_answer": "Shromažďujeme pouze data související s baterií: aktuální úroveň baterie, použitelnou kapacitu baterie, odhadovaný dojezd a specifikace vozidla (model, rok, VIN). Nemáme přístup k vaší poloze, historii jízdy, osobním nastavením nebo jiným datům vozidla. Naše analýza se zaměřuje výhradně na zdraví baterie a degradaci.",
+      "credentials_question": "Ukládáte moje přihlašovací údaje Tesly?",
+      "credentials_answer": "Rozhodně ne. Nikdy nevidíme, neukládáme ani nemáme přístup k vašemu uživatelskému jménu Tesly, heslu nebo jiným přihlašovacím údajům. OAuth proces probíhá zcela mezi vámi a Teslou. Dostáváme pouze dočasný přístupový token, který používáme ke čtení dat baterie, a tento token automaticky vyprší.",
+      "storage_question": "Jak dlouho uchováváte moje údaje?",
+      "storage_answer": "Uchováváme vaše data hodnocení baterie pouze tak dlouho, jak je nutné pro poskytování služby. Pokud si koupíte certifikát, uchováváme data certifikátu pro účely ověření. Můžete kdykoli požádat o smazání vašich údajů kontaktováním nás. Neprodáváme, nepůjčujeme ani nesdílíme vaše osobní údaje s třetími stranami.",
+      "third_party_question": "Sdílíte moje údaje s třetími stranami?",
+      "third_party_answer": "Ne, neprodáváme, nepůjčujeme ani nesdílíme vaše osobní údaje s třetími stranami. Jediné výjimky jsou: 1) Zpracování plateb (Stripe) pro nákupy certifikátů, 2) Právní požadavky, pokud to vyžaduje zákon, 3) Poskytovatelé služeb, kteří nám pomáhají provozovat naši platformu (pod přísnými dohodami o důvěrnosti)."
+    },
+    "pricing": {
+      "title": "Ceny & Certifikáty",
+      "why_charge_question": "Proč účtujete za certifikáty, když je kontrola baterie zdarma?",
+      "why_charge_answer": "Kontrola zdraví baterie je zcela zdarma, protože chceme pomoci vlastníkům Tesly pochopit stav jejich vozidla. Účtujeme za certifikáty, protože vyžadují dodatečné náklady: poplatky za používání API Tesly, generování PDF, bezpečné ukládání a ověřovací systémy. Navíc placený certifikát ukazuje kupujícím, že jste vážní ohledně transparentnosti a zvyšuje hodnotu vašeho vozidla.",
+      "api_costs_question": "Jaké jsou náklady na API Tesly, které jste zmínili?",
+      "api_costs_answer": "Tesla účtuje poplatky za přístup k API pro data vozidel. Zatímco jednotlivé kontroly baterie jsou relativně levné, poskytování ověřené služby certifikátu vyžaduje průběžný přístup k API pro ověření, což způsobuje měsíční náklady. Náš poplatek za certifikát 250 Kč pomáhá pokrýt tyto provozní náklady při zachování služby dostupné.",
+      "certificate_value_question": "Jak certifikát zvyšuje hodnotu mého vozidla?",
+      "certificate_value_answer": "Ověřený certifikát baterie dokazuje potenciálním kupujícím, že baterie vašeho Tesly je v dobrém stavu, což eliminuje nejistotu ohledně skryté degradace. Tato transparentnost buduje důvěru a může ospravedlnit vyšší prodejní cenu. Kupující jsou ochotni zaplatit více za vozidla s prokázaným zdravím baterie, protože to snižuje jejich riziko nákladné výměny baterie.",
+      "one_time_question": "Je poplatek za certifikát 250 Kč jednorázová platba?",
+      "one_time_answer": "Ano, poplatek za certifikát 250 Kč je jednorázová platba. Získáte ověřený PDF certifikát, který je platný 3 měsíce a může být sdílen s neomezeným počtem potenciálních kupujících. Nejsou žádné opakující se poplatky, předplatné nebo skryté náklady. Pokud potřebujete nový certifikát po 3 měsících, můžete si koupit další.",
+      "refund_question": "Nabízíte vrácení peněz za certifikáty?",
+      "refund_answer": "Nabízíme 30denní záruku vrácení peněz pro všechny nákupy certifikátů. Pokud nejste spokojeni se svým certifikátem z jakéhokoli důvodu, kontaktujte nás do 30 dnů a poskytneme plnou náhradu. Všimněte si však, že jakmile kupující ověří certifikát, nemůžeme poskytnout náhradu, protože služba byla použita."
+    },
+    "service": {
+      "title": "Služba & Přesnost",
+      "how_works_question": "Jak funguje hodnocení zdraví baterie?",
+      "how_works_answer": "Náš systém se připojuje k vašemu Tesly přes oficiální API Tesly a analyzuje vaše data baterie v reálném čase. Porovnáváme aktuální kapacitu baterie s původními specifikacemi pro model a rok vašeho vozidla, pak vypočítáme procento degradace. Hodnocení trvá přibližně 30 sekund a poskytuje okamžité výsledky.",
+      "accuracy_question": "Jak přesné je vaše hodnocení zdraví baterie?",
+      "accuracy_answer": "Naše hodnocení je velmi přesné, protože používáme vlastní data API Tesly, což jsou stejná data, která Tesla používá interně. Porovnáváme vaši baterii se specifikacemi výrobce a skutečnými referenčními body. Zdraví baterie se však může lišit v závislosti na vzorcích používání, takže doporučujeme používat toto jako jeden nástroj ve vašem celkovém hodnocení vozidla.",
+      "certificate_validity_question": "Jak dlouho je certifikát platný?",
+      "certificate_validity_answer": "Certifikáty jsou platné 3 měsíce od data nákupu. Tento časový rámec zajišťuje, že data zůstávají aktuální, zatímco vám dává dostatek času na dokončení prodeje. Zdraví baterie se významně nemění za 3 měsíce, takže hodnocení zůstává relevantní pro většinu transakcí.",
+      "verification_question": "Jak mohou kupující ověřit můj certifikát?",
+      "verification_answer": "Každý certifikát obsahuje jedinečný QR kód, který kupující mohou naskenovat pro ověření autenticity na našem webu. Ověřovací stránka zobrazuje detaily certifikátu a potvrzuje, že byl vydán batterycert.com. Toto zabraňuje podvodům a zajišťuje, že kupující mohou důvěřovat datům o zdraví baterie.",
+      "support_question": "Co když mám technické problémy nebo otázky?",
+      "support_answer": "Poskytujeme komplexní podporu pro všechny naše služby. Pokud narazíte na technické problémy, máte otázky ohledně hodnocení baterie nebo potřebujete pomoc s certifikátem, můžete nás kontaktovat přes naše podpůrné kanály. Obvykle odpovídáme do 24 hodin a jsme odhodláni zajistit pozitivní zkušenost s naší službou."
+    },
+    "contact": {
+      "title": "Máte ještě otázky?",
+      "description": "Jsme tu, abychom pomohli! Pokud máte otázky ohledně naší služby, soukromí nebo potřebujete technickou podporu, neváhejte nás kontaktovat.",
+      "check_battery": "Zkontrolovat moji baterii",
+      "learn_more": "Dozvědět se více"
+    }
+  },
+  "regions": {
+    "na": "Severní Amerika & Asie-Tichomoří",
+    "eu": "Evropa, Blízký východ & Afrika"
+  },
+  "check_page": {
+    "meta": {
+      "title": "Zkontrolujte zdraví baterie vašeho Tesly - Bezplatné okamžité hodnocení | batterycert.com",
+      "description": "Získejte okamžitou, bezplatnou kontrolu zdraví baterie Tesly. Připojte svůj účet Tesly pro získání detailní analýzy degradace a dat kapacity baterie za 30 sekund.",
+      "keywords": "Kontrola baterie Tesly, test zdraví baterie, kontrola degradace Tesly, bezplatné hodnocení baterie, analýza baterie Tesly"
+    },
+    "title": "Zkontrolujte zdraví baterie vašeho Tesly",
+    "subtitle": "Připojte svůj účet Tesly pro získání okamžitého hodnocení zdraví baterie",
+    "region_notice": "Používání serverů Tesly {regionName}",
+    "wrong_region": "Špatná oblast? Změnit zde",
+    "connect_button": "Připojit s účtem Tesly",
+    "connecting": "Připojování k Tesle...",
+    "security_title": "Vaše bezpečnost je naší prioritou",
+    "security_points": {
+      "no_credentials": "Nikdy neukládáme vaše přihlašovací údaje Tesly",
+      "encrypted": "Připojení je šifrované a bezpečné",
+      "battery_only": "Máme přístup pouze k datům baterie, ničemu jinému"
+    },
+    "features": {
+      "secure_connection": {
+        "title": "Bezpečné připojení",
+        "description": "256-bitové šifrování"
+      },
+      "no_storage": {
+        "title": "Žádné ukládání",
+        "description": "Přihlašovací údaje se neukládají"
+      },
+      "instant_results": {
+        "title": "Okamžité výsledky",
+        "description": "30 sekund nebo méně"
+      }
+    }
+  },
+  "vehicles_page": {
+    "meta": {
+      "title": "Vyberte své vozidlo Tesly - Kontrola zdraví baterie | batterycert.com",
+      "description": "Vyberte, které vozidlo Tesly má být analyzováno. Získejte okamžité hodnocení zdraví baterie s procentem degradace a daty kapacity.",
+      "keywords": "Výběr vozidla Tesly, více aut Tesly, kontrola zdraví baterie, analýza flotily Tesly"
+    },
+    "loading": {
+      "title": "Načítání vašich vozidel...",
+      "description": "Načítání vašich vozidel Tesly z účtu"
+    },
+    "title": "Vyberte své Tesly",
+    "subtitle": "Vyberte vozidlo, které chcete zkontrolovat. Analyzujeme jeho zdraví baterie za pouhých 30 sekund.",
+    "checking_battery": "Kontrola zdraví baterie...",
+    "vehicle_card": {
+      "charging": "Nabíjení",
+      "online": "Online",
+      "asleep": "Spí",
+      "offline": "Offline",
+      "asleep_can_wake": "Spí (Může se probudit)",
+      "miles": "míle",
+      "kilometers": "km",
+      "vin": "VIN",
+      "battery_level": "Úroveň baterie",
+      "range": "Dojezd",
+      "temperature": "Teplota",
+      "last_seen": "Naposledy viděno",
+      "odometer": "Tachometr",
+      "selected": "Vybrané",
+      "select_this_vehicle": "Vybrat toto vozidlo"
+    },
+    "no_vehicles": {
+      "title": "Nebyla nalezena žádná vozidla",
+      "description": "Nepodařilo se nám najít žádná vozidla Tesly spojená s vaším účtem. Ujistěte se, že máte vozidla registrovaná na vašem účtu Tesly.",
+      "try_again": "Zkusit znovu"
+    },
+    "info_cards": {
+      "instant_analysis": {
+        "title": "Okamžitá analýza",
+        "description": "Získejte výsledky zdraví baterie za 30 sekund"
+      },
+      "detailed_report": {
+        "title": "Detailní zpráva",
+        "description": "Analýza s procentem degradace a daty kapacity"
+      },
+      "verified_certificate": {
+        "title": "Ověřený certifikát",
+        "description": "Volitelný ověřený certifikát za 250 Kč pro ochranu nákupu/prodeje"
+      }
+    },
+    "errors": {
+      "failed_to_load": "Nepodařilo se načíst vaše vozidla. Zkuste to znovu.",
+      "failed_battery_check": "Nepodařilo se zkontrolovat zdraví baterie. Zkuste to znovu."
+    }
+  },
+  "region_selection": {
+    "title": "Vyberte svůj region",
+    "description": "Tesla používá různé servery pro různé regiony. Prosím vyberte svůj pro nejlepší zkušenost.",
+    "recommended": "Doporučeno",
+    "continue_button": "Pokračovat na Tesla kontrolu",
+    "settings_note": "Můžete to později změnit v nastavení, pokud je to potřeba.",
+    "includes": "Zahrnuje"
+  },
+  "stripe_receipt": {
+    "description": "Certifikát zdraví baterie Tesly",
+    "certificate_access": "Přístup k certifikátu",
+    "vehicle": "Vozidlo",
+    "certificate_id": "ID certifikátu",
+    "footer": "Děkujeme za nákup. Váš certifikát je nyní k dispozici ke stažení a sdílení."
+  }
+}

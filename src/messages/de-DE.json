@@ -547,6 +547,14 @@
       "failed_battery_check": "Fehler bei der Batterie-Gesundheitsprüfung. Bitte versuchen Sie es erneut."
     }
   },
+  "region_selection": {
+    "title": "Wählen Sie Ihre Region",
+    "description": "Tesla nutzt verschiedene Server für unterschiedliche Regionen. Bitte wählen Sie Ihre für die beste Erfahrung.",
+    "recommended": "Empfohlen",
+    "continue_button": "Weiter zur Tesla-Prüfung",
+    "settings_note": "Sie können dies später in den Einstellungen ändern, falls nötig.",
+    "includes": "Umfasst"
+  },
   "stripe_receipt": {
     "description": "Tesla Batterie-Gesundheitszertifikat",
     "certificate_access": "Zertifikatszugang",

@@ -1,0 +1,565 @@
+{
+  "common": {
+    "loading": "Laden...",
+    "error": "Fout",
+    "success": "Succes",
+    "retry": "Opnieuw proberen",
+    "back": "Terug",
+    "next": "Volgende",
+    "continue": "Doorgaan",
+    "cancel": "Annuleren",
+    "close": "Sluiten",
+    "save": "Opslaan",
+    "delete": "Verwijderen",
+    "edit": "Bewerken",
+    "share": "Delen",
+    "download": "Downloaden"
+  },
+  "navigation": {
+    "home": "Home",
+    "check": "Batterij controleren",
+    "certificates": "Certificaten",
+    "about": "Over ons",
+    "faq": "FAQ",
+    "terms": "Gebruiksvoorwaarden",
+    "contact": "Contact",
+    "language": "Taal"
+  },
+  "meta": {
+    "homepage": {
+      "title": "Tesla Batterijgezondheidscontrole - Directe resultaten in 30 seconden | batterycert.com",
+      "description": "Controleer direct de gezondheid van uw Tesla-batterij met onze gratis evaluatietool. Krijg geverifieerde batterijdegradatiegegevens, capaciteitsanalyses en optionele PDF-certificaten voor aankoop of verkoop van uw Tesla.",
+      "og_title": "Tesla Batterijgezondheidscontrole - Directe resultaten in 30 seconden",
+      "og_description": "Krijg directe, geverifieerde Tesla-batterijgezondheidsevaluaties. Perfect voor kopen, verkopen of het kennen van de ware staat van uw Tesla.",
+      "og_alt": "Tesla Batterijgezondheidscontrole"
+    }
+  },
+  "structured_data": {
+    "service": {
+      "name": "Tesla Batterijgezondheidscontrole",
+      "description": "Krijg directe, geverifieerde Tesla-batterijgezondheidsevaluaties. Perfect voor kopen, verkopen of het kennen van de ware staat van uw Tesla.",
+      "service_type": "Batterijgezondheidsevaluatie",
+      "area_served": "Wereldwijd",
+      "offer_description": "Gratis Tesla batterijgezondheidscontrole"
+    }
+  },
+  "homepage": {
+    "navigation": {
+      "about": "Over ons"
+    },
+    "hero": {
+      "title": "Controleer uw Tesla-batterij",
+      "title_highlight": "in 30 seconden",
+      "cta_primary": "Mijn Tesla controleren",
+      "cta_secondary": "Voorbeeldcertificaat bekijken"
+    },
+    "hero_features": {
+      "free_check": "Gratis batterijgezondheidscontrole",
+      "no_account": "Geen account vereist",
+      "instant_results": "Directe resultaten",
+      "optional_certificate": "Optioneel certificaat (€9)"
+    },
+    "problem_section": {
+      "title": "Batterijvervanging = ",
+      "title_price": "€15.000+",
+      "subtitle": "Kopers, laat u niet bedriegen met verborgen batterijproblemen",
+      "video_title": "Zie waarom batterijgezondheid belangrijk is",
+      "video_description": "Bekijk deze video om de veelvoorkomende fraude te begrijpen. batterycert.com helpt u het te vermijden.",
+      "cards": {
+        "hidden_issues": {
+          "title": "Verborgen problemen vinden",
+          "description": "Verkopers verbergen degradatieproblemen"
+        },
+        "trusted_data": {
+          "title": "Betrouwbare gegevens",
+          "description": "Direct uit Teslas systemen"
+        },
+        "higher_value": {
+          "title": "Hogere waarde",
+          "description": "Bewezen gezondheid verhoogt de prijs"
+        }
+      }
+    },
+    "how_it_works": {
+      "title": "Eenvoudig 3-stappen proces",
+      "steps": {
+        "connect": {
+          "title": "Verbinden",
+          "description": "Veilige verbinding via Teslas officiële OAuth. We zien nooit uw inloggegevens - u authenticeert direct bij Tesla."
+        },
+        "analyze": {
+          "title": "Analyseren",
+          "description": "Ons systeem analyseert direct uw batterijgegevens met Teslas API en berekent het degradatiepercentage."
+        },
+        "certificate": {
+          "title": "Optioneel: Certificaat",
+          "description": "Krijg een geverifieerd PDF-certificaat met QR-code voor verificatie door kopers. Geldig voor 3 maanden. Eenmalige €9 vergoeding."
+        }
+      }
+    },
+    "use_cases": {
+      "title": "Perfect voor ",
+      "title_buyers": "Kopers",
+      "title_sellers": "Verkopers",
+      "title_owners": "Eigenaren",
+      "buyers": {
+        "title": "Kopers",
+        "description": "Vermijd €15.000+ verrassingen"
+      },
+      "sellers": {
+        "title": "Verkopers",
+        "description": "Verhoog de doorverkoopwaarde"
+      },
+      "owners": {
+        "title": "Eigenaren",
+        "description": "Volg de batterijgezondheid"
+      }
+    },
+    "cta_section": {
+      "title": "Klaar om uw Tesla-batterij te controleren?",
+      "subtitle": "Sluit u aan bij duizenden Tesla-eigenaren die vertrouwen op batterycert.com voor nauwkeurige, directe batterijgezondheidsrapporten.",
+      "button_text": "Nu mijn Tesla-batterij controleren",
+      "features": {
+        "free_registration": "Gratis • Geen registratie vereist",
+        "speed": "30 seconden • Directe resultaten",
+        "certificate": "Optioneel €9 certificaat"
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 batterycert.com. Gebouwd voor Tesla-eigenaren en kopers in naam van eerlijk spel.",
+      "language_switcher": "Taal wijzigen:"
+    }
+  },
+  "certificate_page": {
+    "meta": {
+      "not_found_title": "Certificaat niet gevonden - batterycert.com",
+      "not_found_description": "Het gevraagde Tesla-batterijcertificaat kon niet worden gevonden.",
+      "title": "{vehicleName} - Tesla Batterijcertificaat - batterycert.com",
+      "description": "Bekijk het Tesla-batterijgezondheidscertificaat voor {vehicleName} met gedetailleerde degradatieanalyse, capaciteitsgegevens en verificatie-QR-code.",
+      "default_title": "Tesla Batterijcertificaat - batterycert.com",
+      "default_description": "Bekijk uw Tesla-batterijgezondheidscertificaat met gedetailleerde degradatieanalyse, capaciteitsgegevens en verificatie-QR-code.",
+      "keywords": "Tesla batterijcertificaat, batterijgezondheidsrapport, batterijdegradatiecertificaat, Tesla batterijverificatie"
+    },
+    "not_found": {
+      "title": "Certificaat niet gevonden",
+      "description": "Certificaat-ID \"{id}\" werd niet gevonden of kan zijn verlopen.",
+      "button": "Controleer uw Tesla-batterij"
+    },
+    "fraud_protection": {
+      "title": "Fraudebescherming geverifieerd",
+      "description": "Dit certificaat is manipulatiebestendig en direct verbonden met Teslas officiële systemen. De QR-code hieronder maakt directe verificatie van authenticiteit mogelijk. Kopers kunnen vertrouwen dat deze evaluatie echt en nauwkeurig is."
+    },
+    "certificate_locked": {
+      "title": "Certificaat vergrendeld",
+      "description": "Voltooi uw betaling hierboven om het volledige geverifieerde certificaat te ontgrendelen met:",
+      "features": {
+        "detailed_analysis": "Gedetailleerde batterijgezondheidsanalyse",
+        "degradation_percentage": "Officieel degradatiepercentage",
+        "qr_code": "Verificatie-QR-code",
+        "downloadable_pdf": "Downloadbaar PDF-certificaat",
+        "fraud_protection": "Fraudebeschermingsgarantie"
+      }
+    },
+    "verification_footer": {
+      "verified_by": "Geverifieerd door batterycert.com",
+      "verification_description": "Dit certificaat kan worden geverifieerd met QR-code of certificaat-ID:",
+      "generated": "Gegenereerd:",
+      "valid_for": "Geldig voor 3 maanden",
+      "verify_certificate": "Certificaat verifiëren"
+    }
+  },
+  "certificate_display": {
+    "chart": {
+      "title": "Batterijgezondheid in de tijd",
+      "this_vehicle": "Dit voertuig",
+      "tesla_average": "Tesla gemiddelde"
+    },
+    "title": "Batterijgezondheidsrapport van Tesla-gegevens",
+    "certificate_id": "Certificaat-ID",
+    "health_score": "Gezondheidsscore",
+    "scan_to_verify": "Scannen om te verifiëren",
+    "vehicle_information": "Voertuiginformatie",
+    "model": "Model",
+    "year": "Jaar",
+    "vin": "Chassisnummer",
+    "assessment_details": "Evaluatiedetails",
+    "test_date": "Testdatum",
+    "mileage": "Kilometerstand",
+    "software_version": "Softwareversie",
+    "not_available": "Niet beschikbaar",
+    "valid_until": "Geldig tot",
+    "battery_performance": "Batterijprestatiemetrieken",
+    "better_than_percentage": "Beter dan {percentage}% van vergelijkbare voertuigen",
+    "degradation_comparison": "Degradatievergelijking vs gemiddelde",
+    "detailed_analysis": "Gedetailleerde analyse",
+    "battery_specifications": "Batterijspecificaties",
+    "original_capacity": "Originele capaciteit",
+    "current_capacity": "Huidige capaciteit",
+    "capacity_loss": "Capaciteitsverlies",
+    "full_charge_range": "Volledig geladen bereik",
+    "current_label": "Huidig",
+    "vs_label": "vs",
+    "health_label": "Gezondheid",
+    "average_label": "Gemiddelde",
+    "confidence_levels": {
+      "high": "Hoog",
+      "medium": "Medium",
+      "low": "Laag"
+    },
+    "methodology": "Methodologie",
+    "performance_indicators": "Prestatie-indicatoren",
+    "battery_chemistry": "Batterijchemie",
+    "battery_supplier": "Batterijleverancier",
+    "confidence_level": "Betrouwbaarheidsniveau",
+    "overall_condition": "Algemene conditie",
+    "assessment_summary": "Evaluatiesamenvatting",
+    "summary_excellent": "Dit {vehicleName} toont uitstekende batterijgezondheid met {degradation}% degradatie. De batterij presteert uitzonderlijk goed voor het gebruik. Huidige capaciteit van {currentCapacity} kWh van originele {originalCapacity} kWh. Dit voertuig vertegenwoordigt een uitstekende koopkans met minimale batterijgerelateerde risico's.",
+    "summary_good": "Dit {vehicleName} toont goede batterijgezondheid met {degradation}% degradatie. De batterij presteert goed voor het gebruik. Huidige capaciteit van {currentCapacity} kWh van originele {originalCapacity} kWh. Dit voertuig vertegenwoordigt een goede koopkans met normale slijtagepatronen.",
+    "summary_fair": "Dit {vehicleName} toont redelijke batterijgezondheid met {degradation}% degradatie. De batterij presteert adequaat voor het gebruik. Huidige capaciteit van {currentCapacity} kWh van originele {originalCapacity} kWh. Dit voertuig toont hogere dan gemiddelde degradatie en moet zorgvuldig worden overwogen.",
+    "conditions": {
+      "excellent": "Uitstekend",
+      "good": "Goed",
+      "average": "Gemiddeld",
+      "fair": "Redelijk",
+      "poor": "Slecht"
+    },
+    "units": {
+      "kwh": "kWh",
+      "miles": "miles",
+      "km": "km"
+    }
+  },
+  "certificate_payment": {
+    "payment_required": "Betaling vereist",
+    "certificate_description": "Dit certificaat vereist betaling om het volledige geverifieerde rapport te ontgrendelen.",
+    "pricing_description": "Krijg uw officiële Tesla-batterijgezondheidscertificaat met verificatie-QR-code en fraudebescherming.",
+    "pricing_loading": "Laden...",
+    "pricing_error": "Kon prijsinformatie niet laden",
+    "certificate_price": "Certificaatprijs",
+    "payment_button": "Betaling voltooien",
+    "payment_processing": "Verwerken...",
+    "loading": "Laden...",
+    "secure_payment": "Veilige betaling via Stripe • Directe toegang na betaling • E-mailbon inbegrepen"
+  },
+  "hero_visual": {
+    "verified_certificate": "Geverifieerd certificaat",
+    "battery_health_report": "Tesla Batterijgezondheidsrapport",
+    "certificate_id": "Certificaat-ID",
+    "certified": "GECERTIFICEERD",
+    "verified": "GEVERIFIEERD",
+    "health_score": "Gezondheidsscore",
+    "vehicle_information": "Voertuiginformatie",
+    "model": "Model",
+    "tesla_model_y": "Tesla Model Y Long Range",
+    "year": "Jaar",
+    "vin": "Chassisnummer",
+    "battery_metrics": "Batterijmetrieken",
+    "current_capacity": "Huidige capaciteit",
+    "degradation": "Degradatie",
+    "est_range": "Geschat bereik",
+    "miles": "miles",
+    "degradation_comparison": "Degradatievergelijking vs gemiddelde",
+    "better_than_percentage": "Beter dan 78% van vergelijkbare voertuigen",
+    "this_vehicle": "Dit voertuig (92%)",
+    "average": "Gemiddelde (85%)",
+    "verified_data": "Geverifieerde gegevens",
+    "direct_tesla_api": "Directe Tesla API",
+    "tamper_proof": "Manipulatiebestendig",
+    "qr_verification": "QR-verificatie",
+    "increase_value": "Waarde verhogen",
+    "proven_health": "Bewezen gezondheid",
+    "scan_to_verify": "Scannen om te verifiëren",
+    "verified_by": "Geverifieerd door batterycert.com",
+    "generated": "Gegenereerd",
+    "generated_date": "24 juli 2025",
+    "valid_for_one_year": "Geldig voor 3 maanden"
+  },
+  "gdpr": {
+    "title": "We respecteren uw privacy",
+    "message": "We gebruiken cookies en vergelijkbare technologieën om uw ervaring te verbeteren, websiteverkeer te analyseren en inhoud te personaliseren. Uw Tesla-gegevens worden veilig verwerkt en nooit gedeeld met derden.",
+    "accept_all": "Alles accepteren",
+    "decline": "Weigeren",
+    "cookie_settings": "Cookie-instellingen",
+    "essential_only": "Alleen essentieel",
+    "settings": {
+      "essential_cookies": "Essentiële cookies",
+      "always_on": "Altijd aan",
+      "analytics": "Analytics",
+      "marketing": "Marketing",
+      "optional": "Optioneel",
+      "back": "Terug"
+    }
+  },
+  "tesla_check": {
+    "back_to_home": "Terug naar home",
+    "results": {
+      "battery_degradation": "Batterijdegradatie",
+      "battery_health": "Batterijgezondheid",
+      "excellent": "Uitstekend",
+      "good": "Goed",
+      "fair": "Redelijk",
+      "current_capacity": "Huidige capaciteit",
+      "original_capacity": "Originele capaciteit",
+      "current_charge": "Huidige lading"
+    },
+    "certificate_promo": {
+      "title": "Krijg uw officiële certificaat",
+      "subtitle": "Verander uw resultaten in een geverifieerd document dat de waarde van uw Tesla verhoogt",
+      "free_section": {
+        "title": "Wat u GRATIS kreeg",
+        "degradation": "✓ Batterijdegradatiepercentage",
+        "capacity": "✓ Huidige capaciteitsgegevens",
+        "charge": "✓ Huidige laadniveau"
+      },
+      "paid_section": {
+        "title": "Officieel certificaat (€9)",
+        "full_dataset": "✓ Volledige dataset voor uw voertuig",
+        "peer_comparison": "✓ Vergelijking met vergelijkbare voertuigen",
+        "pdf_certificate": "✓ Gedateerd PDF-certificaat met chassisnummer",
+        "authenticity": "✓ Authenticiteitsverificatie voor kopers",
+        "physical_option": "✓ Optie voor fysiek certificaat",
+        "performance_ranking": "✓ Prestatie-ranking"
+      },
+      "purchase_button": "Certificaat kopen",
+      "sample_link": "Voorbeeldcertificaat",
+      "features": "💎 Directe download • 🔒 Veilige betaling • 📄 Geldig voor 3 maanden"
+    },
+    "auth_form": {
+      "title": "Controleer uw batterijgezondheid",
+      "subtitle": "Verbind uw Tesla-account om een directe batterijgezondheidsevaluatie te krijgen",
+      "region_info": "Gebruikt Tesla {regionName} servers",
+      "region_change": "Verkeerde regio? Wijzig hier",
+      "connect_button": "Verbinden met Tesla-account",
+      "connecting": "Verbinden met Tesla...",
+      "try_again": "Opnieuw proberen",
+      "retry_info": "Tesla kan uw sessie onthouden en sneller verbinden"
+    },
+    "security": {
+      "title": "Uw veiligheid is onze prioriteit",
+      "no_storage": "• We slaan nooit uw Tesla-inloggegevens op",
+      "encrypted": "• Verbinding is versleuteld en veilig",
+      "battery_only": "• We hebben alleen toegang tot batterijgegevens, niets anders"
+    },
+    "features": {
+      "secure_connection": {
+        "title": "Veilige verbinding",
+        "subtitle": "256-bit versleuteling"
+      },
+      "no_storage": {
+        "title": "Geen opslag",
+        "subtitle": "Inloggegevens worden niet opgeslagen"
+      },
+      "instant_results": {
+        "title": "Directe resultaten",
+        "subtitle": "30 seconden of minder"
+      }
+    }
+  },
+  "vehicle_selection": {
+    "back_to_login": "Terug naar inloggen",
+    "loading": {
+      "title": "Uw voertuigen laden...",
+      "description": "Uw Tesla-voertuigen ophalen uit uw account"
+    },
+    "page": {
+      "title": "Selecteer uw Tesla",
+      "subtitle": "Kies het voertuig dat u wilt controleren. We analyseren de batterijgezondheid in slechts 30 seconden."
+    },
+    "checking_battery": "Batterijgezondheid controleren...",
+    "no_vehicles": {
+      "title": "Geen voertuigen gevonden",
+      "description": "We konden geen Tesla-voertuigen vinden die aan uw account zijn gekoppeld. Zorg ervoor dat u voertuigen heeft geregistreerd op uw Tesla-account.",
+      "try_again": "Opnieuw proberen"
+    },
+    "info_cards": {
+      "instant_analysis": {
+        "title": "Directe analyse",
+        "description": "Krijg uw batterijgezondheidsresultaten in 30 seconden"
+      },
+      "detailed_report": {
+        "title": "Gedetailleerd rapport",
+        "description": "Analyse met degradatiepercentage en capaciteitsgegevens"
+      },
+      "verified_certificate": {
+        "title": "Geverifieerd certificaat",
+        "description": "Optioneel €9 geverifieerd certificaat voor koop-/verkoopbescherming"
+      }
+    },
+    "errors": {
+      "failed_to_load": "Kon uw voertuigen niet laden. Probeer het opnieuw.",
+      "failed_battery_check": "Kon batterijgezondheid niet controleren. Probeer het opnieuw."
+    }
+  },
+  "certificate_actions": {
+    "share": "Delen",
+    "copied": "Gekopieerd!",
+    "download_pdf": "PDF downloaden",
+    "generating": "Genereren...",
+    "share_title": "Tesla Batterijcertificaat - {certificateId}",
+    "share_text": "Bekijk dit Tesla-batterijgezondheidscertificaat",
+    "download_error": "Kon PDF niet downloaden: {error}"
+  },
+  "faq": {
+    "meta": {
+      "title": "Veelgestelde vragen - Tesla Batterijgezondheidscontrole | batterycert.com",
+      "description": "Krijg antwoorden op veelgestelde vragen over onze Tesla-batterijgezondheidscontroleservice, privacy, prijzen en hoe onze certificaten werken.",
+      "keywords": "Tesla batterij FAQ, batterijgezondheid vragen, privacybeleid, prijzen, certificaatverificatie"
+    },
+    "page_title": "Veelgestelde vragen",
+    "hero": {
+      "title": "Veelgestelde vragen",
+      "subtitle": "Alles wat u moet weten over onze Tesla-batterijgezondheidscontroleservice"
+    },
+    "privacy": {
+      "title": "Privacy & Veiligheid",
+      "oauth_question": "Hoe werkt Tesla OAuth en welke gegevens heeft u toegang tot?",
+      "oauth_answer": "We gebruiken Teslas officiële OAuth-systeem, wat betekent dat u zich direct bij Tesla authenticeert - we zien nooit uw gebruikersnaam of wachtwoord. We hebben alleen toegang tot basis voertuiginformatie en batterijgegevens die Tesla toestaat dat derden-apps kunnen lezen. We kunnen geen toegang krijgen tot uw persoonlijke informatie, betalingsgegevens of andere Tesla-accountgegevens.",
+      "data_access_question": "Welke specifieke gegevens verzamelt u van mijn Tesla?",
+      "data_access_answer": "We verzamelen alleen batterijgerelateerde gegevens: huidige batterijniveau, bruikbare batterijcapaciteit, geschat bereik en voertuigspecificaties (model, jaar, chassisnummer). We hebben geen toegang tot uw locatie, rijgeschiedenis, persoonlijke instellingen of andere voertuiggegevens. Onze analyse richt zich uitsluitend op batterijgezondheid en degradatie.",
+      "credentials_question": "Slaat u mijn Tesla-inloggegevens op?",
+      "credentials_answer": "Absoluut niet. We zien, slaan op of hebben nooit toegang tot uw Tesla-gebruikersnaam, wachtwoord of andere inloggegevens. Het OAuth-proces vindt volledig plaats tussen u en Tesla. We ontvangen alleen een tijdelijke toegangstoken die we gebruiken om uw batterijgegevens te lezen, en deze token verloopt automatisch.",
+      "storage_question": "Hoe lang bewaart u mijn gegevens?",
+      "storage_answer": "We bewaren uw batterij-evaluatiegegevens alleen zo lang als nodig is om de service te leveren. Als u een certificaat koopt, bewaren we de certificaatgegevens voor verificatiedoeleinden. U kunt op elk moment om verwijdering van uw gegevens vragen door contact met ons op te nemen. We verkopen, verhuren of delen uw persoonlijke gegevens niet met derden.",
+      "third_party_question": "Deelt u mijn gegevens met derden?",
+      "third_party_answer": "Nee, we verkopen, verhuren of delen uw persoonlijke gegevens niet met derden. De enige uitzonderingen zijn: 1) Betalingsverwerking (Stripe) voor certificaat aankopen, 2) Juridische vereisten indien verplicht door wet, 3) Serviceproviders die ons helpen bij het exploiteren van ons platform (onder strikte vertrouwelijkheidsovereenkomsten)."
+    },
+    "pricing": {
+      "title": "Prijzen & Certificaten",
+      "why_charge_question": "Waarom rekent u voor certificaten wanneer de batterijcontrole gratis is?",
+      "why_charge_answer": "De batterijgezondheidscontrole is volledig gratis omdat we Tesla-eigenaren willen helpen hun voertuigconditie te begrijpen. We rekenen voor certificaten omdat ze extra kosten vereisen: Tesla API-gebruikskosten, PDF-generatie, veilige opslag en verificatiesystemen. Bovendien toont een betaald certificaat kopers dat u serieus bent over transparantie en verhoogt de waarde van uw voertuig.",
+      "api_costs_question": "Wat zijn de Tesla API-kosten die u noemde?",
+      "api_costs_answer": "Tesla rekent kosten voor API-toegang tot hun voertuiggegevens. Hoewel individuele batterijcontroles relatief goedkoop zijn, vereist het leveren van een geverifieerde certificaatservice doorlopende API-toegang voor verificatie, wat maandelijkse kosten met zich meebrengt. Onze €9 certificaatkosten helpen deze operationele kosten te dekken terwijl de service toegankelijk blijft.",
+      "certificate_value_question": "Hoe verhoogt een certificaat de waarde van mijn voertuig?",
+      "certificate_value_answer": "Een geverifieerd batterijcertificaat bewijst aan potentiële kopers dat de batterij van uw Tesla in goede conditie is, wat onzekerheid over verborgen degradatie elimineert. Deze transparantie bouwt vertrouwen op en kan een hogere vraagprijs rechtvaardigen. Kopers zijn bereid meer te betalen voor voertuigen met bewezen batterijgezondheid, omdat het hun risico op dure batterijvervanging vermindert.",
+      "one_time_question": "Is de €9 certificaatkosten een eenmalige betaling?",
+      "one_time_answer": "Ja, de €9 certificaatkosten is een eenmalige betaling. U krijgt een geverifieerd PDF-certificaat dat 3 maanden geldig is en kan worden gedeeld met onbeperkte potentiële kopers. Er zijn geen terugkerende kosten, abonnementen of verborgen kosten. Als u na 3 maanden een nieuw certificaat nodig heeft, kunt u er een kopen.",
+      "refund_question": "Biedt u terugbetalingen voor certificaten?",
+      "refund_answer": "We bieden een 30-dagen geld-terug-garantie voor alle certificaat aankopen. Als u om welke reden dan ook niet tevreden bent met uw certificaat, neem binnen 30 dagen contact met ons op en we geven volledige terugbetaling. Let echter op dat zodra een certificaat is geverifieerd door een koper, we geen terugbetalingen kunnen geven omdat de service is gebruikt."
+    },
+    "service": {
+      "title": "Service & Nauwkeurigheid",
+      "how_works_question": "Hoe werkt de batterijgezondheidsevaluatie?",
+      "how_works_answer": "Ons systeem verbindt met uw Tesla via de officiële Tesla API en analyseert uw batterijgegevens in realtime. We vergelijken uw huidige batterijcapaciteit met de originele specificaties voor uw voertuigmodel en jaar, en berekenen vervolgens het degradatiepercentage. De evaluatie duurt ongeveer 30 seconden en geeft directe resultaten.",
+      "accuracy_question": "Hoe nauwkeurig is uw batterijgezondheidsevaluatie?",
+      "accuracy_answer": "Onze evaluatie is zeer nauwkeurig omdat we Teslas eigen API-gegevens gebruiken, wat dezelfde gegevens zijn die Tesla intern gebruikt. We vergelijken uw batterij met fabrikant specificaties en real-world benchmarks. Batterijgezondheid kan echter variëren op basis van gebruikspatronen, dus we raden aan om dit als één tool in uw algehele voertuigevaluatie te gebruiken.",
+      "certificate_validity_question": "Hoe lang is het certificaat geldig?",
+      "certificate_validity_answer": "Certificaten zijn 3 maanden geldig vanaf de aankoopdatum. Deze tijdsperiode zorgt ervoor dat de gegevens actueel blijven terwijl u voldoende tijd heeft om een verkoop te voltooien. Batterijgezondheid verandert niet significant in 3 maanden, dus de evaluatie blijft relevant voor de meeste transacties.",
+      "verification_question": "Hoe kunnen kopers mijn certificaat verifiëren?",
+      "verification_answer": "Elk certificaat bevat een unieke QR-code die kopers kunnen scannen om authenticiteit te verifiëren op onze website. De verificatiepagina toont de certificaatdetails en bevestigt dat het is uitgegeven door batterycert.com. Dit voorkomt fraude en zorgt ervoor dat kopers kunnen vertrouwen op de batterijgezondheidsgegevens.",
+      "support_question": "Wat als ik technische problemen of vragen heb?",
+      "support_answer": "We bieden uitgebreide ondersteuning voor al onze services. Als u technische problemen ondervindt, vragen heeft over uw batterij-evaluatie of hulp nodig heeft met uw certificaat, kunt u contact met ons opnemen via onze ondersteuningskanalen. We reageren meestal binnen 24 uur en zijn toegewijd aan het zorgen voor een positieve ervaring met onze service."
+    },
+    "contact": {
+      "title": "Heeft u nog vragen?",
+      "description": "We zijn hier om te helpen! Als u vragen heeft over onze service, privacy of technische ondersteuning nodig heeft, aarzel dan niet om contact op te nemen.",
+      "check_battery": "Controleer mijn batterij",
+      "learn_more": "Meer informatie"
+    }
+  },
+  "regions": {
+    "na": "Noord-Amerika & Azië-Stille Oceaan",
+    "eu": "Europa, Midden-Oosten & Afrika"
+  },
+  "check_page": {
+    "meta": {
+      "title": "Controleer uw Tesla-batterijgezondheid - Gratis directe evaluatie | batterycert.com",
+      "description": "Krijg een directe, gratis Tesla-batterijgezondheidscontrole. Verbind uw Tesla-account om gedetailleerde degradatieanalyse en batterijcapaciteitsgegevens te krijgen in 30 seconden.",
+      "keywords": "Tesla batterijcontrole, batterijgezondheidstest, Tesla degradatiecontrole, gratis batterij evaluatie, Tesla batterijanalyse"
+    },
+    "title": "Controleer uw Tesla-batterijgezondheid",
+    "subtitle": "Verbind uw Tesla-account om een directe batterijgezondheidsevaluatie te krijgen",
+    "region_notice": "Gebruikt Tesla {regionName} servers",
+    "wrong_region": "Verkeerde regio? Wijzig hier",
+    "connect_button": "Verbinden met Tesla-account",
+    "connecting": "Verbinden met Tesla...",
+    "security_title": "Uw veiligheid is onze prioriteit",
+    "security_points": {
+      "no_credentials": "We slaan nooit uw Tesla-inloggegevens op",
+      "encrypted": "Verbinding is versleuteld en veilig",
+      "battery_only": "We hebben alleen toegang tot batterijgegevens, niets anders"
+    },
+    "features": {
+      "secure_connection": {
+        "title": "Veilige verbinding",
+        "description": "256-bit versleuteling"
+      },
+      "no_storage": {
+        "title": "Geen opslag",
+        "description": "Inloggegevens worden niet opgeslagen"
+      },
+      "instant_results": {
+        "title": "Directe resultaten",
+        "description": "30 seconden of minder"
+      }
+    }
+  },
+  "vehicles_page": {
+    "meta": {
+      "title": "Selecteer uw Tesla-voertuig - Batterijgezondheidscontrole | batterycert.com",
+      "description": "Kies welk Tesla-voertuig te analyseren. Krijg directe batterijgezondheidsevaluatie met degradatiepercentage en capaciteitsgegevens.",
+      "keywords": "Tesla voertuigselectie, meerdere Tesla-auto's, batterijgezondheidscontrole, Tesla vlootanalyse"
+    },
+    "loading": {
+      "title": "Uw voertuigen laden...",
+      "description": "Uw Tesla-voertuigen ophalen uit uw account"
+    },
+    "title": "Selecteer uw Tesla",
+    "subtitle": "Kies het voertuig dat u wilt controleren. We analyseren de batterijgezondheid in slechts 30 seconden.",
+    "checking_battery": "Batterijgezondheid controleren...",
+    "vehicle_card": {
+      "charging": "Laden",
+      "online": "Online",
+      "asleep": "Slaapt",
+      "offline": "Offline",
+      "asleep_can_wake": "Slaapt (Kan wakker maken)",
+      "miles": "miles",
+      "kilometers": "km",
+      "vin": "Chassisnummer",
+      "battery_level": "Batterijniveau",
+      "range": "Bereik",
+      "temperature": "Temperatuur",
+      "last_seen": "Laatst gezien",
+      "odometer": "Kilometerstand",
+      "selected": "Geselecteerd",
+      "select_this_vehicle": "Selecteer dit voertuig"
+    },
+    "no_vehicles": {
+      "title": "Geen voertuigen gevonden",
+      "description": "We konden geen Tesla-voertuigen vinden die aan uw account zijn gekoppeld. Zorg ervoor dat u voertuigen heeft geregistreerd op uw Tesla-account.",
+      "try_again": "Opnieuw proberen"
+    },
+    "info_cards": {
+      "instant_analysis": {
+        "title": "Directe analyse",
+        "description": "Krijg uw batterijgezondheidsresultaten in 30 seconden"
+      },
+      "detailed_report": {
+        "title": "Gedetailleerd rapport",
+        "description": "Analyse met degradatiepercentage en capaciteitsgegevens"
+      },
+      "verified_certificate": {
+        "title": "Geverifieerd certificaat",
+        "description": "Optioneel €9 geverifieerd certificaat voor koop-/verkoopbescherming"
+      }
+    },
+    "errors": {
+      "failed_to_load": "Kon uw voertuigen niet laden. Probeer het opnieuw.",
+      "failed_battery_check": "Kon batterijgezondheid niet controleren. Probeer het opnieuw."
+    }
+  },
+  "region_selection": {
+    "title": "Selecteer uw regio",
+    "description": "Tesla gebruikt verschillende servers voor verschillende regio's. Selecteer de uwe voor de beste ervaring.",
+    "recommended": "Aanbevolen",
+    "continue_button": "Doorgaan naar Tesla controle",
+    "settings_note": "U kunt dit later wijzigen in instellingen indien nodig.",
+    "includes": "Bevat"
+  },
+  "stripe_receipt": {
+    "description": "Tesla Batterijgezondheidscertificaat",
+    "certificate_access": "Certificaattoegang",
+    "vehicle": "Voertuig",
+    "certificate_id": "Certificaat-ID",
+    "footer": "Bedankt voor uw aankoop. Uw certificaat is nu beschikbaar voor download en delen."
+  }
+}

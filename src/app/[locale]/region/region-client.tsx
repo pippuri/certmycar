@@ -9,10 +9,32 @@ import { Logo } from "@/components/logo"
 import { detectTeslaRegion, TESLA_REGIONS, type TeslaRegion } from "@/lib/tesla-regions"
 import { useRouter } from "next/navigation"
 
-export default function RegionSelectionClient({ locale: _locale }: { locale: string }) {
+interface RegionSelectionClientProps {
+  locale: string;
+  translations?: {
+    title: string;
+    description: string;
+    recommended: string;
+    continue_button: string;
+    settings_note: string;
+    includes: string;
+  };
+}
+
+export default function RegionSelectionClient({ locale: _locale, translations }: RegionSelectionClientProps) {
   const [detectedRegion, setDetectedRegion] = useState<TeslaRegion>('na')
   const [selectedRegion, setSelectedRegion] = useState<TeslaRegion>('na')
   const router = useRouter()
+
+  // Fallback translations
+  const t = translations || {
+    title: "Select Your Region",
+    description: "Tesla uses different servers for different regions. Please select yours for the best experience.",
+    recommended: "Recommended",
+    continue_button: "Continue to Tesla Check",
+    settings_note: "You can change this later in settings if needed.",
+    includes: "Includes",
+  }
 
   useEffect(() => {
     const detected = detectTeslaRegion()
@@ -42,10 +64,10 @@ export default function RegionSelectionClient({ locale: _locale }: { locale: str
                 <Globe className="h-8 w-8 text-blue-600" />
               </div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                Select Your Region
+                {t.title}
               </h1>
               <p className="text-gray-600">
-                Tesla uses different servers for different regions. Please select yours for the best experience.
+                {t.description}
               </p>
             </div>
 
@@ -69,7 +91,7 @@ export default function RegionSelectionClient({ locale: _locale }: { locale: str
                       <div className="flex items-center gap-2">
                         {detectedRegion === code && (
                           <Badge variant="secondary" className="text-xs">
-                            Recommended
+                            {t.recommended}
                           </Badge>
                         )}
                         {selectedRegion === code && (
@@ -83,7 +105,7 @@ export default function RegionSelectionClient({ locale: _locale }: { locale: str
                       {region.description}
                     </p>
                     <div className="text-sm text-gray-500">
-                      Includes: {region.countries.slice(0, 8).join(', ')}
+                      {t.includes}: {region.countries.slice(0, 8).join(', ')}
                       {region.countries.length > 8 && ` and ${region.countries.length - 8} more`}
                     </div>
                   </CardContent>
@@ -97,13 +119,13 @@ export default function RegionSelectionClient({ locale: _locale }: { locale: str
               className="w-full text-lg py-6"
               onClick={handleContinue}
             >
-              Continue to Tesla Check
+              {t.continue_button}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
 
             {/* Info */}
             <p className="text-center text-sm text-gray-500 mt-4">
-              You can change this later in settings if needed.
+              {t.settings_note}
             </p>
           </CardContent>
         </Card>

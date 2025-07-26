@@ -18,7 +18,8 @@
       "Bash(gh repo view:*)",
       "Bash(npm start)",
       "Bash(supabase sql:*)",
-      "Bash(supabase:*)"
+      "Bash(supabase:*)",
+      "Bash(ls:*)"
     ],
     "deny": []
   }

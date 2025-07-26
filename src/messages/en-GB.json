@@ -180,6 +180,7 @@
     "scan_to_verify": "Scan to Verify",
     "vehicle_information": "Vehicle Information",
     "model": "Model",
+    "vin": "VIN",
     "year": "Year",
     "assessment_details": "Assessment Details",
     "test_date": "Test Date",
@@ -194,6 +195,16 @@
     "battery_specifications": "Battery Specifications",
     "original_capacity": "Original Capacity",
     "current_capacity": "Current Capacity",
+    "current_label": "Current",
+    "vs_label": "vs",
+    "health_label": "Health",
+    "average_label": "Average",
+    "confidence_levels": {
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "full_charge_range": "Full Charge Range",
     "capacity_loss": "Capacity Loss",
     "methodology": "Methodology",
     "performance_indicators": "Performance Indicators",
@@ -508,7 +519,9 @@
       "range": "Range",
       "temperature": "Temperature",
       "last_seen": "Last Seen",
-      "odometer": "Odometer"
+      "odometer": "Odometer",
+      "selected": "Selected",
+      "select_this_vehicle": "Select this vehicle"
     },
     "no_vehicles": {
       "title": "No Vehicles Found",
@@ -533,6 +546,14 @@
       "failed_to_load": "Failed to load your vehicles. Please try again.",
       "failed_battery_check": "Failed to check battery health. Please try again."
     }
+  },
+  "region_selection": {
+    "title": "Select Your Region",
+    "description": "Tesla uses different servers for different regions. Please select yours for the best experience.",
+    "recommended": "Recommended",
+    "continue_button": "Continue to Tesla Check",
+    "settings_note": "You can change this later in settings if needed.",
+    "includes": "Includes"
   },
   "stripe_receipt": {
     "description": "Tesla Battery Health Certificate",

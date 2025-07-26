@@ -1,0 +1,565 @@
+{
+  "common": {
+    "loading": "Laddar...",
+    "error": "Fel",
+    "success": "Framgång",
+    "retry": "Försök igen",
+    "back": "Tillbaka",
+    "next": "Nästa",
+    "continue": "Fortsätt",
+    "cancel": "Avbryt",
+    "close": "Stäng",
+    "save": "Spara",
+    "delete": "Radera",
+    "edit": "Redigera",
+    "share": "Dela",
+    "download": "Ladda ner"
+  },
+  "navigation": {
+    "home": "Startsida",
+    "check": "Kontrollera batteri",
+    "certificates": "Certifikat",
+    "about": "Om oss",
+    "faq": "FAQ",
+    "terms": "Användarvillkor",
+    "contact": "Kontakt",
+    "language": "Språk"
+  },
+  "meta": {
+    "homepage": {
+      "title": "Tesla Batterihälsokontroll - Omedelbara resultat på 30 sekunder | batterycert.com",
+      "description": "Kontrollera omedelbart din Tesla-batterihälsa med vårt gratis utvärderingsverktyg. Få verifierade batteridegraderingsdata, kapacitetsanalyser och valfria PDF-certifikat för köp eller försäljning av din Tesla.",
+      "og_title": "Tesla Batterihälsokontroll - Omedelbara resultat på 30 sekunder",
+      "og_description": "Få omedelbara, verifierade Tesla-batterihälsoutvärderingar. Perfekt för köp, försäljning eller att känna till din Teslas verkliga tillstånd.",
+      "og_alt": "Tesla Batterihälsokontroll"
+    }
+  },
+  "structured_data": {
+    "service": {
+      "name": "Tesla Batterihälsokontroll",
+      "description": "Få omedelbara, verifierade Tesla-batterihälsoutvärderingar. Perfekt för köp, försäljning eller att känna till din Teslas verkliga tillstånd.",
+      "service_type": "Batterihälsoutvärdering",
+      "area_served": "Världsomfattande",
+      "offer_description": "Gratis Tesla batterihälsokontroll"
+    }
+  },
+  "homepage": {
+    "navigation": {
+      "about": "Om oss"
+    },
+    "hero": {
+      "title": "Kontrollera ditt Tesla-batteri",
+      "title_highlight": "på 30 sekunder",
+      "cta_primary": "Kontrollera min Tesla",
+      "cta_secondary": "Se exempelcertifikat"
+    },
+    "hero_features": {
+      "free_check": "Gratis batterihälsokontroll",
+      "no_account": "Inget konto krävs",
+      "instant_results": "Omedelbara resultat",
+      "optional_certificate": "Valfritt certifikat (100 kr)"
+    },
+    "problem_section": {
+      "title": "Batteribyte = ",
+      "title_price": "150.000 kr+",
+      "subtitle": "Köpare, låt dig inte luras med dolda batteriproblem",
+      "video_title": "Se varför batterihälsa är viktigt",
+      "video_description": "Titta på denna video för att förstå det vanliga bedrägeriet. batterycert.com hjälper dig att undvika det.",
+      "cards": {
+        "hidden_issues": {
+          "title": "Hitta dolda problem",
+          "description": "Säljare döljer degraderingsproblem"
+        },
+        "trusted_data": {
+          "title": "Betrodda data",
+          "description": "Direkt från Teslas system"
+        },
+        "higher_value": {
+          "title": "Högre värde",
+          "description": "Bevisad hälsa ökar priset"
+        }
+      }
+    },
+    "how_it_works": {
+      "title": "Enkel 3-stegsprocess",
+      "steps": {
+        "connect": {
+          "title": "Anslut",
+          "description": "Säker anslutning via Teslas officiella OAuth. Vi ser aldrig dina inloggningsuppgifter - du autentiserar dig direkt hos Tesla."
+        },
+        "analyze": {
+          "title": "Analysera",
+          "description": "Vårt system analyserar omedelbart dina batteridata med Teslas API och beräknar degraderingsprocenten."
+        },
+        "certificate": {
+          "title": "Valfritt: Certifikat",
+          "description": "Få ett verifierat PDF-certifikat med QR-kod för verifiering av köpare. Giltigt i 3 månader. Engångsavgift på 100 kr."
+        }
+      }
+    },
+    "use_cases": {
+      "title": "Perfekt för ",
+      "title_buyers": "Köpare",
+      "title_sellers": "Säljare",
+      "title_owners": "Ägare",
+      "buyers": {
+        "title": "Köpare",
+        "description": "Undvik 150.000 kr+ överraskningar"
+      },
+      "sellers": {
+        "title": "Säljare",
+        "description": "Öka återförsäljningsvärdet"
+      },
+      "owners": {
+        "title": "Ägare",
+        "description": "Spåra batterihälsan"
+      }
+    },
+    "cta_section": {
+      "title": "Redo att kontrollera ditt Tesla-batteri?",
+      "subtitle": "Anslut dig till tusentals Tesla-ägare som litar på batterycert.com för noggranna, omedelbara batterihälsorapporter.",
+      "button_text": "Kontrollera mitt Tesla-batteri nu",
+      "features": {
+        "free_registration": "Gratis • Ingen registrering krävs",
+        "speed": "30 sekunder • Omedelbara resultat",
+        "certificate": "Valfritt 100 kr certifikat"
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 batterycert.com. Byggt för Tesla-ägare och köpare i rättvisans namn.",
+      "language_switcher": "Ändra språk:"
+    }
+  },
+  "certificate_page": {
+    "meta": {
+      "not_found_title": "Certifikat hittades inte - batterycert.com",
+      "not_found_description": "Det begärda Tesla-battericertifikatet kunde inte hittas.",
+      "title": "{vehicleName} - Tesla Battericertifikat - batterycert.com",
+      "description": "Visa Tesla-batterihälsocertifikatet för {vehicleName} med detaljerad degraderingsanalys, kapacitetsdata och verifierings-QR-kod.",
+      "default_title": "Tesla Battericertifikat - batterycert.com",
+      "default_description": "Visa ditt Tesla-batterihälsocertifikat med detaljerad degraderingsanalys, kapacitetsdata och verifierings-QR-kod.",
+      "keywords": "Tesla battericertifikat, batterihälsorapport, batteridegraderingscertifikat, Tesla batteriverifiering"
+    },
+    "not_found": {
+      "title": "Certifikat hittades inte",
+      "description": "Certifikat-ID \"{id}\" hittades inte eller kan ha gått ut.",
+      "button": "Kontrollera ditt Tesla-batteri"
+    },
+    "fraud_protection": {
+      "title": "Bedrägeriskydd verifierat",
+      "description": "Detta certifikat är manipulationssäkert och direkt anslutet till Teslas officiella system. QR-koden nedan möjliggör omedelbar verifiering av autenticitet. Köpare kan lita på att denna utvärdering är äkta och korrekt."
+    },
+    "certificate_locked": {
+      "title": "Certifikat låst",
+      "description": "Slutför din betalning ovan för att låsa upp det fullständiga verifierade certifikatet med:",
+      "features": {
+        "detailed_analysis": "Detaljerad batterihälsanalys",
+        "degradation_percentage": "Officiell degraderingsprocent",
+        "qr_code": "Verifierings-QR-kod",
+        "downloadable_pdf": "Nedladdningsbart PDF-certifikat",
+        "fraud_protection": "Bedrägeriskyddsgaranti"
+      }
+    },
+    "verification_footer": {
+      "verified_by": "Verifierat av batterycert.com",
+      "verification_description": "Detta certifikat kan verifieras med QR-kod eller certifikat-ID:",
+      "generated": "Genererat:",
+      "valid_for": "Giltigt i 3 månader",
+      "verify_certificate": "Verifiera certifikat"
+    }
+  },
+  "certificate_display": {
+    "chart": {
+      "title": "Batterihälsa över tid",
+      "this_vehicle": "Detta fordon",
+      "tesla_average": "Tesla genomsnitt"
+    },
+    "title": "Batterihälsorapport från Tesla-data",
+    "certificate_id": "Certifikat-ID",
+    "health_score": "Hälsopoäng",
+    "scan_to_verify": "Skanna för att verifiera",
+    "vehicle_information": "Fordoninformation",
+    "model": "Modell",
+    "year": "År",
+    "vin": "Chassinummer",
+    "assessment_details": "Utvärderingsdetaljer",
+    "test_date": "Testdatum",
+    "mileage": "Mätarställning",
+    "software_version": "Programvaruversion",
+    "not_available": "Inte tillgängligt",
+    "valid_until": "Giltigt till",
+    "battery_performance": "Batteriprestandamätare",
+    "better_than_percentage": "Bättre än {percentage}% av liknande fordon",
+    "degradation_comparison": "Degraderingsjämförelse vs genomsnitt",
+    "detailed_analysis": "Detaljerad analys",
+    "battery_specifications": "Batterispecifikationer",
+    "original_capacity": "Ursprunglig kapacitet",
+    "current_capacity": "Aktuell kapacitet",
+    "capacity_loss": "Kapacitetsförlust",
+    "full_charge_range": "Fulladdad räckvidd",
+    "current_label": "Aktuell",
+    "vs_label": "vs",
+    "health_label": "Hälsa",
+    "average_label": "Genomsnitt",
+    "confidence_levels": {
+      "high": "Hög",
+      "medium": "Medel",
+      "low": "Låg"
+    },
+    "methodology": "Metodik",
+    "performance_indicators": "Prestandaindikatorer",
+    "battery_chemistry": "Batterikemi",
+    "battery_supplier": "Batterileverantör",
+    "confidence_level": "Konfidensnivå",
+    "overall_condition": "Övergripande tillstånd",
+    "assessment_summary": "Utvärderingssammanfattning",
+    "summary_excellent": "Denna {vehicleName} visar utmärkt batterihälsa med {degradation}% degradering. Batteriet presterar exceptionellt bra för sin användning. Aktuell kapacitet på {currentCapacity} kWh från ursprungliga {originalCapacity} kWh. Detta fordon representerar en utmärkt köpmöjlighet med minimala batterirelaterade risker.",
+    "summary_good": "Denna {vehicleName} visar bra batterihälsa med {degradation}% degradering. Batteriet presterar bra för sin användning. Aktuell kapacitet på {currentCapacity} kWh från ursprungliga {originalCapacity} kWh. Detta fordon representerar en bra köpmöjlighet med normala slitageförlopp.",
+    "summary_fair": "Denna {vehicleName} visar rättvis batterihälsa med {degradation}% degradering. Batteriet presterar adekvat för sin användning. Aktuell kapacitet på {currentCapacity} kWh från ursprungliga {originalCapacity} kWh. Detta fordon visar högre än genomsnittlig degradering och bör övervägas noggrant.",
+    "conditions": {
+      "excellent": "Utmärkt",
+      "good": "Bra",
+      "average": "Genomsnittlig",
+      "fair": "Rättvis",
+      "poor": "Dålig"
+    },
+    "units": {
+      "kwh": "kWh",
+      "miles": "miles",
+      "km": "km"
+    }
+  },
+  "certificate_payment": {
+    "payment_required": "Betalning krävs",
+    "certificate_description": "Detta certifikat kräver betalning för att låsa upp den fullständiga verifierade rapporten.",
+    "pricing_description": "Få ditt officiella Tesla-batterihälsocertifikat med verifierings-QR-kod och bedrägeriskydd.",
+    "pricing_loading": "Laddar...",
+    "pricing_error": "Misslyckades att ladda prisinformation",
+    "certificate_price": "Certifikatpris",
+    "payment_button": "Slutför betalning",
+    "payment_processing": "Bearbetar...",
+    "loading": "Laddar...",
+    "secure_payment": "Säker betalning via Stripe • Omedelbar åtkomst efter betalning • E-postkvitto inkluderat"
+  },
+  "hero_visual": {
+    "verified_certificate": "Verifierat certifikat",
+    "battery_health_report": "Tesla Batterihälsorapport",
+    "certificate_id": "Certifikat-ID",
+    "certified": "CERTIFIERAT",
+    "verified": "VERIFIERAT",
+    "health_score": "Hälsopoäng",
+    "vehicle_information": "Fordoninformation",
+    "model": "Modell",
+    "tesla_model_y": "Tesla Model Y Long Range",
+    "year": "År",
+    "vin": "Chassinummer",
+    "battery_metrics": "Batterimätare",
+    "current_capacity": "Aktuell kapacitet",
+    "degradation": "Degradering",
+    "est_range": "Uppskattad räckvidd",
+    "miles": "miles",
+    "degradation_comparison": "Degraderingsjämförelse vs genomsnitt",
+    "better_than_percentage": "Bättre än 78% av liknande fordon",
+    "this_vehicle": "Detta fordon (92%)",
+    "average": "Genomsnitt (85%)",
+    "verified_data": "Verifierade data",
+    "direct_tesla_api": "Direkt Tesla API",
+    "tamper_proof": "Manipulationssäkert",
+    "qr_verification": "QR-verifiering",
+    "increase_value": "Öka värde",
+    "proven_health": "Bevisad hälsa",
+    "scan_to_verify": "Skanna för att verifiera",
+    "verified_by": "Verifierat av batterycert.com",
+    "generated": "Genererat",
+    "generated_date": "24 juli 2025",
+    "valid_for_one_year": "Giltigt i 3 månader"
+  },
+  "gdpr": {
+    "title": "Vi respekterar din integritet",
+    "message": "Vi använder cookies och liknande teknologier för att förbättra din upplevelse, analysera webbplatsens trafik och anpassa innehåll. Din Tesla-data bearbetas säkert och delas aldrig med tredje part.",
+    "accept_all": "Acceptera alla",
+    "decline": "Avvisa",
+    "cookie_settings": "Cookie-inställningar",
+    "essential_only": "Endast nödvändiga",
+    "settings": {
+      "essential_cookies": "Nödvändiga cookies",
+      "always_on": "Alltid på",
+      "analytics": "Analys",
+      "marketing": "Marknadsföring",
+      "optional": "Valfritt",
+      "back": "Tillbaka"
+    }
+  },
+  "tesla_check": {
+    "back_to_home": "Tillbaka till startsidan",
+    "results": {
+      "battery_degradation": "Batteridegradering",
+      "battery_health": "Batterihälsa",
+      "excellent": "Utmärkt",
+      "good": "Bra",
+      "fair": "Rättvis",
+      "current_capacity": "Aktuell kapacitet",
+      "original_capacity": "Ursprunglig kapacitet",
+      "current_charge": "Aktuell laddning"
+    },
+    "certificate_promo": {
+      "title": "Få ditt officiella certifikat",
+      "subtitle": "Förvandla dina resultat till ett verifierat dokument som ökar din Teslas värde",
+      "free_section": {
+        "title": "Vad du fick GRATIS",
+        "degradation": "✓ Batteridegraderingsprocent",
+        "capacity": "✓ Aktuella kapacitetsdata",
+        "charge": "✓ Aktuell laddningsnivå"
+      },
+      "paid_section": {
+        "title": "Officiellt certifikat (100 kr)",
+        "full_dataset": "✓ Fullständig dataset för ditt fordon",
+        "peer_comparison": "✓ Jämförelse med liknande fordon",
+        "pdf_certificate": "✓ Daterat PDF-certifikat med chassinummer",
+        "authenticity": "✓ Autenticitetsverifiering för köpare",
+        "physical_option": "✓ Alternativ för fysiskt certifikat",
+        "performance_ranking": "✓ Prestandaranking"
+      },
+      "purchase_button": "Köp certifikat",
+      "sample_link": "Exempelcertifikat",
+      "features": "💎 Omedelbar nedladdning • 🔒 Säker betalning • 📄 Giltigt i 3 månader"
+    },
+    "auth_form": {
+      "title": "Kontrollera din batterihälsa",
+      "subtitle": "Anslut ditt Tesla-konto för att få en omedelbar batterihälsoutvärdering",
+      "region_info": "Använder Tesla {regionName} servrar",
+      "region_change": "Fel region? Ändra här",
+      "connect_button": "Anslut med Tesla-konto",
+      "connecting": "Ansluter till Tesla...",
+      "try_again": "Försök igen",
+      "retry_info": "Tesla kan komma ihåg din session och ansluta snabbare"
+    },
+    "security": {
+      "title": "Din säkerhet är vår prioritet",
+      "no_storage": "• Vi lagrar aldrig dina Tesla-inloggningsuppgifter",
+      "encrypted": "• Anslutningen är krypterad och säker",
+      "battery_only": "• Vi kommer endast åt batteridata, inget annat"
+    },
+    "features": {
+      "secure_connection": {
+        "title": "Säker anslutning",
+        "subtitle": "256-bitars kryptering"
+      },
+      "no_storage": {
+        "title": "Ingen lagring",
+        "subtitle": "Inloggningsuppgifter sparas inte"
+      },
+      "instant_results": {
+        "title": "Omedelbara resultat",
+        "subtitle": "30 sekunder eller mindre"
+      }
+    }
+  },
+  "vehicle_selection": {
+    "back_to_login": "Tillbaka till inloggning",
+    "loading": {
+      "title": "Laddar dina fordon...",
+      "description": "Hämtar dina Tesla-fordon från ditt konto"
+    },
+    "page": {
+      "title": "Välj din Tesla",
+      "subtitle": "Välj fordonet du vill kontrollera. Vi analyserar dess batterihälsa på bara 30 sekunder."
+    },
+    "checking_battery": "Kontrollerar batterihälsa...",
+    "no_vehicles": {
+      "title": "Inga fordon hittades",
+      "description": "Vi kunde inte hitta några Tesla-fordon kopplade till ditt konto. Se till att du har fordon registrerade på ditt Tesla-konto.",
+      "try_again": "Försök igen"
+    },
+    "info_cards": {
+      "instant_analysis": {
+        "title": "Omedelbar analys",
+        "description": "Få dina batterihälsoresultat på 30 sekunder"
+      },
+      "detailed_report": {
+        "title": "Detaljerad rapport",
+        "description": "Analys med degraderingsprocent och kapacitetsdata"
+      },
+      "verified_certificate": {
+        "title": "Verifierat certifikat",
+        "description": "Valfritt 100 kr verifierat certifikat för köp-/försäljningsskydd"
+      }
+    },
+    "errors": {
+      "failed_to_load": "Misslyckades att ladda dina fordon. Försök igen.",
+      "failed_battery_check": "Misslyckades att kontrollera batterihälsa. Försök igen."
+    }
+  },
+  "certificate_actions": {
+    "share": "Dela",
+    "copied": "Kopierat!",
+    "download_pdf": "Ladda ner PDF",
+    "generating": "Genererar...",
+    "share_title": "Tesla Battericertifikat - {certificateId}",
+    "share_text": "Kolla in detta Tesla-batterihälsocertifikat",
+    "download_error": "Misslyckades att ladda ner PDF: {error}"
+  },
+  "faq": {
+    "meta": {
+      "title": "Vanliga frågor - Tesla Batterihälsokontroll | batterycert.com",
+      "description": "Få svar på vanliga frågor om vår Tesla-batterihälsokontrolltjänst, integritet, priser och hur våra certifikat fungerar.",
+      "keywords": "Tesla batteri FAQ, batterihälsa frågor, integritetspolicy, priser, certifikatverifiering"
+    },
+    "page_title": "Vanliga frågor",
+    "hero": {
+      "title": "Vanliga frågor",
+      "subtitle": "Allt du behöver veta om vår Tesla-batterihälsokontrolltjänst"
+    },
+    "privacy": {
+      "title": "Integritet & Säkerhet",
+      "oauth_question": "Hur fungerar Tesla OAuth och vilken data kommer ni åt?",
+      "oauth_answer": "Vi använder Teslas officiella OAuth-system, vilket betyder att du autentiserar dig direkt hos Tesla - vi ser aldrig ditt användarnamn eller lösenord. Vi kommer endast åt grundläggande fordoninformation och batteridata som Tesla tillåter tredjepartsappar att läsa. Vi kan inte komma åt din personliga information, betalningsdetaljer eller annan Tesla-kontodata.",
+      "data_access_question": "Vilken specifik data samlar ni från min Tesla?",
+      "data_access_answer": "Vi samlar endast batterirelaterad data: aktuell batterinivå, användbar batterikapacitet, uppskattad räckvidd och fordonsspecifikationer (modell, år, chassinummer). Vi kommer inte åt din plats, körhistorik, personliga inställningar eller annan fordon data. Vår analys fokuserar enbart på batterihälsa och degradering.",
+      "credentials_question": "Lagrar ni mina Tesla-inloggningsuppgifter?",
+      "credentials_answer": "Absolut inte. Vi ser, lagrar eller har aldrig åtkomst till ditt Tesla-användarnamn, lösenord eller andra inloggningsuppgifter. OAuth-processen sker helt mellan dig och Tesla. Vi får endast en temporär åtkomsttoken som vi använder för att läsa din batteridata, och denna token går ut automatiskt.",
+      "storage_question": "Hur länge behåller ni min data?",
+      "storage_answer": "Vi behåller din batteriutvärderingsdata endast så länge som nödvändigt för att tillhandahålla tjänsten. Om du köper ett certifikat behåller vi certifikatdata för verifieringsändamål. Du kan begära radering av din data när som helst genom att kontakta oss. Vi säljer, hyr ut eller delar inte din personliga data med tredje part.",
+      "third_party_question": "Delar ni min data med tredje part?",
+      "third_party_answer": "Nej, vi säljer, hyr ut eller delar inte din personliga data med tredje part. De enda undantagen är: 1) Betalningsbehandling (Stripe) för certifikatköp, 2) Juridiska krav om pålagda av lag, 3) Tjänsteleverantörer som hjälper oss att driva vår plattform (under strikta sekretessavtal)."
+    },
+    "pricing": {
+      "title": "Priser & Certifikat",
+      "why_charge_question": "Varför tar ni betalt för certifikat när batterikontrollen är gratis?",
+      "why_charge_answer": "Batterihälsokontrollen är helt gratis eftersom vi vill hjälpa Tesla-ägare att förstå sitt fordonstillstånd. Vi tar betalt för certifikat eftersom de kräver ytterligare kostnader: Tesla API-användningsavgifter, PDF-generering, säker lagring och verifieringssystem. Dessutom visar ett betalt certifikat köpare att du är seriös med transparens och ökar ditt fordonvärde.",
+      "api_costs_question": "Vilka är Tesla API-kostnaderna ni nämnde?",
+      "api_costs_answer": "Tesla tar ut avgifter för API-åtkomst till deras fordon data. Medan enskilda batterikontroller är relativt billiga kräver tillhandahållande av en verifierad certifikattjänst pågående API-åtkomst för verifiering, vilket medför månadsvisa kostnader. Vår 100 kr certifikatavgift hjälper till att täcka dessa driftskostnader samtidigt som tjänsten hålls tillgänglig.",
+      "certificate_value_question": "Hur ökar ett certifikat mitt fordonvärde?",
+      "certificate_value_answer": "Ett verifierat battericertifikat bevisar för potentiella köpare att din Teslas batteri är i gott skick, vilket eliminerar osäkerhet om dold degradering. Denna transparens bygger förtroende och kan motivera ett högre försäljningspris. Köpare är villiga att betala mer för fordon med bevisad batterihälsa, eftersom det minskar deras risk för dyra batteribyte.",
+      "one_time_question": "Är 100 kr certifikatavgiften en engångsbetalning?",
+      "one_time_answer": "Ja, 100 kr certifikatavgiften är en engångsbetalning. Du får ett verifierat PDF-certifikat som är giltigt i 3 månader och kan delas med obegränsade potentiella köpare. Det finns inga återkommande avgifter, prenumerationer eller dolda kostnader. Om du behöver ett nytt certifikat efter 3 månader kan du köpa ett till.",
+      "refund_question": "Erbjuder ni återbetalning för certifikat?",
+      "refund_answer": "Vi erbjuder en 30-dagars pengar-tillbaka-garanti för alla certifikatköp. Om du inte är nöjd med ditt certifikat av någon anledning, kontakta oss inom 30 dagar så ger vi full återbetalning. Observera dock att när ett certifikat har verifierats av en köpare kan vi inte ge återbetalning eftersom tjänsten har använts."
+    },
+    "service": {
+      "title": "Tjänst & Noggrannhet",
+      "how_works_question": "Hur fungerar batterihälsoutvärderingen?",
+      "how_works_answer": "Vårt system ansluter till din Tesla via den officiella Tesla API och analyserar din batteridata i realtid. Vi jämför din aktuella batterikapacitet mot ursprungliga specifikationer för ditt fordonmodell och år, sedan beräknar vi degraderingsprocenten. Utvärderingen tar cirka 30 sekunder och ger omedelbara resultat.",
+      "accuracy_question": "Hur noggrann är er batterihälsoutvärdering?",
+      "accuracy_answer": "Vår utvärdering är mycket noggrann eftersom vi använder Teslas egna API-data, vilket är samma data som Tesla använder internt. Vi jämför ditt batteri mot tillverkarspecifikationer och verkliga riktmärken. Batterihälsa kan dock variera beroende på användningsmönster, så vi rekommenderar att använda detta som ett verktyg i din övergripande fordonutvärdering.",
+      "certificate_validity_question": "Hur länge är certifikatet giltigt?",
+      "certificate_validity_answer": "Certifikat är giltiga i 3 månader från köpdatum. Denna tidsram säkerställer att data förblir aktuell samtidigt som du får tillräckligt med tid för att slutföra en försäljning. Batterihälsa förändras inte betydligt på 3 månader, så utvärderingen förblir relevant för de flesta transaktioner.",
+      "verification_question": "Hur kan köpare verifiera mitt certifikat?",
+      "verification_answer": "Varje certifikat innehåller en unik QR-kod som köpare kan skanna för att verifiera autenticitet på vår webbplats. Verifieringssidan visar certifikatdetaljer och bekräftar att det utfärdades av batterycert.com. Detta förhindrar bedrägeri och säkerställer att köpare kan lita på batterihälsodata.",
+      "support_question": "Vad händer om jag har tekniska problem eller frågor?",
+      "support_answer": "Vi tillhandahåller omfattande support för alla våra tjänster. Om du stöter på tekniska problem, har frågor om din batteriutvärdering eller behöver hjälp med ditt certifikat kan du kontakta oss via våra supportkanaler. Vi svarar normalt inom 24 timmar och är engagerade i att säkerställa att du har en positiv upplevelse med vår tjänst."
+    },
+    "contact": {
+      "title": "Har du fortfarande frågor?",
+      "description": "Vi är här för att hjälpa! Om du har frågor om vår tjänst, integritet eller behöver teknisk support, tveka inte att kontakta oss.",
+      "check_battery": "Kontrollera mitt batteri",
+      "learn_more": "Läs mer"
+    }
+  },
+  "regions": {
+    "na": "Nordamerika & Asien-Stillahavsregionen",
+    "eu": "Europa, Mellanöstern & Afrika"
+  },
+  "check_page": {
+    "meta": {
+      "title": "Kontrollera din Tesla-batterihälsa - Gratis omedelbar utvärdering | batterycert.com",
+      "description": "Få en omedelbar, gratis Tesla-batterihälsokontroll. Anslut ditt Tesla-konto för att få detaljerad degraderingsanalys och batterikapacitetsdata på 30 sekunder.",
+      "keywords": "Tesla batterikontroll, batterihälsatest, Tesla degraderingskontroll, gratis batteriutvärdering, Tesla batterianalys"
+    },
+    "title": "Kontrollera din Tesla-batterihälsa",
+    "subtitle": "Anslut ditt Tesla-konto för att få en omedelbar batterihälsoutvärdering",
+    "region_notice": "Använder Tesla {regionName} servrar",
+    "wrong_region": "Fel region? Ändra här",
+    "connect_button": "Anslut med Tesla-konto",
+    "connecting": "Ansluter till Tesla...",
+    "security_title": "Din säkerhet är vår prioritet",
+    "security_points": {
+      "no_credentials": "Vi lagrar aldrig dina Tesla-inloggningsuppgifter",
+      "encrypted": "Anslutningen är krypterad och säker",
+      "battery_only": "Vi kommer endast åt batteridata, inget annat"
+    },
+    "features": {
+      "secure_connection": {
+        "title": "Säker anslutning",
+        "description": "256-bitars kryptering"
+      },
+      "no_storage": {
+        "title": "Ingen lagring",
+        "description": "Inloggningsuppgifter sparas inte"
+      },
+      "instant_results": {
+        "title": "Omedelbara resultat",
+        "description": "30 sekunder eller mindre"
+      }
+    }
+  },
+  "vehicles_page": {
+    "meta": {
+      "title": "Välj ditt Tesla-fordon - Batterihälsokontroll | batterycert.com",
+      "description": "Välj vilket Tesla-fordon som ska analyseras. Få omedelbar batterihälsoutvärdering med degraderingsprocent och kapacitetsdata.",
+      "keywords": "Tesla fordonval, flera Tesla-bilar, batterihälsokontroll, Tesla flottanalys"
+    },
+    "loading": {
+      "title": "Laddar dina fordon...",
+      "description": "Hämtar dina Tesla-fordon från ditt konto"
+    },
+    "title": "Välj din Tesla",
+    "subtitle": "Välj fordonet du vill kontrollera. Vi analyserar dess batterihälsa på bara 30 sekunder.",
+    "checking_battery": "Kontrollerar batterihälsa...",
+    "vehicle_card": {
+      "charging": "Laddar",
+      "online": "Online",
+      "asleep": "Sover",
+      "offline": "Offline",
+      "asleep_can_wake": "Sover (Kan vakna)",
+      "miles": "miles",
+      "kilometers": "km",
+      "vin": "Chassinummer",
+      "battery_level": "Batterinivå",
+      "range": "Räckvidd",
+      "temperature": "Temperatur",
+      "last_seen": "Senast sedd",
+      "odometer": "Mätarställning",
+      "selected": "Vald",
+      "select_this_vehicle": "Välj detta fordon"
+    },
+    "no_vehicles": {
+      "title": "Inga fordon hittades",
+      "description": "Vi kunde inte hitta några Tesla-fordon kopplade till ditt konto. Se till att du har fordon registrerade på ditt Tesla-konto.",
+      "try_again": "Försök igen"
+    },
+    "info_cards": {
+      "instant_analysis": {
+        "title": "Omedelbar analys",
+        "description": "Få dina batterihälsoresultat på 30 sekunder"
+      },
+      "detailed_report": {
+        "title": "Detaljerad rapport",
+        "description": "Analys med degraderingsprocent och kapacitetsdata"
+      },
+      "verified_certificate": {
+        "title": "Verifierat certifikat",
+        "description": "Valfritt 100 kr verifierat certifikat för köp-/försäljningsskydd"
+      }
+    },
+    "errors": {
+      "failed_to_load": "Misslyckades att ladda dina fordon. Försök igen.",
+      "failed_battery_check": "Misslyckades att kontrollera batterihälsa. Försök igen."
+    }
+  },
+  "region_selection": {
+    "title": "Välj din region",
+    "description": "Tesla använder olika servrar för olika regioner. Vänligen välj din för bästa upplevelse.",
+    "recommended": "Rekommenderas",
+    "continue_button": "Fortsätt till Tesla-kontroll",
+    "settings_note": "Du kan ändra detta senare i inställningarna om det behövs.",
+    "includes": "Inkluderar"
+  },
+  "stripe_receipt": {
+    "description": "Tesla Batterihälsocertifikat",
+    "certificate_access": "Certifikatåtkomst",
+    "vehicle": "Fordon",
+    "certificate_id": "Certifikat-ID",
+    "footer": "Tack för ditt köp. Ditt certifikat är nu tillgängligt för nedladdning och delning."
+  }
+}

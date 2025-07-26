@@ -5,6 +5,16 @@ export const locales = [
   "en-US", // English (US)
   "en-GB", // English (UK)
   "de-DE", // German (Germany)
+  "es-ES", // Spanish (Spain)
+  "fr-FR", // French (France)
+  "it-IT", // Italian (Italy)
+  "cs-CZ", // Czech (Czech Republic)
+  "fi-FI", // Finnish (Finland)
+  "nl-NL", // Dutch (Netherlands)
+  "no-NO", // Norwegian (Norway)
+  "pl-PL", // Polish (Poland)
+  "sv-SE", // Swedish (Sweden)
+  "tr-TR", // Turkish (Turkey)
 ];
 export const defaultLocale = "en-US";
 
@@ -46,6 +56,16 @@ function getLocale(request: NextRequest): string {
       const languageFallbacks: Record<string, string> = {
         en: detectRegionFromHeaders(request) === "eu" ? "en-GB" : "en-US",
         de: "de-DE",
+        es: "es-ES",
+        fr: "fr-FR",
+        it: "it-IT",
+        cs: "cs-CZ",
+        fi: "fi-FI",
+        nl: "nl-NL",
+        no: "no-NO",
+        pl: "pl-PL",
+        sv: "sv-SE",
+        tr: "tr-TR",
       };
 
       if (

@@ -1,0 +1,565 @@
+{
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Hata",
+    "success": "Başarılı",
+    "retry": "Tekrar dene",
+    "back": "Geri",
+    "next": "İleri",
+    "continue": "Devam et",
+    "cancel": "İptal",
+    "close": "Kapat",
+    "save": "Kaydet",
+    "delete": "Sil",
+    "edit": "Düzenle",
+    "share": "Paylaş",
+    "download": "İndir"
+  },
+  "navigation": {
+    "home": "Ana Sayfa",
+    "check": "Pil kontrolü",
+    "certificates": "Sertifikalar",
+    "about": "Hakkında",
+    "faq": "SSS",
+    "terms": "Hizmet şartları",
+    "contact": "İletişim",
+    "language": "Dil"
+  },
+  "meta": {
+    "homepage": {
+      "title": "Tesla Pil Sağlığı Kontrolü - 30 saniyede anlık sonuçlar | batterycert.com",
+      "description": "Ücretsiz değerlendirme aracımızla Tesla pil sağlığınızı anında kontrol edin. Doğrulanmış pil bozulma verileri, kapasite analizi ve Tesla'nızı alıp satmak için isteğe bağlı PDF sertifikaları alın.",
+      "og_title": "Tesla Pil Sağlığı Kontrolü - 30 saniyede anlık sonuçlar",
+      "og_description": "Anında, doğrulanmış Tesla pil sağlığı değerlendirmeleri alın. Satın alma, satma veya Tesla'nızın gerçek durumunu bilmek için mükemmel.",
+      "og_alt": "Tesla Pil Sağlığı Kontrolü"
+    }
+  },
+  "structured_data": {
+    "service": {
+      "name": "Tesla Pil Sağlığı Kontrolü",
+      "description": "Anında, doğrulanmış Tesla pil sağlığı değerlendirmeleri alın. Satın alma, satma veya Tesla'nızın gerçek durumunu bilmek için mükemmel.",
+      "service_type": "Pil Sağlığı Değerlendirmesi",
+      "area_served": "Dünya çapında",
+      "offer_description": "Ücretsiz Tesla pil sağlığı kontrolü"
+    }
+  },
+  "homepage": {
+    "navigation": {
+      "about": "Hakkında"
+    },
+    "hero": {
+      "title": "Tesla Pilinizi Kontrol Edin",
+      "title_highlight": "30 saniyede",
+      "cta_primary": "Tesla'mı kontrol et",
+      "cta_secondary": "Örnek sertifika görüntüle"
+    },
+    "hero_features": {
+      "free_check": "Ücretsiz pil sağlığı kontrolü",
+      "no_account": "Hesap gerekmez",
+      "instant_results": "Anlık sonuçlar",
+      "optional_certificate": "İsteğe bağlı sertifika (9€)"
+    },
+    "problem_section": {
+      "title": "Pil değişimi = ",
+      "title_price": "15.000€+",
+      "subtitle": "Alıcılar, gizli pil sorunlarıyla dolandırılmayın",
+      "video_title": "Pil sağlığının neden önemli olduğunu görün",
+      "video_description": "Yaygın dolandırıcılığı anlamak için bu videoyu izleyin. batterycert.com bunu önlemenize yardımcı olur.",
+      "cards": {
+        "hidden_issues": {
+          "title": "Gizli sorunları bulun",
+          "description": "Satıcılar bozulma sorunlarını gizler"
+        },
+        "trusted_data": {
+          "title": "Güvenilir veri",
+          "description": "Tesla'nın sistemlerinden doğrudan"
+        },
+        "higher_value": {
+          "title": "Daha yüksek değer",
+          "description": "Kanıtlanmış sağlık fiyatı artırır"
+        }
+      }
+    },
+    "how_it_works": {
+      "title": "Basit 3 adımlı süreç",
+      "steps": {
+        "connect": {
+          "title": "Bağlan",
+          "description": "Tesla'nın resmi OAuth'u ile güvenli bağlantı. Kimlik bilgilerinizi asla görmeyiz - doğrudan Tesla ile kimlik doğrulaması yaparsınız."
+        },
+        "analyze": {
+          "title": "Analiz et",
+          "description": "Sistemimiz Tesla API'sini kullanarak pil verilerinizi anında analiz eder ve bozulma yüzdesini hesaplar."
+        },
+        "certificate": {
+          "title": "İsteğe bağlı: Sertifika",
+          "description": "Alıcıların doğrulaması için QR kodlu doğrulanmış PDF sertifikası alın. 3 ay geçerli. Tek seferlik 9€ ücret."
+        }
+      }
+    },
+    "use_cases": {
+      "title": "Mükemmel ",
+      "title_buyers": "Alıcılar",
+      "title_sellers": "Satıcılar",
+      "title_owners": "Sahipleri",
+      "buyers": {
+        "title": "Alıcılar",
+        "description": "15.000€+ sürprizlerden kaçının"
+      },
+      "sellers": {
+        "title": "Satıcılar",
+        "description": "Yeniden satış değerini artırın"
+      },
+      "owners": {
+        "title": "Sahipleri",
+        "description": "Pil sağlığını takip edin"
+      }
+    },
+    "cta_section": {
+      "title": "Tesla pilinizi kontrol etmeye hazır mısınız?",
+      "subtitle": "Doğru, anlık pil sağlığı raporları için batterycert.com'a güvenen binlerce Tesla sahibine katılın.",
+      "button_text": "Tesla pilimi şimdi kontrol et",
+      "features": {
+        "free_registration": "Ücretsiz • Kayıt gerekmez",
+        "speed": "30 saniye • Anlık sonuçlar",
+        "certificate": "İsteğe bağlı 9€ sertifika"
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 batterycert.com. Adil oyun adına Tesla sahipleri ve alıcıları için inşa edildi.",
+      "language_switcher": "Dili değiştir:"
+    }
+  },
+  "certificate_page": {
+    "meta": {
+      "not_found_title": "Sertifika bulunamadı - batterycert.com",
+      "not_found_description": "İstenen Tesla pil sertifikası bulunamadı.",
+      "title": "{vehicleName} - Tesla Pil Sertifikası - batterycert.com",
+      "description": "{vehicleName} için Tesla pil sağlığı sertifikasını detaylı bozulma analizi, kapasite verileri ve doğrulama QR kodu ile görüntüleyin.",
+      "default_title": "Tesla Pil Sertifikası - batterycert.com",
+      "default_description": "Detaylı bozulma analizi, kapasite verileri ve doğrulama QR kodu ile Tesla pil sağlığı sertifikanızı görüntüleyin.",
+      "keywords": "Tesla pil sertifikası, pil sağlığı raporu, pil bozulma sertifikası, Tesla pil doğrulaması"
+    },
+    "not_found": {
+      "title": "Sertifika bulunamadı",
+      "description": "\"{id}\" sertifika kimliği bulunamadı veya süresi dolmuş olabilir.",
+      "button": "Tesla pilinizi kontrol edin"
+    },
+    "fraud_protection": {
+      "title": "Dolandırıcılık koruması doğrulandı",
+      "description": "Bu sertifika kurcalamaya karşı dayanıklıdır ve Tesla'nın resmi sistemlerine doğrudan bağlıdır. Aşağıdaki QR kodu anında doğruluk doğrulamasına izin verir. Alıcılar bu değerlendirmenin gerçek ve doğru olduğuna güvenebilir."
+    },
+    "certificate_locked": {
+      "title": "Sertifika kilitli",
+      "description": "Tam doğrulanmış sertifikayı şunlarla açmak için yukarıdaki ödemenizi tamamlayın:",
+      "features": {
+        "detailed_analysis": "Detaylı pil sağlığı analizi",
+        "degradation_percentage": "Resmi bozulma yüzdesi",
+        "qr_code": "Doğrulama QR kodu",
+        "downloadable_pdf": "İndirilebilir PDF sertifikası",
+        "fraud_protection": "Dolandırıcılık koruması garantisi"
+      }
+    },
+    "verification_footer": {
+      "verified_by": "batterycert.com tarafından doğrulandı",
+      "verification_description": "Bu sertifika QR kod veya sertifika kimliği kullanılarak doğrulanabilir:",
+      "generated": "Oluşturuldu:",
+      "valid_for": "3 ay geçerli",
+      "verify_certificate": "Sertifikayı doğrula"
+    }
+  },
+  "certificate_display": {
+    "chart": {
+      "title": "Zaman içinde pil sağlığı",
+      "this_vehicle": "Bu araç",
+      "tesla_average": "Tesla ortalaması"
+    },
+    "title": "Tesla verilerinden pil sağlığı raporu",
+    "certificate_id": "Sertifika kimliği",
+    "health_score": "Sağlık skoru",
+    "scan_to_verify": "Doğrulamak için tara",
+    "vehicle_information": "Araç bilgileri",
+    "model": "Model",
+    "vin": "Şasi numarası",
+    "year": "Yıl",
+    "assessment_details": "Değerlendirme detayları",
+    "test_date": "Test tarihi",
+    "mileage": "Kilometre",
+    "software_version": "Yazılım versiyonu",
+    "not_available": "Mevcut değil",
+    "valid_until": "Geçerli olduğu tarih",
+    "battery_performance": "Pil performans metrikleri",
+    "better_than_percentage": "Benzer araçların {percentage}%'inden daha iyi",
+    "degradation_comparison": "Ortalamaya karşı bozulma karşılaştırması",
+    "detailed_analysis": "Detaylı analiz",
+    "battery_specifications": "Pil özellikleri",
+    "original_capacity": "Orijinal kapasite",
+    "current_capacity": "Mevcut kapasite",
+    "current_label": "Mevcut",
+    "vs_label": "vs",
+    "health_label": "Sağlık",
+    "average_label": "Ortalama",
+    "confidence_levels": {
+      "high": "Yüksek",
+      "medium": "Orta",
+      "low": "Düşük"
+    },
+    "full_charge_range": "Tam şarj menzili",
+    "capacity_loss": "Kapasite kaybı",
+    "methodology": "Metodoloji",
+    "performance_indicators": "Performans göstergeleri",
+    "battery_chemistry": "Pil kimyası",
+    "battery_supplier": "Pil tedarikçisi",
+    "confidence_level": "Güven seviyesi",
+    "overall_condition": "Genel durum",
+    "assessment_summary": "Değerlendirme özeti",
+    "summary_excellent": "Bu {vehicleName} {degradation}% bozulma ile mükemmel pil sağlığı gösterir. Pil kullanımı için olağanüstü iyi performans gösteriyor. {originalCapacity} kWh orijinal kapasiteden {currentCapacity} kWh mevcut kapasite. Bu araç pil ile ilgili riskleri minimal olan mükemmel bir satın alma fırsatı temsil eder.",
+    "summary_good": "Bu {vehicleName} {degradation}% bozulma ile iyi pil sağlığı gösterir. Pil kullanımı için iyi performans gösteriyor. {originalCapacity} kWh orijinal kapasiteden {currentCapacity} kWh mevcut kapasite. Bu araç normal aşınma modelleri ile iyi bir satın alma fırsatı temsil eder.",
+    "summary_fair": "Bu {vehicleName} {degradation}% bozulma ile adil pil sağlığı gösterir. Pil kullanımı için yeterli performans gösteriyor. {originalCapacity} kWh orijinal kapasiteden {currentCapacity} kWh mevcut kapasite. Bu araç ortalamanın üzerinde bozulma gösterir ve dikkatle değerlendirilmelidir.",
+    "conditions": {
+      "excellent": "Mükemmel",
+      "good": "İyi",
+      "average": "Ortalama",
+      "fair": "Adil",
+      "poor": "Kötü"
+    },
+    "units": {
+      "kwh": "kWh",
+      "miles": "mil",
+      "km": "km"
+    }
+  },
+  "certificate_payment": {
+    "payment_required": "Ödeme gerekli",
+    "certificate_description": "Bu sertifika tam doğrulanmış raporu açmak için ödeme gerektirir.",
+    "pricing_description": "Doğrulama QR kodu ve dolandırıcılık koruması ile resmi Tesla pil sağlığı sertifikanızı alın.",
+    "pricing_loading": "Yükleniyor...",
+    "pricing_error": "Fiyat bilgileri yüklenemedi",
+    "certificate_price": "Sertifika fiyatı",
+    "payment_button": "Ödemeyi tamamla",
+    "payment_processing": "İşleniyor...",
+    "loading": "Yükleniyor...",
+    "secure_payment": "Stripe ile güvenli ödeme • Ödemeden sonra anında erişim • E-posta makbuzu dahil"
+  },
+  "hero_visual": {
+    "verified_certificate": "Doğrulanmış sertifika",
+    "battery_health_report": "Tesla pil sağlığı raporu",
+    "certificate_id": "Sertifika kimliği",
+    "certified": "SERTİFİKALI",
+    "verified": "DOĞRULANDI",
+    "health_score": "Sağlık skoru",
+    "vehicle_information": "Araç bilgileri",
+    "model": "Model",
+    "tesla_model_y": "Tesla Model Y Long Range",
+    "year": "Yıl",
+    "vin": "Şasi numarası",
+    "battery_metrics": "Pil metrikleri",
+    "current_capacity": "Mevcut kapasite",
+    "degradation": "Bozulma",
+    "est_range": "Tahmini menzil",
+    "miles": "mil",
+    "degradation_comparison": "Ortalamaya karşı bozulma karşılaştırması",
+    "better_than_percentage": "Benzer araçların 78%'inden daha iyi",
+    "this_vehicle": "Bu araç (92%)",
+    "average": "Ortalama (85%)",
+    "verified_data": "Doğrulanmış veri",
+    "direct_tesla_api": "Doğrudan Tesla API",
+    "tamper_proof": "Kurcalamaya karşı dayanıklı",
+    "qr_verification": "QR doğrulaması",
+    "increase_value": "Değeri artır",
+    "proven_health": "Kanıtlanmış sağlık",
+    "scan_to_verify": "Doğrulamak için tara",
+    "verified_by": "batterycert.com tarafından doğrulandı",
+    "generated": "Oluşturuldu",
+    "generated_date": "24 Tem 2025",
+    "valid_for_one_year": "3 ay geçerli"
+  },
+  "gdpr": {
+    "title": "Gizliliğinize saygı duyuyoruz",
+    "message": "Deneyiminizi geliştirmek, site trafiğini analiz etmek ve içeriği kişiselleştirmek için çerezler ve benzer teknolojiler kullanıyoruz. Tesla verileriniz güvenli bir şekilde işlenir ve üçüncü taraflarla asla paylaşılmaz.",
+    "accept_all": "Tümünü kabul et",
+    "decline": "Reddet",
+    "cookie_settings": "Çerez ayarları",
+    "essential_only": "Sadece gerekli",
+    "settings": {
+      "essential_cookies": "Gerekli çerezler",
+      "always_on": "Her zaman açık",
+      "analytics": "Analitik",
+      "marketing": "Pazarlama",
+      "optional": "İsteğe bağlı",
+      "back": "Geri"
+    }
+  },
+  "tesla_check": {
+    "back_to_home": "Ana sayfaya dön",
+    "results": {
+      "battery_degradation": "Pil bozulması",
+      "battery_health": "Pil sağlığı",
+      "excellent": "Mükemmel",
+      "good": "İyi",
+      "fair": "Adil",
+      "current_capacity": "Mevcut kapasite",
+      "original_capacity": "Orijinal kapasite",
+      "current_charge": "Mevcut şarj"
+    },
+    "certificate_promo": {
+      "title": "Resmi sertifikanızı alın",
+      "subtitle": "Sonuçlarınızı Tesla'nızın değerini artıran doğrulanmış bir belgeye dönüştürün",
+      "free_section": {
+        "title": "ÜCRETSİZ aldığınız şeyler",
+        "degradation": "✓ Pil bozulma yüzdesi",
+        "capacity": "✓ Mevcut kapasite verileri",
+        "charge": "✓ Mevcut şarj seviyesi"
+      },
+      "paid_section": {
+        "title": "Resmi sertifika (9€)",
+        "full_dataset": "✓ Aracınız için tam veri seti",
+        "peer_comparison": "✓ Benzer araçlarla karşılaştırma",
+        "pdf_certificate": "✓ Şasi numaralı tarihli PDF sertifikası",
+        "authenticity": "✓ Alıcılar için doğruluk doğrulaması",
+        "physical_option": "✓ Fiziksel sertifika seçeneği",
+        "performance_ranking": "✓ Performans seviye sıralaması"
+      },
+      "purchase_button": "Sertifika satın al",
+      "sample_link": "Örnek sertifika",
+      "features": "💎 Anında indirme • 🔒 Güvenli ödeme • 📄 3 ay geçerli"
+    },
+    "auth_form": {
+      "title": "Pil sağlığınızı kontrol edin",
+      "subtitle": "Anlık pil sağlığı değerlendirmesi almak için Tesla hesabınızı bağlayın",
+      "region_info": "Tesla {regionName} sunucuları kullanılıyor",
+      "region_change": "Yanlış bölge mi? Buradan değiştirin",
+      "connect_button": "Tesla hesabı ile bağlan",
+      "connecting": "Tesla'ya bağlanıyor...",
+      "try_again": "Tekrar dene",
+      "retry_info": "Tesla oturumunuzu hatırlayabilir ve daha hızlı bağlanabilir"
+    },
+    "security": {
+      "title": "Güvenliğiniz önceliğimizdir",
+      "no_storage": "• Tesla kimlik bilgilerinizi asla saklamayız",
+      "encrypted": "• Bağlantı şifrelenmiş ve güvenlidir",
+      "battery_only": "• Sadece pil verilerine erişiriz, başka hiçbir şeye değil"
+    },
+    "features": {
+      "secure_connection": {
+        "title": "Güvenli bağlantı",
+        "subtitle": "256 bit şifreleme"
+      },
+      "no_storage": {
+        "title": "Saklama yok",
+        "subtitle": "Kimlik bilgileri kaydedilmez"
+      },
+      "instant_results": {
+        "title": "Anlık sonuçlar",
+        "subtitle": "30 saniye veya daha az"
+      }
+    }
+  },
+  "vehicle_selection": {
+    "back_to_login": "Girişe geri dön",
+    "loading": {
+      "title": "Araçlarınız yükleniyor...",
+      "description": "Hesabınızdan Tesla araçlarınız alınıyor"
+    },
+    "page": {
+      "title": "Tesla'nızı seçin",
+      "subtitle": "Kontrol etmek istediğiniz aracı seçin. Pil sağlığını sadece 30 saniyede analiz edeceğiz."
+    },
+    "checking_battery": "Pil sağlığı kontrol ediliyor...",
+    "no_vehicles": {
+      "title": "Araç bulunamadı",
+      "description": "Hesabınızla ilişkili Tesla aracı bulamadık. Tesla hesabınızda kayıtlı araçlarınız olduğundan emin olun.",
+      "try_again": "Tekrar dene"
+    },
+    "info_cards": {
+      "instant_analysis": {
+        "title": "Anlık analiz",
+        "description": "30 saniyede pil sağlığı sonuçlarınızı alın"
+      },
+      "detailed_report": {
+        "title": "Detaylı rapor",
+        "description": "Bozulma yüzdesi ve kapasite verileri ile analiz"
+      },
+      "verified_certificate": {
+        "title": "Doğrulanmış sertifika",
+        "description": "Satın alma/satma koruması için isteğe bağlı 9€ doğrulanmış sertifika"
+      }
+    },
+    "errors": {
+      "failed_to_load": "Araçlarınız yüklenemedi. Lütfen tekrar deneyin.",
+      "failed_battery_check": "Pil sağlığı kontrol edilemedi. Lütfen tekrar deneyin."
+    }
+  },
+  "certificate_actions": {
+    "share": "Paylaş",
+    "copied": "Kopyalandı!",
+    "download_pdf": "PDF indir",
+    "generating": "Oluşturuluyor...",
+    "share_title": "Tesla pil sertifikası - {certificateId}",
+    "share_text": "Bu Tesla pil sağlığı sertifikasına göz atın",
+    "download_error": "PDF indirilemedi: {error}"
+  },
+  "faq": {
+    "meta": {
+      "title": "Sık sorulan sorular - Tesla pil sağlığı kontrolü | batterycert.com",
+      "description": "Tesla pil sağlığı kontrolü hizmetimiz, gizlilik, fiyatlandırma ve sertifikalarımızın nasıl çalıştığı hakkında yaygın sorulara cevaplar alın.",
+      "keywords": "Tesla pil SSS, pil sağlığı soruları, gizlilik politikası, fiyatlandırma, sertifika doğrulaması"
+    },
+    "page_title": "Sık sorulan sorular",
+    "hero": {
+      "title": "Sık sorulan sorular",
+      "subtitle": "Tesla pil sağlığı kontrolü hizmetimiz hakkında bilmeniz gereken her şey"
+    },
+    "privacy": {
+      "title": "Gizlilik ve güvenlik",
+      "oauth_question": "Tesla OAuth nasıl çalışır ve hangi verilere erişirsiniz?",
+      "oauth_answer": "Tesla'nın resmi OAuth sistemini kullanıyoruz, bu da doğrudan Tesla ile kimlik doğrulaması yaptığınız anlamına gelir - kullanıcı adınızı veya şifrenizi asla görmeyiz. Tesla'ın üçüncü taraf uygulamaların okumasına izin verdiği temel araç bilgilerine ve pil verilerine sadece erişiriz. Kişisel bilgilerinize, ödeme detaylarınıza veya diğer Tesla hesap verilerinize erişemeyiz.",
+      "data_access_question": "Tesla'mdan hangi özel verileri topluyorsunuz?",
+      "data_access_answer": "Sadece pil ile ilgili verileri topluyoruz: mevcut pil seviyesi, kullanılabilir pil kapasitesi, tahmini menzil ve araç özellikleri (model, yıl, şasi numarası). Konumunuz, sürüş geçmişiniz, kişisel ayarlarınız veya diğer araç verilerinize erişmiyoruz. Analizimiz sadece pil sağlığı ve bozulmaya odaklanır.",
+      "credentials_question": "Tesla giriş kimlik bilgilerimi saklıyor musunuz?",
+      "credentials_answer": "Kesinlikle hayır. Tesla kullanıcı adınızı, şifrenizi veya diğer giriş kimlik bilgilerinizi asla görmeyiz, saklamayız veya erişimimiz olmaz. OAuth süreci tamamen sizinle Tesla arasında gerçekleşir. Pil verilerinizi okumak için kullandığımız geçici bir erişim tokeni alırız ve bu token otomatik olarak sona erer.",
+      "storage_question": "Verilerimi ne kadar süre saklıyorsunuz?",
+      "storage_answer": "Pil değerlendirme verilerinizi sadece hizmeti sağlamak için gerekli olduğu kadar saklıyoruz. Sertifika satın alırsanız, doğrulama amaçları için sertifika verilerini saklarız. Bize ulaşarak verilerinizin silinmesini istediğinizde silebilirsiniz. Kişisel verilerinizi üçüncü taraflarla satmaz, kiralamaz veya paylaşmayız.",
+      "third_party_question": "Verilerimi üçüncü taraflarla paylaşıyor musunuz?",
+      "third_party_answer": "Hayır, kişisel verilerinizi üçüncü taraflarla satmaz, kiralamaz veya paylaşmayız. Tek istisnalar şunlardır: 1) Sertifika satın alımları için ödeme işleme (Stripe), 2) Yasa tarafından zorunlu kılınırsa yasal gereksinimler, 3) Platformumuzu işletmemize yardımcı olan hizmet sağlayıcıları (katı gizlilik anlaşmaları altında)."
+    },
+    "pricing": {
+      "title": "Fiyatlandırma ve sertifikalar",
+      "why_charge_question": "Pil kontrolü ücretsizken neden sertifikalar için ücret alıyorsunuz?",
+      "why_charge_answer": "Pil sağlığı kontrolü tamamen ücretsizdir çünkü Tesla sahiplerinin araçlarının durumunu anlamalarına yardımcı olmak istiyoruz. Sertifikalar için ücret alıyoruz çünkü ek maliyetler gerektirirler: Tesla API kullanım ücretleri, PDF oluşturma, güvenli depolama ve doğrulama sistemleri. Ayrıca, ücretli bir sertifika alıcılara şeffaflık konusunda ciddi olduğunuzu gösterir ve aracınızın değerini artırır.",
+      "api_costs_question": "Bahsettiğiniz Tesla API maliyetleri nelerdir?",
+      "api_costs_answer": "Tesla araç verilerine API erişimi için ücret alır. Bireysel pil kontrolleri nispeten ucuz olsa da, doğrulanmış sertifika hizmeti sağlamak doğrulama için sürekli API erişimi gerektirir, bu da aylık maliyetlere neden olur. 9€ sertifika ücretimiz bu operasyonel maliyetleri karşılamaya yardımcı olurken hizmeti erişilebilir tutar.",
+      "certificate_value_question": "Bir sertifika aracımın değerini nasıl artırır?",
+      "certificate_value_answer": "Doğrulanmış bir pil sertifikası, potansiyel alıcılara Tesla'nızın pilinin iyi durumda olduğunu kanıtlar, gizli bozulma konusundaki belirsizliği ortadan kaldırır. Bu şeffaflık güven oluşturur ve daha yüksek bir satış fiyatını haklı çıkarabilir. Alıcılar kanıtlanmış pil sağlığına sahip araçlar için daha fazla ödemeye isteklidir çünkü pahalı pil değiştirme maliyetleri riskini azaltır.",
+      "one_time_question": "9€ sertifika ücreti tek seferlik bir ödeme mi?",
+      "one_time_answer": "Evet, 9€ sertifika ücreti tek seferlik bir ödemedir. 3 ay geçerli ve sınırsız potansiyel alıcıyla paylaşılabilen doğrulanmış bir PDF sertifikası alırsınız. Tekrarlayan ücretler, abonelikler veya gizli maliyetler yoktur. 3 ay sonra yeni bir sertifikaya ihtiyacınız varsa başka bir tane satın alabilirsiniz.",
+      "refund_question": "Sertifikalar için iade sunuyor musunuz?",
+      "refund_answer": "Tüm sertifika satın alımları için 30 günlük para iade garantisi sunuyoruz. Herhangi bir nedenle sertifikanızdan memnun değilseniz, 30 gün içinde bize ulaşın ve tam iade sağlayacağız. Ancak, bir sertifika bir alıcı tarafından doğrulandıktan sonra hizmet kullanıldığı için iade veremeyeceğimizi lütfen unutmayın."
+    },
+    "service": {
+      "title": "Hizmet ve doğruluk",
+      "how_works_question": "Pil sağlığı değerlendirmesi nasıl çalışır?",
+      "how_works_answer": "Sistemimiz Tesla'nın resmi API'si aracılığıyla Tesla'nıza bağlanır ve pil verilerinizi gerçek zamanlı olarak analiz eder. Mevcut pil kapasitenizi aracınızın model ve yılı için orijinal özelliklerle karşılaştırır, ardından bozulma yüzdesini hesaplar. Değerlendirme yaklaşık 30 saniye sürer ve anlık sonuçlar sağlar.",
+      "accuracy_question": "Pil sağlığı değerlendirmeniz ne kadar doğru?",
+      "accuracy_answer": "Değerlendirmemiz çok doğrudur çünkü Tesla'nın kendi API verilerini kullanırız, bu Tesla'nın dahili olarak kullandığı aynı verilerdir. Pilinizi üretici özellikleri ve gerçek dünya kıyaslamaları ile karşılaştırırız. Ancak, pil sağlığı kullanım modellerine göre değişebilir, bu yüzden bunu genel araç değerlendirmenizde bir araç olarak kullanmanızı öneririz.",
+      "certificate_validity_question": "Sertifika ne kadar süre geçerli?",
+      "certificate_validity_answer": "Sertifikalar satın alma tarihinden itibaren 3 ay geçerlidir. Bu süre, verilerin güncel kalmasını sağlarken bir satışı tamamlamak için yeterli zaman verir. Pil sağlığı 3 ayda önemli ölçüde değişmez, bu yüzden değerlendirme çoğu işlem için geçerli kalır.",
+      "verification_question": "Alıcılar sertifikamı nasıl doğrulayabilir?",
+      "verification_answer": "Her sertifika, alıcıların web sitemizde doğruluğu doğrulamak için tarayabileceği benzersiz bir QR kod içerir. Doğrulama sayfası sertifika detaylarını gösterir ve batterycert.com tarafından verildiğini onaylar. Bu dolandırıcılığı önler ve alıcıların pil sağlığı verilerine güvenebileceğini garanti eder.",
+      "support_question": "Teknik sorunlarım veya sorularım varsa ne olur?",
+      "support_answer": "Tüm hizmetlerimiz için kapsamlı destek sağlıyoruz. Teknik sorunlarla karşılaşırsanız, pil değerlendirmeniz hakkında sorularınız varsa veya sertifikanızla ilgili yardıma ihtiyacınız varsa, destek kanallarımız aracılığıyla bize ulaşabilirsiniz. Tipik olarak 24 saat içinde yanıt veririz ve hizmetimizle olumlu bir deneyim yaşamanızı sağlamaya kararlıyız."
+    },
+    "contact": {
+      "title": "Hala sorularınız mı var?",
+      "description": "Yardım etmek için buradayız! Hizmetimiz, gizlilik hakkında sorularınız varsa veya teknik destek gerekiyorsa, bize ulaşmaktan çekinmeyin.",
+      "check_battery": "Pilimi kontrol et",
+      "learn_more": "Daha fazla bilgi"
+    }
+  },
+  "regions": {
+    "na": "Kuzey Amerika ve Asya-Pasifik",
+    "eu": "Avrupa, Orta Doğu ve Afrika"
+  },
+  "check_page": {
+    "meta": {
+      "title": "Tesla pil sağlığınızı kontrol edin - Ücretsiz anlık değerlendirme | batterycert.com",
+      "description": "Ücretsiz, anlık Tesla pil sağlığı kontrolü alın. 30 saniyede detaylı bozulma analizi ve pil kapasite verileri almak için Tesla hesabınızı bağlayın.",
+      "keywords": "Tesla pil kontrolü, pil sağlığı testi, Tesla bozulma kontrolü, ücretsiz pil değerlendirmesi, Tesla pil analizi"
+    },
+    "title": "Tesla pil sağlığınızı kontrol edin",
+    "subtitle": "Anlık pil sağlığı değerlendirmesi almak için Tesla hesabınızı bağlayın",
+    "region_notice": "Tesla {regionName} sunucuları kullanılıyor",
+    "wrong_region": "Yanlış bölge mi? Buradan değiştirin",
+    "connect_button": "Tesla hesabı ile bağlan",
+    "connecting": "Tesla'ya bağlanıyor...",
+    "security_title": "Güvenliğiniz önceliğimizdir",
+    "security_points": {
+      "no_credentials": "Tesla kimlik bilgilerinizi asla saklamayız",
+      "encrypted": "Bağlantı şifrelenmiş ve güvenlidir",
+      "battery_only": "Sadece pil verilerine erişiriz, başka hiçbir şeye değil"
+    },
+    "features": {
+      "secure_connection": {
+        "title": "Güvenli bağlantı",
+        "description": "256 bit şifreleme"
+      },
+      "no_storage": {
+        "title": "Saklama yok",
+        "description": "Kimlik bilgileri kaydedilmez"
+      },
+      "instant_results": {
+        "title": "Anlık sonuçlar",
+        "description": "30 saniye veya daha az"
+      }
+    }
+  },
+  "vehicles_page": {
+    "meta": {
+      "title": "Tesla aracınızı seçin - Pil sağlığı kontrolü | batterycert.com",
+      "description": "Hangi Tesla aracını analiz edeceğinizi seçin. Bozulma yüzdesi ve kapasite verileri ile anlık pil sağlığı değerlendirmesi alın.",
+      "keywords": "Tesla araç seçimi, çoklu Tesla arabaları, pil sağlığı kontrolü, Tesla filo analizi"
+    },
+    "loading": {
+      "title": "Araçlarınız yükleniyor...",
+      "description": "Hesabınızdan Tesla araçlarınız alınıyor"
+    },
+    "title": "Tesla'nızı seçin",
+    "subtitle": "Kontrol etmek istediğiniz aracı seçin. Pil sağlığını sadece 30 saniyede analiz edeceğiz.",
+    "checking_battery": "Pil sağlığı kontrol ediliyor...",
+    "vehicle_card": {
+      "charging": "Şarj oluyor",
+      "online": "Çevrimiçi",
+      "asleep": "Uyku modunda",
+      "offline": "Çevrimdışı",
+      "asleep_can_wake": "Uyku modunda (Uyandırılabilir)",
+      "miles": "mil",
+      "kilometers": "km",
+      "vin": "Şasi numarası",
+      "battery_level": "Pil seviyesi",
+      "range": "Menzil",
+      "temperature": "Sıcaklık",
+      "last_seen": "Son görülme",
+      "odometer": "Kilometre sayacı",
+      "selected": "Seçildi",
+      "select_this_vehicle": "Bu aracı seç"
+    },
+    "no_vehicles": {
+      "title": "Araç bulunamadı",
+      "description": "Hesabınızla ilişkili Tesla aracı bulamadık. Tesla hesabınızda kayıtlı araçlarınız olduğundan emin olun.",
+      "try_again": "Tekrar dene"
+    },
+    "info_cards": {
+      "instant_analysis": {
+        "title": "Anlık analiz",
+        "description": "30 saniyede pil sağlığı sonuçlarınızı alın"
+      },
+      "detailed_report": {
+        "title": "Detaylı rapor",
+        "description": "Bozulma yüzdesi ve kapasite verileri ile analiz"
+      },
+      "verified_certificate": {
+        "title": "Doğrulanmış sertifika",
+        "description": "Satın alma/satma koruması için isteğe bağlı 9€ doğrulanmış sertifika"
+      }
+    },
+    "errors": {
+      "failed_to_load": "Araçlarınız yüklenemedi. Lütfen tekrar deneyin.",
+      "failed_battery_check": "Pil sağlığı kontrol edilemedi. Lütfen tekrar deneyin."
+    }
+  },
+  "region_selection": {
+    "title": "Bölgenizi seçin",
+    "description": "Tesla farklı bölgeler için farklı sunucular kullanır. En iyi deneyim için lütfen sizinkini seçin.",
+    "recommended": "Önerilen",
+    "continue_button": "Tesla kontrolüne devam et",
+    "settings_note": "Gerekirse bunu daha sonra ayarlardan değiştirebilirsiniz.",
+    "includes": "İçerir"
+  },
+  "stripe_receipt": {
+    "description": "Tesla pil sağlığı sertifikası",
+    "certificate_access": "Sertifika erişimi",
+    "vehicle": "Araç",
+    "certificate_id": "Sertifika kimliği",
+    "footer": "Satın alımınız için teşekkürler. Sertifikanız artık indirme ve paylaşım için mevcut."
+  }
+}

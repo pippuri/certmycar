@@ -1,0 +1,565 @@
+{
+  "common": {
+    "loading": "Ladataan...",
+    "error": "Virhe",
+    "success": "Onnistui",
+    "retry": "Yritä uudelleen",
+    "back": "Takaisin",
+    "next": "Seuraava",
+    "continue": "Jatka",
+    "cancel": "Peruuta",
+    "close": "Sulje",
+    "save": "Tallenna",
+    "delete": "Poista",
+    "edit": "Muokkaa",
+    "share": "Jaa",
+    "download": "Lataa"
+  },
+  "navigation": {
+    "home": "Koti",
+    "check": "Tarkista akku",
+    "certificates": "Sertifikaatit",
+    "about": "Tietoa meistä",
+    "faq": "UKK",
+    "terms": "Käyttöehdot",
+    "contact": "Yhteystiedot",
+    "language": "Kieli"
+  },
+  "meta": {
+    "homepage": {
+      "title": "Tesla Akun terveystarkistus - Välittömät tulokset 30 sekunnissa | batterycert.com",
+      "description": "Tarkista välittömästi Tesla-akkusi terveys ilmaisella arviointityökalulla. Saat varmennetut akun kulumisdata, kapasiteettianalyysit ja valinnaiset PDF-sertifikaatit Tesla-akkusi ostoa tai myyntiä varten.",
+      "og_title": "Tesla Akun terveystarkistus - Välittömät tulokset 30 sekunnissa",
+      "og_description": "Saa välittömiä, varmennettuja Tesla-akun terveysarvioita. Täydellinen ostoon, myyntiin tai Tesla-akkusi todellisen kunnon tuntemiseen.",
+      "og_alt": "Tesla Akun terveystarkistus"
+    }
+  },
+  "structured_data": {
+    "service": {
+      "name": "Tesla Akun terveystarkistus",
+      "description": "Saa välittömiä, varmennettuja Tesla-akun terveysarvioita. Täydellinen ostoon, myyntiin tai Tesla-akkusi todellisen kunnon tuntemiseen.",
+      "service_type": "Akun terveysarviointi",
+      "area_served": "Maailmanlaajuinen",
+      "offer_description": "Ilmainen Tesla akun terveystarkistus"
+    }
+  },
+  "homepage": {
+    "navigation": {
+      "about": "Tietoa meistä"
+    },
+    "hero": {
+      "title": "Tarkista Tesla-akkusi",
+      "title_highlight": "30 sekunnissa",
+      "cta_primary": "Tarkista Tesla-akkuni",
+      "cta_secondary": "Katso esimerkkisertifikaatti"
+    },
+    "hero_features": {
+      "free_check": "Ilmainen akun terveystarkistus",
+      "no_account": "Tiliä ei vaadita",
+      "instant_results": "Välittömät tulokset",
+      "optional_certificate": "Valinnainen sertifikaatti (9€)"
+    },
+    "problem_section": {
+      "title": "Akun vaihto = ",
+      "title_price": "15.000€+",
+      "subtitle": "Ostajat, älä anna huijata piilotetuilla akkuongelmilla",
+      "video_title": "Katso miksi akun terveys on tärkeää",
+      "video_description": "Katso tämä video ymmärtääksesi yleisen huijauksen. batterycert.com auttaa sinua välttämään sen.",
+      "cards": {
+        "hidden_issues": {
+          "title": "Löydä piilotetut ongelmat",
+          "description": "Myyjät piilottavat kulumisongelmat"
+        },
+        "trusted_data": {
+          "title": "Luotettavat data",
+          "description": "Suoraan Teslan järjestelmistä"
+        },
+        "higher_value": {
+          "title": "Korkeampi arvo",
+          "description": "Todistettu terveys nostaa hintaa"
+        }
+      }
+    },
+    "how_it_works": {
+      "title": "Yksinkertainen 3-vaiheinen prosessi",
+      "steps": {
+        "connect": {
+          "title": "Yhdistä",
+          "description": "Turvallinen yhteys Teslan virallisen OAuth:n kautta. Emme koskaan näe kirjautumistietojasi - kirjaudut sisään suoraan Teslassa."
+        },
+        "analyze": {
+          "title": "Analysoi",
+          "description": "Järjestelmämme analysoi välittömästi akkudatasi Teslan API:n avulla ja laskee kulumisprosentin."
+        },
+        "certificate": {
+          "title": "Valinnainen: Sertifikaatti",
+          "description": "Saa varmennettu PDF-sertifikaatti QR-koodilla ostajien varmennusta varten. Voimassa 3 kuukautta. Kertamaksu 9€."
+        }
+      }
+    },
+    "use_cases": {
+      "title": "Täydellinen ",
+      "title_buyers": "Ostajille",
+      "title_sellers": "Myyjille",
+      "title_owners": "Omistajille",
+      "buyers": {
+        "title": "Ostajat",
+        "description": "Vältä 15.000€+ yllätyksiä"
+      },
+      "sellers": {
+        "title": "Myyjät",
+        "description": "Nosta jälleenmyyntiarvoa"
+      },
+      "owners": {
+        "title": "Omistajat",
+        "description": "Seuraa akun terveyttä"
+      }
+    },
+    "cta_section": {
+      "title": "Valmis tarkistamaan Tesla-akkusi?",
+      "subtitle": "Liity tuhansiin Tesla-omistajiin, jotka luottavat batterycert.com:iin tarkkojen, välittömien akun terveysraporttien suhteen.",
+      "button_text": "Tarkista Tesla-akkuni nyt",
+      "features": {
+        "free_registration": "Ilmainen • Rekisteröitymistä ei vaadita",
+        "speed": "30 sekuntia • Välittömät tulokset",
+        "certificate": "Valinnainen 9€ sertifikaatti"
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 batterycert.com. Rakennettu Tesla-omistajille ja ostajille reilun pelin nimissä.",
+      "language_switcher": "Vaihda kieltä:"
+    }
+  },
+  "certificate_page": {
+    "meta": {
+      "not_found_title": "Sertifikaattia ei löytynyt - batterycert.com",
+      "not_found_description": "Pyydettyä Tesla-akun sertifikaattia ei löytynyt.",
+      "title": "{vehicleName} - Tesla Akun sertifikaatti - batterycert.com",
+      "description": "Katso Tesla-akun terveyssertifikaatti {vehicleName}:lle yksityiskohtaisella kulumisanalyysillä, kapasiteettidatalla ja varmennus-QR-koodilla.",
+      "default_title": "Tesla Akun sertifikaatti - batterycert.com",
+      "default_description": "Katso Tesla-akun terveyssertifikaattisi yksityiskohtaisella kulumisanalyysillä, kapasiteettidatalla ja varmennus-QR-koodilla.",
+      "keywords": "Tesla akun sertifikaatti, akun terveysraportti, akun kulumissertifikaatti, Tesla akun varmennus"
+    },
+    "not_found": {
+      "title": "Sertifikaattia ei löytynyt",
+      "description": "Sertifikaatin ID \"{id}\" ei löytynyt tai se on saattanut vanhentua.",
+      "button": "Tarkista Tesla-akkusi"
+    },
+    "fraud_protection": {
+      "title": "Petossuoja varmennettu",
+      "description": "Tämä sertifikaatti on manipuloinninvastainen ja suoraan yhdistetty Teslan virallisiin järjestelmiin. QR-koodi alla mahdollistaa välittömän aitouden varmennuksen. Ostajat voivat luottaa siihen, että tämä arviointi on aito ja tarkka."
+    },
+    "certificate_locked": {
+      "title": "Sertifikaatti lukittu",
+      "description": "Viimeistele maksusi yllä avataksesi täyden varmennetun sertifikaatin:",
+      "features": {
+        "detailed_analysis": "Yksityiskohtainen akun terveysanalyysi",
+        "degradation_percentage": "Virallinen kulumisprosentti",
+        "qr_code": "Varmennus-QR-koodi",
+        "downloadable_pdf": "Ladattava PDF-sertifikaatti",
+        "fraud_protection": "Petossuojan takuu"
+      }
+    },
+    "verification_footer": {
+      "verified_by": "Varmennettu batterycert.com:llä",
+      "verification_description": "Tämä sertifikaatti voidaan varmistaa QR-koodilla tai sertifikaatin ID:llä:",
+      "generated": "Luotu:",
+      "valid_for": "Voimassa 3 kuukautta",
+      "verify_certificate": "Varmenna sertifikaatti"
+    }
+  },
+  "certificate_display": {
+    "chart": {
+      "title": "Akun terveys ajan myötä",
+      "this_vehicle": "Tämä ajoneuvo",
+      "tesla_average": "Teslan keskiarvo"
+    },
+    "title": "Akun terveysraportti Teslan datasta",
+    "certificate_id": "Sertifikaatin ID",
+    "health_score": "Terveyspisteet",
+    "scan_to_verify": "Skannaa varmennusta varten",
+    "vehicle_information": "Ajoneuvon tiedot",
+    "model": "Malli",
+    "year": "Vuosi",
+    "vin": "Runkonumero",
+    "assessment_details": "Arviointitiedot",
+    "test_date": "Testipäivä",
+    "mileage": "Ajokilometrit",
+    "software_version": "Ohjelmistoversio",
+    "not_available": "Ei saatavilla",
+    "valid_until": "Voimassa asti",
+    "battery_performance": "Akun suorituskykymittarit",
+    "better_than_percentage": "Parempi kuin {percentage}% vastaavista ajoneuvoista",
+    "degradation_comparison": "Kulumisvertailu vs keskiarvo",
+    "detailed_analysis": "Yksityiskohtainen analyysi",
+    "battery_specifications": "Akun tekniset tiedot",
+    "original_capacity": "Alkuperäinen kapasiteetti",
+    "current_capacity": "Nykyinen kapasiteetti",
+    "capacity_loss": "Kapasiteetin menetys",
+    "full_charge_range": "Täyden latauksen kantama",
+    "current_label": "Nykyinen",
+    "vs_label": "vs",
+    "health_label": "Terveys",
+    "average_label": "Keskiarvo",
+    "confidence_levels": {
+      "high": "Korkea",
+      "medium": "Keskitaso",
+      "low": "Matala"
+    },
+    "methodology": "Metodologia",
+    "performance_indicators": "Suorituskykyindikaattorit",
+    "battery_chemistry": "Akun kemia",
+    "battery_supplier": "Akun toimittaja",
+    "confidence_level": "Luottamustaso",
+    "overall_condition": "Yleiskunto",
+    "assessment_summary": "Arviointiyhteenveto",
+    "summary_excellent": "Tämä {vehicleName} osoittaa erinomaista akun terveyttä {degradation}% kulumisella. Akku toimii poikkeuksellisen hyvin käyttötarkoituksensa mukaan. Nykyinen kapasiteetti {currentCapacity} kWh alkuperäisestä {originalCapacity} kWh. Tämä ajoneuvo edustaa erinomaista ostomahdollisuutta minimaalisilla akkuun liittyvillä riskeillä.",
+    "summary_good": "Tämä {vehicleName} osoittaa hyvää akun terveyttä {degradation}% kulumisella. Akku toimii hyvin käyttötarkoituksensa mukaan. Nykyinen kapasiteetti {currentCapacity} kWh alkuperäisestä {originalCapacity} kWh. Tämä ajoneuvo edustaa hyvää ostomahdollisuutta normaaleilla kulumismalleilla.",
+    "summary_fair": "Tämä {vehicleName} osoittaa kohtuullista akun terveyttä {degradation}% kulumisella. Akku toimii riittävästi käyttötarkoituksensa mukaan. Nykyinen kapasiteetti {currentCapacity} kWh alkuperäisestä {originalCapacity} kWh. Tämä ajoneuvo osoittaa keskimääräistä korkeampaa kulumista ja sitä tulisi harkita huolellisesti.",
+    "conditions": {
+      "excellent": "Erinomainen",
+      "good": "Hyvä",
+      "average": "Keskitaso",
+      "fair": "Kohtuullinen",
+      "poor": "Huono"
+    },
+    "units": {
+      "kwh": "kWh",
+      "miles": "mailia",
+      "km": "km"
+    }
+  },
+  "certificate_payment": {
+    "payment_required": "Maksu vaaditaan",
+    "certificate_description": "Tämä sertifikaatti vaatii maksun täyden varmennetun raportin avaamiseksi.",
+    "pricing_description": "Saa virallinen Tesla-akun terveyssertifikaattisi varmennus-QR-koodilla ja petossuojalla.",
+    "pricing_loading": "Ladataan...",
+    "pricing_error": "Hintatietojen lataaminen epäonnistui",
+    "certificate_price": "Sertifikaatin hinta",
+    "payment_button": "Viimeistele maksu",
+    "payment_processing": "Käsitellään...",
+    "loading": "Ladataan...",
+    "secure_payment": "Turvallinen maksu Stripen kautta • Välitön pääsy maksun jälkeen • Sähköpostikuitti sisältyy"
+  },
+  "hero_visual": {
+    "verified_certificate": "Varmennettu sertifikaatti",
+    "battery_health_report": "Tesla Akun terveysraportti",
+    "certificate_id": "Sertifikaatin ID",
+    "certified": "SERTIFIOITU",
+    "verified": "VARMENNETTU",
+    "health_score": "Terveyspisteet",
+    "vehicle_information": "Ajoneuvon tiedot",
+    "model": "Malli",
+    "tesla_model_y": "Tesla Model Y Long Range",
+    "year": "Vuosi",
+    "vin": "Runkonumero",
+    "battery_metrics": "Akun mittarit",
+    "current_capacity": "Nykyinen kapasiteetti",
+    "degradation": "Kuluma",
+    "est_range": "Arvioitu kantama",
+    "miles": "mailia",
+    "degradation_comparison": "Kulumisvertailu vs keskiarvo",
+    "better_than_percentage": "Parempi kuin 78% vastaavista ajoneuvoista",
+    "this_vehicle": "Tämä ajoneuvo (92%)",
+    "average": "Keskiarvo (85%)",
+    "verified_data": "Varmennetut data",
+    "direct_tesla_api": "Suora Tesla API",
+    "tamper_proof": "Manipuloinninvastainen",
+    "qr_verification": "QR-varmennus",
+    "increase_value": "Nosta arvoa",
+    "proven_health": "Todistettu terveys",
+    "scan_to_verify": "Skannaa varmennusta varten",
+    "verified_by": "Varmennettu batterycert.com:llä",
+    "generated": "Luotu",
+    "generated_date": "24. heinäkuuta 2025",
+    "valid_for_one_year": "Voimassa 3 kuukautta"
+  },
+  "gdpr": {
+    "title": "Kunnioitamme yksityisyyttäsi",
+    "message": "Käytämme evästeitä ja vastaavia teknologioita parantaaksemme kokemustasi, analysoidaksemme sivuston liikennettä ja mukauttaaksemme sisältöä. Tesla-datasi käsitellään turvallisesti eikä jaeta koskaan kolmansille osapuolille.",
+    "accept_all": "Hyväksy kaikki",
+    "decline": "Hylkää",
+    "cookie_settings": "Evästeasetukset",
+    "essential_only": "Vain välttämättömät",
+    "settings": {
+      "essential_cookies": "Välttämättömät evästeet",
+      "always_on": "Aina päällä",
+      "analytics": "Analytiikka",
+      "marketing": "Markkinointi",
+      "optional": "Valinnainen",
+      "back": "Takaisin"
+    }
+  },
+  "tesla_check": {
+    "back_to_home": "Takaisin kotiin",
+    "results": {
+      "battery_degradation": "Akun kuluma",
+      "battery_health": "Akun terveys",
+      "excellent": "Erinomainen",
+      "good": "Hyvä",
+      "fair": "Kohtuullinen",
+      "current_capacity": "Nykyinen kapasiteetti",
+      "original_capacity": "Alkuperäinen kapasiteetti",
+      "current_charge": "Nykyinen lataus"
+    },
+    "certificate_promo": {
+      "title": "Saa virallinen sertifikaattisi",
+      "subtitle": "Muunna tuloksesi varmennetuksi dokumentiksi, joka nostaa Tesla-akkusi arvoa",
+      "free_section": {
+        "title": "Mitä sait ILMAISEKSI",
+        "degradation": "✓ Akun kulumisprosentti",
+        "capacity": "✓ Nykyiset kapasiteettidata",
+        "charge": "✓ Nykyinen lataustaso"
+      },
+      "paid_section": {
+        "title": "Virallinen sertifikaatti (9€)",
+        "full_dataset": "✓ Täydellinen dataset ajoneuvollesi",
+        "peer_comparison": "✓ Vertailu vastaavien ajoneuvojen kanssa",
+        "pdf_certificate": "✓ Päivätty PDF-sertifikaatti runkonumerolla",
+        "authenticity": "✓ Aitouden varmennus ostajille",
+        "physical_option": "✓ Vaihtoehto fyysiselle sertifikaatille",
+        "performance_ranking": "✓ Suorituskykyranking"
+      },
+      "purchase_button": "Osta sertifikaatti",
+      "sample_link": "Esimerkkisertifikaatti",
+      "features": "💎 Välitön lataus • 🔒 Turvallinen maksu • 📄 Voimassa 3 kuukautta"
+    },
+    "auth_form": {
+      "title": "Tarkista akun terveys",
+      "subtitle": "Yhdistä Tesla-tilisi saadaksesi välittömän akun terveysarvioinnin",
+      "region_info": "Käyttää Teslan {regionName} palvelimia",
+      "region_change": "Väärä alue? Vaihda tästä",
+      "connect_button": "Yhdistä Tesla-tiliin",
+      "connecting": "Yhdistetään Teslaan...",
+      "try_again": "Yritä uudelleen",
+      "retry_info": "Tesla saattaa muistaa istuntosi ja yhdistää nopeammin"
+    },
+    "security": {
+      "title": "Turvallisuutesi on prioriteettimme",
+      "no_storage": "• Emme koskaan tallenna Tesla-kirjautumistietojasi",
+      "encrypted": "• Yhteys on salattu ja turvallinen",
+      "battery_only": "• Pääsemme vain akkudataan, ei muuhun"
+    },
+    "features": {
+      "secure_connection": {
+        "title": "Turvallinen yhteys",
+        "subtitle": "256-bittinen salaus"
+      },
+      "no_storage": {
+        "title": "Ei tallennusta",
+        "subtitle": "Kirjautumistietoja ei tallenneta"
+      },
+      "instant_results": {
+        "title": "Välittömät tulokset",
+        "subtitle": "30 sekuntia tai vähemmän"
+      }
+    }
+  },
+  "vehicle_selection": {
+    "back_to_login": "Takaisin kirjautumiseen",
+    "loading": {
+      "title": "Ladataan ajoneuvojasi...",
+      "description": "Haetaan Tesla-ajoneuvojasi tililtäsi"
+    },
+    "page": {
+      "title": "Valitse Tesla-akkusi",
+      "subtitle": "Valitse ajoneuvo, jonka haluat tarkistaa. Analysoimme sen akun terveyden vain 30 sekunnissa."
+    },
+    "checking_battery": "Tarkistetaan akun terveyttä...",
+    "no_vehicles": {
+      "title": "Ajoneuvoja ei löytynyt",
+      "description": "Emme löytäneet Tesla-ajoneuvoja tililtäsi. Varmista, että sinulla on ajoneuvoja rekisteröitynä Tesla-tiliisi.",
+      "try_again": "Yritä uudelleen"
+    },
+    "info_cards": {
+      "instant_analysis": {
+        "title": "Välitön analyysi",
+        "description": "Saa akun terveystuloksesi 30 sekunnissa"
+      },
+      "detailed_report": {
+        "title": "Yksityiskohtainen raportti",
+        "description": "Analyysi kulumisprosentilla ja kapasiteettidatalla"
+      },
+      "verified_certificate": {
+        "title": "Varmennettu sertifikaatti",
+        "description": "Valinnainen 9€ varmennettu sertifikaatti ostos-/myyntisuojalle"
+      }
+    },
+    "errors": {
+      "failed_to_load": "Ajoneuvojen lataaminen epäonnistui. Yritä uudelleen.",
+      "failed_battery_check": "Akun terveyden tarkistus epäonnistui. Yritä uudelleen."
+    }
+  },
+  "certificate_actions": {
+    "share": "Jaa",
+    "copied": "Kopioitu!",
+    "download_pdf": "Lataa PDF",
+    "generating": "Luodaan...",
+    "share_title": "Tesla Akun sertifikaatti - {certificateId}",
+    "share_text": "Katso tämä Tesla-akun terveyssertifikaatti",
+    "download_error": "PDF:n lataaminen epäonnistui: {error}"
+  },
+  "faq": {
+    "meta": {
+      "title": "Usein kysytyt kysymykset - Tesla Akun terveystarkistus | batterycert.com",
+      "description": "Saa vastauksia yleisiin kysymyksiin Tesla-akun terveystarkistuspalvelustamme, yksityisyydestä, hinnoittelusta ja siitä, miten sertifikaattimme toimivat.",
+      "keywords": "Tesla akun UKK, akun terveyskysymykset, yksityisyyskäytäntö, hinnat, sertifikaatin varmennus"
+    },
+    "page_title": "Usein kysytyt kysymykset",
+    "hero": {
+      "title": "Usein kysytyt kysymykset",
+      "subtitle": "Kaikki mitä sinun tarvitsee tietää Tesla-akun terveystarkistuspalvelustamme"
+    },
+    "privacy": {
+      "title": "Yksityisyys & Turvallisuus",
+      "oauth_question": "Miten Tesla OAuth toimii ja mihin dataan pääsette käsiksi?",
+      "oauth_answer": "Käytämme Teslan virallista OAuth-järjestelmää, mikä tarkoittaa, että kirjaudut sisään suoraan Teslassa - emme koskaan näe käyttäjänimeäsi tai salasanasi. Pääsemme vain perustietoihin ajoneuvosta ja akkudataan, joihin Tesla sallii kolmansien osapuolten sovellusten pääsyn. Emme voi päästä käsiksi henkilökohtaisiin tietoihisi, maksutietoihin tai muihin Tesla-tilitietoihin.",
+      "data_access_question": "Mitä tiettyjä tietoja keräätte Tesla-akkustani?",
+      "data_access_answer": "Keräämme vain akkuun liittyviä tietoja: nykyinen akkutaso, käytettävä akkukapasiteetti, arvioitu kantama ja ajoneuvon tekniset tiedot (malli, vuosi, runkonumero). Emme pääse käsiksi sijaintiisi, ajohistoriaasi, henkilökohtaisiin asetuksiin tai muihin ajoneuvodataan. Analyysimme keskittyy yksinomaan akun terveyteen ja kulumiseen.",
+      "credentials_question": "Tallennatteko Tesla-kirjautumistietojani?",
+      "credentials_answer": "Ehdottomasti ei. Emme koskaan näe, tallenna tai pääse käsiksi Tesla-käyttäjänimeesi, salasanaasi tai muihin kirjautumistietoihin. OAuth-prosessi tapahtuu kokonaan sinun ja Teslan välillä. Saamme vain väliaikaisen pääsytokenin, jota käytämme akkudatan lukemiseen, ja tämä token vanhenee automaattisesti.",
+      "storage_question": "Kuinka kauan säilytätte tietojani?",
+      "storage_answer": "Säilytämme akun arviointidataasi vain niin kauan kuin on tarpeen palvelun tarjoamiseksi. Jos ostat sertifikaatin, säilytämme sertifikaattidataa varmennustarkoituksessa. Voit pyytää tietojesi poistamista milloin tahansa ottamalla yhteyttä meihin. Emme myy, vuokraa tai jaa henkilökohtaisia tietojasi kolmansille osapuolille.",
+      "third_party_question": "Jaatteko tietojani kolmansille osapuolille?",
+      "third_party_answer": "Ei, emme myy, vuokraa tai jaa henkilökohtaisia tietojasi kolmansille osapuolille. Ainoat poikkeukset ovat: 1) Maksun käsittely (Stripe) sertifikaattien ostoa varten, 2) Oikeudelliset vaatimukset jos laki sitä vaatii, 3) Palveluntarjoajat, jotka auttavat meitä alustan toiminnassa (tiukkojen luottamuksellisuussopimusten alaisena)."
+    },
+    "pricing": {
+      "title": "Hinnoittelu & Sertifikaatit",
+      "why_charge_question": "Miksi veloitatte sertifikaateista kun akun tarkistus on ilmainen?",
+      "why_charge_answer": "Akun terveystarkistus on täysin ilmainen, koska haluamme auttaa Tesla-omistajia ymmärtämään ajoneuvonsa kunnon. Veloitamme sertifikaateista, koska ne vaativat lisäkustannuksia: Tesla API:n käyttömaksut, PDF-generointi, turvallinen tallennus ja varmennusjärjestelmät. Lisäksi maksettu sertifikaatti näyttää ostajille, että olet tosissasi läpinäkyvyydestä ja nostaa ajoneuvosi arvoa.",
+      "api_costs_question": "Mitä ovat Tesla API:n kustannukset, joista mainitsitte?",
+      "api_costs_answer": "Tesla veloittaa API:n käytöstä ajoneuvodataan. Vaikka yksittäiset akun tarkistukset ovat suhteellisen halpoja, varmennetun sertifikaattipalvelun tarjoaminen vaatii jatkuvaa API:n käyttöä varmennusta varten, mikä aiheuttaa kuukausikustannuksia. 9€ sertifikaattimaksu auttaa kattamaan nämä toimintakustannukset samalla kun palvelu pysyy saavutettavana.",
+      "certificate_value_question": "Miten sertifikaatti nostaa ajoneuvoni arvoa?",
+      "certificate_value_answer": "Varmennettu akun sertifikaatti todistaa mahdollisille ostajille, että Tesla-akkusi on hyvässä kunnossa, mikä eliminoi epävarmuuden piilotetusta kulumasta. Tämä läpinäkyvyys rakentaa luottamusta ja voi oikeuttaa korkeamman myyntihinnan. Ostajat ovat valmiita maksamaan enemmän ajoneuvoista, joilla on todistettu akun terveys, koska se vähentää heidän riskiään kalliiseen akun vaihtoon.",
+      "one_time_question": "Onko 9€ sertifikaattimaksu kertamaksu?",
+      "one_time_answer": "Kyllä, 9€ sertifikaattimaksu on kertamaksu. Saat varmennetun PDF-sertifikaatin, joka on voimassa 3 kuukautta ja voidaan jakaa rajoittamattomalle määrälle mahdollisia ostajia. Ei ole toistuvia maksuja, tilauksia tai piilotettuja kustannuksia. Jos tarvitset uuden sertifikaatin 3 kuukauden jälkeen, voit ostaa toisen.",
+      "refund_question": "Tarjoatteko palautuksia sertifikaateista?",
+      "refund_answer": "Tarjoamme 30 päivän rahantakaisutakuun kaikille sertifikaattien ostoksille. Jos et ole tyytyväinen sertifikaattiisi mistään syystä, ota yhteyttä meihin 30 päivän sisällä ja annamme täyden palautuksen. Huomaa kuitenkin, että kun ostaja on varmentanut sertifikaatin, emme voi antaa palautuksia, koska palvelua on käytetty."
+    },
+    "service": {
+      "title": "Palvelu & Tarkkuus",
+      "how_works_question": "Miten akun terveysarviointi toimii?",
+      "how_works_answer": "Järjestelmämme yhdistyy Tesla-akkusi Teslan virallisen API:n kautta ja analysoi akkudatasi reaaliajassa. Vertaamme nykyistä akkukapasiteettiasi alkuperäisiin teknisetietoihin ajoneuvomallisi ja -vuoden mukaan, sitten laskemme kulumisprosentin. Arviointi kestää noin 30 sekuntia ja antaa välittömät tulokset.",
+      "accuracy_question": "Kuinka tarkka on akun terveysarviointinne?",
+      "accuracy_answer": "Arviointimme on erittäin tarkka, koska käytämme Teslan omia API-tietoja, jotka ovat samoja tietoja, joita Tesla käyttää sisäisesti. Vertaamme akkuasi valmistajan teknisetietoihin ja todellisiin vertailuarvoihin. Akun terveys voi kuitenkin vaihdella käyttötapojen mukaan, joten suosittelemme käyttämään tätä yhtenä työkaluna yleisessä ajoneuvon arvioinnissasi.",
+      "certificate_validity_question": "Kuinka kauan sertifikaatti on voimassa?",
+      "certificate_validity_answer": "Sertifikaatit ovat voimassa 3 kuukautta ostopäivästä. Tämä aikajana varmistaa, että data pysyy ajankohtaisena samalla kun annat riittävästi aikaa myynnin viimeistelyyn. Akun terveys ei muutu merkittävästi 3 kuukaudessa, joten arviointi pysyy relevanttina useimmissa tapahtumissa.",
+      "verification_question": "Miten ostajat voivat varmentaa sertifikaattini?",
+      "verification_answer": "Jokainen sertifikaatti sisältää ainutlaatuisen QR-koodin, jonka ostajat voivat skannata varmentaakseen aitouden sivustollamme. Varmennussivu näyttää sertifikaatin tiedot ja vahvistaa, että sen on myöntänyt batterycert.com. Tämä estää petokset ja varmistaa, että ostajat voivat luottaa akun terveysdataan.",
+      "support_question": "Entä jos minulla on teknisiä ongelmia tai kysymyksiä?",
+      "support_answer": "Tarjoamme kattavan tuen kaikille palveluillemme. Jos kohtaat teknisiä ongelmia, sinulla on kysymyksiä akun arvioinnista tai tarvitset apua sertifikaatissasi, voit ottaa yhteyttä meihin tukikanaviimme. Vastaamme yleensä 24 tunnin sisällä ja sitoudumme varmistamaan positiivisen kokemuksen palvelustamme."
+    },
+    "contact": {
+      "title": "Onko sinulla vielä kysymyksiä?",
+      "description": "Olemme täällä auttaaksemme! Jos sinulla on kysymyksiä palvelustamme, yksityisyydestä tai tarvitset teknistä tukea, älä epäröi ottaa yhteyttä.",
+      "check_battery": "Tarkista akkuni",
+      "learn_more": "Lue lisää"
+    }
+  },
+  "regions": {
+    "na": "Pohjois-Amerikka & Aasia-Tyynenmeren alue",
+    "eu": "Eurooppa, Lähi-itä & Afrikka"
+  },
+  "check_page": {
+    "meta": {
+      "title": "Tarkista Tesla-akkusi terveys - Ilmainen välitön arviointi | batterycert.com",
+      "description": "Saa välitön, ilmainen Tesla-akun terveystarkistus. Yhdistä Tesla-tilisi saadaksesi yksityiskohtaisen kulumisanalyysin ja akkukapasiteettidatan 30 sekunnissa.",
+      "keywords": "Tesla akun tarkistus, akun terveystesti, Tesla kulumistarkistus, ilmainen akun arviointi, Tesla akun analyysi"
+    },
+    "title": "Tarkista Tesla-akkusi terveys",
+    "subtitle": "Yhdistä Tesla-tilisi saadaksesi välittömän akun terveysarvioinnin",
+    "region_notice": "Käyttää Teslan {regionName} palvelimia",
+    "wrong_region": "Väärä alue? Vaihda tästä",
+    "connect_button": "Yhdistä Tesla-tiliin",
+    "connecting": "Yhdistetään Teslaan...",
+    "security_title": "Turvallisuutesi on prioriteettimme",
+    "security_points": {
+      "no_credentials": "Emme koskaan tallenna Tesla-kirjautumistietojasi",
+      "encrypted": "Yhteys on salattu ja turvallinen",
+      "battery_only": "Pääsemme vain akkudataan, ei muuhun"
+    },
+    "features": {
+      "secure_connection": {
+        "title": "Turvallinen yhteys",
+        "description": "256-bittinen salaus"
+      },
+      "no_storage": {
+        "title": "Ei tallennusta",
+        "description": "Kirjautumistietoja ei tallenneta"
+      },
+      "instant_results": {
+        "title": "Välittömät tulokset",
+        "description": "30 sekuntia tai vähemmän"
+      }
+    }
+  },
+  "vehicles_page": {
+    "meta": {
+      "title": "Valitse Tesla-ajoneuvosi - Akun terveystarkistus | batterycert.com",
+      "description": "Valitse mikä Tesla-ajoneuvo analysoidaan. Saa välitön akun terveysarviointi kulumisprosentilla ja kapasiteettidatalla.",
+      "keywords": "Tesla ajoneuvon valinta, useita Tesla-autoja, akun terveystarkistus, Tesla laivastoanalyysi"
+    },
+    "loading": {
+      "title": "Ladataan ajoneuvojasi...",
+      "description": "Haetaan Tesla-ajoneuvojasi tililtäsi"
+    },
+    "title": "Valitse Tesla-akkusi",
+    "subtitle": "Valitse ajoneuvo, jonka haluat tarkistaa. Analysoimme sen akun terveyden vain 30 sekunnissa.",
+    "checking_battery": "Tarkistetaan akun terveyttä...",
+    "vehicle_card": {
+      "charging": "Lataa",
+      "online": "Online",
+      "asleep": "Nukkuu",
+      "offline": "Offline",
+      "asleep_can_wake": "Nukkuu (Voi herätä)",
+      "miles": "mailia",
+      "kilometers": "km",
+      "vin": "Runkonumero",
+      "battery_level": "Akuntaso",
+      "range": "Kantama",
+      "temperature": "Lämpötila",
+      "last_seen": "Viimeksi nähty",
+      "odometer": "Ajokilometrit",
+      "selected": "Valittu",
+      "select_this_vehicle": "Valitse tämä ajoneuvo"
+    },
+    "no_vehicles": {
+      "title": "Ajoneuvoja ei löytynyt",
+      "description": "Emme löytäneet Tesla-ajoneuvoja tililtäsi. Varmista, että sinulla on ajoneuvoja rekisteröitynä Tesla-tiliisi.",
+      "try_again": "Yritä uudelleen"
+    },
+    "info_cards": {
+      "instant_analysis": {
+        "title": "Välitön analyysi",
+        "description": "Saa akun terveystuloksesi 30 sekunnissa"
+      },
+      "detailed_report": {
+        "title": "Yksityiskohtainen raportti",
+        "description": "Analyysi kulumisprosentilla ja kapasiteettidatalla"
+      },
+      "verified_certificate": {
+        "title": "Varmennettu sertifikaatti",
+        "description": "Valinnainen 9€ varmennettu sertifikaatti ostos-/myyntisuojalle"
+      }
+    },
+    "errors": {
+      "failed_to_load": "Ajoneuvojen lataaminen epäonnistui. Yritä uudelleen.",
+      "failed_battery_check": "Akun terveyden tarkistus epäonnistui. Yritä uudelleen."
+    }
+  },
+  "region_selection": {
+    "title": "Valitse alueesi",
+    "description": "Tesla käyttää eri palvelimia eri alueille. Valitse oma alueesi parhaan kokemuksen saamiseksi.",
+    "recommended": "Suositeltu",
+    "continue_button": "Jatka Tesla-tarkistukseen",
+    "settings_note": "Voit muuttaa tätä myöhemmin asetuksissa tarvittaessa.",
+    "includes": "Sisältää"
+  },
+  "stripe_receipt": {
+    "description": "Tesla Akun terveyssertifikaatti",
+    "certificate_access": "Sertifikaatin pääsy",
+    "vehicle": "Ajoneuvo",
+    "certificate_id": "Sertifikaatin ID",
+    "footer": "Kiitos ostoksestasi. Sertifikaattisi on nyt saatavilla latausta ja jakamista varten."
+  }
+}

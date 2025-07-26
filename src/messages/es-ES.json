@@ -1,0 +1,565 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "retry": "Reintentar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "continue": "Continuar",
+    "cancel": "Cancelar",
+    "close": "Cerrar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "share": "Compartir",
+    "download": "Descargar"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "check": "Verificar batería",
+    "certificates": "Certificados",
+    "about": "Acerca de",
+    "faq": "Preguntas frecuentes",
+    "terms": "Términos de servicio",
+    "contact": "Contacto",
+    "language": "Idioma"
+  },
+  "meta": {
+    "homepage": {
+      "title": "Verificación de salud de batería Tesla - Resultados instantáneos en 30 segundos | batterycert.com",
+      "description": "Verifica instantáneamente la salud de tu batería Tesla con nuestra herramienta de evaluación gratuita. Obtén datos verificados de degradación de batería, análisis de capacidad y certificados PDF opcionales para comprar o vender tu Tesla.",
+      "og_title": "Verificación de salud de batería Tesla - Resultados instantáneos en 30 segundos",
+      "og_description": "Obtén evaluaciones instantáneas y verificadas de la salud de la batería Tesla. Perfecto para comprar, vender o conocer la verdadera condición de tu Tesla.",
+      "og_alt": "Verificación de salud de batería Tesla"
+    }
+  },
+  "structured_data": {
+    "service": {
+      "name": "Verificación de salud de batería Tesla",
+      "description": "Obtén evaluaciones instantáneas y verificadas de la salud de la batería Tesla. Perfecto para comprar, vender o conocer la verdadera condición de tu Tesla.",
+      "service_type": "Evaluación de salud de batería",
+      "area_served": "Mundial",
+      "offer_description": "Verificación gratuita de salud de batería Tesla"
+    }
+  },
+  "homepage": {
+    "navigation": {
+      "about": "Acerca de"
+    },
+    "hero": {
+      "title": "Verifica tu batería Tesla",
+      "title_highlight": "En 30 segundos",
+      "cta_primary": "Verificar mi Tesla",
+      "cta_secondary": "Ver certificado de ejemplo"
+    },
+    "hero_features": {
+      "free_check": "Verificación gratuita de salud de batería",
+      "no_account": "No se requiere cuenta",
+      "instant_results": "Resultados instantáneos",
+      "optional_certificate": "Certificado opcional (9€)"
+    },
+    "problem_section": {
+      "title": "Reemplazo de batería = ",
+      "title_price": "15.000€+",
+      "subtitle": "Compradores, no se dejen estafar con problemas ocultos de batería",
+      "video_title": "Ver por qué la salud de la batería es importante",
+      "video_description": "Mira este video para entender la estafa común. batterycert.com te ayuda a evitarla.",
+      "cards": {
+        "hidden_issues": {
+          "title": "Encuentra los problemas ocultos",
+          "description": "Los vendedores ocultan problemas de degradación"
+        },
+        "trusted_data": {
+          "title": "Datos confiables",
+          "description": "Directamente desde los sistemas de Tesla"
+        },
+        "higher_value": {
+          "title": "Mayor valor",
+          "description": "La salud probada aumenta el precio"
+        }
+      }
+    },
+    "how_it_works": {
+      "title": "Proceso simple de 3 pasos",
+      "steps": {
+        "connect": {
+          "title": "Conectar",
+          "description": "Conexión segura a través del OAuth oficial de Tesla. Nunca vemos tus credenciales - te autenticas directamente con Tesla."
+        },
+        "analyze": {
+          "title": "Analizar",
+          "description": "Nuestro sistema analiza instantáneamente tus datos de batería usando la API de Tesla y calcula el porcentaje de degradación."
+        },
+        "certificate": {
+          "title": "Opcional: Certificado",
+          "description": "Obtén un certificado PDF verificado con código QR para que los compradores verifiquen. Válido por 3 meses. Tarifa única de 9€."
+        }
+      }
+    },
+    "use_cases": {
+      "title": "Perfecto para ",
+      "title_buyers": "Compradores",
+      "title_sellers": "Vendedores",
+      "title_owners": "Propietarios",
+      "buyers": {
+        "title": "Compradores",
+        "description": "Evita sorpresas de 15.000€+"
+      },
+      "sellers": {
+        "title": "Vendedores",
+        "description": "Aumenta el valor de reventa"
+      },
+      "owners": {
+        "title": "Propietarios",
+        "description": "Rastrea la salud de la batería"
+      }
+    },
+    "cta_section": {
+      "title": "¿Listo para verificar tu batería Tesla?",
+      "subtitle": "Únete a miles de propietarios de Tesla que confían en batterycert.com para reportes de salud de batería precisos e instantáneos.",
+      "button_text": "Verificar mi batería Tesla ahora",
+      "features": {
+        "free_registration": "Gratis • No se requiere registro",
+        "speed": "30 segundos • Resultados instantáneos",
+        "certificate": "Certificado opcional 9€"
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 batterycert.com. Construido para propietarios y compradores de Tesla en nombre del juego limpio.",
+      "language_switcher": "Cambiar idioma:"
+    }
+  },
+  "certificate_page": {
+    "meta": {
+      "not_found_title": "Certificado no encontrado - batterycert.com",
+      "not_found_description": "El certificado de batería Tesla solicitado no se pudo encontrar.",
+      "title": "{vehicleName} - Certificado de batería Tesla - batterycert.com",
+      "description": "Ver el certificado de salud de batería Tesla para {vehicleName} con análisis detallado de degradación, datos de capacidad y código QR de verificación.",
+      "default_title": "Certificado de batería Tesla - batterycert.com",
+      "default_description": "Ver tu certificado de salud de batería Tesla con análisis detallado de degradación, datos de capacidad y código QR de verificación.",
+      "keywords": "Certificado de batería Tesla, reporte de salud de batería, certificado de degradación de batería, verificación de batería Tesla"
+    },
+    "not_found": {
+      "title": "Certificado no encontrado",
+      "description": "El ID del certificado \"{id}\" no se encontró o puede haber expirado.",
+      "button": "Verificar tu batería Tesla"
+    },
+    "fraud_protection": {
+      "title": "Protección contra fraude verificada",
+      "description": "Este certificado es a prueba de manipulación y está directamente conectado a los sistemas oficiales de Tesla. El código QR de abajo permite verificación instantánea de autenticidad. Los compradores pueden confiar en que esta evaluación es genuina y precisa."
+    },
+    "certificate_locked": {
+      "title": "Certificado bloqueado",
+      "description": "Completa tu pago arriba para desbloquear el certificado verificado completo con:",
+      "features": {
+        "detailed_analysis": "Análisis detallado de salud de batería",
+        "degradation_percentage": "Porcentaje oficial de degradación",
+        "qr_code": "Código QR de verificación",
+        "downloadable_pdf": "Certificado PDF descargable",
+        "fraud_protection": "Garantía de protección contra fraude"
+      }
+    },
+    "verification_footer": {
+      "verified_by": "Verificado por batterycert.com",
+      "verification_description": "Este certificado puede ser verificado usando el código QR o ID del certificado:",
+      "generated": "Generado:",
+      "valid_for": "Válido por 3 meses",
+      "verify_certificate": "Verificar certificado"
+    }
+  },
+  "certificate_display": {
+    "chart": {
+      "title": "Salud de batería a lo largo del tiempo",
+      "this_vehicle": "Este vehículo",
+      "tesla_average": "Promedio Tesla"
+    },
+    "title": "Reporte de salud de batería basado en datos de Tesla",
+    "certificate_id": "ID del certificado",
+    "health_score": "Puntuación de salud",
+    "scan_to_verify": "Escanear para verificar",
+    "vehicle_information": "Información del vehículo",
+    "model": "Modelo",
+    "vin": "Número de serie",
+    "year": "Año",
+    "assessment_details": "Detalles de la evaluación",
+    "test_date": "Fecha de prueba",
+    "mileage": "Kilometraje",
+    "software_version": "Versión del software",
+    "not_available": "No disponible",
+    "valid_until": "Válido hasta",
+    "battery_performance": "Métricas de rendimiento de batería",
+    "better_than_percentage": "Mejor que {percentage}% de vehículos similares",
+    "degradation_comparison": "Comparación de degradación vs promedio",
+    "detailed_analysis": "Análisis detallado",
+    "battery_specifications": "Especificaciones de la batería",
+    "original_capacity": "Capacidad original",
+    "current_capacity": "Capacidad actual",
+    "current_label": "Actual",
+    "vs_label": "vs",
+    "health_label": "Salud",
+    "average_label": "Promedio",
+    "confidence_levels": {
+      "high": "Alto",
+      "medium": "Medio",
+      "low": "Bajo"
+    },
+    "full_charge_range": "Rango de carga completa",
+    "capacity_loss": "Pérdida de capacidad",
+    "methodology": "Metodología",
+    "performance_indicators": "Indicadores de rendimiento",
+    "battery_chemistry": "Química de la batería",
+    "battery_supplier": "Proveedor de batería",
+    "confidence_level": "Nivel de confianza",
+    "overall_condition": "Condición general",
+    "assessment_summary": "Resumen de evaluación",
+    "summary_excellent": "Este {vehicleName} demuestra excelente salud de batería con {degradation}% de degradación. La batería está funcionando excepcionalmente bien para su uso. Capacidad actual de {currentCapacity} kWh de una capacidad original de {originalCapacity} kWh. Este vehículo representa una excelente oportunidad de compra con riesgos relacionados con la batería mínimos.",
+    "summary_good": "Este {vehicleName} demuestra buena salud de batería con {degradation}% de degradación. La batería está funcionando bien para su uso. Capacidad actual de {currentCapacity} kWh de una capacidad original de {originalCapacity} kWh. Este vehículo representa una buena oportunidad de compra con patrones de desgaste normales.",
+    "summary_fair": "Este {vehicleName} demuestra salud de batería justa con {degradation}% de degradación. La batería está funcionando adecuadamente para su uso. Capacidad actual de {currentCapacity} kWh de una capacidad original de {originalCapacity} kWh. Este vehículo muestra degradación superior al promedio y debe ser considerado cuidadosamente.",
+    "conditions": {
+      "excellent": "Excelente",
+      "good": "Buena",
+      "average": "Promedio",
+      "fair": "Justa",
+      "poor": "Mala"
+    },
+    "units": {
+      "kwh": "kWh",
+      "miles": "millas",
+      "km": "km"
+    }
+  },
+  "certificate_payment": {
+    "payment_required": "Pago requerido",
+    "certificate_description": "Este certificado requiere pago para desbloquear el reporte verificado completo.",
+    "pricing_description": "Obtén tu certificado oficial de salud de batería Tesla con código QR de verificación y protección contra fraude.",
+    "pricing_loading": "Cargando...",
+    "pricing_error": "Error al cargar información de precios",
+    "certificate_price": "Precio del certificado",
+    "payment_button": "Completar pago",
+    "payment_processing": "Procesando...",
+    "loading": "Cargando...",
+    "secure_payment": "Pago seguro a través de Stripe • Acceso instantáneo después del pago • Recibo por email incluido"
+  },
+  "hero_visual": {
+    "verified_certificate": "Certificado verificado",
+    "battery_health_report": "Reporte de salud de batería Tesla",
+    "certificate_id": "ID del certificado",
+    "certified": "CERTIFICADO",
+    "verified": "VERIFICADO",
+    "health_score": "Puntuación de salud",
+    "vehicle_information": "Información del vehículo",
+    "model": "Modelo",
+    "tesla_model_y": "Tesla Model Y Long Range",
+    "year": "Año",
+    "vin": "Número de serie",
+    "battery_metrics": "Métricas de batería",
+    "current_capacity": "Capacidad actual",
+    "degradation": "Degradación",
+    "est_range": "Rango estimado",
+    "miles": "millas",
+    "degradation_comparison": "Comparación de degradación vs promedio",
+    "better_than_percentage": "Mejor que 78% de vehículos similares",
+    "this_vehicle": "Este vehículo (92%)",
+    "average": "Promedio (85%)",
+    "verified_data": "Datos verificados",
+    "direct_tesla_api": "API de Tesla directa",
+    "tamper_proof": "A prueba de manipulación",
+    "qr_verification": "Verificación QR",
+    "increase_value": "Aumentar valor",
+    "proven_health": "Salud probada",
+    "scan_to_verify": "Escanear para verificar",
+    "verified_by": "Verificado por batterycert.com",
+    "generated": "Generado",
+    "generated_date": "24 jul 2025",
+    "valid_for_one_year": "Válido por 3 meses"
+  },
+  "gdpr": {
+    "title": "Respetamos tu privacidad",
+    "message": "Usamos cookies y tecnologías similares para mejorar tu experiencia, analizar el tráfico del sitio y personalizar contenido. Tus datos de Tesla se procesan de forma segura y nunca se comparten con terceros.",
+    "accept_all": "Aceptar todo",
+    "decline": "Rechazar",
+    "cookie_settings": "Configuración de cookies",
+    "essential_only": "Solo esenciales",
+    "settings": {
+      "essential_cookies": "Cookies esenciales",
+      "always_on": "Siempre activo",
+      "analytics": "Analytics",
+      "marketing": "Marketing",
+      "optional": "Opcional",
+      "back": "Atrás"
+    }
+  },
+  "tesla_check": {
+    "back_to_home": "Volver al inicio",
+    "results": {
+      "battery_degradation": "Degradación de batería",
+      "battery_health": "Salud de batería",
+      "excellent": "Excelente",
+      "good": "Buena",
+      "fair": "Justa",
+      "current_capacity": "Capacidad actual",
+      "original_capacity": "Capacidad original",
+      "current_charge": "Carga actual"
+    },
+    "certificate_promo": {
+      "title": "Obtén tu certificado oficial",
+      "subtitle": "Convierte tus resultados en un documento verificado que aumenta el valor de tu Tesla",
+      "free_section": {
+        "title": "Lo que obtuviste GRATIS",
+        "degradation": "✓ Porcentaje de degradación de batería",
+        "capacity": "✓ Datos de capacidad actual",
+        "charge": "✓ Nivel de carga actual"
+      },
+      "paid_section": {
+        "title": "Certificado oficial (9€)",
+        "full_dataset": "✓ Conjunto de datos completo para tu vehículo",
+        "peer_comparison": "✓ Comparación con vehículos similares",
+        "pdf_certificate": "✓ Certificado PDF fechado con número de serie",
+        "authenticity": "✓ Verificación de autenticidad para compradores",
+        "physical_option": "✓ Opción para certificado físico",
+        "performance_ranking": "✓ Clasificación de rendimiento por nivel"
+      },
+      "purchase_button": "Comprar certificado",
+      "sample_link": "Certificado de ejemplo",
+      "features": "💎 Descarga instantánea • 🔒 Pago seguro • 📄 Válido por 3 meses"
+    },
+    "auth_form": {
+      "title": "Verifica tu salud de batería",
+      "subtitle": "Conecta tu cuenta de Tesla para obtener una evaluación instantánea de la salud de la batería",
+      "region_info": "Usando servidores Tesla {regionName}",
+      "region_change": "¿Región incorrecta? Cámbiala aquí",
+      "connect_button": "Conectar con cuenta de Tesla",
+      "connecting": "Conectando a Tesla...",
+      "try_again": "Reintentar",
+      "retry_info": "Tesla puede recordar tu sesión y conectarse más rápido"
+    },
+    "security": {
+      "title": "Tu seguridad es nuestra prioridad",
+      "no_storage": "• Nunca almacenamos tus credenciales de Tesla",
+      "encrypted": "• La conexión está encriptada y es segura",
+      "battery_only": "• Solo accedemos a datos de batería, nada más"
+    },
+    "features": {
+      "secure_connection": {
+        "title": "Conexión segura",
+        "subtitle": "Encriptación de 256 bits"
+      },
+      "no_storage": {
+        "title": "Sin almacenamiento",
+        "subtitle": "Credenciales no guardadas"
+      },
+      "instant_results": {
+        "title": "Resultados instantáneos",
+        "subtitle": "30 segundos o menos"
+      }
+    }
+  },
+  "vehicle_selection": {
+    "back_to_login": "Volver al login",
+    "loading": {
+      "title": "Cargando tus vehículos...",
+      "description": "Obteniendo tus vehículos Tesla de tu cuenta"
+    },
+    "page": {
+      "title": "Selecciona tu Tesla",
+      "subtitle": "Elige el vehículo que quieres verificar. Analizaremos su salud de batería en solo 30 segundos."
+    },
+    "checking_battery": "Verificando salud de batería...",
+    "no_vehicles": {
+      "title": "No se encontraron vehículos",
+      "description": "No pudimos encontrar vehículos Tesla asociados con tu cuenta. Asegúrate de tener vehículos registrados en tu cuenta de Tesla.",
+      "try_again": "Reintentar"
+    },
+    "info_cards": {
+      "instant_analysis": {
+        "title": "Análisis instantáneo",
+        "description": "Obtén tus resultados de salud de batería en 30 segundos"
+      },
+      "detailed_report": {
+        "title": "Reporte detallado",
+        "description": "Análisis con porcentaje de degradación y datos de capacidad"
+      },
+      "verified_certificate": {
+        "title": "Certificado verificado",
+        "description": "Certificado verificado opcional de 9€ para protección de compra/venta"
+      }
+    },
+    "errors": {
+      "failed_to_load": "Error al cargar tus vehículos. Inténtalo de nuevo.",
+      "failed_battery_check": "Error al verificar la salud de la batería. Inténtalo de nuevo."
+    }
+  },
+  "certificate_actions": {
+    "share": "Compartir",
+    "copied": "¡Copiado!",
+    "download_pdf": "Descargar PDF",
+    "generating": "Generando...",
+    "share_title": "Certificado de batería Tesla - {certificateId}",
+    "share_text": "Mira este certificado de salud de batería Tesla",
+    "download_error": "Error al descargar PDF: {error}"
+  },
+  "faq": {
+    "meta": {
+      "title": "Preguntas frecuentes - Verificación de salud de batería Tesla | batterycert.com",
+      "description": "Obtén respuestas a preguntas comunes sobre nuestro servicio de verificación de salud de batería Tesla, privacidad, precios y cómo funcionan nuestros certificados.",
+      "keywords": "FAQ batería Tesla, preguntas salud batería, política de privacidad, precios, verificación de certificado"
+    },
+    "page_title": "Preguntas frecuentes",
+    "hero": {
+      "title": "Preguntas frecuentes",
+      "subtitle": "Todo lo que necesitas saber sobre nuestro servicio de verificación de salud de batería Tesla"
+    },
+    "privacy": {
+      "title": "Privacidad y seguridad",
+      "oauth_question": "¿Cómo funciona el OAuth de Tesla y qué datos accedes?",
+      "oauth_answer": "Usamos el sistema OAuth oficial de Tesla, lo que significa que te autenticas directamente con Tesla - nunca vemos tu nombre de usuario o contraseña. Solo accedemos a información básica del vehículo y datos de batería que Tesla permite que las aplicaciones de terceros lean. No podemos acceder a tu información personal, detalles de pago u otros datos de la cuenta de Tesla.",
+      "data_access_question": "¿Qué datos específicos recopilas de mi Tesla?",
+      "data_access_answer": "Solo recopilamos datos relacionados con la batería: nivel actual de batería, capacidad de batería utilizable, rango estimado y especificaciones del vehículo (modelo, año, número de serie). No accedemos a tu ubicación, historial de conducción, configuraciones personales u otros datos del vehículo. Nuestro análisis se enfoca únicamente en la salud y degradación de la batería.",
+      "credentials_question": "¿Almacenas mis credenciales de login de Tesla?",
+      "credentials_answer": "Absolutamente no. Nunca vemos, almacenamos o tenemos acceso a tu nombre de usuario de Tesla, contraseña u otras credenciales de login. El proceso OAuth ocurre completamente entre tú y Tesla. Solo recibimos un token de acceso temporal que usamos para leer tus datos de batería, y este token expira automáticamente.",
+      "storage_question": "¿Por cuánto tiempo mantienes mis datos?",
+      "storage_answer": "Mantenemos tus datos de evaluación de batería solo el tiempo necesario para proporcionar el servicio. Si compras un certificado, retenemos los datos del certificado para propósitos de verificación. Puedes solicitar la eliminación de tus datos en cualquier momento contactándonos. No vendemos, alquilamos o compartimos tus datos personales con terceros.",
+      "third_party_question": "¿Compartes mis datos con terceros?",
+      "third_party_answer": "No, no vendemos, alquilamos o compartimos tus datos personales con terceros. Las únicas excepciones son: 1) Procesamiento de pagos (Stripe) para compras de certificados, 2) Requisitos legales si obligados por ley, 3) Proveedores de servicios que nos ayudan a operar nuestra plataforma (bajo estrictos acuerdos de confidencialidad)."
+    },
+    "pricing": {
+      "title": "Precios y certificados",
+      "why_charge_question": "¿Por qué cobras por certificados cuando la verificación de batería es gratis?",
+      "why_charge_answer": "La verificación de salud de batería es completamente gratis porque queremos ayudar a los propietarios de Tesla a entender la condición de su vehículo. Cobramos por certificados porque requieren costos adicionales: tarifas de uso de API de Tesla, generación de PDF, almacenamiento seguro y sistemas de verificación. Además, un certificado pagado muestra a los compradores que eres serio sobre la transparencia y aumenta el valor de tu vehículo.",
+      "api_costs_question": "¿Cuáles son los costos de API de Tesla que mencionaste?",
+      "api_costs_answer": "Tesla cobra tarifas por acceso API a sus datos de vehículo. Mientras que las verificaciones individuales de batería son relativamente económicas, proporcionar un servicio de certificado verificado requiere acceso API continuo para verificación, lo que incurre en costos mensuales. Nuestra tarifa de certificado de 9€ ayuda a cubrir estos costos operativos manteniendo el servicio accesible.",
+      "certificate_value_question": "¿Cómo un certificado aumenta el valor de mi vehículo?",
+      "certificate_value_answer": "Un certificado de batería verificado prueba a los compradores potenciales que la batería de tu Tesla está en buenas condiciones, eliminando la incertidumbre sobre la degradación oculta. Esta transparencia construye confianza y puede justificar un precio de venta más alto. Los compradores están dispuestos a pagar más por vehículos con salud de batería probada, ya que reduce su riesgo de costosos costos de reemplazo de batería.",
+      "one_time_question": "¿La tarifa de certificado de 9€ es un pago único?",
+      "one_time_answer": "Sí, la tarifa de certificado de 9€ es un pago único. Obtienes un certificado PDF verificado válido por 3 meses y que puede ser compartido con compradores potenciales ilimitados. No hay tarifas recurrentes, suscripciones o costos ocultos. Si necesitas un nuevo certificado después de 3 meses, puedes comprar otro.",
+      "refund_question": "¿Ofreces reembolsos por certificados?",
+      "refund_answer": "Ofrecemos una garantía de reembolso de 30 días para todas las compras de certificados. Si no estás satisfecho con tu certificado por cualquier razón, contáctanos dentro de 30 días y proporcionaremos un reembolso completo. Sin embargo, ten en cuenta que una vez que un certificado es verificado por un comprador, no podemos emitir reembolsos ya que el servicio ha sido utilizado."
+    },
+    "service": {
+      "title": "Servicio y precisión",
+      "how_works_question": "¿Cómo funciona la evaluación de salud de batería?",
+      "how_works_answer": "Nuestro sistema se conecta a tu Tesla a través de la API oficial de Tesla y analiza tus datos de batería en tiempo real. Comparamos tu capacidad de batería actual con las especificaciones originales para tu modelo y año de vehículo, luego calculamos el porcentaje de degradación. La evaluación toma unos 30 segundos y proporciona resultados instantáneos.",
+      "accuracy_question": "¿Qué tan precisa es tu evaluación de salud de batería?",
+      "accuracy_answer": "Nuestra evaluación es muy precisa porque usamos los propios datos de API de Tesla, que son los mismos datos que Tesla usa internamente. Comparamos tu batería con las especificaciones del fabricante y puntos de referencia del mundo real. Sin embargo, la salud de la batería puede variar según los patrones de uso, por lo que recomendamos usar esto como una herramienta en tu evaluación general del vehículo.",
+      "certificate_validity_question": "¿Por cuánto tiempo es válido el certificado?",
+      "certificate_validity_answer": "Los certificados son válidos por 3 meses desde la fecha de compra. Este período garantiza que los datos permanezcan actuales mientras te da suficiente tiempo para completar una venta. La salud de la batería no cambia significativamente en 3 meses, por lo que la evaluación permanece relevante para la mayoría de las transacciones.",
+      "verification_question": "¿Cómo pueden los compradores verificar mi certificado?",
+      "verification_answer": "Cada certificado incluye un código QR único que los compradores pueden escanear para verificar la autenticidad en nuestro sitio web. La página de verificación muestra los detalles del certificado y confirma que fue emitido por batterycert.com. Esto previene el fraude y garantiza que los compradores puedan confiar en los datos de salud de la batería.",
+      "support_question": "¿Qué pasa si tengo problemas técnicos o preguntas?",
+      "support_answer": "Proporcionamos soporte completo para todos nuestros servicios. Si encuentras problemas técnicos, tienes preguntas sobre tu evaluación de batería o necesitas ayuda con tu certificado, puedes contactarnos a través de nuestros canales de soporte. Típicamente respondemos dentro de 24 horas y nos comprometemos a asegurar que tengas una experiencia positiva con nuestro servicio."
+    },
+    "contact": {
+      "title": "¿Aún tienes preguntas?",
+      "description": "¡Estamos aquí para ayudar! Si tienes preguntas sobre nuestro servicio, privacidad o necesitas soporte técnico, no dudes en contactarnos.",
+      "check_battery": "Verificar mi batería",
+      "learn_more": "Saber más"
+    }
+  },
+  "regions": {
+    "na": "Norteamérica y Asia-Pacífico",
+    "eu": "Europa, Medio Oriente y África"
+  },
+  "check_page": {
+    "meta": {
+      "title": "Verifica tu salud de batería Tesla - Evaluación instantánea gratuita | batterycert.com",
+      "description": "Obtén una verificación instantánea y gratuita de la salud de la batería Tesla. Conecta tu cuenta de Tesla para recibir análisis detallado de degradación y datos de capacidad de batería en 30 segundos.",
+      "keywords": "Verificación batería Tesla, prueba salud batería, verificación degradación Tesla, evaluación batería gratis, análisis batería Tesla"
+    },
+    "title": "Verifica tu salud de batería Tesla",
+    "subtitle": "Conecta tu cuenta de Tesla para obtener una evaluación instantánea de la salud de la batería",
+    "region_notice": "Usando servidores Tesla {regionName}",
+    "wrong_region": "¿Región incorrecta? Cámbiala aquí",
+    "connect_button": "Conectar con cuenta de Tesla",
+    "connecting": "Conectando a Tesla...",
+    "security_title": "Tu seguridad es nuestra prioridad",
+    "security_points": {
+      "no_credentials": "Nunca almacenamos tus credenciales de Tesla",
+      "encrypted": "La conexión está encriptada y es segura",
+      "battery_only": "Solo accedemos a datos de batería, nada más"
+    },
+    "features": {
+      "secure_connection": {
+        "title": "Conexión segura",
+        "description": "Encriptación de 256 bits"
+      },
+      "no_storage": {
+        "title": "Sin almacenamiento",
+        "description": "Credenciales no guardadas"
+      },
+      "instant_results": {
+        "title": "Resultados instantáneos",
+        "description": "30 segundos o menos"
+      }
+    }
+  },
+  "vehicles_page": {
+    "meta": {
+      "title": "Selecciona tu vehículo Tesla - Verificación de salud de batería | batterycert.com",
+      "description": "Elige qué vehículo Tesla analizar. Obtén evaluación instantánea de salud de batería con porcentaje de degradación y datos de capacidad.",
+      "keywords": "Selección vehículo Tesla, múltiples autos Tesla, verificación salud batería, análisis flota Tesla"
+    },
+    "loading": {
+      "title": "Cargando tus vehículos...",
+      "description": "Obteniendo tus vehículos Tesla de tu cuenta"
+    },
+    "title": "Selecciona tu Tesla",
+    "subtitle": "Elige el vehículo que quieres verificar. Analizaremos su salud de batería en solo 30 segundos.",
+    "checking_battery": "Verificando salud de batería...",
+    "vehicle_card": {
+      "charging": "Cargando",
+      "online": "En línea",
+      "asleep": "Dormido",
+      "offline": "Desconectado",
+      "asleep_can_wake": "Dormido (Puede despertar)",
+      "miles": "millas",
+      "kilometers": "km",
+      "vin": "Número de serie",
+      "battery_level": "Nivel de batería",
+      "range": "Rango",
+      "temperature": "Temperatura",
+      "last_seen": "Última vez visto",
+      "odometer": "Cuentakilómetros",
+      "selected": "Seleccionado",
+      "select_this_vehicle": "Seleccionar este vehículo"
+    },
+    "no_vehicles": {
+      "title": "No se encontraron vehículos",
+      "description": "No pudimos encontrar vehículos Tesla asociados con tu cuenta. Asegúrate de tener vehículos registrados en tu cuenta de Tesla.",
+      "try_again": "Reintentar"
+    },
+    "info_cards": {
+      "instant_analysis": {
+        "title": "Análisis instantáneo",
+        "description": "Obtén tus resultados de salud de batería en 30 segundos"
+      },
+      "detailed_report": {
+        "title": "Reporte detallado",
+        "description": "Análisis con porcentaje de degradación y datos de capacidad"
+      },
+      "verified_certificate": {
+        "title": "Certificado verificado",
+        "description": "Certificado verificado opcional de 9€ para protección de compra/venta"
+      }
+    },
+    "errors": {
+      "failed_to_load": "Error al cargar tus vehículos. Inténtalo de nuevo.",
+      "failed_battery_check": "Error al verificar la salud de la batería. Inténtalo de nuevo."
+    }
+  },
+  "region_selection": {
+    "title": "Selecciona tu región",
+    "description": "Tesla usa diferentes servidores para diferentes regiones. Por favor selecciona la tuya para la mejor experiencia.",
+    "recommended": "Recomendado",
+    "continue_button": "Continuar al control de Tesla",
+    "settings_note": "Puedes cambiar esto más tarde en la configuración si es necesario.",
+    "includes": "Incluye"
+  },
+  "stripe_receipt": {
+    "description": "Certificado de salud de batería Tesla",
+    "certificate_access": "Acceso al certificado",
+    "vehicle": "Vehículo",
+    "certificate_id": "ID del certificado",
+    "footer": "Gracias por tu compra. Tu certificado está ahora disponible para descarga y compartir."
+  }
+}
